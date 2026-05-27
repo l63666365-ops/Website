@@ -33,10 +33,9 @@
     }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-logo {
-      width: 44px; height: 44px; background: var(--secondary);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 800; color: var(--primary); font-size: 14px; letter-spacing: -1px;
+      width: 46px; height: 46px; flex-shrink: 0;
     }
+    .nav-logo svg { width: 100%; height: 100%; }
     .nav-title { color: var(--white); font-size: 15px; font-weight: 600; line-height: 1.2; }
     .nav-title span { color: var(--secondary); }
     .nav-links { display: flex; gap: 28px; list-style: none; }
@@ -138,8 +137,8 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
     .about-img-wrap { position: relative; }
     .about-img-box {
-      background: linear-gradient(135deg, var(--primary), #2e7d9e);
-      border-radius: 24px; padding: 50px; text-align: center;
+      background: linear-gradient(135deg, #0d2137, #1a3c5e);
+      border-radius: 24px; padding: 40px 50px 56px; text-align: center;
       color: white; position: relative; overflow: hidden;
     }
     .about-img-box::before {
@@ -349,7 +348,58 @@
 <!-- ══ NAVBAR ══ -->
 <nav id="navbar">
   <a href="#hero" class="nav-brand">
-    <div class="nav-logo">S2</div>
+    <div class="nav-logo">
+      <!-- Logo SMKN 2 Sragen – roda gigi + petir + warna identitas -->
+      <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shield background -->
+        <path d="M5 5 H95 V80 Q50 115 50 115 Q50 115 5 80 Z" fill="#1a2e4a" stroke="#e8a020" stroke-width="2.5"/>
+        <!-- Red top-left quadrant -->
+        <path d="M5 5 H50 V42 Q27 42 5 42 Z" fill="#c0392b"/>
+        <!-- Blue top-right quadrant -->
+        <path d="M50 5 H95 V42 H50 Z" fill="#1a3c7a"/>
+        <!-- Gear left (black) -->
+        <path d="M14 10 A18 18 0 0 0 14 38 A18 18 0 0 0 14 10" fill="none"/>
+        <circle cx="24" cy="24" r="12" fill="none" stroke="#111" stroke-width="4"/>
+        <circle cx="24" cy="24" r="5" fill="#c0392b"/>
+        <!-- Gear teeth left -->
+        <rect x="21" y="8" width="6" height="6" rx="1" fill="#111"/>
+        <rect x="21" y="34" width="6" height="6" rx="1" fill="#111"/>
+        <rect x="8" y="21" width="6" height="6" rx="1" fill="#111"/>
+        <rect x="34" y="21" width="6" height="6" rx="1" fill="#111"/>
+        <rect x="11" y="12" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 14.5)"/>
+        <rect x="32" y="12" width="5" height="5" rx="1" fill="#111" transform="rotate(45 34.5 14.5)"/>
+        <rect x="11" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 33.5)"/>
+        <rect x="32" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 34.5 33.5)"/>
+        <!-- Gear right (blue) -->
+        <circle cx="72" cy="24" r="14" fill="none" stroke="#1a3c7a" stroke-width="4.5"/>
+        <circle cx="72" cy="24" r="6" fill="#1a3c7a"/>
+        <!-- Triangle yellow -->
+        <polygon points="68,11 80,11 74,22" fill="#f1c40f"/>
+        <!-- Brick wall center -->
+        <rect x="5" y="43" width="90" height="18" fill="#ecf0f1"/>
+        <rect x="5" y="43" width="90" height="18" fill="none" stroke="#bdc3c7" stroke-width="0.5"/>
+        <!-- Brick pattern -->
+        <line x1="5" y1="51" x2="95" y2="51" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="20" y1="43" x2="20" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="40" y1="43" x2="40" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="60" y1="43" x2="60" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="80" y1="43" x2="80" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="30" y1="51" x2="30" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="50" y1="51" x2="50" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <line x1="70" y1="51" x2="70" y2="61" stroke="#bdc3c7" stroke-width="1"/>
+        <!-- Lightning bolt circle center -->
+        <circle cx="50" cy="24" r="13" fill="white" stroke="#111" stroke-width="2"/>
+        <polygon points="53,12 45,25 51,25 47,36 55,23 49,23" fill="#f1c40f" stroke="#e67e22" stroke-width="0.8"/>
+        <!-- Red/Blue hexagon bottom -->
+        <rect x="5" y="61" width="90" height="22" fill="#c0392b" rx="2"/>
+        <rect x="5" y="72" width="90" height="11" fill="#2c3e8a" rx="2"/>
+        <!-- Yellow bottom -->
+        <path d="M5 82 H95 Q50 115 50 115 Q50 115 5 82 Z" fill="#f1c40f"/>
+        <!-- Banner -->
+        <rect x="18" y="89" width="64" height="14" rx="3" fill="white" stroke="#ccc" stroke-width="1"/>
+        <text x="50" y="99.5" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#1a2e4a" font-family="Arial">SMK N 2 SRAGEN</text>
+      </svg>
+    </div>
     <div class="nav-title">SMK Negeri 2 <span>Sragen</span></div>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -404,7 +454,40 @@
   <div class="about-grid">
     <div class="about-img-wrap">
       <div class="about-img-box">
-        <i class="fas fa-school"></i>
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:auto;position:relative;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.3))">
+          <path d="M3 3 H97 V82 Q50 118 50 118 Q50 118 3 82 Z" fill="#1a2e4a" stroke="#e8a020" stroke-width="3"/>
+          <path d="M3 3 H50 V44 Q26 44 3 44 Z" fill="#c0392b"/>
+          <path d="M50 3 H97 V44 H50 Z" fill="#1a3c7a"/>
+          <circle cx="25" cy="24" r="13" fill="none" stroke="#111" stroke-width="5"/>
+          <circle cx="25" cy="24" r="5.5" fill="#c0392b"/>
+          <rect x="22" y="7" width="6" height="7" rx="1" fill="#111"/>
+          <rect x="22" y="34" width="6" height="7" rx="1" fill="#111"/>
+          <rect x="7" y="21" width="7" height="6" rx="1" fill="#111"/>
+          <rect x="35" y="21" width="7" height="6" rx="1" fill="#111"/>
+          <rect x="11" y="11" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 13.5)"/>
+          <rect x="33" y="11" width="5" height="5" rx="1" fill="#111" transform="rotate(45 35.5 13.5)"/>
+          <rect x="11" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 33.5)"/>
+          <rect x="33" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 35.5 33.5)"/>
+          <circle cx="75" cy="24" r="15" fill="none" stroke="#1a3c7a" stroke-width="5"/>
+          <circle cx="75" cy="24" r="6" fill="#1a3c7a"/>
+          <polygon points="70,10 83,10 76.5,22" fill="#f1c40f"/>
+          <circle cx="50" cy="24" r="14" fill="white" stroke="#111" stroke-width="2.5"/>
+          <polygon points="54,11 44,26 52,26 48,38 58,23 50,23" fill="#f1c40f" stroke="#e67e22" stroke-width="1"/>
+          <rect x="3" y="45" width="94" height="20" fill="#ecf0f1"/>
+          <line x1="3" y1="55" x2="97" y2="55" stroke="#bdc3c7" stroke-width="1.2"/>
+          <line x1="22" y1="45" x2="22" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <line x1="42" y1="45" x2="42" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <line x1="62" y1="45" x2="62" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <line x1="82" y1="45" x2="82" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <line x1="32" y1="55" x2="32" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <line x1="52" y1="55" x2="52" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <line x1="72" y1="55" x2="72" y2="65" stroke="#bdc3c7" stroke-width="1"/>
+          <rect x="3" y="65" width="94" height="12" fill="#c0392b" rx="2"/>
+          <rect x="3" y="75" width="94" height="10" fill="#2c3e8a" rx="2"/>
+          <path d="M3 84 H97 Q50 118 50 118 Q50 118 3 84 Z" fill="#f1c40f"/>
+          <rect x="16" y="91" width="68" height="16" rx="4" fill="white" stroke="#ccc" stroke-width="1.2"/>
+          <text x="50" y="102" text-anchor="middle" font-size="7" font-weight="bold" fill="#1a2e4a" font-family="Arial,sans-serif">SMK N 2 SRAGEN</text>
+        </svg>
         <h3>SMK Negeri 2 Sragen</h3>
         <p>Jl. Raya Sukowati No.1, Sragen, Jawa Tengah</p>
       </div>
@@ -531,54 +614,64 @@
   </div>
   <div class="ekskul-grid container">
     <div class="ekskul-item">
-      <i class="fas fa-futbol"></i>
-      <h4>Sepak Bola</h4>
-      <p>Tim sepak bola berprestasi kabupaten</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-volleyball-ball"></i>
-      <h4>Voli</h4>
-      <p>Tim voli putra dan putri</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-music"></i>
-      <h4>Marching Band</h4>
-      <p>Ansambel musik dan parade</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-fist-raised"></i>
-      <h4>Pencak Silat</h4>
-      <p>Seni bela diri tradisional</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-code"></i>
-      <h4>Coding Club</h4>
-      <p>Pemrograman dan pengembangan aplikasi</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-camera"></i>
-      <h4>Fotografi</h4>
-      <p>Teknik dan seni fotografi digital</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-mosque"></i>
-      <h4>Rohis</h4>
-      <p>Pembinaan rohani Islam siswa</p>
+      <i class="fas fa-user-shield"></i>
+      <h4>Pramuka</h4>
+      <p>Ekstrakurikuler wajib pembentukan karakter</p>
     </div>
     <div class="ekskul-item">
       <i class="fas fa-flag"></i>
       <h4>Paskibra</h4>
-      <p>Pasukan pengibar bendera</p>
+      <p>Pasukan pengibar bendera sekolah & kabupaten</p>
     </div>
     <div class="ekskul-item">
       <i class="fas fa-first-aid"></i>
       <h4>PMR</h4>
-      <p>Palang Merah Remaja</p>
+      <p>Palang Merah Remaja — pertolongan pertama</p>
     </div>
     <div class="ekskul-item">
-      <i class="fas fa-campground"></i>
-      <h4>Pramuka</h4>
-      <p>Kepanduan dan kepemimpinan</p>
+      <i class="fas fa-fist-raised"></i>
+      <h4>Pencak Silat</h4>
+      <p>Seni bela diri tradisional Indonesia</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-futbol"></i>
+      <h4>Sepak Bola</h4>
+      <p>Tim sepak bola berprestasi tingkat kabupaten</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-volleyball-ball"></i>
+      <h4>Bola Voli</h4>
+      <p>Tim voli putra dan putri</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-basketball-ball"></i>
+      <h4>Bola Basket</h4>
+      <p>Tim basket aktif kompetisi antar sekolah</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-table-tennis"></i>
+      <h4>Tenis Meja</h4>
+      <p>Olahraga tenis meja individu & beregu</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-mosque"></i>
+      <h4>Rohis</h4>
+      <p>Kerohanian Islam — OSIS & kegiatan keagamaan</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-music"></i>
+      <h4>Seni Musik</h4>
+      <p>Band, vokal grup, dan seni pertunjukan</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-paint-brush"></i>
+      <h4>Seni Rupa & Desain</h4>
+      <p>Desain grafis, ilustrasi, dan seni kreatif</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-car-alt"></i>
+      <h4>Otomotif Club</h4>
+      <p>Praktik lanjut otomotif & modifikasi kendaraan</p>
     </div>
   </div>
 </section>
