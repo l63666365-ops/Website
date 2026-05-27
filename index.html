@@ -1,1 +1,829 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMK Negeri 2 Sragen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #1a3c5e;
+      --secondary: #e8a020;
+      --accent: #2e7d32;
+      --light: #f4f6f9;
+      --white: #ffffff;
+      --text: #333;
+      --text-light: #666;
+      --shadow: 0 4px 20px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; color: var(--text); background: var(--white); }
 
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(26,60,94,0.97); backdrop-filter: blur(10px);
+      padding: 0 5%; display: flex; align-items: center;
+      justify-content: space-between; height: 70px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo {
+      width: 44px; height: 44px; background: var(--secondary);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: var(--primary); font-size: 14px; letter-spacing: -1px;
+    }
+    .nav-title { color: var(--white); font-size: 15px; font-weight: 600; line-height: 1.2; }
+    .nav-title span { color: var(--secondary); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px;
+      font-weight: 500; transition: color 0.3s; position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--secondary); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--secondary); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+    .hamburger span { width: 25px; height: 3px; background: white; border-radius: 3px; transition: 0.3s; }
+
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(135deg, #0d2137 0%, #1a3c5e 50%, #1e4976 100%);
+      overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-shapes .shape {
+      position: absolute; border-radius: 50%; opacity: 0.08;
+    }
+    .shape-1 { width: 500px; height: 500px; background: var(--secondary); top: -150px; right: -100px; }
+    .shape-2 { width: 300px; height: 300px; background: #4fc3f7; bottom: -80px; left: -80px; }
+    .shape-3 { width: 200px; height: 200px; background: var(--secondary); bottom: 100px; right: 200px; }
+    .hero-content {
+      position: relative; z-index: 1; padding: 0 5%; width: 100%;
+      max-width: 1200px; margin: 0 auto; padding-top: 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(232,160,32,0.2); border: 1px solid rgba(232,160,32,0.4);
+      color: var(--secondary); padding: 6px 16px; border-radius: 50px;
+      font-size: 13px; font-weight: 500; margin-bottom: 20px;
+    }
+    .hero-text h1 {
+      font-size: clamp(32px, 5vw, 56px); font-weight: 800;
+      color: var(--white); line-height: 1.15; margin-bottom: 10px;
+    }
+    .hero-text h1 span { color: var(--secondary); }
+    .hero-text .sub { color: rgba(255,255,255,0.7); font-size: 16px; margin: 16px 0 32px; line-height: 1.7; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--secondary); color: var(--primary); padding: 14px 32px;
+      border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 15px;
+      transition: all 0.3s; box-shadow: 0 4px 15px rgba(232,160,32,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(232,160,32,0.5); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.5); color: var(--white); padding: 14px 32px;
+      border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 15px;
+      transition: all 0.3s;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+    .hero-card {
+      background: rgba(255,255,255,0.07); backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 24px;
+      padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .stat-item { text-align: center; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 16px; }
+    .stat-item .num { font-size: 36px; font-weight: 800; color: var(--secondary); }
+    .stat-item .lbl { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+    .hero-scroll {
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.5); font-size: 13px; text-align: center; z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll i { display: block; font-size: 20px; margin-top: 6px; }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+
+    /* ── SECTION COMMON ── */
+    section { padding: 90px 5%; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-tag {
+      display: inline-block; background: rgba(26,60,94,0.1); color: var(--primary);
+      padding: 5px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
+      margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .section-header h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--primary); }
+    .section-header p { color: var(--text-light); font-size: 16px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .divider {
+      width: 60px; height: 4px; background: var(--secondary);
+      border-radius: 2px; margin: 16px auto 0;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    #tentang { background: var(--light); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-img-wrap { position: relative; }
+    .about-img-box {
+      background: linear-gradient(135deg, var(--primary), #2e7d9e);
+      border-radius: 24px; padding: 50px; text-align: center;
+      color: white; position: relative; overflow: hidden;
+    }
+    .about-img-box::before {
+      content: ''; position: absolute; top: -30px; right: -30px;
+      width: 150px; height: 150px; border-radius: 50%;
+      background: rgba(232,160,32,0.2);
+    }
+    .about-img-box i { font-size: 80px; opacity: 0.9; position: relative; }
+    .about-img-box h3 { font-size: 22px; font-weight: 700; margin-top: 20px; position: relative; }
+    .about-img-box p { font-size: 14px; opacity: 0.8; margin-top: 8px; position: relative; }
+    .about-badge {
+      position: absolute; bottom: -16px; right: 24px;
+      background: var(--secondary); color: var(--primary);
+      padding: 12px 20px; border-radius: 12px; font-weight: 700;
+      box-shadow: var(--shadow); font-size: 14px;
+    }
+    .about-text h3 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+    .about-text p { color: var(--text-light); line-height: 1.8; margin-bottom: 24px; }
+    .info-list { list-style: none; }
+    .info-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid #e8ecf0; font-size: 15px;
+    }
+    .info-list li:last-child { border-bottom: none; }
+    .info-list li i { color: var(--secondary); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+    .info-list li strong { color: var(--primary); min-width: 160px; display: inline-block; }
+
+    /* ── VISI MISI ── */
+    #visi-misi { background: var(--white); }
+    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+    .vm-card {
+      border-radius: var(--radius); padding: 40px; position: relative; overflow: hidden;
+    }
+    .vm-card.visi { background: linear-gradient(135deg, var(--primary) 0%, #2557a0 100%); color: white; }
+    .vm-card.misi { background: var(--light); }
+    .vm-card-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 20px;
+    }
+    .visi .vm-card-icon { background: rgba(255,255,255,0.15); color: var(--secondary); }
+    .misi .vm-card-icon { background: var(--primary); color: var(--secondary); }
+    .vm-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+    .visi h3 { color: var(--secondary); }
+    .misi h3 { color: var(--primary); }
+    .vm-card p { line-height: 1.8; }
+    .visi p { color: rgba(255,255,255,0.85); }
+    .misi p { color: var(--text-light); }
+    .misi-list { list-style: none; }
+    .misi-list li {
+      display: flex; gap: 12px; padding: 8px 0;
+      color: var(--text-light); align-items: flex-start;
+    }
+    .misi-list li i { color: var(--accent); margin-top: 3px; flex-shrink: 0; }
+
+
+    /* ── JURUSAN ── */
+    #jurusan { background: var(--light); }
+    .jurusan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .jurusan-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px;
+      box-shadow: var(--shadow); transition: all 0.35s; cursor: pointer;
+      border-bottom: 4px solid transparent; position: relative; overflow: hidden;
+    }
+    .jurusan-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    .jurusan-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
+    .jurusan-icon {
+      width: 64px; height: 64px; border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), #2e7da8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: white; margin-bottom: 20px;
+    }
+    .jurusan-card h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .jurusan-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
+    .jurusan-tag {
+      display: inline-block; background: rgba(26,60,94,0.08); color: var(--primary);
+      padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 600;
+    }
+
+    /* ── EKSKUL ── */
+    #ekskul { background: var(--white); }
+    .ekskul-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .ekskul-item {
+      background: var(--light); border-radius: var(--radius); padding: 28px 20px;
+      text-align: center; transition: all 0.3s;
+    }
+    .ekskul-item:hover { background: var(--primary); color: white; transform: translateY(-4px); }
+    .ekskul-item:hover i, .ekskul-item:hover p { color: white !important; }
+    .ekskul-item:hover h4 { color: var(--secondary); }
+    .ekskul-item i { font-size: 36px; color: var(--primary); margin-bottom: 14px; display: block; transition: 0.3s; }
+    .ekskul-item h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 6px; transition: 0.3s; }
+    .ekskul-item p { font-size: 13px; color: var(--text-light); transition: 0.3s; }
+
+    /* ── FASILITAS ── */
+    #fasilitas { background: var(--light); }
+    .fasilitas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .fasilitas-card {
+      background: var(--white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;
+    }
+    .fasilitas-card:hover { transform: translateY(-6px); }
+    .fasilitas-img {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      font-size: 56px;
+    }
+    .fasilitas-body { padding: 20px 24px; }
+    .fasilitas-body h4 { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .fasilitas-body p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+    /* ── PRESTASI ── */
+    #prestasi { background: linear-gradient(135deg, var(--primary) 0%, #1e5080 100%); color: white; }
+    #prestasi .section-tag { background: rgba(232,160,32,0.2); color: var(--secondary); }
+    #prestasi .section-header h2 { color: white; }
+    #prestasi .section-header p { color: rgba(255,255,255,0.7); }
+    .prestasi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .prestasi-card {
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius);
+      padding: 28px; transition: all 0.3s;
+    }
+    .prestasi-card:hover { background: rgba(255,255,255,0.15); transform: translateY(-4px); }
+    .prestasi-medal { font-size: 40px; margin-bottom: 16px; display: block; }
+    .prestasi-card h4 { font-size: 16px; font-weight: 700; color: var(--secondary); margin-bottom: 8px; }
+    .prestasi-card p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .prestasi-card .year { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 10px; font-style: italic; }
+
+
+    /* ── KONTAK ── */
+    #kontak { background: var(--white); }
+    .kontak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .kontak-info h3 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+    .kontak-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px; background: var(--light); border-radius: var(--radius);
+      margin-bottom: 16px;
+    }
+    .kontak-item-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--primary); color: var(--secondary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .kontak-item h4 { font-size: 13px; color: var(--text-light); margin-bottom: 4px; }
+    .kontak-item p { font-size: 15px; color: var(--text); font-weight: 500; }
+    .kontak-map {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); height: 100%;
+    }
+    .kontak-map iframe { width: 100%; height: 100%; min-height: 380px; border: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d1f30; color: rgba(255,255,255,0.7);
+      padding: 60px 5% 30px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; max-width: 1200px; margin: 0 auto 50px; }
+    .footer-brand h3 { font-size: 20px; font-weight: 700; color: white; margin-bottom: 14px; }
+    .footer-brand h3 span { color: var(--secondary); }
+    .footer-brand p { font-size: 14px; line-height: 1.8; max-width: 300px; }
+    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+    .footer-social a {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: all 0.3s; font-size: 16px;
+    }
+    .footer-social a:hover { background: var(--secondary); color: var(--primary); }
+    .footer-links h4 { font-size: 15px; font-weight: 600; color: white; margin-bottom: 18px; }
+    .footer-links ul { list-style: none; }
+    .footer-links ul li { margin-bottom: 10px; }
+    .footer-links ul li a {
+      color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;
+      transition: color 0.3s;
+    }
+    .footer-links ul li a:hover { color: var(--secondary); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px; text-align: center; font-size: 13px;
+      color: rgba(255,255,255,0.4); max-width: 1200px; margin: 0 auto;
+    }
+    .footer-bottom span { color: var(--secondary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-buttons { justify-content: center; }
+      .hero-card { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .vm-grid, .kontak-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+      .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--primary); flex-direction: column; padding: 20px 5%; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 5%; }
+      .hero-card { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-logo">S2</div>
+    <div class="nav-title">SMK Negeri 2 <span>Sragen</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#visi-misi">Visi & Misi</a></li>
+    <li><a href="#jurusan">Jurusan</a></li>
+    <li><a href="#fasilitas">Fasilitas</a></li>
+    <li><a href="#prestasi">Prestasi</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><i class="fas fa-star"></i> Akreditasi A – Unggul</div>
+      <h1>SMK Negeri 2 <span>Sragen</span></h1>
+      <p class="sub">Mencetak generasi profesional yang kompeten, berkarakter, dan siap bersaing di era global melalui pendidikan kejuruan berkualitas.</p>
+      <div class="hero-buttons">
+        <a href="#jurusan" class="btn-primary"><i class="fas fa-graduation-cap"></i>&nbsp; Lihat Jurusan</a>
+        <a href="#kontak" class="btn-outline"><i class="fas fa-phone"></i>&nbsp; Hubungi Kami</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="stat-item"><div class="num">20+</div><div class="lbl">Tahun Berdiri</div></div>
+      <div class="stat-item"><div class="num">1500+</div><div class="lbl">Siswa Aktif</div></div>
+      <div class="stat-item"><div class="num">9</div><div class="lbl">Program Keahlian</div></div>
+      <div class="stat-item"><div class="num">150+</div><div class="lbl">Guru & Staff</div></div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll ke bawah <i class="fas fa-chevron-down"></i></div>
+</section>
+
+
+<!-- ══ TENTANG ══ -->
+<section id="tentang">
+  <div class="section-header">
+    <span class="section-tag">Profil Sekolah</span>
+    <h2>Tentang SMK Negeri 2 Sragen</h2>
+    <div class="divider"></div>
+    <p>Sekolah kejuruan negeri terkemuka di Kabupaten Sragen yang berkomitmen menghasilkan lulusan berkompetensi tinggi.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-box">
+        <i class="fas fa-school"></i>
+        <h3>SMK Negeri 2 Sragen</h3>
+        <p>Jl. Raya Sukowati No.1, Sragen, Jawa Tengah</p>
+      </div>
+      <div class="about-badge"><i class="fas fa-award"></i> Akreditasi A</div>
+    </div>
+    <div class="about-text">
+      <h3>Sekolah Menengah Kejuruan Terbaik di Sragen</h3>
+      <p>SMK Negeri 2 Sragen adalah sekolah menengah kejuruan negeri yang berlokasi di Kabupaten Sragen, Jawa Tengah. Sekolah ini berdedikasi untuk memberikan pendidikan kejuruan berkualitas tinggi dengan mempersiapkan siswa-siswi agar siap memasuki dunia kerja maupun melanjutkan ke perguruan tinggi.</p>
+      <p>Dengan tenaga pengajar yang berpengalaman dan fasilitas yang lengkap, SMKN 2 Sragen terus berkomitmen menjadi pusat keunggulan pendidikan kejuruan di Kabupaten Sragen.</p>
+      <ul class="info-list">
+        <li><i class="fas fa-map-marker-alt"></i><div><strong>Alamat:</strong> Jl. Raya Sukowati, Sragen, Jawa Tengah 57213</div></li>
+        <li><i class="fas fa-phone"></i><div><strong>Telepon:</strong> (0271) 891006</div></li>
+        <li><i class="fas fa-envelope"></i><div><strong>Email:</strong> smkn2sragen@gmail.com</div></li>
+        <li><i class="fas fa-calendar-alt"></i><div><strong>Akreditasi:</strong> A (Unggul) – BAN-SM</div></li>
+        <li><i class="fas fa-user-tie"></i><div><strong>Status:</strong> Negeri – Pemerintah Provinsi Jawa Tengah</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VISI MISI ══ -->
+<section id="visi-misi">
+  <div class="section-header">
+    <span class="section-tag">Visi & Misi</span>
+    <h2>Arah dan Tujuan Kami</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="vm-grid container">
+    <div class="vm-card visi">
+      <div class="vm-card-icon"><i class="fas fa-eye"></i></div>
+      <h3>Visi</h3>
+      <p>Menjadi lembaga pendidikan dan pelatihan kejuruan yang menghasilkan tamatan beriman dan bertakwa kepada Tuhan Yang Maha Esa, berakhlak mulia, berwawasan luas, profesional, mandiri, dan mampu bersaing di tingkat nasional maupun internasional.</p>
+    </div>
+    <div class="vm-card misi">
+      <div class="vm-card-icon"><i class="fas fa-bullseye"></i></div>
+      <h3>Misi</h3>
+      <ul class="misi-list">
+        <li><i class="fas fa-check-circle"></i> Mewujudkan pendidikan karakter yang berlandaskan iman dan takwa.</li>
+        <li><i class="fas fa-check-circle"></i> Mengembangkan kompetensi kejuruan yang relevan dengan kebutuhan industri dan dunia kerja.</li>
+        <li><i class="fas fa-check-circle"></i> Meningkatkan kualitas pembelajaran berbasis teknologi dan inovasi.</li>
+        <li><i class="fas fa-check-circle"></i> Membangun kemitraan strategis dengan dunia usaha dan industri (DUDI).</li>
+        <li><i class="fas fa-check-circle"></i> Menciptakan lingkungan belajar yang kondusif, bersih, dan berwawasan lingkungan.</li>
+        <li><i class="fas fa-check-circle"></i> Menghasilkan lulusan yang kompeten, mandiri, dan berjiwa wirausaha.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ JURUSAN ══ -->
+<section id="jurusan">
+  <div class="section-header">
+    <span class="section-tag">Program Keahlian</span>
+    <h2>Jurusan & Kompetensi</h2>
+    <div class="divider"></div>
+    <p>Pilih jurusan sesuai minat dan bakatmu. Kami menyediakan 9 program keahlian unggulan.</p>
+  </div>
+  <div class="jurusan-grid">
+    <div class="jurusan-card">
+      <div class="jurusan-icon"><i class="fas fa-network-wired"></i></div>
+      <h3>Teknik Komputer & Jaringan</h3>
+      <p>Mempelajari instalasi, konfigurasi, dan pemeliharaan jaringan komputer serta sistem informasi.</p>
+      <span class="jurusan-tag">TKJ</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#e65100,#ff8f00)"><i class="fas fa-car"></i></div>
+      <h3>Teknik Kendaraan Ringan Otomotif</h3>
+      <p>Perawatan dan perbaikan kendaraan ringan bermesin bensin dan diesel sesuai standar industri.</p>
+      <span class="jurusan-tag">TKRO</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#1565c0,#42a5f5)"><i class="fas fa-bolt"></i></div>
+      <h3>Teknik Instalasi Tenaga Listrik</h3>
+      <p>Instalasi, pemeliharaan, dan perbaikan sistem ketenagalistrikan industri dan rumah tangga.</p>
+      <span class="jurusan-tag">TITL</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#2e7d32,#66bb6a)"><i class="fas fa-calculator"></i></div>
+      <h3>Akuntansi & Keuangan Lembaga</h3>
+      <p>Pengelolaan keuangan, akuntansi perusahaan, perbankan, dan lembaga keuangan secara profesional.</p>
+      <span class="jurusan-tag">AKL</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#6a1b9a,#ab47bc)"><i class="fas fa-chart-line"></i></div>
+      <h3>Bisnis Daring & Pemasaran</h3>
+      <p>Strategi pemasaran digital, e-commerce, manajemen bisnis online, dan kewirausahaan modern.</p>
+      <span class="jurusan-tag">BDP</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#00838f,#26c6da)"><i class="fas fa-briefcase"></i></div>
+      <h3>Otomatisasi & Tata Kelola Perkantoran</h3>
+      <p>Administrasi perkantoran, manajemen arsip, komunikasi bisnis, dan teknologi perkantoran modern.</p>
+      <span class="jurusan-tag">OTKP</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#c62828,#ef5350)"><i class="fas fa-motorcycle"></i></div>
+      <h3>Teknik & Bisnis Sepeda Motor</h3>
+      <p>Perawatan, perbaikan, dan pengelolaan bisnis bengkel sepeda motor sesuai standar pabrikan.</p>
+      <span class="jurusan-tag">TBSM</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#4527a0,#7e57c2)"><i class="fas fa-film"></i></div>
+      <h3>Multimedia</h3>
+      <p>Desain grafis, videografi, animasi, editing video, dan produksi konten kreatif digital.</p>
+      <span class="jurusan-tag">MM</span>
+    </div>
+    <div class="jurusan-card">
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#558b2f,#9ccc65)"><i class="fas fa-robot"></i></div>
+      <h3>Teknik Elektronika Industri</h3>
+      <p>Sistem elektronika, otomasi industri, PLC, robotika, dan instrumentasi untuk kebutuhan manufaktur.</p>
+      <span class="jurusan-tag">TEI</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ EKSKUL ══ -->
+<section id="ekskul">
+  <div class="section-header">
+    <span class="section-tag">Kegiatan Siswa</span>
+    <h2>Ekstrakurikuler</h2>
+    <div class="divider"></div>
+    <p>Pengembangan diri siswa melalui berbagai kegiatan ekstrakurikuler yang terorganisir.</p>
+  </div>
+  <div class="ekskul-grid container">
+    <div class="ekskul-item">
+      <i class="fas fa-futbol"></i>
+      <h4>Sepak Bola</h4>
+      <p>Tim sepak bola berprestasi kabupaten</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-volleyball-ball"></i>
+      <h4>Voli</h4>
+      <p>Tim voli putra dan putri</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-music"></i>
+      <h4>Marching Band</h4>
+      <p>Ansambel musik dan parade</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-fist-raised"></i>
+      <h4>Pencak Silat</h4>
+      <p>Seni bela diri tradisional</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-code"></i>
+      <h4>Coding Club</h4>
+      <p>Pemrograman dan pengembangan aplikasi</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-camera"></i>
+      <h4>Fotografi</h4>
+      <p>Teknik dan seni fotografi digital</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-mosque"></i>
+      <h4>Rohis</h4>
+      <p>Pembinaan rohani Islam siswa</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-flag"></i>
+      <h4>Paskibra</h4>
+      <p>Pasukan pengibar bendera</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-first-aid"></i>
+      <h4>PMR</h4>
+      <p>Palang Merah Remaja</p>
+    </div>
+    <div class="ekskul-item">
+      <i class="fas fa-campground"></i>
+      <h4>Pramuka</h4>
+      <p>Kepanduan dan kepemimpinan</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FASILITAS ══ -->
+<section id="fasilitas">
+  <div class="section-header">
+    <span class="section-tag">Infrastruktur</span>
+    <h2>Fasilitas Sekolah</h2>
+    <div class="divider"></div>
+    <p>Fasilitas lengkap dan modern untuk mendukung proses belajar mengajar yang optimal.</p>
+  </div>
+  <div class="fasilitas-grid">
+    <div class="fasilitas-card">
+      <div class="fasilitas-img" style="background:#e3f2fd">💻</div>
+      <div class="fasilitas-body">
+        <h4>Lab Komputer</h4>
+        <p>4 laboratorium komputer dengan spesifikasi terkini, dilengkapi akses internet berkecepatan tinggi.</p>
+      </div>
+    </div>
+    <div class="fasilitas-card">
+      <div class="fasilitas-img" style="background:#fff3e0">🔧</div>
+      <div class="fasilitas-body">
+        <h4>Bengkel Otomotif</h4>
+        <p>Bengkel otomotif lengkap dengan peralatan standar industri untuk praktik kendaraan ringan dan motor.</p>
+      </div>
+    </div>
+    <div class="fasilitas-card">
+      <div class="fasilitas-img" style="background:#e8f5e9">📚</div>
+      <div class="fasilitas-body">
+        <h4>Perpustakaan Digital</h4>
+        <p>Koleksi buku lengkap dan akses e-library dengan ribuan referensi digital untuk mendukung belajar.</p>
+      </div>
+    </div>
+    <div class="fasilitas-card">
+      <div class="fasilitas-img" style="background:#f3e5f5">⚡</div>
+      <div class="fasilitas-body">
+        <h4>Lab Kelistrikan</h4>
+        <p>Laboratorium teknik instalasi tenaga listrik dengan panel training dan peralatan elektronikal.</p>
+      </div>
+    </div>
+    <div class="fasilitas-card">
+      <div class="fasilitas-img" style="background:#e0f7fa">🏋️</div>
+      <div class="fasilitas-body">
+        <h4>Aula & Lapangan</h4>
+        <p>Aula serbaguna berkapasitas besar, lapangan olahraga, dan GOR untuk kegiatan siswa.</p>
+      </div>
+    </div>
+    <div class="fasilitas-card">
+      <div class="fasilitas-img" style="background:#fce4ec">🎬</div>
+      <div class="fasilitas-body">
+        <h4>Studio Multimedia</h4>
+        <p>Studio produksi konten digital dengan peralatan videografi, green screen, dan software editing profesional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PRESTASI ══ -->
+<section id="prestasi">
+  <div class="section-header">
+    <span class="section-tag">Penghargaan</span>
+    <h2>Prestasi Sekolah</h2>
+    <div class="divider"></div>
+    <p>Berbagai pencapaian membanggakan yang diraih oleh siswa dan sekolah di tingkat regional hingga nasional.</p>
+  </div>
+  <div class="prestasi-grid">
+    <div class="prestasi-card">
+      <span class="prestasi-medal">🥇</span>
+      <h4>Juara 1 LKS Tingkat Provinsi</h4>
+      <p>Lomba Kompetensi Siswa bidang Teknik Komputer & Jaringan Tingkat Provinsi Jawa Tengah.</p>
+      <div class="year">Jawa Tengah · 2023</div>
+    </div>
+    <div class="prestasi-card">
+      <span class="prestasi-medal">🏆</span>
+      <h4>SMK Terbaik Kabupaten Sragen</h4>
+      <p>Penghargaan sebagai sekolah menengah kejuruan terbaik berdasarkan nilai UN dan akreditasi.</p>
+      <div class="year">Sragen · 2023</div>
+    </div>
+    <div class="prestasi-card">
+      <span class="prestasi-medal">🥈</span>
+      <h4>Juara 2 LKS Otomotif Nasional</h4>
+      <p>Lomba Kompetensi Siswa bidang Teknik Kendaraan Ringan Tingkat Nasional.</p>
+      <div class="year">Nasional · 2022</div>
+    </div>
+    <div class="prestasi-card">
+      <span class="prestasi-medal">🎖️</span>
+      <h4>Juara 1 Olimpiade Akuntansi</h4>
+      <p>Olimpiade akuntansi tingkat kabupaten yang diikuti seluruh SMK se-Kabupaten Sragen.</p>
+      <div class="year">Sragen · 2023</div>
+    </div>
+    <div class="prestasi-card">
+      <span class="prestasi-medal">🌟</span>
+      <h4>Sekolah Adiwiyata Tingkat Nasional</h4>
+      <p>Penghargaan sekolah peduli dan berbudaya lingkungan dari Kementerian Lingkungan Hidup.</p>
+      <div class="year">Nasional · 2022</div>
+    </div>
+    <div class="prestasi-card">
+      <span class="prestasi-medal">🥇</span>
+      <h4>Juara 1 Desain Grafis Tingkat Provinsi</h4>
+      <p>Kompetisi desain grafis dan multimedia antar SMK se-Provinsi Jawa Tengah.</p>
+      <div class="year">Jawa Tengah · 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KONTAK ══ -->
+<section id="kontak">
+  <div class="section-header">
+    <span class="section-tag">Hubungi Kami</span>
+    <h2>Informasi Kontak</h2>
+    <div class="divider"></div>
+    <p>Jangan ragu untuk menghubungi kami. Tim kami siap membantu menjawab pertanyaan Anda.</p>
+  </div>
+  <div class="kontak-grid">
+    <div class="kontak-info">
+      <h3>Kontak & Lokasi</h3>
+      <div class="kontak-item">
+        <div class="kontak-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <h4>Alamat</h4>
+          <p>Jl. Raya Sukowati No.1, Sragen,<br>Jawa Tengah 57213</p>
+        </div>
+      </div>
+      <div class="kontak-item">
+        <div class="kontak-item-icon"><i class="fas fa-phone-alt"></i></div>
+        <div>
+          <h4>Telepon</h4>
+          <p>(0271) 891006</p>
+        </div>
+      </div>
+      <div class="kontak-item">
+        <div class="kontak-item-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h4>Email</h4>
+          <p>smkn2sragen@gmail.com</p>
+        </div>
+      </div>
+      <div class="kontak-item">
+        <div class="kontak-item-icon"><i class="fas fa-clock"></i></div>
+        <div>
+          <h4>Jam Operasional</h4>
+          <p>Senin – Sabtu: 07.00 – 16.00 WIB</p>
+        </div>
+      </div>
+    </div>
+    <div class="kontak-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6!2d111.0!3d-7.43!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a6e2a6e2a6e2a%3A0x0!2sSragen%2C+Jawa+Tengah!5e0!3m2!1sid!2sid!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>SMK Negeri 2 <span>Sragen</span></h3>
+      <p>Sekolah kejuruan unggulan di Kabupaten Sragen yang berkomitmen mencetak lulusan kompeten, berkarakter, dan siap kerja.</p>
+      <div class="footer-social">
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Menu Utama</h4>
+      <ul>
+        <li><a href="#tentang">Tentang Sekolah</a></li>
+        <li><a href="#visi-misi">Visi & Misi</a></li>
+        <li><a href="#jurusan">Program Keahlian</a></li>
+        <li><a href="#fasilitas">Fasilitas</a></li>
+        <li><a href="#prestasi">Prestasi</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Program Keahlian</h4>
+      <ul>
+        <li><a href="#jurusan">Teknik Komputer & Jaringan</a></li>
+        <li><a href="#jurusan">Teknik Kendaraan Ringan</a></li>
+        <li><a href="#jurusan">Akuntansi & Keuangan</a></li>
+        <li><a href="#jurusan">Multimedia</a></li>
+        <li><a href="#jurusan">Teknik Instalasi Listrik</a></li>
+        <li><a href="#jurusan">Lihat Semua →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 <span>SMK Negeri 2 Sragen</span>. Hak Cipta Dilindungi. | Dibuat dengan ❤️ untuk kemajuan pendidikan.</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger nav toggle
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Navbar shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      nav.style.padding = '0 5%';
+      nav.style.height = '60px';
+    } else {
+      nav.style.height = '70px';
+    }
+  });
+
+  // Smooth scroll active link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--secondary)' : '';
+    });
+  });
+
+  // Fade-in on scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.jurusan-card, .fasilitas-card, .prestasi-card, .ekskul-item, .vm-card, .kontak-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
