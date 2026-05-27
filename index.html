@@ -461,16 +461,374 @@
       border-radius: 100px; padding: 4px 14px; font-size: 11px; font-weight: 600; color: var(--navy);
     }
 
+    /* ── SEARCH BAR in NAVBAR ── */
+    .nav-search {
+      position: relative; display: flex; align-items: center;
+    }
+    .nav-search-input {
+      width: 0; padding: 0; border: none; outline: none; background: transparent;
+      font-family: var(--sans); font-size: 13.5px; color: var(--text-1);
+      transition: width .3s, padding .3s, border .3s;
+      border-radius: 100px;
+    }
+    .nav-search.open .nav-search-input {
+      width: 200px; padding: 7px 16px;
+      background: var(--gray-1); border: 1.5px solid var(--gray-2);
+    }
+    .nav-search-btn {
+      background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--text-2);
+      transition: background .2s, color .2s;
+    }
+    .nav-search-btn:hover { background: var(--navy-dim); color: var(--navy); }
+
+    /* ── PENGUMUMAN / INFO ── */
+    .pengumuman { padding: 72px 0; background: var(--gray-1); }
+    .pengumuman-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; }
+    .info-alert {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: var(--r-xl); padding: 28px 32px;
+      display: flex; align-items: center; gap: 18px;
+      margin-bottom: 20px; position: relative; overflow: hidden;
+    }
+    .info-alert::before {
+      content: ''; position: absolute; right: -20px; top: -20px;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+    .info-alert-ico {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--gold-lt);
+    }
+    .info-alert-body { flex: 1; }
+    .info-alert-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 4px; }
+    .info-alert-title { font-size: 14.5px; font-weight: 700; color: #fff; line-height: 1.45; }
+    .info-alert-date { font-size: 11.5px; color: rgba(255,255,255,.6); margin-top: 4px; }
+    .info-alert-arrow { color: rgba(255,255,255,.5); font-size: 14px; flex-shrink: 0; }
+
+    .info-card {
+      background: var(--white); border: 1px solid var(--gray-2);
+      border-radius: var(--r-lg); padding: 18px 20px;
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 12px; cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .info-card:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.1); transform: translateX(4px); }
+    .info-card-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: var(--navy);
+    }
+    .info-card-dot.new { background: #e53e3e; box-shadow: 0 0 0 3px rgba(229,62,62,.2); }
+    .info-card-dot.info { background: var(--gold); }
+    .info-card-body { flex: 1; }
+    .info-card-title { font-size: 13.5px; font-weight: 600; color: var(--text-1); line-height: 1.45; margin-bottom: 3px; }
+    .info-card-meta { font-size: 11px; color: var(--text-3); }
+
+    .ppdb-box {
+      background: var(--white); border: 2px solid var(--navy);
+      border-radius: var(--r-xl); padding: 28px 24px; text-align: center;
+      position: sticky; top: 80px;
+    }
+    .ppdb-box-ico { font-size: 2.5rem; margin-bottom: 12px; }
+    .ppdb-box h4 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .ppdb-box p { font-size: 13px; color: var(--text-2); margin-bottom: 20px; line-height: 1.6; }
+    .ppdb-box .btn-navy { margin-top: 0; width: 100%; justify-content: center; }
+    .ppdb-deadline { background: var(--gray-1); border-radius: var(--r-md); padding: 10px 16px; margin-top: 14px; }
+    .ppdb-deadline span { font-size: 11px; color: var(--text-3); display: block; }
+    .ppdb-deadline strong { font-size: 13px; color: var(--text-1); }
+
+    /* ── BERITA TERBARU ── */
+    .berita { padding: 96px 0; background: var(--white); }
+    .berita-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
+    .berita-main {
+      background: var(--gray-1); border-radius: var(--r-xl);
+      overflow: hidden; cursor: pointer;
+      border: 1px solid var(--gray-2);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .berita-main:hover { box-shadow: 0 16px 48px rgba(26,53,102,.14); transform: translateY(-3px); }
+    .berita-main-img {
+      height: 240px; background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative; overflow: hidden;
+    }
+    .berita-main-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(18,36,72,.6) 100%);
+    }
+    .berita-main-cat {
+      position: absolute; top: 16px; left: 16px; z-index: 1;
+      background: var(--gold); color: var(--navy-dk);
+      font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .berita-main-body { padding: 24px; }
+    .berita-main-date { font-size: 11px; color: var(--text-3); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .berita-main-title { font-size: 17px; font-weight: 800; color: var(--text-1); line-height: 1.4; margin-bottom: 10px; }
+    .berita-main-snippet { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+    .berita-main-read { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 12.5px; font-weight: 700; color: var(--navy); text-decoration: none; transition: gap .2s; }
+    .berita-main-read:hover { gap: 10px; }
+
+    .berita-list { display: flex; flex-direction: column; gap: 14px; }
+    .berita-item {
+      background: var(--gray-1); border-radius: var(--r-lg);
+      display: flex; gap: 14px; padding: 14px;
+      cursor: pointer; border: 1px solid var(--gray-2);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .berita-item:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.09); }
+    .berita-item-img {
+      width: 80px; height: 72px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--navy), var(--navy-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+    .berita-item-body { flex: 1; }
+    .berita-item-cat { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 4px; }
+    .berita-item-title { font-size: 13px; font-weight: 700; color: var(--text-1); line-height: 1.45; margin-bottom: 5px; }
+    .berita-item-date { font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+    .berita-more { text-align: center; margin-top: 32px; }
+
+    /* ── GALERI FOTO ── */
+    .galeri { padding: 96px 0; background: var(--gray-1); }
+    .galeri-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: 12px;
+    }
+    .galeri-item {
+      border-radius: var(--r-lg); overflow: hidden;
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; cursor: pointer; position: relative;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .galeri-item:hover { transform: scale(1.02); box-shadow: 0 12px 40px rgba(26,53,102,.25); z-index: 1; }
+    .galeri-item.big { grid-column: span 2; grid-row: span 2; font-size: 5rem; }
+    .galeri-item.wide { grid-column: span 2; }
+    .galeri-overlay {
+      position: absolute; inset: 0;
+      background: rgba(18,36,72,.0);
+      display: flex; align-items: flex-end;
+      padding: 16px;
+      transition: background .3s;
+    }
+    .galeri-item:hover .galeri-overlay { background: rgba(18,36,72,.55); }
+    .galeri-caption {
+      color: #fff; font-size: 12.5px; font-weight: 600;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity .3s, transform .3s;
+      line-height: 1.4;
+    }
+    .galeri-item:hover .galeri-caption { opacity: 1; transform: none; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.9); display: none;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { position: relative; max-width: 90vw; text-align: center; }
+    .lightbox-img {
+      width: 100%; max-height: 80vh; border-radius: var(--r-lg);
+      background: var(--navy); display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; min-height: 400px; min-width: 600px;
+    }
+    .lightbox-close {
+      position: absolute; top: -44px; right: 0;
+      background: rgba(255,255,255,.15); border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 50%;
+      color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── BKK ── */
+    .bkk { padding: 96px 0; background: var(--white); }
+    .bkk-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .bkk-stats { display: flex; gap: 32px; }
+    .bkk-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .bkk-stat-lbl { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+    .bkk-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 32px; }
+    .bkk-card {
+      background: var(--gray-1); border: 1px solid var(--gray-2);
+      border-radius: var(--r-xl); padding: 24px;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .bkk-card:hover { border-color: var(--navy); box-shadow: 0 8px 28px rgba(26,53,102,.1); transform: translateY(-3px); }
+    .bkk-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; gap: 10px; }
+    .bkk-company {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: var(--navy); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--gold-lt);
+    }
+    .bkk-badge-new {
+      background: rgba(229,62,62,.12); color: #e53e3e;
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px; white-space: nowrap; margin-top: 4px;
+    }
+    .bkk-badge-hot {
+      background: rgba(232,160,32,.12); color: var(--gold);
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px; white-space: nowrap; margin-top: 4px;
+    }
+    .bkk-company-name { font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 4px; }
+    .bkk-posisi { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+    .bkk-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .bkk-tag {
+      background: var(--navy-dim); color: var(--navy);
+      font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    }
+    .bkk-card-foot { display: flex; align-items: center; justify-content: space-between; }
+    .bkk-deadline { font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+    .bkk-apply {
+      background: var(--navy); color: #fff;
+      font-size: 11.5px; font-weight: 700; padding: 7px 18px; border-radius: 100px;
+      text-decoration: none; transition: background .2s;
+    }
+    .bkk-apply:hover { background: var(--navy-lt); }
+    .bkk-banner {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: var(--r-xl); padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      flex-wrap: wrap;
+    }
+    .bkk-banner-left h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .bkk-banner-left p { font-size: 14px; color: rgba(255,255,255,.7); }
+    .bkk-banner-right { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy-dk);
+      padding: 12px 24px; border-radius: 100px;
+      font-size: 13px; font-weight: 800; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232,160,32,.35); }
+
+    /* ── KALENDER & AGENDA ── */
+    .agenda-section { padding: 96px 0; background: var(--gray-1); }
+    .agenda-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; align-items: start; }
+
+    /* Calendar widget */
+    .cal-widget {
+      background: var(--white); border-radius: var(--r-xl); padding: 28px;
+      border: 1px solid var(--gray-2); box-shadow: 0 2px 12px rgba(26,53,102,.05);
+    }
+    .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .cal-month { font-size: 15px; font-weight: 800; color: var(--text-1); }
+    .cal-nav { display: flex; gap: 4px; }
+    .cal-nav-btn {
+      width: 30px; height: 30px; border: none; background: var(--gray-1);
+      border-radius: 8px; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-size: 12px; color: var(--text-2);
+      transition: background .2s, color .2s;
+    }
+    .cal-nav-btn:hover { background: var(--navy); color: #fff; }
+    .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin-bottom: 4px; }
+    .cal-day-name { text-align: center; font-size: 10.5px; font-weight: 700; color: var(--text-3); text-transform: uppercase; padding: 6px 0; }
+    .cal-days { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; }
+    .cal-day {
+      text-align: center; padding: 7px 3px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .cal-day:hover { background: var(--navy-dim); color: var(--navy); }
+    .cal-day.today { background: var(--navy); color: #fff; font-weight: 800; }
+    .cal-day.has-event { position: relative; color: var(--navy); font-weight: 700; }
+    .cal-day.has-event::after {
+      content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+    }
+    .cal-day.empty { color: transparent; pointer-events: none; }
+
+    /* Agenda list */
+    .agenda-list { display: flex; flex-direction: column; gap: 12px; }
+    .agenda-item {
+      background: var(--white); border-radius: var(--r-lg); padding: 18px 20px;
+      display: flex; gap: 16px; border: 1px solid var(--gray-2);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .agenda-item:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.08); }
+    .agenda-date {
+      min-width: 52px; text-align: center; background: var(--navy-dim);
+      border-radius: 10px; padding: 8px 4px; flex-shrink: 0;
+    }
+    .agenda-date-day { font-size: 1.4rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .agenda-date-mon { font-size: 9.5px; font-weight: 700; text-transform: uppercase; color: var(--text-3); margin-top: 2px; letter-spacing: 1px; }
+    .agenda-body { flex: 1; }
+    .agenda-title { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 5px; }
+    .agenda-meta { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .agenda-meta span { display: flex; align-items: center; gap: 5px; }
+    .agenda-badge {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 10px; border-radius: 100px;
+    }
+    .agenda-badge.akademik { background: rgba(26,53,102,.1); color: var(--navy); }
+    .agenda-badge.kegiatan { background: rgba(232,160,32,.15); color: #a06010; }
+    .agenda-badge.libur { background: rgba(229,62,62,.1); color: #c53030; }
+
+    /* ── JAJAK PENDAPAT ── */
+    .poll-section { padding: 80px 0; background: var(--white); }
+    .poll-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .poll-widget {
+      background: var(--gray-1); border-radius: var(--r-xl); padding: 36px 32px;
+      border: 1px solid var(--gray-2);
+    }
+    .poll-question { font-size: 17px; font-weight: 800; color: var(--text-1); margin-bottom: 24px; line-height: 1.5; }
+    .poll-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .poll-option {
+      display: flex; align-items: center; gap: 12px; cursor: pointer;
+      padding: 12px 16px; border-radius: var(--r-lg); border: 1.5px solid var(--gray-2);
+      background: var(--white); transition: border-color .2s, background .2s;
+    }
+    .poll-option:hover { border-color: var(--navy); background: var(--navy-dim); }
+    .poll-option input[type="radio"] { accent-color: var(--navy); width: 16px; height: 16px; flex-shrink: 0; }
+    .poll-option label { font-size: 14px; font-weight: 500; color: var(--text-1); cursor: pointer; flex: 1; }
+    .poll-submit {
+      background: var(--navy); color: #fff; border: none; cursor: pointer;
+      padding: 12px 28px; border-radius: 100px;
+      font-family: var(--sans); font-size: 13.5px; font-weight: 700;
+      transition: background .2s, transform .2s;
+    }
+    .poll-submit:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .poll-result-bar { display: none; }
+    .poll-result-bar.show { display: block; }
+    .poll-result-item { margin-bottom: 14px; }
+    .poll-result-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .poll-result-label span { font-size: 13px; font-weight: 600; color: var(--text-1); }
+    .poll-result-label strong { font-size: 13px; font-weight: 800; color: var(--navy); }
+    .poll-bar { height: 8px; background: var(--gray-2); border-radius: 100px; overflow: hidden; }
+    .poll-bar-fill { height: 100%; background: linear-gradient(90deg, var(--navy), var(--navy-lt)); border-radius: 100px; transition: width 1s ease; }
+    .poll-total { font-size: 12px; color: var(--text-3); margin-top: 16px; text-align: center; }
+
+    .poll-info-box {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: var(--r-xl); padding: 36px 32px; color: #fff;
+    }
+    .poll-info-box h4 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .poll-info-box p { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.75; margin-bottom: 24px; }
+    .poll-info-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .poll-info-stat { background: rgba(255,255,255,.1); border-radius: var(--r-lg); padding: 16px; text-align: center; }
+    .poll-info-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--gold-lt); line-height: 1; }
+    .poll-info-stat-lbl { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .about-grid, .vismis-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-grid, .vismis-grid, .pengumuman-grid, .berita-grid,
+      .agenda-grid, .poll-grid { grid-template-columns: 1fr; gap: 24px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
       .prestasi-banner { grid-template-columns: 1fr; }
       .prestasi-banner-right { display: none; }
+      .ppdb-box { position: static; }
     }
     @media (max-width: 768px) {
       .nav-menu { display: none; }
-      .program-grid, .jurusan-grid, .prestasi-grid { grid-template-columns: 1fr; }
+      .nav-search.open .nav-search-input { width: 150px; }
+      .program-grid, .jurusan-grid, .prestasi-grid, .bkk-grid { grid-template-columns: 1fr; }
       .fasil-grid { grid-template-columns: repeat(2,1fr); }
       .testi-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
@@ -478,9 +836,15 @@
       .hero-stats { flex-direction: column; border-radius: var(--r-lg); }
       .hstat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); }
       .hstat:last-child { border-bottom: none; }
+      .galeri-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: auto; }
+      .galeri-item.big, .galeri-item.wide { grid-column: span 1; grid-row: span 1; }
+      .bkk-banner { flex-direction: column; }
+      .bkk-header-row { flex-direction: column; align-items: flex-start; }
+      .lightbox-img { min-width: 90vw; min-height: 250px; }
     }
     @media (max-width: 480px) {
       .fasil-grid { grid-template-columns: repeat(2,1fr); }
+      .poll-info-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -503,6 +867,11 @@
       <a href="#jurusan">Program</a>
       <a href="#fasilitas">Fasilitas</a>
       <a href="#prestasi">Prestasi</a>
+      <a href="#bkk">BKK</a>
+      <div class="nav-search" id="navSearch">
+        <input type="text" class="nav-search-input" placeholder="Cari informasi..." id="searchInput" />
+        <button class="nav-search-btn" id="searchBtn" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+      </div>
       <a href="#kontak" class="nav-cta">Hubungi Kami</a>
     </div>
   </div>
@@ -553,7 +922,103 @@
 </div>
 
 
-<!-- ══ ABOUT ══ -->
+<!-- ══ PENGUMUMAN & INFO ══ -->
+<section class="pengumuman" id="pengumuman">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;" class="rv">
+      <div>
+        <div class="s-tag">Info &amp; Pengumuman</div>
+        <h2 class="s-title">Info <em>Terkini</em> Sekolah</h2>
+        <p class="s-desc" style="max-width:480px;">Pengumuman resmi, PPDB, dan informasi penting langsung dari SMK Negeri 2 Sragen.</p>
+      </div>
+    </div>
+    <div class="pengumuman-grid">
+      <div>
+        <!-- Highlight utama -->
+        <div class="info-alert rv d1">
+          <div class="info-alert-ico"><i class="fas fa-bullhorn"></i></div>
+          <div class="info-alert-body">
+            <div class="info-alert-tag">🔥 Terbaru</div>
+            <div class="info-alert-title">Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2025/2026 resmi dibuka!</div>
+            <div class="info-alert-date"><i class="fas fa-calendar-alt"></i> 01 Juni 2026 · Daftar sekarang sebelum kuota penuh</div>
+          </div>
+          <i class="fas fa-chevron-right info-alert-arrow"></i>
+        </div>
+        <!-- List pengumuman -->
+        <div class="info-card rv d2">
+          <div class="info-card-dot new"></div>
+          <div class="info-card-body">
+            <div class="info-card-title">Pengambilan Ijazah Alumni Angkatan 2025 — Mulai 5 Juni 2026</div>
+            <div class="info-card-meta"><i class="fas fa-clock"></i> 2 hari lalu &nbsp;·&nbsp; Administrasi</div>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--text-3);font-size:12px;"></i>
+        </div>
+        <div class="info-card rv d2">
+          <div class="info-card-dot info"></div>
+          <div class="info-card-body">
+            <div class="info-card-title">Info Parkir PPDB — Lokasi dan Alur Pendaftaran Offline</div>
+            <div class="info-card-meta"><i class="fas fa-clock"></i> 4 hari lalu &nbsp;·&nbsp; PPDB 2026</div>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--text-3);font-size:12px;"></i>
+        </div>
+        <div class="info-card rv d2">
+          <div class="info-card-dot"></div>
+          <div class="info-card-body">
+            <div class="info-card-title">Pelantikan Taruna OSIS Angkatan XIII — Sabtu, 7 Juni 2026</div>
+            <div class="info-card-meta"><i class="fas fa-clock"></i> 5 hari lalu &nbsp;·&nbsp; Kesiswaan</div>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--text-3);font-size:12px;"></i>
+        </div>
+        <div class="info-card rv d2">
+          <div class="info-card-dot"></div>
+          <div class="info-card-body">
+            <div class="info-card-title">Jadwal Ujian Akhir Semester Genap TA 2025/2026</div>
+            <div class="info-card-meta"><i class="fas fa-clock"></i> 1 minggu lalu &nbsp;·&nbsp; Akademik</div>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--text-3);font-size:12px;"></i>
+        </div>
+        <div class="info-card rv d2">
+          <div class="info-card-dot info"></div>
+          <div class="info-card-body">
+            <div class="info-card-title">Beasiswa Prestasi Siswa — Syarat dan Cara Pendaftaran</div>
+            <div class="info-card-meta"><i class="fas fa-clock"></i> 2 minggu lalu &nbsp;·&nbsp; Akademik</div>
+          </div>
+          <i class="fas fa-chevron-right" style="color:var(--text-3);font-size:12px;"></i>
+        </div>
+        <div style="text-align:center;margin-top:20px;" class="rv">
+          <a href="#" class="btn-navy" style="margin-top:0;display:inline-flex;"><i class="fas fa-list"></i> Lihat Semua Pengumuman</a>
+        </div>
+      </div>
+      <!-- PPDB Box -->
+      <div class="rv d3">
+        <div class="ppdb-box">
+          <div class="ppdb-box-ico">🎓</div>
+          <h4>PPDB 2025/2026</h4>
+          <p>Daftarkan putra-putri Anda sekarang! Kuota terbatas untuk 6 program keahlian unggulan.</p>
+          <a href="#" class="btn-navy"><i class="fas fa-pen-to-square"></i> Daftar Sekarang</a>
+          <div class="ppdb-deadline">
+            <span>Batas Pendaftaran</span>
+            <strong>30 Juni 2026</strong>
+          </div>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--text-2);">Teknik Otomotif</span>
+              <span style="font-weight:700;color:var(--navy);">Tersedia</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--text-2);">Teknik Komputer & Jaringan</span>
+              <span style="font-weight:700;color:#e53e3e;">Hampir Penuh</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--text-2);">Teknik Pemesinan</span>
+              <span style="font-weight:700;color:var(--navy);">Tersedia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="about" id="tentang">
   <div class="container">
     <div class="about-grid">
@@ -674,7 +1139,118 @@
 </section>
 
 
-<!-- ══ VISI MISI ══ -->
+<!-- ══ BERITA TERBARU ══ -->
+<section class="berita" id="berita">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;" class="rv">
+      <div>
+        <div class="s-tag">Berita Sekolah</div>
+        <h2 class="s-title">Berita <em>Terbaru</em></h2>
+        <p class="s-desc" style="max-width:440px;">Informasi kegiatan, prestasi, dan perkembangan terkini di SMK Negeri 2 Sragen.</p>
+      </div>
+      <a href="#" class="btn-navy" style="margin-top:0;">Semua Berita <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="berita-grid">
+      <!-- Berita utama -->
+      <div class="berita-main rv d1">
+        <div class="berita-main-img">
+          🏆
+          <span class="berita-main-cat">Prestasi</span>
+        </div>
+        <div class="berita-main-body">
+          <div class="berita-main-date"><i class="fas fa-calendar-alt"></i> 25 November 2025</div>
+          <div class="berita-main-title">Elsa Mutia Hafid Raih Juara 3 Khitobah Putri Lomba MAPSI SMK Provinsi Jawa Tengah 2025</div>
+          <div class="berita-main-snippet">Sragen, Ajang bergengsi Mata Pelajaran Pendidikan Agama Islam dan Seni Islami (MAPSI) tingkat SMK se-Provinsi Jawa Tengah 2025 resmi digelar. Prestasi ini membuktikan bahwa SMKN 2 Sragen bukan hanya unggul di bidang teknik, tetapi juga...</div>
+          <a href="#" class="berita-main-read">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Berita list -->
+      <div class="berita-list rv d2">
+        <div class="berita-item">
+          <div class="berita-item-img">📡</div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Teknologi</div>
+            <div class="berita-item-title">SMKN 2 Sragen Terima Bantuan Laboratorium Fiber Optic dari Kementerian Kominfo</div>
+            <div class="berita-item-date"><i class="fas fa-calendar-alt"></i> 5 November 2025</div>
+          </div>
+        </div>
+        <div class="berita-item">
+          <div class="berita-item-img">🎖️</div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Kesiswaan</div>
+            <div class="berita-item-title">SMKN 2 Sragen Rebut Piala Bergilir LKBB Garuda Muda Season 1</div>
+            <div class="berita-item-date"><i class="fas fa-calendar-alt"></i> 20 November 2025</div>
+          </div>
+        </div>
+        <div class="berita-item">
+          <div class="berita-item-img">🌳</div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Lingkungan</div>
+            <div class="berita-item-title">SMK N 2 Sragen Rayakan HUT ke-22 dengan Penanaman 2.200 Pohon di Desa Galeh</div>
+            <div class="berita-item-date"><i class="fas fa-calendar-alt"></i> 22 Oktober 2025</div>
+          </div>
+        </div>
+        <div class="berita-item">
+          <div class="berita-item-img">🎓</div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">Akademik</div>
+            <div class="berita-item-title">Peringatan Hari Guru Nasional 2025 dengan Tema "Guru Hebat Indonesia Kuat"</div>
+            <div class="berita-item-date"><i class="fas fa-calendar-alt"></i> 25 November 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERI FOTO ══ -->
+<section class="galeri" id="galeri">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px;" class="rv">
+      <div>
+        <div class="s-tag">Galeri Foto</div>
+        <h2 class="s-title">Momen &amp; <em>Kegiatan</em></h2>
+        <p class="s-desc" style="max-width:440px;">Abadikan setiap momen berharga kegiatan siswa dan sekolah di SMKN 2 Sragen.</p>
+      </div>
+      <a href="#" class="btn-navy" style="margin-top:0;">Lihat Semua <i class="fas fa-images"></i></a>
+    </div>
+    <div class="galeri-grid rv d1">
+      <div class="galeri-item big" style="background:linear-gradient(135deg,#1a3566,#2451a0);" onclick="openLightbox('Upacara Bendera Hari Pahlawan 2025')">
+        🏫
+        <div class="galeri-overlay"><span class="galeri-caption">Upacara Bendera Hari Pahlawan 2025</span></div>
+      </div>
+      <div class="galeri-item" style="background:linear-gradient(135deg,#122448,#1a3566);" onclick="openLightbox('Lomba LKS Otomotif Provinsi Jawa Tengah')">
+        🔧
+        <div class="galeri-overlay"><span class="galeri-caption">LKS Otomotif — Juara 1 Provinsi</span></div>
+      </div>
+      <div class="galeri-item" style="background:linear-gradient(135deg,#e8a020,#d4890a);" onclick="openLightbox('Wisuda dan Perpisahan Kelas XII 2025')">
+        🎓
+        <div class="galeri-overlay"><span class="galeri-caption">Wisuda Kelas XII 2025</span></div>
+      </div>
+      <div class="galeri-item wide" style="background:linear-gradient(135deg,#2451a0,#1a3566);" onclick="openLightbox('Penghijauan dan Penanaman Pohon Twosra Anniversary')">
+        🌳
+        <div class="galeri-overlay"><span class="galeri-caption">Penanaman 2.200 Pohon — Twosra Anniversary</span></div>
+      </div>
+      <div class="galeri-item" style="background:linear-gradient(135deg,#122448,#2451a0);" onclick="openLightbox('Praktik Bengkel CNC Teknik Pemesinan')">
+        ⚙️
+        <div class="galeri-overlay"><span class="galeri-caption">Praktik Bengkel CNC</span></div>
+      </div>
+      <div class="galeri-item" style="background:linear-gradient(135deg,#1a3566,#122448);" onclick="openLightbox('LKBB Garuda Muda — Tim Paskibra SMKN 2 Sragen')">
+        🎖️
+        <div class="galeri-overlay"><span class="galeri-caption">LKBB Garuda Muda Season 1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <div class="lightbox-img" id="lightboxImg">📸</div>
+    <p id="lightboxCaption" style="color:rgba(255,255,255,.8);margin-top:12px;font-size:13.5px;"></p>
+  </div>
+</div>
 <section class="vismis" id="visi-misi">
   <div class="container">
     <div class="s-header c rv">
@@ -836,7 +1412,298 @@
   </div>
 </section>
 
-<!-- ══ STATS NAVY ══ -->
+<!-- ══ BKK — BURSA KERJA KHUSUS ══ -->
+<section class="bkk" id="bkk">
+  <div class="container">
+    <div class="bkk-header-row rv">
+      <div>
+        <div class="s-tag">Karir &amp; Kerja</div>
+        <h2 class="s-title">BKK — Bursa Kerja <em>Khusus</em></h2>
+        <p class="s-desc" style="max-width:480px;">Portal lowongan kerja dan magang khusus untuk alumni dan siswa SMK Negeri 2 Sragen. Temukan karir impian kamu!</p>
+      </div>
+      <div class="bkk-stats">
+        <div>
+          <div class="bkk-stat-num">48+</div>
+          <div class="bkk-stat-lbl">Lowongan Aktif</div>
+        </div>
+        <div>
+          <div class="bkk-stat-num">120+</div>
+          <div class="bkk-stat-lbl">Mitra Perusahaan</div>
+        </div>
+        <div>
+          <div class="bkk-stat-num">1.2K+</div>
+          <div class="bkk-stat-lbl">Alumni Tersalurkan</div>
+        </div>
+      </div>
+    </div>
+    <div class="bkk-grid">
+      <div class="bkk-card rv d1">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-industry"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Sinar Mas Agribusiness</div>
+              <div style="font-size:11px;color:var(--text-3);">Sragen, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-new">Baru</span>
+        </div>
+        <div class="bkk-posisi">Teknisi Mesin Industri</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">Teknik Mesin</span>
+          <span class="bkk-tag">Full Time</span>
+          <span class="bkk-tag">D3/SMK</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-calendar-alt"></i> Tutup 30 Jun 2026</div>
+          <a href="#" class="bkk-apply">Lamar Sekarang</a>
+        </div>
+      </div>
+      <div class="bkk-card rv d2">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-network-wired"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Telkom Indonesia</div>
+              <div style="font-size:11px;color:var(--text-3);">Solo, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-hot">🔥 Hot</span>
+        </div>
+        <div class="bkk-posisi">Network Technician & IT Support</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">TKJ</span>
+          <span class="bkk-tag">Full Time</span>
+          <span class="bkk-tag">Pengalaman 1 Thn</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-calendar-alt"></i> Tutup 15 Jul 2026</div>
+          <a href="#" class="bkk-apply">Lamar Sekarang</a>
+        </div>
+      </div>
+      <div class="bkk-card rv d3">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-bolt"></i></div>
+            <div>
+              <div class="bkk-company-name">PT PLN (Persero) ULP Sragen</div>
+              <div style="font-size:11px;color:var(--text-3);">Sragen, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-new">Baru</span>
+        </div>
+        <div class="bkk-posisi">Teknisi Instalasi Listrik</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">TITL</span>
+          <span class="bkk-tag">Kontrak</span>
+          <span class="bkk-tag">Fresh Graduate</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-calendar-alt"></i> Tutup 25 Jun 2026</div>
+          <a href="#" class="bkk-apply">Lamar Sekarang</a>
+        </div>
+      </div>
+    </div>
+    <div class="bkk-banner rv">
+      <div class="bkk-banner-left">
+        <h3>Kamu Alumni SMKN 2 Sragen?</h3>
+        <p>Daftarkan diri di portal BKK dan dapatkan akses ke ratusan lowongan eksklusif dari mitra perusahaan kami.</p>
+      </div>
+      <div class="bkk-banner-right">
+        <a href="#" class="btn-gold"><i class="fas fa-user-plus"></i> Daftar sebagai Alumni</a>
+        <a href="#" class="btn-outline-white"><i class="fas fa-briefcase"></i> Semua Lowongan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KALENDER & AGENDA ══ -->
+<section class="agenda-section" id="agenda">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Jadwal Sekolah</div>
+      <h2 class="s-title">Kalender &amp; <em>Agenda</em></h2>
+      <p class="s-desc">Pantau kegiatan dan agenda penting SMK Negeri 2 Sragen setiap bulannya.</p>
+    </div>
+    <div class="agenda-grid">
+      <!-- Kalender widget -->
+      <div class="cal-widget rv d1">
+        <div class="cal-header">
+          <div class="cal-month" id="calMonth">Mei 2026</div>
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="cal-nav-btn" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="cal-days-header">
+          <div class="cal-day-name">Min</div><div class="cal-day-name">Sen</div>
+          <div class="cal-day-name">Sel</div><div class="cal-day-name">Rab</div>
+          <div class="cal-day-name">Kam</div><div class="cal-day-name">Jum</div>
+          <div class="cal-day-name">Sab</div>
+        </div>
+        <div class="cal-days" id="calDays"></div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--gray-2);display:flex;gap:16px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--navy);"></div> Hari Ini
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div> Ada Agenda
+          </div>
+        </div>
+      </div>
+      <!-- Agenda list -->
+      <div class="rv d2">
+        <div class="agenda-list">
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">05</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge akademik">Akademik</span>
+              </div>
+              <div class="agenda-title">Pengambilan Ijazah Alumni 2025</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> 08.00 – 14.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Aula Sekolah</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">07</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge kegiatan">Kesiswaan</span>
+              </div>
+              <div class="agenda-title">Pelantikan Pengurus OSIS Angkatan XIII</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> 07.30 – 12.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Lapangan Upacara</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">10</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge akademik">PPDB</span>
+              </div>
+              <div class="agenda-title">Pembukaan PPDB Gelombang 1 Tahun 2026</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> Mulai 08.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Online &amp; Offline</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">16</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge libur">Libur</span>
+              </div>
+              <div class="agenda-title">Libur Hari Raya Waisak Nasional</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> Seharian</span>
+                <span><i class="fas fa-info-circle"></i> Libur Nasional</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">28</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge kegiatan">Kegiatan</span>
+              </div>
+              <div class="agenda-title">LKS Internal — Seleksi Peserta Tingkat Kabupaten</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> 08.00 – 16.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Workshop Jurusan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JAJAK PENDAPAT ══ -->
+<section class="poll-section" id="polling">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Jajak Pendapat</div>
+      <h2 class="s-title">Suara <em>Kamu</em> Penting!</h2>
+      <p class="s-desc">Ikuti jajak pendapat dan bantu kami meningkatkan kualitas layanan sekolah.</p>
+    </div>
+    <div class="poll-grid">
+      <div class="poll-widget rv d1">
+        <div class="poll-question" id="pollQuestion">Menurut kamu, fasilitas mana yang perlu ditingkatkan di SMKN 2 Sragen?</div>
+        <div class="poll-options" id="pollOptions">
+          <label class="poll-option"><input type="radio" name="poll" value="0"> <label>Laboratorium Komputer &amp; Jaringan</label></label>
+          <label class="poll-option"><input type="radio" name="poll" value="1"> <label>Bengkel Praktik (Otomotif/Mesin)</label></label>
+          <label class="poll-option"><input type="radio" name="poll" value="2"> <label>Perpustakaan Digital &amp; E-Learning</label></label>
+          <label class="poll-option"><input type="radio" name="poll" value="3"> <label>Kantin &amp; Area Istirahat</label></label>
+        </div>
+        <button class="poll-submit" onclick="submitPoll()">Kirim Jawaban <i class="fas fa-paper-plane"></i></button>
+        <div class="poll-result-bar" id="pollResults">
+          <div style="height:1px;background:var(--gray-2);margin:20px 0;"></div>
+          <div class="poll-result-item">
+            <div class="poll-result-label"><span>Lab Komputer &amp; Jaringan</span><strong id="r0">38%</strong></div>
+            <div class="poll-bar"><div class="poll-bar-fill" style="width:0%" data-width="38%"></div></div>
+          </div>
+          <div class="poll-result-item">
+            <div class="poll-result-label"><span>Bengkel Praktik</span><strong id="r1">29%</strong></div>
+            <div class="poll-bar"><div class="poll-bar-fill" style="width:0%" data-width="29%"></div></div>
+          </div>
+          <div class="poll-result-item">
+            <div class="poll-result-label"><span>Perpustakaan Digital</span><strong id="r2">21%</strong></div>
+            <div class="poll-bar"><div class="poll-bar-fill" style="width:0%" data-width="21%"></div></div>
+          </div>
+          <div class="poll-result-item">
+            <div class="poll-result-label"><span>Kantin &amp; Area Istirahat</span><strong id="r3">12%</strong></div>
+            <div class="poll-bar"><div class="poll-bar-fill" style="width:0%" data-width="12%"></div></div>
+          </div>
+          <div class="poll-total">Total responden: <strong>248 orang</strong></div>
+        </div>
+      </div>
+      <div class="poll-info-box rv d2">
+        <h4>Mengapa Suaramu Penting?</h4>
+        <p>Jajak pendapat ini membantu manajemen SMKN 2 Sragen dalam menentukan prioritas pengembangan fasilitas dan layanan sekolah.</p>
+        <div class="poll-info-stats">
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num">248</div>
+            <div class="poll-info-stat-lbl">Total Responden</div>
+          </div>
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num">3</div>
+            <div class="poll-info-stat-lbl">Polling Aktif</div>
+          </div>
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num">12</div>
+            <div class="poll-info-stat-lbl">Polling Selesai</div>
+          </div>
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num">89%</div>
+            <div class="poll-info-stat-lbl">Tingkat Partisipasi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="stats-section">
   <div class="container stats-inner">
     <h2 class="rv">SMKN 2 Sragen Dalam Angka</h2>
@@ -915,17 +1782,17 @@
 </footer>
 
 <script>
-  // Navbar scroll
+  // ── Navbar scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
 
-  // Scroll reveal
+  // ── Scroll reveal
   const rvObs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); rvObs.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
-  // Count-up
+  // ── Count-up
   function countUp(el) {
     const target = parseInt(el.dataset.target);
     const suffix = target >= 50 ? '+' : '';
@@ -947,7 +1814,7 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.hero-stats, .stats-grid').forEach(el => countObs.observe(el));
 
-  // Active nav
+  // ── Active nav
   const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
   const sections = document.querySelectorAll('section[id], footer[id]');
   const activeObs = new IntersectionObserver(entries => {
@@ -960,6 +1827,76 @@
     });
   }, { threshold: 0.4 });
   sections.forEach(s => activeObs.observe(s));
+
+  // ── Search toggle
+  function toggleSearch() {
+    const s = document.getElementById('navSearch');
+    const inp = document.getElementById('searchInput');
+    s.classList.toggle('open');
+    if (s.classList.contains('open')) {
+      inp.focus();
+    }
+  }
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      alert('Mencari: ' + e.target.value + '\n(Fitur pencarian akan terhubung ke database sekolah)');
+    }
+    if (e.key === 'Escape') toggleSearch();
+  });
+
+  // ── Lightbox
+  function openLightbox(caption) {
+    document.getElementById('lightbox').classList.add('open');
+    document.getElementById('lightboxCaption').textContent = caption;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Kalender
+  let calYear = 2026, calMonth = 4; // Mei = index 4
+  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const eventDays = [5, 7, 10, 16, 28]; // Hari yang ada agenda di Juni 2026
+
+  function renderCalendar() {
+    const today = new Date();
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    document.getElementById('calMonth').textContent = monthNames[calMonth] + ' ' + calYear;
+    let html = '';
+    for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+      const hasEvent = eventDays.includes(d) && calMonth === 5; // Juni
+      html += `<div class="cal-day${isToday ? ' today' : ''}${hasEvent ? ' has-event' : ''}">${d}</div>`;
+    }
+    document.getElementById('calDays').innerHTML = html;
+  }
+  function changeMonth(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0)  { calMonth = 11; calYear--; }
+    renderCalendar();
+  }
+  renderCalendar();
+
+  // ── Poll
+  function submitPoll() {
+    const selected = document.querySelector('input[name="poll"]:checked');
+    if (!selected) { alert('Pilih salah satu jawaban terlebih dahulu!'); return; }
+    document.getElementById('pollOptions').style.display = 'none';
+    document.querySelector('.poll-submit').style.display = 'none';
+    const results = document.getElementById('pollResults');
+    results.classList.add('show');
+    // Animate bars
+    setTimeout(() => {
+      results.querySelectorAll('.poll-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width;
+      });
+    }, 100);
+  }
 </script>
 </body>
 </html>
