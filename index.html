@@ -4,645 +4,596 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SMK Negeri 2 Sragen — Excellent, Competent, Character</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-primary:   #080c18;
-      --bg-secondary: #0d1226;
-      --bg-card:      rgba(255,255,255,0.04);
-      --gold:         #c9a84c;
-      --gold-light:   #e8cc80;
-      --gold-dim:     rgba(201,168,76,0.15);
-      --white:        #ffffff;
-      --text-primary: #f0ede8;
-      --text-muted:   #8a8fa8;
-      --text-dim:     #5a5f78;
-      --border:       rgba(201,168,76,0.18);
-      --border-soft:  rgba(255,255,255,0.07);
-      --radius-sm:    8px;
-      --radius-md:    16px;
-      --radius-lg:    24px;
-      --radius-xl:    32px;
-      --shadow-gold:  0 0 60px rgba(201,168,76,0.12);
-      --shadow-card:  0 8px 40px rgba(0,0,0,0.4);
-      --font-serif:   'Playfair Display', Georgia, serif;
-      --font-sans:    'Space Grotesk', 'Inter', sans-serif;
-      --font-body:    'Inter', sans-serif;
+      --ink:         #0a0d14;
+      --ink-soft:    #12162a;
+      --surface:     #111525;
+      --surface-2:   #161b30;
+      --gold:        #c8a84b;
+      --gold-lt:     #e4c978;
+      --gold-dim:    rgba(200,168,75,0.12);
+      --gold-glow:   rgba(200,168,75,0.22);
+      --cream:       #f5f0e8;
+      --text-1:      #edeae4;
+      --text-2:      #9098b8;
+      --text-3:      #525878;
+      --line:        rgba(200,168,75,0.16);
+      --line-soft:   rgba(255,255,255,0.06);
+      --r-sm: 8px; --r-md: 16px; --r-lg: 24px; --r-xl: 36px;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --mono:  'DM Mono', monospace;
     }
 
     html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
-      font-family: var(--font-body);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
+      font-family: var(--sans);
+      background: var(--ink);
+      color: var(--text-1);
+      line-height: 1.65;
       overflow-x: hidden;
     }
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-primary); }
-    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-    /* ─── NOISE TEXTURE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      opacity: 0.4;
-    }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 
-    /* ─── UTILITY ─── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-    .gold { color: var(--gold); }
-    .serif { font-family: var(--font-serif); }
+    /* ─── OVERLINE LABEL ─── */
+    .overline {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+      letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .overline::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
 
-    /* ─── GOLD LINE DIVIDER ─── */
-    .gold-line {
-      display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
-    }
-    .gold-line::before {
-      content: ''; width: 40px; height: 1px; background: var(--gold);
-    }
-    .gold-line span {
-      font-family: var(--font-sans); font-size: 11px; font-weight: 600;
-      letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
-    }
+    .overline-center { justify-content: center; }
+    .overline-center::before { display: none; }
+    .overline-center::after  { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
 
-    /* ─── SECTION HEADING ─── */
-    .section-heading {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text-primary);
-      margin-bottom: 16px;
+    /* ─── SECTION TITLE ─── */
+    .s-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 2.9rem);
+      font-weight: 400; line-height: 1.18;
+      color: var(--text-1); margin-bottom: 14px;
     }
-    .section-sub {
-      font-size: 15px; color: var(--text-muted);
-      line-height: 1.75; max-width: 520px;
-    }
-    .section-header { margin-bottom: 56px; }
-    .section-header.center { text-align: center; }
-    .section-header.center .section-sub { margin: 0 auto; }
-    .section-header.center .gold-line { justify-content: center; }
-    .section-header.center .gold-line::before { display: none; }
-    .section-header.center .gold-line::after {
-      content: ''; width: 40px; height: 1px; background: var(--gold);
-    }
+    .s-title em { font-style: italic; color: var(--gold); }
+    .s-sub { font-size: 15px; color: var(--text-2); line-height: 1.82; max-width: 500px; }
+    .s-header { margin-bottom: 60px; }
+    .s-header.c { text-align: center; }
+    .s-header.c .s-sub { margin: 0 auto; }
+
+    /* ─── REVEAL ─── */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .rv.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
+    .d5 { transition-delay: .40s; }
 
 
-    /* ─── NAVIGATION ─── */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      height: 72px;
+    /* ══════════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      height: 68px;
       display: flex; align-items: center;
-      background: rgba(8,12,24,0.85);
-      backdrop-filter: blur(24px) saturate(180%);
-      border-bottom: 1px solid var(--border-soft);
-      transition: all .3s;
+      background: rgba(10,13,20,0.82);
+      backdrop-filter: blur(28px) saturate(160%);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s, background .3s;
     }
-    .navbar.scrolled {
-      height: 64px;
-      background: rgba(8,12,24,0.97);
-      border-bottom-color: var(--border);
+    .nav.scrolled {
+      background: rgba(10,13,20,0.97);
+      border-bottom-color: var(--line-soft);
     }
     .nav-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 32px;
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%;
+      max-width: 1160px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between; width: 100%;
     }
-    .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-    .nav-emblem {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-badge {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-serif); font-weight: 900;
-      font-size: 15px; color: var(--bg-primary);
-      box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+      font-family: var(--serif); font-weight: 400; font-size: 13px;
+      color: var(--ink); letter-spacing: .5px;
+      box-shadow: 0 0 0 1px rgba(200,168,75,.4), 0 4px 20px rgba(200,168,75,.25);
     }
-    .nav-text-main {
-      font-family: var(--font-sans); font-size: 14px; font-weight: 700;
-      color: var(--text-primary); letter-spacing: 0.3px;
+    .nav-name { font-family: var(--sans); font-size: 13.5px; font-weight: 600; color: var(--text-1); letter-spacing: .2px; }
+    .nav-loc  { font-size: 10px; color: var(--text-3); letter-spacing: .8px; text-transform: uppercase; display: block; margin-top: 1px; }
+    .nav-menu { display: flex; align-items: center; gap: 2px; }
+    .nav-menu a {
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      color: var(--text-2); text-decoration: none;
+      padding: 6px 13px; border-radius: 6px;
+      transition: color .2s, background .2s;
     }
-    .nav-text-sub {
-      font-size: 10px; color: var(--text-muted); letter-spacing: 1px;
-      text-transform: uppercase; display: block; margin-top: 1px;
-    }
-    .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-links a {
-      font-family: var(--font-sans); font-size: 12.5px; font-weight: 500;
-      color: var(--text-muted); text-decoration: none;
-      padding: 7px 14px; border-radius: 6px;
-      letter-spacing: 0.3px; transition: all .2s;
-    }
-    .nav-links a:hover { color: var(--text-primary); background: var(--border-soft); }
-    .nav-links a.active { color: var(--gold); }
+    .nav-menu a:hover, .nav-menu a.act { color: var(--text-1); background: var(--line-soft); }
+    .nav-menu a.act { color: var(--gold); background: transparent; }
     .nav-cta {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--bg-primary) !important; font-weight: 700 !important;
-      padding: 8px 20px !important; border-radius: 8px !important;
-      box-shadow: 0 4px 16px rgba(201,168,76,0.3);
+      margin-left: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt)) !important;
+      color: var(--ink) !important; font-weight: 700 !important;
+      padding: 7px 18px !important; border-radius: 7px !important;
+      box-shadow: 0 4px 18px rgba(200,168,75,.28);
+      transition: opacity .2s, transform .2s !important;
     }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(201,168,76,0.4) !important; background: var(--bg-secondary) !important; color: var(--gold) !important; }
+    .nav-cta:hover { opacity: .9; transform: translateY(-1px) !important; background: none !important; }
 
-    /* ─── HERO ─── */
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
     .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      position: relative; overflow: hidden;
-      background: var(--bg-primary);
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; overflow: hidden; padding-top: 68px;
     }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .hero-bg-gradient {
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-grad {
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 70% at 20% 80%, rgba(13,18,38,0.9) 0%, transparent 70%),
-        linear-gradient(160deg, #080c18 0%, #0d1226 50%, #080c18 100%);
+        radial-gradient(ellipse 65% 55% at 65% 38%, rgba(200,168,75,.065) 0%, transparent 60%),
+        linear-gradient(170deg, var(--ink) 0%, var(--ink-soft) 55%, var(--ink) 100%);
     }
-    .hero-grid-overlay {
+    .hero-grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 80%);
+        linear-gradient(rgba(200,168,75,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,168,75,.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 75% 65% at 55% 50%, black 25%, transparent 78%);
     }
     .hero-orb {
-      position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+      position: absolute; border-radius: 50%; pointer-events: none;
+      animation: orbFloat 8s ease-in-out infinite alternate;
     }
-    .hero-orb-1 { width: 500px; height: 500px; top: -100px; right: -50px; background: rgba(201,168,76,0.08); }
-    .hero-orb-2 { width: 300px; height: 300px; bottom: 100px; left: -80px; background: rgba(30,50,120,0.3); }
-    .hero-content {
-      position: relative; z-index: 1;
-      padding-top: 72px;
+    .hero-orb-a { width: 560px; height: 560px; top: -140px; right: -80px; background: radial-gradient(circle, rgba(200,168,75,.07), transparent 65%); filter: blur(40px); }
+    .hero-orb-b { width: 280px; height: 280px; bottom: 60px; left: -60px; background: radial-gradient(circle, rgba(40,60,150,.22), transparent 65%); filter: blur(40px); animation-delay: -3s; }
+    @keyframes orbFloat { from { transform: translateY(0) scale(1); } to { transform: translateY(-28px) scale(1.04); } }
+
+    .hero-inner {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
+      gap: 72px; align-items: center; position: relative; z-index: 1;
+      width: 100%;
     }
-    .hero-left {}
-    .hero-tag {
+    .hero-pill {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--gold-dim); border: 1px solid var(--border);
-      border-radius: 100px; padding: 6px 16px 6px 10px;
-      margin-bottom: 28px;
+      background: var(--gold-dim); border: 1px solid var(--line);
+      border-radius: 100px; padding: 5px 14px 5px 9px; margin-bottom: 26px;
     }
-    .hero-tag-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); box-shadow: 0 0 6px var(--gold);
-    }
-    .hero-tag span {
-      font-family: var(--font-sans); font-size: 11px; font-weight: 600;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
-    }
+    .hero-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 8px var(--gold); flex-shrink: 0; }
+    .hero-pill span { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+
     .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 5.5vw, 4.4rem);
-      font-weight: 900; line-height: 1.1;
-      color: var(--text-primary);
-      margin-bottom: 24px;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5.5vw, 4.6rem);
+      font-weight: 400; line-height: 1.1; margin-bottom: 22px;
+      color: var(--text-1);
     }
-    .hero-title .line2 {
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-title .accent {
+      font-style: italic;
+      background: linear-gradient(95deg, var(--gold), var(--gold-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-desc {
-      font-size: 15.5px; color: var(--text-muted); line-height: 1.8;
-      max-width: 440px; margin-bottom: 40px;
+    .hero-body { font-size: 15.5px; color: var(--text-2); line-height: 1.82; max-width: 420px; margin-bottom: 38px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: var(--ink); padding: 13px 26px; border-radius: var(--r-sm);
+      font-family: var(--sans); font-size: 13px; font-weight: 700;
+      text-decoration: none; letter-spacing: .3px;
+      box-shadow: 0 6px 28px rgba(200,168,75,.32);
+      transition: transform .25s, box-shadow .25s;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-      color: var(--bg-primary); padding: 14px 28px;
-      border-radius: var(--radius-sm); font-family: var(--font-sans);
-      font-size: 13px; font-weight: 700; text-decoration: none;
-      letter-spacing: 0.5px; transition: all .3s;
-      box-shadow: 0 8px 30px rgba(201,168,76,0.35);
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(200,168,75,.45); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid var(--line); color: var(--text-2);
+      padding: 13px 26px; border-radius: var(--r-sm);
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      text-decoration: none; letter-spacing: .3px;
+      transition: border-color .25s, color .25s, background .25s;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border); color: var(--text-muted);
-      padding: 14px 28px; border-radius: var(--radius-sm);
-      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
-      text-decoration: none; letter-spacing: 0.5px; transition: all .3s;
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+    .hero-metrics {
+      display: flex; gap: 36px; margin-top: 48px;
+      padding-top: 28px; border-top: 1px solid var(--line-soft);
     }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
-    .hero-stats-row {
-      display: flex; gap: 32px; margin-top: 52px;
-      padding-top: 32px; border-top: 1px solid var(--border-soft);
-    }
-    .hero-stat-item {}
-    .hero-stat-num {
-      font-family: var(--font-serif); font-size: 2.2rem; font-weight: 700;
+    .hm-num {
+      font-family: var(--serif); font-size: 2.1rem; font-weight: 400;
       color: var(--gold); line-height: 1;
     }
-    .hero-stat-label { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    .hm-label { font-size: 10.5px; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
 
 
-    /* ─── HERO RIGHT (CARD STACK) ─── */
-    .hero-right { position: relative; height: 520px; }
-    .hero-card-main {
-      position: absolute; top: 40px; left: 0; right: 60px;
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-lg);
-      padding: 36px; height: 320px;
-      box-shadow: var(--shadow-card);
-      overflow: hidden;
+    /* ─── HERO RIGHT PANEL ─── */
+    .hero-panel {
+      position: relative; height: 500px;
     }
-    .hero-card-main::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    .hp-main {
+      position: absolute; top: 30px; left: 0; right: 56px;
+      background: var(--surface); border: 1px solid var(--line-soft);
+      border-radius: var(--r-lg); padding: 34px;
+      height: 296px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.45);
+    }
+    .hp-main::before {
+      content: ''; position: absolute; top: 0; left: 36px; right: 36px; height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
-    .hero-card-school-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    .hp-school-ico {
+      width: 50px; height: 50px; border-radius: 13px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px; color: var(--bg-primary); margin-bottom: 20px;
+      font-size: 20px; color: var(--ink); margin-bottom: 18px;
     }
-    .hero-card-title {
-      font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 8px;
+    .hp-main-title { font-family: var(--serif); font-size: 1.25rem; color: var(--text-1); margin-bottom: 6px; }
+    .hp-main-sub { font-size: 12.5px; color: var(--text-3); margin-bottom: 22px; }
+    .hp-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .hp-chip {
+      background: var(--gold-dim); border: 1px solid var(--line);
+      color: var(--gold); font-family: var(--mono); font-size: 10px;
+      font-weight: 500; letter-spacing: .5px; padding: 4px 11px; border-radius: 100px;
     }
-    .hero-card-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
-    .hero-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .hero-tag-chip {
-      background: var(--gold-dim); border: 1px solid var(--border);
-      color: var(--gold); font-size: 11px; font-weight: 600;
-      letter-spacing: 0.5px; padding: 4px 12px; border-radius: 100px;
-    }
-    .hero-card-float-1 {
-      position: absolute; bottom: 60px; right: 0; left: 60px;
-      background: rgba(201,168,76,0.1); border: 1px solid var(--border);
-      border-radius: var(--radius-md); padding: 20px 24px;
-      backdrop-filter: blur(20px);
+
+    .hp-float-a {
+      position: absolute; bottom: 52px; right: 0; left: 52px;
+      background: var(--surface-2); border: 1px solid var(--line);
+      border-radius: var(--r-md); padding: 18px 22px;
       display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.5);
     }
-    .hcf-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    .hp-float-ico {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; color: var(--bg-primary); flex-shrink: 0;
+      font-size: 15px; color: var(--ink);
     }
-    .hcf-text strong { display: block; font-size: 15px; font-weight: 700; color: var(--text-primary); }
-    .hcf-text span { font-size: 12px; color: var(--text-muted); }
-    .hero-card-float-2 {
+    .hp-float-txt strong { display: block; font-size: 14px; font-weight: 600; color: var(--text-1); }
+    .hp-float-txt span { font-size: 11.5px; color: var(--text-2); }
+
+    .hp-badge {
       position: absolute; top: 0; right: 0;
-      background: rgba(8,12,24,0.9); border: 1px solid var(--border);
-      border-radius: var(--radius-md); padding: 16px 20px;
-      backdrop-filter: blur(20px);
+      background: var(--ink); border: 1px solid var(--line);
+      border-radius: var(--r-md); padding: 14px 18px;
       display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
     }
-    .acred-badge {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    .hp-badge-ico {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--bg-primary); flex-shrink: 0;
+      font-size: 13px; color: var(--ink);
     }
-    .acred-text strong { display: block; font-size: 13px; font-weight: 700; color: var(--text-primary); }
-    .acred-text span { font-size: 11px; color: var(--text-muted); }
+    .hp-badge-txt strong { display: block; font-size: 12.5px; font-weight: 700; color: var(--text-1); }
+    .hp-badge-txt span { font-size: 10.5px; color: var(--text-2); }
 
-    /* ─── MARQUEE ─── */
-    .marquee-section {
-      padding: 20px 0; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);
-      overflow: hidden; background: rgba(201,168,76,0.03);
+    /* ══════════════════════════════════════
+       TICKER
+    ══════════════════════════════════════ */
+    .ticker {
+      padding: 16px 0;
+      border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+      background: rgba(200,168,75,.025); overflow: hidden;
     }
-    .marquee-track {
-      display: flex; gap: 56px; animation: marquee 28s linear infinite;
-      white-space: nowrap;
+    .ticker-track {
+      display: flex; gap: 52px; animation: tick 30s linear infinite; white-space: nowrap;
     }
-    .marquee-item {
-      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
-      font-family: var(--font-sans); font-size: 12px; font-weight: 600;
-      letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim);
+    .ticker-item {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      letter-spacing: 1.8px; text-transform: uppercase; color: var(--text-3);
     }
-    .marquee-item i { color: var(--gold); font-size: 10px; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-item i { color: var(--gold); font-size: 7px; }
+    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ─── ABOUT ─── */
-    .about-section { padding: 120px 0; }
+
+    /* ══════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════ */
+    .about { padding: 120px 0; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .about-visual { position: relative; }
-    .about-img-block {
-      aspect-ratio: 4/5; background: var(--bg-secondary);
-      border-radius: var(--radius-xl); border: 1px solid var(--border-soft);
+
+    /* Left: visual stack */
+    .about-vis { position: relative; }
+    .about-frame {
+      aspect-ratio: 3/4; background: var(--surface);
+      border: 1px solid var(--line-soft); border-radius: var(--r-xl);
       overflow: hidden; position: relative;
-    }
-    .about-img-block::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(8,12,24,0.8) 100%);
-    }
-    .about-img-inner {
-      width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 12px;
     }
-    .about-img-icon { font-size: 5rem; color: var(--gold); opacity: 0.4; }
-    .about-img-label { font-size: 13px; color: var(--text-dim); letter-spacing: 1px; }
-    .about-float-card {
-      position: absolute; bottom: -24px; right: -24px;
-      background: rgba(8,12,24,0.95); border: 1px solid var(--border);
-      border-radius: var(--radius-md); padding: 20px 24px;
-      min-width: 200px; backdrop-filter: blur(20px);
+    .about-frame-inner { text-align: center; }
+    .about-frame-inner i { font-size: 4.5rem; color: var(--gold); opacity: .25; }
+    .about-frame-inner span { display: block; font-size: 12px; color: var(--text-3); margin-top: 10px; letter-spacing: 1px; }
+    .about-frame::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(10,13,20,.85) 100%);
     }
-    .about-float-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit;
-      background: linear-gradient(135deg, rgba(201,168,76,0.08), transparent);
-      pointer-events: none;
+    .about-float {
+      position: absolute; bottom: -22px; right: -22px;
+      background: var(--ink); border: 1px solid var(--line);
+      border-radius: var(--r-md); padding: 20px 26px;
+      min-width: 185px;
+      box-shadow: 0 16px 48px rgba(0,0,0,.55);
     }
-    .afc-num {
-      font-family: var(--font-serif); font-size: 2rem; font-weight: 700;
-      color: var(--gold); line-height: 1;
-    }
-    .afc-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-    .about-text {}
-    .about-text p { font-size: 15px; color: var(--text-muted); line-height: 1.85; margin-bottom: 18px; }
-    .about-info-list { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
-    .about-info-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 16px 20px; border-radius: var(--radius-sm);
-      background: var(--bg-card); border: 1px solid var(--border-soft);
+    .af-num { font-family: var(--serif); font-size: 2.4rem; font-weight: 400; color: var(--gold); line-height: 1; }
+    .af-lbl { font-size: 11.5px; color: var(--text-2); margin-top: 5px; }
+
+    /* Right: text */
+    .about-body p { font-size: 15px; color: var(--text-2); line-height: 1.88; margin-bottom: 16px; }
+    .about-list { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+    .al-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 18px; border-radius: var(--r-sm);
+      background: rgba(255,255,255,.025); border: 1px solid var(--line-soft);
       transition: border-color .2s;
     }
-    .about-info-item:hover { border-color: var(--border); }
-    .aii-icon {
-      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
-      background: var(--gold-dim); border: 1px solid var(--border);
+    .al-item:hover { border-color: var(--line); }
+    .al-ico {
+      width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+      background: var(--gold-dim); border: 1px solid var(--line);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--gold);
+      font-size: 13px; color: var(--gold);
     }
-    .aii-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
-    .aii-value { font-size: 13.5px; font-weight: 600; color: var(--text-primary); }
+    .al-lbl { font-size: 9.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; }
+    .al-val { font-size: 13.5px; font-weight: 600; color: var(--text-1); }
+
+    /* ══════════════════════════════════════
+       VISI MISI
+    ══════════════════════════════════════ */
+    .vismis {
+      padding: 120px 0; background: var(--surface);
+      position: relative; overflow: hidden;
+    }
+    .vismis::before, .vismis::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .vismis::before { top: 0; } .vismis::after { bottom: 0; }
+    .vismis-bg {
+      position: absolute; font-family: var(--serif); font-size: 16vw; font-weight: 400;
+      color: rgba(200,168,75,.028); top: 50%; left: 50%; transform: translate(-50%,-50%);
+      white-space: nowrap; pointer-events: none; z-index: 0; letter-spacing: -2px;
+    }
+    .vismis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; position: relative; z-index: 1; }
+    .vm-card {
+      background: rgba(255,255,255,.025); border: 1px solid var(--line-soft);
+      border-radius: var(--r-lg); padding: 40px 36px; position: relative; overflow: hidden;
+      transition: border-color .3s, background .3s;
+    }
+    .vm-card:hover { border-color: var(--line); background: rgba(200,168,75,.04); }
+    .vm-card::before {
+      content: ''; position: absolute; top: 0; left: 40px; right: 40px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .vm-card-glow {
+      position: absolute; top: -80px; right: -80px; width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(200,168,75,.05), transparent);
+      pointer-events: none;
+    }
+    .vm-ico {
+      width: 50px; height: 50px; border-radius: 13px; margin-bottom: 22px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--ink); box-shadow: 0 6px 22px rgba(200,168,75,.3);
+    }
+    .vm-card h3 { font-family: var(--serif); font-size: 1.55rem; font-weight: 400; color: var(--text-1); margin-bottom: 16px; }
+    .vm-card p { font-size: 14.5px; color: var(--text-2); line-height: 1.88; font-style: italic; }
+    .vm-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .vm-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-2); line-height: 1.72; }
+    .vm-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 9px; }
 
 
-    /* ─── VISI MISI ─── */
-    .vismis-section {
-      padding: 120px 0; position: relative; overflow: hidden;
-      background: var(--bg-secondary);
+    /* ══════════════════════════════════════
+       PROGRAM KEAHLIAN
+    ══════════════════════════════════════ */
+    .jurusan { padding: 120px 0; }
+    .jurusan-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .jcard {
+      background: rgba(255,255,255,.025); border: 1px solid var(--line-soft);
+      border-radius: var(--r-md); padding: 30px 26px;
+      position: relative; overflow: hidden;
+      transition: transform .3s cubic-bezier(.165,.84,.44,1), border-color .3s, background .3s, box-shadow .3s;
     }
-    .vismis-section::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    .jcard:hover {
+      transform: translateY(-6px); border-color: var(--line);
+      background: rgba(200,168,75,.04);
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
     }
-    .vismis-section::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    .jcard::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+      transform: scaleX(0); transform-origin: left; transition: transform .35s;
     }
-    .vismis-bg-text {
-      position: absolute; font-family: var(--font-serif); font-size: 18vw; font-weight: 900;
-      color: rgba(201,168,76,0.03); top: 50%; left: 50%; transform: translate(-50%,-50%);
-      white-space: nowrap; pointer-events: none; z-index: 0; letter-spacing: -4px;
+    .jcard:hover::after { transform: scaleX(1); }
+    .jcard-num {
+      font-family: var(--serif); font-size: 3.8rem; font-weight: 400;
+      color: rgba(200,168,75,.07); line-height: 1;
+      position: absolute; top: 14px; right: 20px; pointer-events: none;
+      transition: color .3s;
     }
-    .vismis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-    .vismis-card {
-      background: rgba(255,255,255,0.02); border: 1px solid var(--border-soft);
-      border-radius: var(--radius-lg); padding: 40px;
-      position: relative; overflow: hidden; transition: border-color .3s;
+    .jcard:hover .jcard-num { color: rgba(200,168,75,.13); }
+    .jcard-ico {
+      width: 46px; height: 46px; border-radius: 11px; margin-bottom: 18px;
+      background: var(--gold-dim); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; color: var(--gold);
+      transition: background .3s, color .3s, box-shadow .3s, border-color .3s;
     }
-    .vismis-card:hover { border-color: var(--border); }
-    .vismis-card::before {
+    .jcard:hover .jcard-ico {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: var(--ink); border-color: transparent;
+      box-shadow: 0 6px 22px rgba(200,168,75,.35);
+    }
+    .jcard h3 { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--text-1); margin-bottom: 9px; line-height: 1.45; }
+    .jcard p  { font-size: 12.5px; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; }
+    .jcard-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gold-dim); border: 1px solid var(--line);
+      color: var(--gold); font-family: var(--mono); font-size: 10px;
+      letter-spacing: .5px; padding: 3px 11px; border-radius: 100px;
+    }
+
+    /* ══════════════════════════════════════
+       FASILITAS
+    ══════════════════════════════════════ */
+    .fasil {
+      padding: 120px 0; background: var(--surface);
+      border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+    }
+    .fasil-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .fasil-card {
+      background: rgba(255,255,255,.02); border: 1px solid var(--line-soft);
+      border-radius: var(--r-md); padding: 28px 20px;
+      text-align: center; transition: all .28s;
+    }
+    .fasil-card:hover {
+      border-color: var(--line); background: rgba(200,168,75,.04);
+      transform: translateY(-4px);
+    }
+    .fasil-card i { font-size: 1.7rem; color: var(--gold); display: block; margin-bottom: 12px; transition: transform .28s; }
+    .fasil-card:hover i { transform: scale(1.12); }
+    .fasil-card h4 { font-size: 12.5px; font-weight: 600; color: var(--text-1); line-height: 1.4; }
+
+    /* ══════════════════════════════════════
+       PRESTASI
+    ══════════════════════════════════════ */
+    .prestasi { padding: 120px 0; }
+    .prestasi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .pcard {
+      background: rgba(255,255,255,.025); border: 1px solid var(--line-soft);
+      border-radius: var(--r-md); padding: 26px 24px;
+      position: relative; overflow: hidden; transition: all .3s;
+    }
+    .pcard:hover { border-color: var(--line); transform: translateY(-4px); box-shadow: 0 16px 50px rgba(0,0,0,.4); }
+    .pcard::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, var(--gold), var(--gold-lt));
+    }
+    .pcard-medal { font-size: 1.7rem; display: block; margin-bottom: 10px; }
+    .pcard-level {
+      font-family: var(--mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: block;
+    }
+    .pcard h4 { font-size: 13.5px; font-weight: 600; color: var(--text-1); line-height: 1.5; margin-bottom: 7px; }
+    .pcard p  { font-size: 12px; color: var(--text-3); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .footer {
+      padding: 96px 0 0; background: var(--surface);
+      border-top: 1px solid var(--line-soft); position: relative;
+    }
+    .footer::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
-    .vismis-card-glow {
-      position: absolute; top: -60px; right: -60px; width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(201,168,76,0.06), transparent);
-      pointer-events: none;
-    }
-    .vismis-icon-wrap {
-      width: 52px; height: 52px; border-radius: 14px; margin-bottom: 24px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 56px; margin-bottom: 56px; }
+    .foot-brand-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--text-1); margin-bottom: 6px; }
+    .foot-brand-sub   { font-size: 10.5px; color: var(--text-3); letter-spacing: 1px; margin-bottom: 18px; }
+    .foot-brand-desc  { font-size: 13.5px; color: var(--text-2); line-height: 1.82; max-width: 300px; }
+    .foot-socials { display: flex; gap: 9px; margin-top: 22px; }
+    .foot-soc-btn {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: rgba(255,255,255,.03); border: 1px solid var(--line-soft);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; color: var(--bg-primary);
-      box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+      font-size: 13px; color: var(--text-2); text-decoration: none;
+      transition: all .22s;
     }
-    .vismis-card h3 {
-      font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 16px;
-    }
-    .vismis-card p { font-size: 14.5px; color: var(--text-muted); line-height: 1.85; font-style: italic; }
-    .misi-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .misi-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      font-size: 14px; color: var(--text-muted); line-height: 1.7;
-    }
-    .misi-list li::before {
-      content: ''; width: 5px; height: 5px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0; margin-top: 9px;
-    }
+    .foot-soc-btn:hover { background: var(--gold-dim); border-color: var(--line); color: var(--gold); }
 
-    /* ─── PROGRAM KEAHLIAN ─── */
-    .jurusan-section { padding: 120px 0; }
-    .jurusan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .jurusan-card {
-      background: rgba(255,255,255,0.03); border: 1px solid var(--border-soft);
-      border-radius: var(--radius-md); padding: 32px 28px;
-      position: relative; overflow: hidden;
-      transition: all .35s cubic-bezier(.165,.84,.44,1);
-      cursor: default; group: true;
+    .foot-col-title {
+      font-family: var(--mono); font-size: 9.5px; font-weight: 500;
+      letter-spacing: 2.2px; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft);
     }
-    .jurusan-card:hover {
-      border-color: var(--border);
-      background: rgba(201,168,76,0.05);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+    .foot-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .foot-links a {
+      font-size: 13px; color: var(--text-2); text-decoration: none;
+      display: flex; align-items: center; gap: 8px; transition: color .2s;
     }
-    .jurusan-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      transform: scaleX(0); transform-origin: left; transition: transform .35s;
-    }
-    .jurusan-card:hover::after { transform: scaleX(1); }
-    .jurusan-number {
-      font-family: var(--font-serif); font-size: 3.5rem; font-weight: 900;
-      color: rgba(201,168,76,0.08); line-height: 1;
-      position: absolute; top: 16px; right: 24px;
-      transition: color .35s;
-    }
-    .jurusan-card:hover .jurusan-number { color: rgba(201,168,76,0.14); }
-    .jurusan-icon-wrap {
-      width: 48px; height: 48px; border-radius: 12px; margin-bottom: 20px;
-      background: var(--gold-dim); border: 1px solid var(--border);
+    .foot-links a::before { content: '↗'; font-size: 10px; color: var(--text-3); }
+    .foot-links a:hover { color: var(--gold); }
+
+    .foot-contact { display: flex; flex-direction: column; gap: 12px; }
+    .fct { display: flex; gap: 11px; align-items: flex-start; }
+    .fct-ico {
+      width: 30px; height: 30px; border-radius: 7px; flex-shrink: 0;
+      background: var(--gold-dim); border: 1px solid var(--line);
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; color: var(--gold); transition: all .35s;
+      font-size: 11px; color: var(--gold);
     }
-    .jurusan-card:hover .jurusan-icon-wrap {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: var(--bg-primary); border-color: transparent;
-      box-shadow: 0 8px 24px rgba(201,168,76,0.35);
-    }
-    .jurusan-card h3 {
-      font-family: var(--font-sans); font-size: 14.5px; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 10px; line-height: 1.4;
-    }
-    .jurusan-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
-    .jurusan-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--gold-dim); border: 1px solid var(--border);
-      color: var(--gold); font-size: 10.5px; font-weight: 600;
-      letter-spacing: 0.5px; padding: 4px 12px; border-radius: 100px;
-    }
+    .fct span { font-size: 13px; color: var(--text-2); line-height: 1.65; }
 
+    .foot-bottom {
+      border-top: 1px solid var(--line-soft); padding: 22px 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .foot-bottom p { font-size: 11.5px; color: var(--text-3); }
+    .foot-bottom-tag {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--gold-dim); border: 1px solid var(--line);
+      border-radius: 100px; padding: 4px 13px 4px 9px;
+    }
+    .fbt-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+    .foot-bottom-tag span { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--gold); letter-spacing: 1px; }
 
-    /* ─── FASILITAS ─── */
-    .fasilitas-section {
-      padding: 120px 0; background: var(--bg-secondary);
-      border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);
-    }
-    .fasilitas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .fasilitas-card {
-      background: rgba(255,255,255,0.025); border: 1px solid var(--border-soft);
-      border-radius: var(--radius-md); padding: 28px 24px;
-      text-align: center; transition: all .3s;
-    }
-    .fasilitas-card:hover {
-      border-color: var(--border); background: rgba(201,168,76,0.04);
-      transform: translateY(-4px);
-    }
-    .fasilitas-card i {
-      font-size: 1.8rem; color: var(--gold); margin-bottom: 14px;
-      display: block; transition: transform .3s;
-    }
-    .fasilitas-card:hover i { transform: scale(1.15); }
-    .fasilitas-card h4 { font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: 0.2px; }
-
-    /* ─── PRESTASI ─── */
-    .prestasi-section { padding: 120px 0; }
-    .prestasi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .prestasi-card {
-      background: rgba(255,255,255,0.03); border: 1px solid var(--border-soft);
-      border-radius: var(--radius-md); padding: 28px;
-      transition: all .3s; position: relative; overflow: hidden;
-    }
-    .prestasi-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
-    .prestasi-card::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(180deg, var(--gold), var(--gold-light));
-    }
-    .prestasi-medal { font-size: 1.8rem; margin-bottom: 12px; display: block; }
-    .prestasi-level {
-      font-family: var(--font-sans); font-size: 9.5px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 8px; display: block;
-    }
-    .prestasi-card h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.5; margin-bottom: 8px; }
-    .prestasi-card p { font-size: 12.5px; color: var(--text-dim); }
-
-    /* ─── KONTAK / FOOTER ─── */
-    .footer-section {
-      padding: 100px 0 0; background: var(--bg-secondary);
-      border-top: 1px solid var(--border-soft); position: relative;
-    }
-    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-    .footer-brand-name {
-      font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700;
-      color: var(--text-primary); margin-bottom: 8px;
-    }
-    .footer-brand-sub { font-size: 12px; color: var(--text-dim); letter-spacing: 0.5px; margin-bottom: 20px; }
-    .footer-brand-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.8; max-width: 320px; }
-    .footer-col-title {
-      font-family: var(--font-sans); font-size: 10px; font-weight: 700;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a {
-      font-size: 13.5px; color: var(--text-muted); text-decoration: none;
-      transition: color .2s; display: flex; align-items: center; gap: 8px;
-    }
-    .footer-links a::before { content: '—'; font-size: 10px; color: var(--text-dim); }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-contact-item {
-      display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px;
-    }
-    .fci-icon {
-      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-      background: var(--gold-dim); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; color: var(--gold);
-    }
-    .fci-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-    .footer-socials { display: flex; gap: 10px; margin-top: 24px; }
-    .footer-social-btn {
-      width: 38px; height: 38px; border-radius: 10px;
-      background: var(--bg-card); border: 1px solid var(--border-soft);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; color: var(--text-muted); text-decoration: none;
-      transition: all .25s;
-    }
-    .footer-social-btn:hover { background: var(--gold-dim); border-color: var(--border); color: var(--gold); }
-    .footer-bottom {
-      border-top: 1px solid var(--border-soft);
-      padding: 24px 0; display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 12px;
-    }
-    .footer-bottom p { font-size: 12px; color: var(--text-dim); }
-    .footer-bottom-badge {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--gold-dim); border: 1px solid var(--border);
-      border-radius: 100px; padding: 5px 14px 5px 10px;
-    }
-    .fbb-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-    .footer-bottom-badge span { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 1px; }
-
-    /* ─── RESPONSIVE ─── */
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
     @media (max-width: 1024px) {
-      .hero-content { grid-template-columns: 1fr; gap: 48px; }
-      .hero-right { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-panel  { display: none; }
+      .about-grid  { grid-template-columns: 1fr; gap: 48px; }
       .vismis-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
-      .nav-links { display: none; }
+      .nav-menu   { display: none; }
       .jurusan-grid { grid-template-columns: 1fr 1fr; }
-      .fasilitas-grid { grid-template-columns: repeat(2, 1fr); }
+      .fasil-grid   { grid-template-columns: repeat(2,1fr); }
       .prestasi-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero-stats-row { gap: 20px; }
+      .footer-grid  { grid-template-columns: 1fr; }
+      .hero-metrics { gap: 18px; }
     }
     @media (max-width: 480px) {
       .jurusan-grid { grid-template-columns: 1fr; }
+      .fasil-grid   { grid-template-columns: repeat(2,1fr); }
     }
-
-    /* ─── SCROLL REVEAL ANIMATION ─── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: .1s; }
-    .reveal-delay-2 { transition-delay: .2s; }
-    .reveal-delay-3 { transition-delay: .3s; }
-    .reveal-delay-4 { transition-delay: .4s; }
-    .reveal-delay-5 { transition-delay: .5s; }
   </style>
 </head>
 <body>
 
 
 <!-- ══════════════════════ NAVBAR ══════════════════════ -->
-<nav class="navbar" id="navbar">
+<nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-brand">
-      <div class="nav-emblem">N2S</div>
+    <a href="#" class="nav-logo">
+      <div class="nav-badge">N2S</div>
       <div>
-        <div class="nav-text-main">SMK Negeri 2 Sragen</div>
-        <span class="nav-text-sub">Kabupaten Sragen · Jawa Tengah</span>
+        <div class="nav-name">SMK Negeri 2 Sragen</div>
+        <span class="nav-loc">Kabupaten Sragen · Jawa Tengah</span>
       </div>
     </a>
-    <div class="nav-links">
+    <div class="nav-menu">
       <a href="#tentang">Profil</a>
       <a href="#visi-misi">Visi &amp; Misi</a>
       <a href="#jurusan">Program</a>
@@ -656,169 +607,156 @@
 <!-- ══════════════════════ HERO ══════════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <div class="hero-bg-gradient"></div>
-    <div class="hero-grid-overlay"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-grad"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-a"></div>
+    <div class="hero-orb hero-orb-b"></div>
   </div>
   <div class="container">
-    <div class="hero-content">
+    <div class="hero-inner">
+
+      <!-- LEFT -->
       <div class="hero-left">
-        <div class="hero-tag">
-          <div class="hero-tag-dot"></div>
+        <div class="hero-pill">
+          <div class="hero-pill-dot"></div>
           <span>Terakreditasi A &nbsp;·&nbsp; Est. 1992</span>
         </div>
         <h1 class="hero-title">
-          SMK Negeri<br>
-          <span class="line2">2 Sragen</span>
+          Sekolah Vokasi<br>
+          <span class="accent">Unggulan</span> di<br>
+          Kabupaten Sragen
         </h1>
-        <p class="hero-desc">
-          Lembaga pendidikan kejuruan unggulan di Kabupaten Sragen yang membentuk generasi kompeten, berkarakter, dan berdaya saing di era industri global.
+        <p class="hero-body">
+          SMK Negeri 2 Sragen membentuk generasi kompeten, berkarakter, dan berdaya saing tinggi melalui pendidikan kejuruan berstandar industri.
         </p>
-        <div class="hero-actions">
-          <a href="#jurusan" class="btn-gold">
-            <i class="fas fa-graduation-cap"></i> Program Keahlian
-          </a>
-          <a href="#tentang" class="btn-outline">
-            <i class="fas fa-scroll"></i> Profil Sekolah
-          </a>
+        <div class="hero-btns">
+          <a href="#jurusan" class="btn-primary"><i class="fas fa-graduation-cap"></i> Program Keahlian</a>
+          <a href="#tentang" class="btn-ghost"><i class="fas fa-info-circle"></i> Profil Sekolah</a>
         </div>
-        <div class="hero-stats-row">
-          <div class="hero-stat-item">
-            <div class="hero-stat-num" data-target="30">0</div>
-            <div class="hero-stat-label">Tahun Berdiri</div>
+        <div class="hero-metrics">
+          <div>
+            <div class="hm-num" data-target="32">0</div>
+            <div class="hm-label">Tahun Berdiri</div>
           </div>
-          <div class="hero-stat-item">
-            <div class="hero-stat-num" data-target="2000">0</div>
-            <div class="hero-stat-label">Siswa Aktif</div>
+          <div>
+            <div class="hm-num" data-target="2000">0</div>
+            <div class="hm-label">Siswa Aktif</div>
           </div>
-          <div class="hero-stat-item">
-            <div class="hero-stat-num" data-target="6">0</div>
-            <div class="hero-stat-label">Program Keahlian</div>
+          <div>
+            <div class="hm-num" data-target="6">0</div>
+            <div class="hm-label">Program Keahlian</div>
           </div>
-          <div class="hero-stat-item">
-            <div class="hero-stat-num" data-target="150">0</div>
-            <div class="hero-stat-label">Tenaga Pendidik</div>
+          <div>
+            <div class="hm-num" data-target="150">0</div>
+            <div class="hm-label">Tenaga Pendidik</div>
           </div>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="hero-card-main">
-          <div class="hero-card-school-icon"><i class="fas fa-school"></i></div>
-          <div class="hero-card-title">SMK Negeri 2 Sragen</div>
-          <div class="hero-card-sub">Kabupaten Sragen, Jawa Tengah · NPSN 20313375</div>
-          <div class="hero-card-tags">
-            <span class="hero-tag-chip">Teknik Otomotif</span>
-            <span class="hero-tag-chip">Kelistrikan</span>
-            <span class="hero-tag-chip">Bangunan</span>
-            <span class="hero-tag-chip">Elektronika</span>
-            <span class="hero-tag-chip">Komputer &amp; Jaringan</span>
-            <span class="hero-tag-chip">Pemesinan</span>
+
+      <!-- RIGHT PANEL -->
+      <div class="hero-panel">
+        <div class="hp-main">
+          <div class="hp-school-ico"><i class="fas fa-school"></i></div>
+          <div class="hp-main-title">SMK Negeri 2 Sragen</div>
+          <div class="hp-main-sub">Kabupaten Sragen, Jawa Tengah · NPSN 20313375</div>
+          <div class="hp-chips">
+            <span class="hp-chip">Teknik Otomotif</span>
+            <span class="hp-chip">Kelistrikan</span>
+            <span class="hp-chip">Bangunan</span>
+            <span class="hp-chip">Elektronika</span>
+            <span class="hp-chip">TKJ</span>
+            <span class="hp-chip">Pemesinan</span>
           </div>
         </div>
-        <div class="hero-card-float-1">
-          <div class="hcf-icon"><i class="fas fa-trophy"></i></div>
-          <div class="hcf-text">
+        <div class="hp-float-a">
+          <div class="hp-float-ico"><i class="fas fa-trophy"></i></div>
+          <div class="hp-float-txt">
             <strong>Prestasi Nasional</strong>
             <span>LKS &amp; Olimpiade Kejuruan</span>
           </div>
         </div>
-        <div class="hero-card-float-2">
-          <div class="acred-badge"><i class="fas fa-star"></i></div>
-          <div class="acred-text">
+        <div class="hp-badge">
+          <div class="hp-badge-ico"><i class="fas fa-star"></i></div>
+          <div class="hp-badge-txt">
             <strong>Akreditasi A</strong>
             <span>BAN-S/M</span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-
-<!-- ══════════════════════ MARQUEE ══════════════════════ -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Kendaraan Ringan Otomotif</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Instalasi Tenaga Listrik</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Desain Pemodelan &amp; Informasi Bangunan</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Elektronika Industri</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Komputer &amp; Jaringan</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Pemesinan</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Terakreditasi A</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Sekolah Adiwiyata</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Kendaraan Ringan Otomotif</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Instalasi Tenaga Listrik</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Desain Pemodelan &amp; Informasi Bangunan</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Elektronika Industri</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Komputer &amp; Jaringan</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Teknik Pemesinan</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Terakreditasi A</span>
-    <span class="marquee-item"><i class="fas fa-circle"></i> Sekolah Adiwiyata</span>
+<!-- ══════════════════════ TICKER ══════════════════════ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Kendaraan Ringan Otomotif</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Instalasi Tenaga Listrik</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Desain Pemodelan &amp; Informasi Bangunan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Elektronika Industri</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Komputer &amp; Jaringan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Pemesinan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Terakreditasi A</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Sekolah Adiwiyata</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Kendaraan Ringan Otomotif</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Instalasi Tenaga Listrik</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Desain Pemodelan &amp; Informasi Bangunan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Elektronika Industri</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Komputer &amp; Jaringan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Pemesinan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Terakreditasi A</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Sekolah Adiwiyata</span>
   </div>
 </div>
 
+
 <!-- ══════════════════════ ABOUT ══════════════════════ -->
-<section class="about-section" id="tentang">
+<section class="about" id="tentang">
   <div class="container">
     <div class="about-grid">
-      <div class="about-visual reveal">
-        <div class="about-img-block">
-          <div class="about-img-inner">
-            <i class="fas fa-school about-img-icon"></i>
-            <span class="about-img-label">SMK Negeri 2 Sragen</span>
+      <div class="about-vis rv">
+        <div class="about-frame">
+          <div class="about-frame-inner">
+            <i class="fas fa-school"></i>
+            <span>SMK Negeri 2 Sragen</span>
           </div>
         </div>
-        <div class="about-float-card">
-          <div class="afc-num">A</div>
-          <div class="afc-label">Akreditasi BAN-S/M</div>
+        <div class="about-float">
+          <div class="af-num">A</div>
+          <div class="af-lbl">Akreditasi BAN-S/M</div>
         </div>
       </div>
-      <div class="about-text">
-        <div class="section-header reveal">
-          <div class="gold-line"><span>Profil Sekolah</span></div>
-          <h2 class="section-heading">Mengenal <em>SMK Negeri 2 Sragen</em></h2>
-          <p class="section-sub">Institusi pendidikan kejuruan negeri terkemuka di Kabupaten Sragen yang berdiri sejak awal 1990-an.</p>
+      <div class="about-body">
+        <div class="s-header rv">
+          <div class="overline">Profil Sekolah</div>
+          <h2 class="s-title">Mengenal <em>SMK Negeri 2 Sragen</em></h2>
+          <p class="s-sub">Institusi pendidikan kejuruan negeri terkemuka di Kabupaten Sragen yang berdiri sejak awal 1990-an.</p>
         </div>
-        <div class="reveal reveal-delay-1">
+        <div class="rv d1">
           <p>SMK Negeri 2 Sragen adalah sekolah menengah kejuruan negeri yang berkomitmen mencetak lulusan kompeten, berkarakter mulia, dan siap bersaing di dunia industri nasional maupun internasional.</p>
           <p>Dengan dukungan fasilitas berstandar industri, tenaga pendidik berpengalaman, dan kemitraan aktif dengan dunia usaha &amp; industri (DUDI), SMKN 2 Sragen terus berkembang menjadi rujukan pendidikan vokasi di Jawa Tengah.</p>
         </div>
-        <div class="about-info-list reveal reveal-delay-2">
-          <div class="about-info-item">
-            <div class="aii-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div>
-              <div class="aii-label">Alamat</div>
-              <div class="aii-value">Jl. Dr. Soetomo No. 4, Sragen, Jawa Tengah 57211</div>
-            </div>
+        <div class="about-list rv d2">
+          <div class="al-item">
+            <div class="al-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div><div class="al-lbl">Alamat</div><div class="al-val">Jl. Dr. Soetomo No. 4, Sragen, Jawa Tengah 57211</div></div>
           </div>
-          <div class="about-info-item">
-            <div class="aii-icon"><i class="fas fa-phone-alt"></i></div>
-            <div>
-              <div class="aii-label">Telepon</div>
-              <div class="aii-value">(0271) 891047</div>
-            </div>
+          <div class="al-item">
+            <div class="al-ico"><i class="fas fa-phone-alt"></i></div>
+            <div><div class="al-lbl">Telepon</div><div class="al-val">(0271) 891047</div></div>
           </div>
-          <div class="about-info-item">
-            <div class="aii-icon"><i class="fas fa-envelope"></i></div>
-            <div>
-              <div class="aii-label">Email</div>
-              <div class="aii-value">smkn2sragen@gmail.com</div>
-            </div>
+          <div class="al-item">
+            <div class="al-ico"><i class="fas fa-envelope"></i></div>
+            <div><div class="al-lbl">Email</div><div class="al-val">smkn2sragen@gmail.com</div></div>
           </div>
-          <div class="about-info-item">
-            <div class="aii-icon"><i class="fas fa-id-badge"></i></div>
-            <div>
-              <div class="aii-label">NPSN</div>
-              <div class="aii-value">20313375</div>
-            </div>
+          <div class="al-item">
+            <div class="al-ico"><i class="fas fa-id-badge"></i></div>
+            <div><div class="al-lbl">NPSN</div><div class="al-val">20313375</div></div>
           </div>
-          <div class="about-info-item">
-            <div class="aii-icon"><i class="fas fa-globe"></i></div>
-            <div>
-              <div class="aii-label">Website Resmi</div>
-              <div class="aii-value">www.smkn2sragen.sch.id</div>
-            </div>
+          <div class="al-item">
+            <div class="al-ico"><i class="fas fa-globe"></i></div>
+            <div><div class="al-lbl">Website Resmi</div><div class="al-val">www.smkn2sragen.sch.id</div></div>
           </div>
         </div>
       </div>
@@ -826,28 +764,27 @@
   </div>
 </section>
 
-
 <!-- ══════════════════════ VISI MISI ══════════════════════ -->
-<section class="vismis-section" id="visi-misi">
-  <div class="vismis-bg-text">VISIMISI</div>
+<section class="vismis" id="visi-misi">
+  <div class="vismis-bg">VISI&nbsp;MISI</div>
   <div class="container">
-    <div class="section-header center reveal">
-      <div class="gold-line"><span>Arah &amp; Tujuan</span></div>
-      <h2 class="section-heading">Visi &amp; <em>Misi</em></h2>
-      <p class="section-sub">Landasan filosofis dan operasional yang mengarahkan setiap langkah pengembangan institusi.</p>
+    <div class="s-header c rv">
+      <div class="overline overline-center">Arah &amp; Tujuan</div>
+      <h2 class="s-title">Visi &amp; <em>Misi</em></h2>
+      <p class="s-sub">Landasan filosofis dan operasional yang mengarahkan setiap langkah pengembangan institusi.</p>
     </div>
     <div class="vismis-grid">
-      <div class="vismis-card reveal reveal-delay-1">
-        <div class="vismis-card-glow"></div>
-        <div class="vismis-icon-wrap"><i class="fas fa-eye"></i></div>
+      <div class="vm-card rv d1">
+        <div class="vm-card-glow"></div>
+        <div class="vm-ico"><i class="fas fa-eye"></i></div>
         <h3>Visi</h3>
         <p>"Menjadi lembaga pendidikan kejuruan yang unggul, berkarakter, berdaya saing tinggi, serta menghasilkan tamatan yang kompeten di bidang teknologi dan rekayasa, mampu berwirausaha, dan bertakwa kepada Tuhan Yang Maha Esa."</p>
       </div>
-      <div class="vismis-card reveal reveal-delay-2">
-        <div class="vismis-card-glow"></div>
-        <div class="vismis-icon-wrap"><i class="fas fa-compass"></i></div>
+      <div class="vm-card rv d2">
+        <div class="vm-card-glow"></div>
+        <div class="vm-ico"><i class="fas fa-compass"></i></div>
         <h3>Misi</h3>
-        <ul class="misi-list">
+        <ul class="vm-list">
           <li>Menyelenggarakan pembelajaran berbasis kompetensi yang relevan dengan kebutuhan industri nasional dan global.</li>
           <li>Membangun karakter peserta didik yang berintegritas, disiplin, dan berdedikasi tinggi dalam setiap aspek kehidupan.</li>
           <li>Mengembangkan kemitraan strategis dengan dunia usaha dan industri (DUDI) secara berkelanjutan.</li>
@@ -860,129 +797,130 @@
   </div>
 </section>
 
+
 <!-- ══════════════════════ PROGRAM KEAHLIAN ══════════════════════ -->
-<section class="jurusan-section" id="jurusan">
+<section class="jurusan" id="jurusan">
   <div class="container">
-    <div class="section-header center reveal">
-      <div class="gold-line"><span>Program Keahlian</span></div>
-      <h2 class="section-heading">6 Jurusan <em>Unggulan</em></h2>
-      <p class="section-sub">Dirancang sesuai standar SKKNI dan kebutuhan industri, membekali siswa dengan kompetensi teknis yang terukur dan relevan.</p>
+    <div class="s-header c rv">
+      <div class="overline overline-center">Program Keahlian</div>
+      <h2 class="s-title">6 Jurusan <em>Unggulan</em></h2>
+      <p class="s-sub">Dirancang sesuai standar SKKNI dan kebutuhan industri, membekali siswa dengan kompetensi teknis terukur dan relevan.</p>
     </div>
     <div class="jurusan-grid">
-      <div class="jurusan-card reveal reveal-delay-1">
-        <span class="jurusan-number">01</span>
-        <div class="jurusan-icon-wrap"><i class="fas fa-car"></i></div>
+      <div class="jcard rv d1">
+        <span class="jcard-num">01</span>
+        <div class="jcard-ico"><i class="fas fa-car"></i></div>
         <h3>Teknik Kendaraan Ringan Otomotif</h3>
-        <p>Mempelajari perawatan, perbaikan, dan teknologi kendaraan ringan bermotor sesuai standar industri otomotif modern termasuk kendaraan listrik.</p>
-        <span class="jurusan-badge"><i class="fas fa-circle" style="font-size:6px"></i> Teknik Otomotif</span>
+        <p>Perawatan, perbaikan, dan teknologi kendaraan ringan bermotor sesuai standar industri otomotif modern termasuk kendaraan listrik.</p>
+        <span class="jcard-tag">Teknik Otomotif</span>
       </div>
-      <div class="jurusan-card reveal reveal-delay-2">
-        <span class="jurusan-number">02</span>
-        <div class="jurusan-icon-wrap"><i class="fas fa-bolt"></i></div>
+      <div class="jcard rv d2">
+        <span class="jcard-num">02</span>
+        <div class="jcard-ico"><i class="fas fa-bolt"></i></div>
         <h3>Teknik Instalasi Tenaga Listrik</h3>
-        <p>Menguasai instalasi, pemeliharaan, dan perbaikan sistem kelistrikan skala industri maupun residensial secara profesional dan bersertifikat.</p>
-        <span class="jurusan-badge"><i class="fas fa-circle" style="font-size:6px"></i> Teknik Ketenagalistrikan</span>
+        <p>Instalasi, pemeliharaan, dan perbaikan sistem kelistrikan skala industri maupun residensial secara profesional dan bersertifikat.</p>
+        <span class="jcard-tag">Teknik Ketenagalistrikan</span>
       </div>
-      <div class="jurusan-card reveal reveal-delay-3">
-        <span class="jurusan-number">03</span>
-        <div class="jurusan-icon-wrap"><i class="fas fa-drafting-compass"></i></div>
+      <div class="jcard rv d3">
+        <span class="jcard-num">03</span>
+        <div class="jcard-ico"><i class="fas fa-drafting-compass"></i></div>
         <h3>Desain Pemodelan &amp; Informasi Bangunan</h3>
-        <p>Menguasai perancangan bangunan, gambar teknik, dan teknologi BIM (Building Information Modeling) berbasis perangkat lunak desain terkini.</p>
-        <span class="jurusan-badge"><i class="fas fa-circle" style="font-size:6px"></i> Teknik Bangunan</span>
+        <p>Perancangan bangunan, gambar teknik, dan teknologi BIM (Building Information Modeling) berbasis perangkat lunak desain terkini.</p>
+        <span class="jcard-tag">Teknik Bangunan</span>
       </div>
-      <div class="jurusan-card reveal reveal-delay-1">
-        <span class="jurusan-number">04</span>
-        <div class="jurusan-icon-wrap"><i class="fas fa-microchip"></i></div>
+      <div class="jcard rv d1">
+        <span class="jcard-num">04</span>
+        <div class="jcard-ico"><i class="fas fa-microchip"></i></div>
         <h3>Teknik Elektronika Industri</h3>
-        <p>Mempelajari sistem elektronik, otomasi industri, PLC, robotika, dan teknologi sensor yang digunakan dalam dunia manufaktur modern.</p>
-        <span class="jurusan-badge"><i class="fas fa-circle" style="font-size:6px"></i> Teknik Elektronika</span>
+        <p>Sistem elektronik, otomasi industri, PLC, robotika, dan teknologi sensor yang digunakan dalam dunia manufaktur modern.</p>
+        <span class="jcard-tag">Teknik Elektronika</span>
       </div>
-      <div class="jurusan-card reveal reveal-delay-2">
-        <span class="jurusan-number">05</span>
-        <div class="jurusan-icon-wrap"><i class="fas fa-network-wired"></i></div>
+      <div class="jcard rv d2">
+        <span class="jcard-num">05</span>
+        <div class="jcard-ico"><i class="fas fa-network-wired"></i></div>
         <h3>Teknik Komputer &amp; Jaringan</h3>
-        <p>Mendalami instalasi jaringan komputer, keamanan siber, administrasi server, cloud computing, dan infrastruktur teknologi informasi.</p>
-        <span class="jurusan-badge"><i class="fas fa-circle" style="font-size:6px"></i> Teknologi Informasi</span>
+        <p>Instalasi jaringan komputer, keamanan siber, administrasi server, cloud computing, dan infrastruktur teknologi informasi.</p>
+        <span class="jcard-tag">Teknologi Informasi</span>
       </div>
-      <div class="jurusan-card reveal reveal-delay-3">
-        <span class="jurusan-number">06</span>
-        <div class="jurusan-icon-wrap"><i class="fas fa-cog"></i></div>
+      <div class="jcard rv d3">
+        <span class="jcard-num">06</span>
+        <div class="jcard-ico"><i class="fas fa-cog"></i></div>
         <h3>Teknik Pemesinan</h3>
-        <p>Menguasai pengoperasian mesin bubut, frais, CNC, dan berbagai peralatan pemesinan presisi untuk produksi komponen industri berstandar tinggi.</p>
-        <span class="jurusan-badge"><i class="fas fa-circle" style="font-size:6px"></i> Teknik Mesin</span>
+        <p>Pengoperasian mesin bubut, frais, CNC, dan berbagai peralatan pemesinan presisi untuk produksi komponen industri berstandar tinggi.</p>
+        <span class="jcard-tag">Teknik Mesin</span>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ══════════════════════ FASILITAS ══════════════════════ -->
-<section class="fasilitas-section" id="fasilitas">
+<section class="fasil" id="fasilitas">
   <div class="container">
-    <div class="section-header center reveal">
-      <div class="gold-line"><span>Sarana &amp; Prasarana</span></div>
-      <h2 class="section-heading">Fasilitas <em>Berstandar Industri</em></h2>
-      <p class="section-sub">Infrastruktur lengkap dan modern yang mendukung proses pembelajaran praktik secara optimal dan terstandarisasi.</p>
+    <div class="s-header c rv">
+      <div class="overline overline-center">Sarana &amp; Prasarana</div>
+      <h2 class="s-title">Fasilitas <em>Berstandar Industri</em></h2>
+      <p class="s-sub">Infrastruktur lengkap dan modern yang mendukung proses pembelajaran praktik secara optimal.</p>
     </div>
-    <div class="fasilitas-grid">
-      <div class="fasilitas-card reveal reveal-delay-1"><i class="fas fa-laptop-code"></i><h4>Laboratorium Komputer</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-2"><i class="fas fa-tools"></i><h4>Bengkel Otomotif</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-3"><i class="fas fa-bolt"></i><h4>Lab Instalasi Listrik</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-4"><i class="fas fa-hard-hat"></i><h4>Workshop Bangunan</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-1"><i class="fas fa-wifi"></i><h4>Lab Jaringan &amp; Server</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-2"><i class="fas fa-robot"></i><h4>Lab Elektronika &amp; PLC</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-3"><i class="fas fa-industry"></i><h4>Bengkel Pemesinan CNC</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-4"><i class="fas fa-book-reader"></i><h4>Perpustakaan Digital</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-1"><i class="fas fa-futbol"></i><h4>Lapangan Olahraga</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-2"><i class="fas fa-mosque"></i><h4>Masjid &amp; Mushola</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-3"><i class="fas fa-utensils"></i><h4>Kantin Sehat</h4></div>
-      <div class="fasilitas-card reveal reveal-delay-4"><i class="fas fa-shield-alt"></i><h4>UKS &amp; Klinik</h4></div>
+    <div class="fasil-grid">
+      <div class="fasil-card rv d1"><i class="fas fa-laptop-code"></i><h4>Laboratorium Komputer</h4></div>
+      <div class="fasil-card rv d2"><i class="fas fa-tools"></i><h4>Bengkel Otomotif</h4></div>
+      <div class="fasil-card rv d3"><i class="fas fa-bolt"></i><h4>Lab Instalasi Listrik</h4></div>
+      <div class="fasil-card rv d4"><i class="fas fa-hard-hat"></i><h4>Workshop Bangunan</h4></div>
+      <div class="fasil-card rv d1"><i class="fas fa-wifi"></i><h4>Lab Jaringan &amp; Server</h4></div>
+      <div class="fasil-card rv d2"><i class="fas fa-robot"></i><h4>Lab Elektronika &amp; PLC</h4></div>
+      <div class="fasil-card rv d3"><i class="fas fa-industry"></i><h4>Bengkel Pemesinan CNC</h4></div>
+      <div class="fasil-card rv d4"><i class="fas fa-book-reader"></i><h4>Perpustakaan Digital</h4></div>
+      <div class="fasil-card rv d1"><i class="fas fa-futbol"></i><h4>Lapangan Olahraga</h4></div>
+      <div class="fasil-card rv d2"><i class="fas fa-mosque"></i><h4>Masjid &amp; Mushola</h4></div>
+      <div class="fasil-card rv d3"><i class="fas fa-utensils"></i><h4>Kantin Sehat</h4></div>
+      <div class="fasil-card rv d4"><i class="fas fa-shield-alt"></i><h4>UKS &amp; Klinik</h4></div>
     </div>
   </div>
 </section>
 
+
 <!-- ══════════════════════ PRESTASI ══════════════════════ -->
-<section class="prestasi-section" id="prestasi">
+<section class="prestasi" id="prestasi">
   <div class="container">
-    <div class="section-header center reveal">
-      <div class="gold-line"><span>Pencapaian</span></div>
-      <h2 class="section-heading">Prestasi <em>Membanggakan</em></h2>
-      <p class="section-sub">Rekam jejak prestasi siswa dan sekolah yang terus meningkat dari tingkat kabupaten hingga nasional.</p>
+    <div class="s-header c rv">
+      <div class="overline overline-center">Pencapaian</div>
+      <h2 class="s-title">Prestasi <em>Membanggakan</em></h2>
+      <p class="s-sub">Rekam jejak prestasi siswa dan sekolah dari tingkat kabupaten hingga nasional.</p>
     </div>
     <div class="prestasi-grid">
-      <div class="prestasi-card reveal reveal-delay-1">
-        <span class="prestasi-medal">🥇</span>
-        <span class="prestasi-level">Tingkat Provinsi</span>
+      <div class="pcard rv d1">
+        <span class="pcard-medal">🥇</span>
+        <span class="pcard-level">Tingkat Provinsi</span>
         <h4>Juara 1 LKS Teknik Kendaraan Ringan</h4>
         <p>Lomba Kompetensi Siswa Bidang Otomotif — Provinsi Jawa Tengah</p>
       </div>
-      <div class="prestasi-card reveal reveal-delay-2">
-        <span class="prestasi-medal">🏆</span>
-        <span class="prestasi-level">Tingkat Nasional</span>
+      <div class="pcard rv d2">
+        <span class="pcard-medal">🏆</span>
+        <span class="pcard-level">Tingkat Nasional</span>
         <h4>Finalis LKS Nasional Teknik Instalasi Listrik</h4>
         <p>Lomba Kompetensi Siswa Tingkat Nasional — Jakarta</p>
       </div>
-      <div class="prestasi-card reveal reveal-delay-3">
-        <span class="prestasi-medal">🥇</span>
-        <span class="prestasi-level">Tingkat Kabupaten</span>
+      <div class="pcard rv d3">
+        <span class="pcard-medal">🥇</span>
+        <span class="pcard-level">Tingkat Kabupaten</span>
         <h4>Juara Umum Olimpiade Sains Terapan</h4>
         <p>Olimpiade Sains Terapan Tingkat Kabupaten Sragen</p>
       </div>
-      <div class="prestasi-card reveal reveal-delay-1">
-        <span class="prestasi-medal">🥈</span>
-        <span class="prestasi-level">Tingkat Provinsi</span>
+      <div class="pcard rv d1">
+        <span class="pcard-medal">🥈</span>
+        <span class="pcard-level">Tingkat Provinsi</span>
         <h4>Juara 2 LKS Desain Pemodelan Bangunan</h4>
         <p>Lomba Kompetensi Siswa Bidang Teknik Bangunan — Jawa Tengah</p>
       </div>
-      <div class="prestasi-card reveal reveal-delay-2">
-        <span class="prestasi-medal">🥇</span>
-        <span class="prestasi-level">Tingkat Provinsi</span>
+      <div class="pcard rv d2">
+        <span class="pcard-medal">🥇</span>
+        <span class="pcard-level">Tingkat Provinsi</span>
         <h4>Juara 1 LKS Teknik Komputer &amp; Jaringan</h4>
         <p>Lomba Kompetensi Siswa Bidang TKJ — Provinsi Jawa Tengah</p>
       </div>
-      <div class="prestasi-card reveal reveal-delay-3">
-        <span class="prestasi-medal">🌿</span>
-        <span class="prestasi-level">Penghargaan Lingkungan</span>
+      <div class="pcard rv d3">
+        <span class="pcard-medal">🌿</span>
+        <span class="pcard-level">Penghargaan Lingkungan</span>
         <h4>Sekolah Adiwiyata Kabupaten Sragen</h4>
         <p>Penghargaan lingkungan hidup dari Pemerintah Kabupaten Sragen</p>
       </div>
@@ -990,25 +928,24 @@
   </div>
 </section>
 
-
 <!-- ══════════════════════ FOOTER ══════════════════════ -->
-<footer class="footer-section" id="kontak">
+<footer class="footer" id="kontak">
   <div class="container">
     <div class="footer-grid">
-      <div class="reveal">
-        <div class="footer-brand-name">SMK Negeri 2 Sragen</div>
-        <div class="footer-brand-sub">Excellent · Competent · Character</div>
-        <p class="footer-brand-desc">Mencetak generasi vokasi yang unggul, berkarakter, dan berdaya saing tinggi untuk masa depan industri Indonesia.</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="footer-social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="footer-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="footer-social-btn" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <div class="rv">
+        <div class="foot-brand-name">SMK Negeri 2 Sragen</div>
+        <div class="foot-brand-sub">Excellent · Competent · Character</div>
+        <p class="foot-brand-desc">Mencetak generasi vokasi yang unggul, berkarakter, dan berdaya saing tinggi untuk masa depan industri Indonesia.</p>
+        <div class="foot-socials">
+          <a href="#" class="foot-soc-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="foot-soc-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="foot-soc-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="foot-soc-btn" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
-      <div class="reveal reveal-delay-1">
-        <div class="footer-col-title">Navigasi</div>
-        <ul class="footer-links">
+      <div class="rv d1">
+        <div class="foot-col-title">Navigasi</div>
+        <ul class="foot-links">
           <li><a href="#tentang">Profil Sekolah</a></li>
           <li><a href="#visi-misi">Visi &amp; Misi</a></li>
           <li><a href="#jurusan">Program Keahlian</a></li>
@@ -1017,94 +954,86 @@
           <li><a href="#kontak">Kontak</a></li>
         </ul>
       </div>
-      <div class="reveal reveal-delay-2">
-        <div class="footer-col-title">Kontak Kami</div>
-        <div class="footer-contact-item">
-          <div class="fci-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="fci-text">Jl. Dr. Soetomo No. 4, Sragen,<br>Jawa Tengah 57211</div>
-        </div>
-        <div class="footer-contact-item">
-          <div class="fci-icon"><i class="fas fa-phone-alt"></i></div>
-          <div class="fci-text">(0271) 891047</div>
-        </div>
-        <div class="footer-contact-item">
-          <div class="fci-icon"><i class="fas fa-envelope"></i></div>
-          <div class="fci-text">smkn2sragen@gmail.com</div>
-        </div>
-        <div class="footer-contact-item">
-          <div class="fci-icon"><i class="fas fa-globe"></i></div>
-          <div class="fci-text">www.smkn2sragen.sch.id</div>
+      <div class="rv d2">
+        <div class="foot-col-title">Kontak Kami</div>
+        <div class="foot-contact">
+          <div class="fct">
+            <div class="fct-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <span>Jl. Dr. Soetomo No. 4, Sragen,<br>Jawa Tengah 57211</span>
+          </div>
+          <div class="fct">
+            <div class="fct-ico"><i class="fas fa-phone-alt"></i></div>
+            <span>(0271) 891047</span>
+          </div>
+          <div class="fct">
+            <div class="fct-ico"><i class="fas fa-envelope"></i></div>
+            <span>smkn2sragen@gmail.com</span>
+          </div>
+          <div class="fct">
+            <div class="fct-ico"><i class="fas fa-globe"></i></div>
+            <span>www.smkn2sragen.sch.id</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="foot-bottom">
       <p>© 2025 SMK Negeri 2 Sragen. Seluruh hak cipta dilindungi.</p>
-      <div class="footer-bottom-badge">
-        <div class="fbb-dot"></div>
+      <div class="foot-bottom-tag">
+        <div class="fbt-dot"></div>
         <span>Terakreditasi A</span>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ══════════════════════ SCRIPT ══════════════════════ -->
+
 <script>
-  // Navbar scroll effect
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  // ── Navbar scroll ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => revealObs.observe(el));
+  // ── Scroll reveal ──
+  const rvObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); rvObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
-  // Count-up animation
-  function animateCount(el) {
+  // ── Count-up ──
+  function countUp(el) {
     const target = parseInt(el.dataset.target);
     const suffix = target >= 2000 ? '+' : target >= 30 ? '+' : '';
-    const duration = 1800;
-    const step = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        el.textContent = target.toLocaleString('id-ID') + suffix;
-        clearInterval(timer);
-      } else {
-        el.textContent = Math.floor(current).toLocaleString('id-ID') + suffix;
-      }
+    const dur = 1800, step = target / (dur / 16);
+    let cur = 0;
+    const t = setInterval(() => {
+      cur += step;
+      if (cur >= target) { el.textContent = target.toLocaleString('id-ID') + suffix; clearInterval(t); }
+      else el.textContent = Math.floor(cur).toLocaleString('id-ID');
     }, 16);
   }
-  const statsObs = new IntersectionObserver((entries) => {
+  const metricObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.querySelectorAll('[data-target]').forEach(animateCount);
-        statsObs.unobserve(e.target);
+        e.target.querySelectorAll('[data-target]').forEach(countUp);
+        metricObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.5 });
-  const statsRow = document.querySelector('.hero-stats-row');
-  if (statsRow) statsObs.observe(statsRow);
+  const metrics = document.querySelector('.hero-metrics');
+  if (metrics) metricObs.observe(metrics);
 
-  // Active nav link on scroll
+  // ── Active nav ──
+  const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
   const sections = document.querySelectorAll('section[id], footer[id]');
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-  const linkObs = new IntersectionObserver((entries) => {
+  const activeObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.remove('active'));
-        const link = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
-        if (link) link.classList.add('active');
+        navLinks.forEach(a => a.classList.remove('act'));
+        const a = document.querySelector(`.nav-menu a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('act');
       }
     });
   }, { threshold: 0.4 });
-  sections.forEach(s => linkObs.observe(s));
+  sections.forEach(s => activeObs.observe(s));
 </script>
 </body>
 </html>
