@@ -4,414 +4,588 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SMK Negeri 2 Sragen</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --primary: #b71c1c;       /* Merah logo – dominan */
-      --navy:    #1a2e6b;       /* Biru navy logo */
-      --gold:    #f5c518;       /* Kuning emas petir logo */
-      --secondary: #f5c518;     /* alias gold untuk button/highlight */
-      --accent: #1a2e6b;        /* alias navy */
-      --dark:  #1a0a0a;         /* near-black untuk footer/hero */
-      --light: #fdf5f5;         /* off-white kemerahan */
-      --white: #ffffff;
-      --text: #2b1a1a;
-      --text-light: #6b5555;
-      --shadow: 0 4px 20px rgba(183,28,28,0.12);
-      --radius: 12px;
+      --navy-deepest: #040d1f;
+      --navy-deep:    #071428;
+      --navy-dark:    #0a1c38;
+      --navy-mid:     #0f2554;
+      --navy-light:   #1a3a7a;
+      --gold-bright:  #f0c040;
+      --gold-mid:     #d4a017;
+      --gold-soft:    #c8972a;
+      --gold-pale:    #f5e0a0;
+      --crimson:      #9b1c1c;
+      --white:        #ffffff;
+      --off-white:    #f7f8fc;
+      --text-dark:    #0e1a2e;
+      --text-mid:     #3a4a6a;
+      --text-light:   #6a7a9a;
+      --border:       rgba(212,160,23,0.18);
+      --shadow-gold:  0 8px 40px rgba(212,160,23,0.18);
+      --shadow-navy:  0 8px 40px rgba(4,13,31,0.45);
+      --radius-sm:    8px;
+      --radius:       14px;
+      --radius-lg:    24px;
+      --transition:   all 0.35s cubic-bezier(.4,0,.2,1);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Poppins', sans-serif; color: var(--text); background: var(--white); }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--off-white); overflow-x: hidden; }
+    .serif { font-family: 'Playfair Display', serif; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy-deepest); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-mid); border-radius: 3px; }
 
     /* ── NAVBAR ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: linear-gradient(135deg, #8b0000 0%, #b71c1c 50%, #1a2e6b 100%);
-      backdrop-filter: blur(10px);
+      background: rgba(4,13,31,0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(212,160,23,0.15);
       padding: 0 5%; display: flex; align-items: center;
-      justify-content: space-between; height: 70px;
-      box-shadow: 0 3px 24px rgba(183,28,28,0.4);
-      transition: all 0.3s;
+      justify-content: space-between; height: 72px;
+      transition: var(--transition);
     }
-    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-logo {
-      width: 46px; height: 46px; flex-shrink: 0;
+    nav.scrolled {
+      background: rgba(4,13,31,0.98);
+      height: 62px;
+      border-bottom-color: rgba(212,160,23,0.25);
     }
+    .nav-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo { width: 44px; height: 44px; flex-shrink: 0; }
     .nav-logo svg { width: 100%; height: 100%; }
-    .nav-title { color: var(--white); font-size: 15px; font-weight: 600; line-height: 1.2; }
-    .nav-title span { color: var(--secondary); }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-title { color: var(--white); font-size: 14px; font-weight: 600; line-height: 1.25; letter-spacing: 0.2px; }
+    .nav-title span { color: var(--gold-bright); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
-      color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px;
-      font-weight: 500; transition: color 0.3s; position: relative; padding-bottom: 4px;
+      color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13.5px;
+      font-weight: 500; transition: var(--transition); position: relative; padding-bottom: 4px;
+      letter-spacing: 0.3px;
     }
     .nav-links a::after {
-      content: ''; position: absolute; bottom: 0; left: 0;
-      width: 0; height: 2px; background: var(--secondary); transition: width 0.3s;
+      content: ''; position: absolute; bottom: 0; left: 50%;
+      width: 0; height: 1.5px;
+      background: linear-gradient(90deg, var(--gold-mid), var(--gold-bright));
+      transition: var(--transition); transform: translateX(-50%);
     }
-    .nav-links a:hover { color: var(--secondary); }
+    .nav-links a:hover { color: var(--gold-bright); }
     .nav-links a:hover::after { width: 100%; }
     .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-    .hamburger span { width: 25px; height: 3px; background: white; border-radius: 3px; transition: 0.3s; }
+    .hamburger span { width: 24px; height: 2px; background: var(--gold-pale); border-radius: 2px; transition: var(--transition); }
 
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh; position: relative; display: flex; align-items: center;
-      background: linear-gradient(135deg, #4a0000 0%, #8b0000 30%, #b71c1c 55%, #1a2e6b 100%);
+      background: var(--navy-deepest);
       overflow: hidden;
     }
-    #hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    .hero-bg-gradient {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(15,37,84,0.9) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 60%, rgba(10,28,56,0.8) 0%, transparent 60%),
+        linear-gradient(160deg, #040d1f 0%, #071428 40%, #0a1c38 70%, #040d1f 100%);
     }
-    .hero-shapes .shape {
-      position: absolute; border-radius: 50%; opacity: 0.08;
+    .hero-grid-overlay {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(212,160,23,0.6) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.6) 1px, transparent 1px);
+      background-size: 60px 60px;
     }
-    .shape-1 { width: 500px; height: 500px; background: var(--gold); top: -150px; right: -100px; }
-    .shape-2 { width: 300px; height: 300px; background: var(--navy); bottom: -80px; left: -80px; }
-    .shape-3 { width: 200px; height: 200px; background: var(--gold); bottom: 100px; right: 200px; }
+    .hero-orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    .hero-orb-1 { width: 600px; height: 600px; background: rgba(15,37,84,0.7); top: -200px; right: -100px; }
+    .hero-orb-2 { width: 400px; height: 400px; background: rgba(212,160,23,0.06); bottom: -100px; left: -100px; }
+    .hero-orb-3 { width: 250px; height: 250px; background: rgba(155,28,28,0.08); top: 30%; right: 25%; }
     .hero-content {
-      position: relative; z-index: 1; padding: 0 5%; width: 100%;
-      max-width: 1200px; margin: 0 auto; padding-top: 80px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; z-index: 2; padding: 0 5%; width: 100%;
+      max-width: 1200px; margin: 0 auto; padding-top: 90px;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 70px; align-items: center;
     }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(245,197,24,0.2); border: 1px solid rgba(245,197,24,0.5);
-      color: var(--gold); padding: 6px 16px; border-radius: 50px;
-      font-size: 13px; font-weight: 500; margin-bottom: 20px;
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.3);
+      color: var(--gold-bright); padding: 7px 18px; border-radius: 50px;
+      font-size: 12.5px; font-weight: 600; margin-bottom: 24px;
+      letter-spacing: 1px; text-transform: uppercase;
     }
+    .hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
     .hero-text h1 {
-      font-size: clamp(32px, 5vw, 56px); font-weight: 800;
-      color: var(--white); line-height: 1.15; margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5.5vw, 66px); font-weight: 900;
+      color: var(--white); line-height: 1.08; margin-bottom: 6px;
+      letter-spacing: -0.5px;
     }
-    .hero-text h1 span { color: var(--gold); }
-    .hero-text .sub { color: rgba(255,255,255,0.8); font-size: 16px; margin: 16px 0 32px; line-height: 1.7; }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--gold); color: #1a0a0a; padding: 14px 32px;
-      border-radius: 50px; font-weight: 800; text-decoration: none; font-size: 15px;
-      transition: all 0.3s; box-shadow: 0 4px 20px rgba(245,197,24,0.5);
-      letter-spacing: 0.3px;
+    .hero-text h1 .gold-line { color: var(--gold-bright); display: block; }
+    .hero-text h1 .accent-line {
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(240,192,64,0.5);
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,197,24,0.6); background: #ffe033; }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,0.6); color: var(--white); padding: 14px 32px;
-      border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 15px;
-      transition: all 0.3s;
+    .hero-sub {
+      color: rgba(255,255,255,0.62); font-size: 16px; line-height: 1.75;
+      margin: 22px 0 36px; max-width: 480px; font-weight: 300;
     }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); background: rgba(245,197,24,0.1); }
-    .hero-card {
-      background: rgba(255,255,255,0.08); backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.18); border-radius: 24px;
-      padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    .hero-sub strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-mid), var(--gold-bright));
+      color: var(--navy-deepest); padding: 14px 32px;
+      border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 14px;
+      transition: var(--transition); box-shadow: 0 4px 24px rgba(212,160,23,0.4);
+      letter-spacing: 0.4px; display: inline-flex; align-items: center; gap: 8px;
     }
-    .stat-item { text-align: center; padding: 20px; background: rgba(0,0,0,0.15); border-radius: 16px; border: 1px solid rgba(245,197,24,0.2); }
-    .stat-item .num { font-size: 36px; font-weight: 800; color: var(--gold); }
-    .stat-item .lbl { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 4px; }
-    .hero-scroll {
-      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,0.5); font-size: 13px; text-align: center; z-index: 2;
-      animation: bounce 2s infinite;
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(212,160,23,0.55); filter: brightness(1.08); }
+    .btn-glass {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85); padding: 14px 32px;
+      border-radius: 50px; font-weight: 500; text-decoration: none; font-size: 14px;
+      transition: var(--transition); display: inline-flex; align-items: center; gap: 8px;
+      backdrop-filter: blur(8px);
     }
-    .hero-scroll i { display: block; font-size: 20px; margin-top: 6px; color: var(--gold); }
-    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+    .btn-glass:hover { border-color: var(--gold-mid); color: var(--gold-bright); background: rgba(212,160,23,0.08); }
 
+
+    /* hero stats card */
+    .hero-stats {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212,160,23,0.15);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      position: relative; overflow: hidden;
+    }
+    .hero-stats::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
+    }
+    .stat-box {
+      padding: 22px 18px; text-align: center; position: relative;
+    }
+    .stat-box:nth-child(1), .stat-box:nth-child(2) { border-bottom: 1px solid rgba(212,160,23,0.1); }
+    .stat-box:nth-child(odd) { border-right: 1px solid rgba(212,160,23,0.1); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px; font-weight: 900; color: var(--gold-bright);
+      line-height: 1; letter-spacing: -1px;
+    }
+    .stat-num sup { font-size: 20px; vertical-align: super; }
+    .stat-label { font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 6px; letter-spacing: 0.5px; font-weight: 400; }
+    .hero-badge-bottom {
+      margin-top: 24px; padding: 14px 20px;
+      background: linear-gradient(135deg, rgba(212,160,23,0.12), rgba(212,160,23,0.06));
+      border: 1px solid rgba(212,160,23,0.2); border-radius: var(--radius);
+      display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--gold-pale);
+    }
+    .hero-badge-bottom i { color: var(--gold-bright); font-size: 18px; }
+    .hero-scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 1.5px;
+      text-transform: uppercase; z-index: 2; animation: float 3s ease-in-out infinite;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold-mid), transparent);
+    }
+    @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
 
     /* ── SECTION COMMON ── */
-    section { padding: 90px 5%; }
-    .section-header { text-align: center; margin-bottom: 60px; }
-    .section-tag {
-      display: inline-block; background: rgba(183,28,28,0.1); color: var(--primary);
-      padding: 5px 18px; border-radius: 50px; font-size: 13px; font-weight: 600;
-      margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase;
-      border: 1px solid rgba(183,28,28,0.2);
+    section { padding: 96px 5%; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11.5px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold-mid); margin-bottom: 16px;
     }
-    .section-header h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; color: var(--primary); }
-    .section-header p { color: var(--text-light); font-size: 16px; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .divider {
-      width: 60px; height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--gold));
-      border-radius: 2px; margin: 16px auto 0;
+    .section-label::before, .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--gold-mid); opacity: 0.4; width: 28px;
     }
-    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+      color: var(--navy-dark); line-height: 1.15;
+    }
+    .section-header h2 .gold { color: var(--gold-mid); }
+    .section-header p { color: var(--text-light); font-size: 16px; margin-top: 14px; max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .divider-gold {
+      width: 48px; height: 2px;
+      background: linear-gradient(90deg, var(--gold-mid), var(--gold-bright));
+      border-radius: 2px; margin: 18px auto 0;
+    }
+
+    /* light sections */
+    .bg-white { background: var(--white); }
+    .bg-off { background: var(--off-white); }
+    /* dark sections */
+    .bg-dark {
+      background: var(--navy-deepest);
+    }
+    .bg-dark .section-header h2 { color: var(--white); }
+    .bg-dark .section-label { color: var(--gold-bright); }
+    .bg-dark .section-header p { color: rgba(255,255,255,0.55); }
+
 
     /* ── ABOUT ── */
-    #tentang { background: var(--light); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .about-img-wrap { position: relative; }
-    .about-img-box {
-      background: linear-gradient(135deg, #4a0000, #8b0000, #1a2e6b);
-      border-radius: 24px; padding: 40px 50px 56px; text-align: center;
-      color: white; position: relative; overflow: hidden;
+    .about-wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 70px; align-items: center; }
+    .about-visual {
+      position: relative;
     }
-    .about-img-box::before {
-      content: ''; position: absolute; top: -30px; right: -30px;
-      width: 150px; height: 150px; border-radius: 50%;
-      background: rgba(245,197,24,0.15);
+    .about-card-main {
+      background: linear-gradient(145deg, var(--navy-mid), var(--navy-dark));
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: var(--radius-lg); padding: 44px 40px 52px; text-align: center; color: white;
+      position: relative; overflow: hidden;
     }
-    .about-img-box h3 { font-size: 22px; font-weight: 700; margin-top: 20px; position: relative; }
-    .about-img-box p { font-size: 14px; opacity: 0.8; margin-top: 8px; position: relative; }
-    .about-badge {
-      position: absolute; bottom: -16px; right: 24px;
-      background: var(--gold); color: #1a0a0a;
-      padding: 12px 20px; border-radius: 12px; font-weight: 700;
-      box-shadow: 0 4px 20px rgba(245,197,24,0.4); font-size: 14px;
+    .about-card-main::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-mid), var(--gold-bright), var(--gold-mid), transparent);
     }
-    .about-text h3 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
-    .about-text p { color: var(--text-light); line-height: 1.8; margin-bottom: 24px; }
-    .info-list { list-style: none; }
-    .info-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 10px 0; border-bottom: 1px solid rgba(183,28,28,0.12); font-size: 15px;
+    .about-card-main::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,160,23,0.08) 0%, transparent 70%);
     }
-    .info-list li:last-child { border-bottom: none; }
-    .info-list li i { color: var(--primary); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
-    .info-list li strong { color: var(--navy); min-width: 160px; display: inline-block; }
+    .about-card-main h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--gold-bright); margin-top: 22px; position: relative;
+    }
+    .about-card-main p { font-size: 13.5px; color: rgba(255,255,255,0.55); margin-top: 6px; position: relative; }
+    .about-akred {
+      position: absolute; bottom: -18px; right: 24px;
+      background: linear-gradient(135deg, var(--gold-mid), var(--gold-bright));
+      color: var(--navy-deepest); padding: 12px 22px;
+      border-radius: 10px; font-weight: 800; font-size: 13px;
+      box-shadow: 0 6px 24px rgba(212,160,23,0.5);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .about-body { padding-top: 20px; }
+    .about-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 800; color: var(--navy-dark); margin-bottom: 14px; line-height: 1.3;
+    }
+    .about-body h3 span { color: var(--gold-mid); }
+    .about-body p { color: var(--text-mid); line-height: 1.8; margin-bottom: 20px; font-size: 15px; }
+    .info-rows { display: flex; flex-direction: column; gap: 0; border: 1px solid rgba(15,37,84,0.08); border-radius: var(--radius); overflow: hidden; }
+    .info-row {
+      display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+      border-bottom: 1px solid rgba(15,37,84,0.07); font-size: 14.5px;
+      transition: background 0.2s;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-row:hover { background: rgba(212,160,23,0.04); }
+    .info-row-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      color: var(--gold-bright); display: flex; align-items: center; justify-content: center;
+      font-size: 14px; flex-shrink: 0;
+    }
+    .info-row strong { color: var(--navy-dark); font-weight: 600; min-width: 110px; }
+    .info-row span { color: var(--text-mid); }
 
     /* ── VISI MISI ── */
-    #visi-misi { background: var(--white); }
-    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1200px; margin: 0 auto; }
+    .vm-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
     .vm-card {
-      border-radius: var(--radius); padding: 40px; position: relative; overflow: hidden;
+      border-radius: var(--radius-lg); padding: 44px; position: relative; overflow: hidden;
     }
-    .vm-card.visi { background: linear-gradient(135deg, #8b0000 0%, #b71c1c 60%, #1a2e6b 100%); color: white; }
-    .vm-card.misi { background: var(--light); border: 1px solid rgba(183,28,28,0.1); }
-    .vm-card-icon {
-      width: 56px; height: 56px; border-radius: 16px;
+    .vm-card.visi {
+      background: linear-gradient(145deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
+      border: 1px solid rgba(212,160,23,0.18);
+    }
+    .vm-card.visi::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    }
+    .vm-card.misi {
+      background: var(--white);
+      border: 1px solid rgba(15,37,84,0.1);
+      box-shadow: 0 4px 30px rgba(15,37,84,0.06);
+    }
+    .vm-icon {
+      width: 58px; height: 58px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;
+    }
+    .visi .vm-icon { background: rgba(212,160,23,0.12); color: var(--gold-bright); }
+    .misi .vm-icon { background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); color: var(--gold-bright); }
+    .vm-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; margin-bottom: 18px;
+    }
+    .visi h3 { color: var(--gold-bright); }
+    .misi h3 { color: var(--navy-dark); }
+    .visi p { color: rgba(255,255,255,0.75); line-height: 1.85; font-size: 15px; font-weight: 300; }
+    .misi-items { display: flex; flex-direction: column; gap: 12px; }
+    .misi-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14.5px; color: var(--text-mid); line-height: 1.6;
+    }
+    .misi-item-dot {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      background: linear-gradient(135deg, var(--gold-mid), var(--gold-bright));
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 20px;
+      font-size: 9px; color: var(--navy-deepest); font-weight: 800;
     }
-    .visi .vm-card-icon { background: rgba(245,197,24,0.2); color: var(--gold); }
-    .misi .vm-card-icon { background: var(--primary); color: var(--gold); }
-    .vm-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
-    .visi h3 { color: var(--gold); }
-    .misi h3 { color: var(--primary); }
-    .visi p { color: rgba(255,255,255,0.88); line-height: 1.8; }
-    .misi p { color: var(--text-light); line-height: 1.8; }
-    .misi-list { list-style: none; }
-    .misi-list li {
-      display: flex; gap: 12px; padding: 8px 0;
-      color: var(--text-light); align-items: flex-start;
-    }
-    .misi-list li i { color: var(--primary); margin-top: 3px; flex-shrink: 0; }
 
 
     /* ── JURUSAN ── */
-    #jurusan { background: var(--light); }
-    .jurusan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .jurusan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
     .jurusan-card {
-      background: var(--white); border-radius: var(--radius); padding: 32px;
-      box-shadow: var(--shadow); transition: all 0.35s; cursor: pointer;
-      position: relative; overflow: hidden;
+      background: var(--white); border-radius: var(--radius); padding: 30px 28px;
+      border: 1px solid rgba(15,37,84,0.08); transition: var(--transition);
+      position: relative; overflow: hidden; cursor: pointer;
     }
     .jurusan-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--gold));
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--navy-mid), var(--gold-mid));
+      transform: scaleX(0); transform-origin: left; transition: var(--transition);
     }
-    .jurusan-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(183,28,28,0.18); }
+    .jurusan-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(15,37,84,0.14); border-color: transparent; }
+    .jurusan-card:hover::before { transform: scaleX(1); }
     .jurusan-icon {
-      width: 64px; height: 64px; border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary), #8b0000);
+      width: 60px; height: 60px; border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 28px; color: white; margin-bottom: 20px;
+      font-size: 26px; color: white; margin-bottom: 20px;
     }
-    .jurusan-card h3 { font-size: 17px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
-    .jurusan-card p { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 16px; }
-    .jurusan-tag {
-      display: inline-block; background: rgba(183,28,28,0.08); color: var(--primary);
-      padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;
-      border: 1px solid rgba(183,28,28,0.2);
+    .jurusan-card h3 { font-size: 16px; font-weight: 700; color: var(--navy-dark); margin-bottom: 9px; line-height: 1.35; }
+    .jurusan-card p { font-size: 13.5px; color: var(--text-light); line-height: 1.65; margin-bottom: 16px; }
+    .jurusan-chip {
+      display: inline-block; background: var(--navy-deepest); color: var(--gold-bright);
+      padding: 4px 14px; border-radius: 50px; font-size: 11.5px; font-weight: 700;
+      letter-spacing: 0.8px;
     }
 
     /* ── EKSKUL ── */
-    #ekskul { background: var(--white); }
-    .ekskul-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .ekskul-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; }
     .ekskul-item {
-      background: var(--light); border-radius: var(--radius); padding: 28px 20px;
-      text-align: center; transition: all 0.3s; border: 1px solid rgba(183,28,28,0.06);
+      background: var(--white); border-radius: var(--radius); padding: 28px 18px;
+      text-align: center; transition: var(--transition);
+      border: 1px solid rgba(15,37,84,0.07); position: relative; overflow: hidden;
     }
-    .ekskul-item:hover { background: linear-gradient(135deg, var(--primary), #8b0000); color: white; transform: translateY(-4px); box-shadow: 0 10px 30px rgba(183,28,28,0.25); }
-    .ekskul-item:hover i, .ekskul-item:hover p { color: rgba(255,255,255,0.85) !important; }
-    .ekskul-item:hover h4 { color: var(--gold); }
-    .ekskul-item i { font-size: 36px; color: var(--primary); margin-bottom: 14px; display: block; transition: 0.3s; }
-    .ekskul-item h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 6px; transition: 0.3s; }
-    .ekskul-item p { font-size: 13px; color: var(--text-light); transition: 0.3s; }
+    .ekskul-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(145deg, var(--navy-mid), var(--navy-dark));
+      opacity: 0; transition: var(--transition); border-radius: var(--radius);
+    }
+    .ekskul-item:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(15,37,84,0.16); border-color: transparent; }
+    .ekskul-item:hover::after { opacity: 1; }
+    .ekskul-item i, .ekskul-item h4, .ekskul-item p { position: relative; z-index: 1; transition: color 0.35s; }
+    .ekskul-item i { font-size: 34px; color: var(--navy-mid); margin-bottom: 12px; display: block; }
+    .ekskul-item h4 { font-size: 14px; font-weight: 700; color: var(--navy-dark); margin-bottom: 5px; }
+    .ekskul-item p { font-size: 12.5px; color: var(--text-light); line-height: 1.5; }
+    .ekskul-item:hover i { color: var(--gold-bright); }
+    .ekskul-item:hover h4 { color: var(--gold-bright); }
+    .ekskul-item:hover p { color: rgba(255,255,255,0.6); }
 
     /* ── FASILITAS ── */
-    #fasilitas { background: var(--light); }
-    .fasilitas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .fasilitas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; }
     .fasilitas-card {
-      background: var(--white); border-radius: var(--radius);
-      overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;
+      background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid rgba(15,37,84,0.08); transition: var(--transition);
+      box-shadow: 0 2px 16px rgba(15,37,84,0.05);
     }
-    .fasilitas-card:hover { transform: translateY(-6px); }
+    .fasilitas-card:hover { transform: translateY(-7px); box-shadow: 0 18px 48px rgba(15,37,84,0.14); }
     .fasilitas-img {
-      height: 160px; display: flex; align-items: center; justify-content: center;
-      font-size: 56px;
+      height: 152px; display: flex; align-items: center; justify-content: center; font-size: 52px;
+      position: relative; overflow: hidden;
     }
-    .fasilitas-body { padding: 20px 24px; }
-    .fasilitas-body h4 { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
-    .fasilitas-body p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+    .fasilitas-img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+      background: linear-gradient(to top, var(--white), transparent);
+    }
+    .fasilitas-body { padding: 20px 24px 26px; }
+    .fasilitas-body h4 { font-size: 16px; font-weight: 700; color: var(--navy-dark); margin-bottom: 7px; }
+    .fasilitas-body p { font-size: 13.5px; color: var(--text-light); line-height: 1.65; }
+
 
     /* ── PRESTASI ── */
-    #prestasi { background: linear-gradient(135deg, #4a0000 0%, #8b0000 40%, #1a2e6b 100%); color: white; }
-    #prestasi .section-tag { background: rgba(245,197,24,0.2); color: var(--gold); border-color: rgba(245,197,24,0.4); }
-    #prestasi .section-header h2 { color: white; }
-    #prestasi .section-header p { color: rgba(255,255,255,0.7); }
-    .prestasi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
-    .prestasi-card {
-      background: rgba(255,255,255,0.07); backdrop-filter: blur(10px);
-      border: 1px solid rgba(245,197,24,0.2); border-radius: var(--radius);
-      padding: 28px; transition: all 0.3s;
+    #prestasi {
+      position: relative;
+      background: var(--navy-deepest);
+      overflow: hidden;
     }
-    .prestasi-card:hover { background: rgba(245,197,24,0.12); transform: translateY(-4px); border-color: rgba(245,197,24,0.5); }
-    .prestasi-medal { font-size: 40px; margin-bottom: 16px; display: block; }
-    .prestasi-card h4 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
-    .prestasi-card p { font-size: 14px; color: rgba(255,255,255,0.78); line-height: 1.6; }
-    .prestasi-card .year { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 10px; font-style: italic; }
-
+    #prestasi::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 15% 50%, rgba(15,37,84,0.7) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 85% 30%, rgba(212,160,23,0.04) 0%, transparent 60%);
+    }
+    .prestasi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; position: relative; z-index: 1; }
+    .prestasi-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212,160,23,0.12);
+      border-radius: var(--radius); padding: 30px 28px; transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .prestasi-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(212,160,23,0.5), transparent);
+    }
+    .prestasi-card:hover { background: rgba(212,160,23,0.07); border-color: rgba(212,160,23,0.3); transform: translateY(-5px); }
+    .prestasi-medal { font-size: 38px; margin-bottom: 14px; display: block; }
+    .prestasi-card h4 { font-size: 15.5px; font-weight: 700; color: var(--gold-bright); margin-bottom: 9px; line-height: 1.35; }
+    .prestasi-card p { font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+    .prestasi-meta { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.35); }
+    .prestasi-meta i { color: var(--gold-mid); }
 
     /* ── KONTAK ── */
-    #kontak { background: var(--white); }
-    .kontak-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: start; }
-    .kontak-info h3 { font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 24px; }
+    .kontak-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .kontak-head h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 800; color: var(--navy-dark); margin-bottom: 28px; line-height: 1.3;
+    }
+    .kontak-head h3 span { color: var(--gold-mid); }
     .kontak-item {
       display: flex; gap: 16px; align-items: flex-start;
-      padding: 20px; background: var(--light); border-radius: var(--radius);
-      margin-bottom: 16px;
+      padding: 18px; border-radius: var(--radius); margin-bottom: 14px;
+      border: 1px solid rgba(15,37,84,0.07); transition: var(--transition);
+      background: var(--white);
     }
-    .kontak-item-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), #8b0000); color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
+    .kontak-item:hover { border-color: rgba(212,160,23,0.25); box-shadow: 0 4px 20px rgba(15,37,84,0.07); }
+    .kontak-icon {
+      width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      color: var(--gold-bright); display: flex; align-items: center; justify-content: center; font-size: 17px;
     }
-    .kontak-item h4 { font-size: 13px; color: var(--text-light); margin-bottom: 4px; }
-    .kontak-item p { font-size: 15px; color: var(--text); font-weight: 500; }
+    .kontak-item h4 { font-size: 11.5px; color: var(--text-light); font-weight: 500; margin-bottom: 3px; letter-spacing: 0.3px; }
+    .kontak-item p { font-size: 15px; color: var(--navy-dark); font-weight: 600; }
     .kontak-map {
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow); height: 100%;
+      border-radius: var(--radius-lg); overflow: hidden;
+      border: 1px solid rgba(15,37,84,0.1); box-shadow: 0 8px 32px rgba(15,37,84,0.1);
     }
-    .kontak-map iframe { width: 100%; height: 100%; min-height: 380px; border: none; }
+    .kontak-map iframe { width: 100%; height: 400px; border: none; display: block; }
 
     /* ── FOOTER ── */
     footer {
-      background: linear-gradient(135deg, #1a0000 0%, #2d0000 50%, #0d1540 100%);
-      color: rgba(255,255,255,0.7);
-      padding: 60px 5% 30px;
+      background: var(--navy-deepest);
+      border-top: 1px solid rgba(212,160,23,0.12);
+      padding: 68px 5% 32px;
+      position: relative; overflow: hidden;
     }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; max-width: 1200px; margin: 0 auto 50px; }
-    .footer-brand h3 { font-size: 20px; font-weight: 700; color: white; margin-bottom: 14px; }
-    .footer-brand h3 span { color: var(--gold); }
-    .footer-brand p { font-size: 14px; line-height: 1.8; max-width: 300px; }
-    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
-    .footer-social a {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; transition: all 0.3s; font-size: 16px;
+    footer::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-mid), transparent);
     }
-    .footer-social a:hover { background: var(--gold); color: #1a0a0a; }
-    .footer-links h4 { font-size: 15px; font-weight: 600; color: var(--gold); margin-bottom: 18px; }
-    .footer-links ul { list-style: none; }
-    .footer-links ul li { margin-bottom: 10px; }
-    .footer-links ul li a {
-      color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px;
-      transition: color 0.3s;
+    .footer-wrap { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; max-width: 1200px; margin: 0 auto 52px; }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 800; color: var(--white); margin-bottom: 12px; line-height: 1.3;
     }
-    .footer-links ul li a:hover { color: var(--gold); }
+    .footer-brand-name span { color: var(--gold-bright); }
+    .footer-desc { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.8; max-width: 280px; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 22px; }
+    .footer-socials a {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.55); display: flex; align-items: center;
+      justify-content: center; text-decoration: none; transition: var(--transition); font-size: 15px;
+    }
+    .footer-socials a:hover { background: rgba(212,160,23,0.15); border-color: var(--gold-mid); color: var(--gold-bright); }
+    .footer-col h5 {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold-mid); margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212,160,23,0.12);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.45); text-decoration: none; font-size: 13.5px;
+      transition: color 0.25s; display: flex; align-items: center; gap: 6px;
+    }
+    .footer-col ul li a::before { content: '›'; color: var(--gold-mid); opacity: 0; transition: opacity 0.25s; }
+    .footer-col ul li a:hover { color: var(--gold-pale); }
+    .footer-col ul li a:hover::before { opacity: 1; }
     .footer-bottom {
-      border-top: 1px solid rgba(245,197,24,0.15);
-      padding-top: 24px; text-align: center; font-size: 13px;
-      color: rgba(255,255,255,0.4); max-width: 1200px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 26px; text-align: center; font-size: 13px;
+      color: rgba(255,255,255,0.3); max-width: 1200px; margin: 0 auto;
     }
-    .footer-bottom span { color: var(--gold); }
+    .footer-bottom span { color: var(--gold-mid); }
+
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      .hero-buttons { justify-content: center; }
-      .hero-card { grid-template-columns: repeat(2, 1fr); }
-      .about-grid, .vm-grid, .kontak-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-      .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--primary); flex-direction: column; padding: 20px 5%; gap: 16px; }
+    @media (max-width: 960px) {
+      .hero-content { grid-template-columns: 1fr; gap: 44px; text-align: center; }
+      .hero-cta { justify-content: center; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .about-wrap, .vm-wrap, .kontak-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .footer-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(4,13,31,0.98); flex-direction: column;
+        padding: 22px 6%; gap: 0; border-bottom: 1px solid rgba(212,160,23,0.12);
+      }
       .nav-links.open { display: flex; }
+      .nav-links li a { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
       .hamburger { display: flex; }
     }
     @media (max-width: 600px) {
-      section { padding: 70px 5%; }
-      .hero-card { grid-template-columns: 1fr 1fr; }
+      section { padding: 72px 5%; }
+      .hero-text h1 { font-size: 36px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .stat-num { font-size: 32px; }
     }
   </style>
 </head>
-
-
 <body>
+
 
 <!-- ══ NAVBAR ══ -->
 <nav id="navbar">
   <a href="#hero" class="nav-brand">
     <div class="nav-logo">
-      <!-- Logo SMKN 2 Sragen – roda gigi + petir + warna identitas -->
       <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-        <!-- Shield background -->
-        <path d="M5 5 H95 V80 Q50 115 50 115 Q50 115 5 80 Z" fill="#1a2e4a" stroke="#e8a020" stroke-width="2.5"/>
-        <!-- Red top-left quadrant -->
-        <path d="M5 5 H50 V42 Q27 42 5 42 Z" fill="#c0392b"/>
-        <!-- Blue top-right quadrant -->
-        <path d="M50 5 H95 V42 H50 Z" fill="#1a3c7a"/>
-        <!-- Gear left (black) -->
-        <path d="M14 10 A18 18 0 0 0 14 38 A18 18 0 0 0 14 10" fill="none"/>
-        <circle cx="24" cy="24" r="12" fill="none" stroke="#111" stroke-width="4"/>
-        <circle cx="24" cy="24" r="5" fill="#c0392b"/>
-        <!-- Gear teeth left -->
-        <rect x="21" y="8" width="6" height="6" rx="1" fill="#111"/>
-        <rect x="21" y="34" width="6" height="6" rx="1" fill="#111"/>
-        <rect x="8" y="21" width="6" height="6" rx="1" fill="#111"/>
-        <rect x="34" y="21" width="6" height="6" rx="1" fill="#111"/>
-        <rect x="11" y="12" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 14.5)"/>
-        <rect x="32" y="12" width="5" height="5" rx="1" fill="#111" transform="rotate(45 34.5 14.5)"/>
-        <rect x="11" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 33.5)"/>
-        <rect x="32" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 34.5 33.5)"/>
-        <!-- Gear right (blue) -->
-        <circle cx="72" cy="24" r="14" fill="none" stroke="#1a3c7a" stroke-width="4.5"/>
-        <circle cx="72" cy="24" r="6" fill="#1a3c7a"/>
-        <!-- Triangle yellow -->
-        <polygon points="68,11 80,11 74,22" fill="#f1c40f"/>
-        <!-- Brick wall center -->
-        <rect x="5" y="43" width="90" height="18" fill="#ecf0f1"/>
-        <rect x="5" y="43" width="90" height="18" fill="none" stroke="#bdc3c7" stroke-width="0.5"/>
-        <!-- Brick pattern -->
-        <line x1="5" y1="51" x2="95" y2="51" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="20" y1="43" x2="20" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="40" y1="43" x2="40" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="60" y1="43" x2="60" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="80" y1="43" x2="80" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="30" y1="51" x2="30" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="50" y1="51" x2="50" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <line x1="70" y1="51" x2="70" y2="61" stroke="#bdc3c7" stroke-width="1"/>
-        <!-- Lightning bolt circle center -->
-        <circle cx="50" cy="24" r="13" fill="white" stroke="#111" stroke-width="2"/>
-        <polygon points="53,12 45,25 51,25 47,36 55,23 49,23" fill="#f1c40f" stroke="#e67e22" stroke-width="0.8"/>
-        <!-- Red/Blue hexagon bottom -->
-        <rect x="5" y="61" width="90" height="22" fill="#c0392b" rx="2"/>
-        <rect x="5" y="72" width="90" height="11" fill="#2c3e8a" rx="2"/>
-        <!-- Yellow bottom -->
-        <path d="M5 82 H95 Q50 115 50 115 Q50 115 5 82 Z" fill="#f1c40f"/>
-        <!-- Banner -->
+        <path d="M5 5 H95 V80 Q50 115 50 115 Q50 115 5 80 Z" fill="#0a1c38" stroke="#d4a017" stroke-width="2.5"/>
+        <path d="M5 5 H50 V42 Q27 42 5 42 Z" fill="#9b1c1c"/>
+        <path d="M50 5 H95 V42 H50 Z" fill="#0f2554"/>
+        <circle cx="24" cy="24" r="12" fill="none" stroke="#040d1f" stroke-width="4"/>
+        <circle cx="24" cy="24" r="5" fill="#9b1c1c"/>
+        <rect x="21" y="8" width="6" height="6" rx="1" fill="#040d1f"/>
+        <rect x="21" y="34" width="6" height="6" rx="1" fill="#040d1f"/>
+        <rect x="8" y="21" width="6" height="6" rx="1" fill="#040d1f"/>
+        <rect x="34" y="21" width="6" height="6" rx="1" fill="#040d1f"/>
+        <rect x="11" y="12" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 13.5 14.5)"/>
+        <rect x="32" y="12" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 34.5 14.5)"/>
+        <rect x="11" y="31" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 13.5 33.5)"/>
+        <rect x="32" y="31" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 34.5 33.5)"/>
+        <circle cx="72" cy="24" r="14" fill="none" stroke="#0f2554" stroke-width="4.5"/>
+        <circle cx="72" cy="24" r="6" fill="#0f2554"/>
+        <polygon points="68,11 80,11 74,22" fill="#f0c040"/>
+        <rect x="5" y="43" width="90" height="18" fill="#e8eaf0"/>
+        <line x1="5" y1="51" x2="95" y2="51" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="20" y1="43" x2="20" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="40" y1="43" x2="40" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="60" y1="43" x2="60" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="80" y1="43" x2="80" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="30" y1="51" x2="30" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="50" y1="51" x2="50" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <line x1="70" y1="51" x2="70" y2="61" stroke="#c0c4d0" stroke-width="1"/>
+        <circle cx="50" cy="24" r="13" fill="white" stroke="#040d1f" stroke-width="2"/>
+        <polygon points="53,12 45,25 51,25 47,36 55,23 49,23" fill="#f0c040" stroke="#d4a017" stroke-width="0.8"/>
+        <rect x="5" y="61" width="90" height="12" fill="#9b1c1c" rx="2"/>
+        <rect x="5" y="71" width="90" height="11" fill="#0f2554" rx="2"/>
+        <path d="M5 82 H95 Q50 115 50 115 Q50 115 5 82 Z" fill="#f0c040"/>
         <rect x="18" y="89" width="64" height="14" rx="3" fill="white" stroke="#ccc" stroke-width="1"/>
-        <text x="50" y="99.5" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#1a2e4a" font-family="Arial">SMK N 2 SRAGEN</text>
+        <text x="50" y="99.5" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#0a1c38" font-family="Arial">SMK N 2 SRAGEN</text>
       </svg>
     </div>
     <div class="nav-title">SMK Negeri 2 <span>Sragen</span></div>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#tentang">Tentang</a></li>
-    <li><a href="#visi-misi">Visi & Misi</a></li>
+    <li><a href="#visi-misi">Visi &amp; Misi</a></li>
     <li><a href="#jurusan">Jurusan</a></li>
     <li><a href="#fasilitas">Fasilitas</a></li>
     <li><a href="#prestasi">Prestasi</a></li>
@@ -422,415 +596,348 @@
   </div>
 </nav>
 
+
 <!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hero-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-  </div>
+  <div class="hero-bg-gradient"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
   <div class="hero-content">
     <div class="hero-text">
-      <div class="hero-badge"><i class="fas fa-star"></i> Akreditasi A – Unggul</div>
-      <h1>SMK Negeri 2 <span>Sragen</span></h1>
-      <p class="sub">Mencetak generasi profesional yang kompeten, berkarakter, dan siap bersaing di era global melalui pendidikan kejuruan berkualitas.</p>
-      <div class="hero-buttons">
-        <a href="#jurusan" class="btn-primary"><i class="fas fa-graduation-cap"></i>&nbsp; Lihat Jurusan</a>
-        <a href="#kontak" class="btn-outline"><i class="fas fa-phone"></i>&nbsp; Hubungi Kami</a>
+      <div class="hero-eyebrow">Akreditasi A &mdash; Unggul</div>
+      <h1>
+        SMK Negeri
+        <span class="gold-line">2 Sragen</span>
+        <span class="accent-line">Excellent.</span>
+      </h1>
+      <p class="hero-sub">Mencetak generasi profesional yang <strong>kompeten</strong>, berkarakter, dan siap bersaing di era global melalui pendidikan kejuruan <strong>berkualitas tinggi</strong>.</p>
+      <div class="hero-cta">
+        <a href="#jurusan" class="btn-gold"><i class="fas fa-graduation-cap"></i> Lihat Jurusan</a>
+        <a href="#kontak" class="btn-glass"><i class="fas fa-phone"></i> Hubungi Kami</a>
       </div>
     </div>
-    <div class="hero-card">
-      <div class="stat-item"><div class="num">20+</div><div class="lbl">Tahun Berdiri</div></div>
-      <div class="stat-item"><div class="num">1500+</div><div class="lbl">Siswa Aktif</div></div>
-      <div class="stat-item"><div class="num">9</div><div class="lbl">Program Keahlian</div></div>
-      <div class="stat-item"><div class="num">150+</div><div class="lbl">Guru & Staff</div></div>
+    <div>
+      <div class="hero-stats">
+        <div class="stat-box"><div class="stat-num">20<sup>+</sup></div><div class="stat-label">Tahun Berdiri</div></div>
+        <div class="stat-box"><div class="stat-num">1500<sup>+</sup></div><div class="stat-label">Siswa Aktif</div></div>
+        <div class="stat-box"><div class="stat-num">9</div><div class="stat-label">Program Keahlian</div></div>
+        <div class="stat-box"><div class="stat-num">150<sup>+</sup></div><div class="stat-label">Guru &amp; Staff</div></div>
+      </div>
+      <div class="hero-badge-bottom">
+        <i class="fas fa-shield-alt"></i>
+        <span>Sekolah Negeri &mdash; Pemerintah Provinsi Jawa Tengah</span>
+      </div>
     </div>
   </div>
-  <div class="hero-scroll">Scroll ke bawah <i class="fas fa-chevron-down"></i></div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
 </section>
 
 
 <!-- ══ TENTANG ══ -->
-<section id="tentang">
-  <div class="section-header">
-    <span class="section-tag">Profil Sekolah</span>
-    <h2>Tentang SMK Negeri 2 Sragen</h2>
-    <div class="divider"></div>
+<section id="tentang" class="bg-off">
+  <div class="section-header container">
+    <div class="section-label">Profil Sekolah</div>
+    <h2>Tentang <span class="gold">SMK Negeri 2</span> Sragen</h2>
+    <div class="divider-gold"></div>
     <p>Sekolah kejuruan negeri terkemuka di Kabupaten Sragen yang berkomitmen menghasilkan lulusan berkompetensi tinggi.</p>
   </div>
-  <div class="about-grid">
-    <div class="about-img-wrap">
-      <div class="about-img-box">
-        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:auto;position:relative;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.3))">
-          <path d="M3 3 H97 V82 Q50 118 50 118 Q50 118 3 82 Z" fill="#1a2e4a" stroke="#e8a020" stroke-width="3"/>
-          <path d="M3 3 H50 V44 Q26 44 3 44 Z" fill="#c0392b"/>
-          <path d="M50 3 H97 V44 H50 Z" fill="#1a3c7a"/>
-          <circle cx="25" cy="24" r="13" fill="none" stroke="#111" stroke-width="5"/>
-          <circle cx="25" cy="24" r="5.5" fill="#c0392b"/>
-          <rect x="22" y="7" width="6" height="7" rx="1" fill="#111"/>
-          <rect x="22" y="34" width="6" height="7" rx="1" fill="#111"/>
-          <rect x="7" y="21" width="7" height="6" rx="1" fill="#111"/>
-          <rect x="35" y="21" width="7" height="6" rx="1" fill="#111"/>
-          <rect x="11" y="11" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 13.5)"/>
-          <rect x="33" y="11" width="5" height="5" rx="1" fill="#111" transform="rotate(45 35.5 13.5)"/>
-          <rect x="11" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 13.5 33.5)"/>
-          <rect x="33" y="31" width="5" height="5" rx="1" fill="#111" transform="rotate(45 35.5 33.5)"/>
-          <circle cx="75" cy="24" r="15" fill="none" stroke="#1a3c7a" stroke-width="5"/>
-          <circle cx="75" cy="24" r="6" fill="#1a3c7a"/>
-          <polygon points="70,10 83,10 76.5,22" fill="#f1c40f"/>
-          <circle cx="50" cy="24" r="14" fill="white" stroke="#111" stroke-width="2.5"/>
-          <polygon points="54,11 44,26 52,26 48,38 58,23 50,23" fill="#f1c40f" stroke="#e67e22" stroke-width="1"/>
-          <rect x="3" y="45" width="94" height="20" fill="#ecf0f1"/>
-          <line x1="3" y1="55" x2="97" y2="55" stroke="#bdc3c7" stroke-width="1.2"/>
-          <line x1="22" y1="45" x2="22" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <line x1="42" y1="45" x2="42" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <line x1="62" y1="45" x2="62" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <line x1="82" y1="45" x2="82" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <line x1="32" y1="55" x2="32" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <line x1="52" y1="55" x2="52" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <line x1="72" y1="55" x2="72" y2="65" stroke="#bdc3c7" stroke-width="1"/>
-          <rect x="3" y="65" width="94" height="12" fill="#c0392b" rx="2"/>
-          <rect x="3" y="75" width="94" height="10" fill="#2c3e8a" rx="2"/>
-          <path d="M3 84 H97 Q50 118 50 118 Q50 118 3 84 Z" fill="#f1c40f"/>
+  <div class="about-wrap container">
+    <div class="about-visual">
+      <div class="about-card-main">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" style="width:150px;height:auto;position:relative;z-index:1;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4))">
+          <path d="M3 3 H97 V82 Q50 118 50 118 Q50 118 3 82 Z" fill="#0a1c38" stroke="#d4a017" stroke-width="3"/>
+          <path d="M3 3 H50 V44 Q26 44 3 44 Z" fill="#9b1c1c"/>
+          <path d="M50 3 H97 V44 H50 Z" fill="#0f2554"/>
+          <circle cx="25" cy="24" r="13" fill="none" stroke="#040d1f" stroke-width="5"/>
+          <circle cx="25" cy="24" r="5.5" fill="#9b1c1c"/>
+          <rect x="22" y="7" width="6" height="7" rx="1" fill="#040d1f"/>
+          <rect x="22" y="34" width="6" height="7" rx="1" fill="#040d1f"/>
+          <rect x="7" y="21" width="7" height="6" rx="1" fill="#040d1f"/>
+          <rect x="35" y="21" width="7" height="6" rx="1" fill="#040d1f"/>
+          <rect x="11" y="11" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 13.5 13.5)"/>
+          <rect x="33" y="11" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 35.5 13.5)"/>
+          <rect x="11" y="31" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 13.5 33.5)"/>
+          <rect x="33" y="31" width="5" height="5" rx="1" fill="#040d1f" transform="rotate(45 35.5 33.5)"/>
+          <circle cx="75" cy="24" r="15" fill="none" stroke="#0f2554" stroke-width="5"/>
+          <circle cx="75" cy="24" r="6" fill="#0f2554"/>
+          <polygon points="70,10 83,10 76.5,22" fill="#f0c040"/>
+          <circle cx="50" cy="24" r="14" fill="white" stroke="#040d1f" stroke-width="2.5"/>
+          <polygon points="54,11 44,26 52,26 48,38 58,23 50,23" fill="#f0c040" stroke="#d4a017" stroke-width="1"/>
+          <rect x="3" y="45" width="94" height="20" fill="#e8eaf0"/>
+          <line x1="3" y1="55" x2="97" y2="55" stroke="#c0c4d0" stroke-width="1.2"/>
+          <line x1="22" y1="45" x2="22" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <line x1="42" y1="45" x2="42" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <line x1="62" y1="45" x2="62" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <line x1="82" y1="45" x2="82" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <line x1="32" y1="55" x2="32" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <line x1="52" y1="55" x2="52" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <line x1="72" y1="55" x2="72" y2="65" stroke="#c0c4d0" stroke-width="1"/>
+          <rect x="3" y="65" width="94" height="12" fill="#9b1c1c" rx="2"/>
+          <rect x="3" y="75" width="94" height="10" fill="#0f2554" rx="2"/>
+          <path d="M3 84 H97 Q50 118 50 118 Q50 118 3 84 Z" fill="#f0c040"/>
           <rect x="16" y="91" width="68" height="16" rx="4" fill="white" stroke="#ccc" stroke-width="1.2"/>
-          <text x="50" y="102" text-anchor="middle" font-size="7" font-weight="bold" fill="#1a2e4a" font-family="Arial,sans-serif">SMK N 2 SRAGEN</text>
+          <text x="50" y="102" text-anchor="middle" font-size="7" font-weight="bold" fill="#0a1c38" font-family="Arial,sans-serif">SMK N 2 SRAGEN</text>
         </svg>
         <h3>SMK Negeri 2 Sragen</h3>
-        <p>Jl. Raya Sukowati No.1, Sragen, Jawa Tengah</p>
+        <p>Jl. Raya Sukowati, Sragen, Jawa Tengah</p>
       </div>
-      <div class="about-badge"><i class="fas fa-award"></i> Akreditasi A</div>
+      <div class="about-akred"><i class="fas fa-award"></i> Akreditasi A</div>
     </div>
-    <div class="about-text">
-      <h3>Sekolah Menengah Kejuruan Terbaik di Sragen</h3>
-      <p>SMK Negeri 2 Sragen adalah sekolah menengah kejuruan negeri yang berlokasi di Kabupaten Sragen, Jawa Tengah. Sekolah ini berdedikasi untuk memberikan pendidikan kejuruan berkualitas tinggi dengan mempersiapkan siswa-siswi agar siap memasuki dunia kerja maupun melanjutkan ke perguruan tinggi.</p>
-      <p>Dengan tenaga pengajar yang berpengalaman dan fasilitas yang lengkap, SMKN 2 Sragen terus berkomitmen menjadi pusat keunggulan pendidikan kejuruan di Kabupaten Sragen.</p>
-      <ul class="info-list">
-        <li><i class="fas fa-map-marker-alt"></i><div><strong>Alamat:</strong> Jl. Raya Sukowati, Sragen, Jawa Tengah 57213</div></li>
-        <li><i class="fas fa-phone"></i><div><strong>Telepon:</strong> (0271) 891006</div></li>
-        <li><i class="fas fa-envelope"></i><div><strong>Email:</strong> smkn2sragen@gmail.com</div></li>
-        <li><i class="fas fa-calendar-alt"></i><div><strong>Akreditasi:</strong> A (Unggul) – BAN-SM</div></li>
-        <li><i class="fas fa-user-tie"></i><div><strong>Status:</strong> Negeri – Pemerintah Provinsi Jawa Tengah</div></li>
-      </ul>
+    <div class="about-body">
+      <h3>Sekolah Kejuruan <span>Terbaik</span> di Sragen</h3>
+      <p>SMK Negeri 2 Sragen adalah sekolah menengah kejuruan negeri yang berlokasi di Kabupaten Sragen, Jawa Tengah. Berdedikasi memberikan pendidikan kejuruan berkualitas tinggi, mempersiapkan siswa agar siap memasuki dunia kerja maupun melanjutkan ke perguruan tinggi.</p>
+      <p>Dengan tenaga pengajar berpengalaman dan fasilitas lengkap, SMKN 2 Sragen terus berkomitmen menjadi pusat keunggulan pendidikan kejuruan di Kabupaten Sragen.</p>
+      <div class="info-rows">
+        <div class="info-row"><div class="info-row-icon"><i class="fas fa-map-marker-alt"></i></div><div><strong>Alamat</strong> <span>Jl. Raya Sukowati, Sragen, Jawa Tengah 57213</span></div></div>
+        <div class="info-row"><div class="info-row-icon"><i class="fas fa-phone"></i></div><div><strong>Telepon</strong> <span>(0271) 891006</span></div></div>
+        <div class="info-row"><div class="info-row-icon"><i class="fas fa-envelope"></i></div><div><strong>Email</strong> <span>smkn2sragen@gmail.com</span></div></div>
+        <div class="info-row"><div class="info-row-icon"><i class="fas fa-certificate"></i></div><div><strong>Akreditasi</strong> <span>A (Unggul) &mdash; BAN-SM</span></div></div>
+        <div class="info-row"><div class="info-row-icon"><i class="fas fa-landmark"></i></div><div><strong>Status</strong> <span>Negeri &mdash; Pemerintah Provinsi Jawa Tengah</span></div></div>
+      </div>
     </div>
   </div>
 </section>
 
+
 <!-- ══ VISI MISI ══ -->
-<section id="visi-misi">
-  <div class="section-header">
-    <span class="section-tag">Visi & Misi</span>
-    <h2>Arah dan Tujuan Kami</h2>
-    <div class="divider"></div>
+<section id="visi-misi" class="bg-white">
+  <div class="section-header container">
+    <div class="section-label">Arah &amp; Tujuan</div>
+    <h2>Visi &amp; <span class="gold">Misi</span> Kami</h2>
+    <div class="divider-gold"></div>
   </div>
-  <div class="vm-grid container">
+  <div class="vm-wrap container">
     <div class="vm-card visi">
-      <div class="vm-card-icon"><i class="fas fa-eye"></i></div>
+      <div class="vm-icon"><i class="fas fa-eye"></i></div>
       <h3>Visi</h3>
       <p>Menjadi lembaga pendidikan dan pelatihan kejuruan yang menghasilkan tamatan beriman dan bertakwa kepada Tuhan Yang Maha Esa, berakhlak mulia, berwawasan luas, profesional, mandiri, dan mampu bersaing di tingkat nasional maupun internasional.</p>
     </div>
     <div class="vm-card misi">
-      <div class="vm-card-icon"><i class="fas fa-bullseye"></i></div>
+      <div class="vm-icon"><i class="fas fa-bullseye"></i></div>
       <h3>Misi</h3>
-      <ul class="misi-list">
-        <li><i class="fas fa-check-circle"></i> Mewujudkan pendidikan karakter yang berlandaskan iman dan takwa.</li>
-        <li><i class="fas fa-check-circle"></i> Mengembangkan kompetensi kejuruan yang relevan dengan kebutuhan industri dan dunia kerja.</li>
-        <li><i class="fas fa-check-circle"></i> Meningkatkan kualitas pembelajaran berbasis teknologi dan inovasi.</li>
-        <li><i class="fas fa-check-circle"></i> Membangun kemitraan strategis dengan dunia usaha dan industri (DUDI).</li>
-        <li><i class="fas fa-check-circle"></i> Menciptakan lingkungan belajar yang kondusif, bersih, dan berwawasan lingkungan.</li>
-        <li><i class="fas fa-check-circle"></i> Menghasilkan lulusan yang kompeten, mandiri, dan berjiwa wirausaha.</li>
-      </ul>
+      <div class="misi-items">
+        <div class="misi-item"><div class="misi-item-dot"><i class="fas fa-check"></i></div><span>Mewujudkan pendidikan karakter yang berlandaskan iman dan takwa.</span></div>
+        <div class="misi-item"><div class="misi-item-dot"><i class="fas fa-check"></i></div><span>Mengembangkan kompetensi kejuruan yang relevan dengan kebutuhan industri dan dunia kerja.</span></div>
+        <div class="misi-item"><div class="misi-item-dot"><i class="fas fa-check"></i></div><span>Meningkatkan kualitas pembelajaran berbasis teknologi dan inovasi.</span></div>
+        <div class="misi-item"><div class="misi-item-dot"><i class="fas fa-check"></i></div><span>Membangun kemitraan strategis dengan dunia usaha dan industri.</span></div>
+        <div class="misi-item"><div class="misi-item-dot"><i class="fas fa-check"></i></div><span>Menciptakan lingkungan belajar yang kondusif, bersih, dan berwawasan lingkungan.</span></div>
+        <div class="misi-item"><div class="misi-item-dot"><i class="fas fa-check"></i></div><span>Menghasilkan lulusan yang kompeten, mandiri, dan berjiwa wirausaha.</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-
 <!-- ══ JURUSAN ══ -->
-<section id="jurusan">
-  <div class="section-header">
-    <span class="section-tag">Program Keahlian</span>
-    <h2>Jurusan & Kompetensi</h2>
-    <div class="divider"></div>
+<section id="jurusan" class="bg-off">
+  <div class="section-header container">
+    <div class="section-label">Program Keahlian</div>
+    <h2>Jurusan &amp; <span class="gold">Kompetensi</span></h2>
+    <div class="divider-gold"></div>
     <p>Pilih jurusan sesuai minat dan bakatmu. Kami menyediakan 9 program keahlian unggulan.</p>
   </div>
-  <div class="jurusan-grid">
+  <div class="jurusan-grid container">
     <div class="jurusan-card">
-      <div class="jurusan-icon"><i class="fas fa-network-wired"></i></div>
-      <h3>Teknik Komputer & Jaringan</h3>
-      <p>Mempelajari instalasi, konfigurasi, dan pemeliharaan jaringan komputer serta sistem informasi.</p>
-      <span class="jurusan-tag">TKJ</span>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#0f2554,#1a3a7a)"><i class="fas fa-network-wired"></i></div>
+      <h3>Teknik Komputer &amp; Jaringan</h3>
+      <p>Instalasi, konfigurasi, dan pemeliharaan jaringan komputer serta sistem informasi.</p>
+      <span class="jurusan-chip">TKJ</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#e65100,#ff8f00)"><i class="fas fa-car"></i></div>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#7a3200,#c85000)"><i class="fas fa-car"></i></div>
       <h3>Teknik Kendaraan Ringan Otomotif</h3>
       <p>Perawatan dan perbaikan kendaraan ringan bermesin bensin dan diesel sesuai standar industri.</p>
-      <span class="jurusan-tag">TKRO</span>
+      <span class="jurusan-chip">TKRO</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#1565c0,#42a5f5)"><i class="fas fa-bolt"></i></div>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#0a3060,#1565c0)"><i class="fas fa-bolt"></i></div>
       <h3>Teknik Instalasi Tenaga Listrik</h3>
       <p>Instalasi, pemeliharaan, dan perbaikan sistem ketenagalistrikan industri dan rumah tangga.</p>
-      <span class="jurusan-tag">TITL</span>
+      <span class="jurusan-chip">TITL</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#2e7d32,#66bb6a)"><i class="fas fa-calculator"></i></div>
-      <h3>Akuntansi & Keuangan Lembaga</h3>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#1a4a20,#2e7d32)"><i class="fas fa-calculator"></i></div>
+      <h3>Akuntansi &amp; Keuangan Lembaga</h3>
       <p>Pengelolaan keuangan, akuntansi perusahaan, perbankan, dan lembaga keuangan secara profesional.</p>
-      <span class="jurusan-tag">AKL</span>
+      <span class="jurusan-chip">AKL</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#6a1b9a,#ab47bc)"><i class="fas fa-chart-line"></i></div>
-      <h3>Bisnis Daring & Pemasaran</h3>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#3a0a6a,#6a1b9a)"><i class="fas fa-chart-line"></i></div>
+      <h3>Bisnis Daring &amp; Pemasaran</h3>
       <p>Strategi pemasaran digital, e-commerce, manajemen bisnis online, dan kewirausahaan modern.</p>
-      <span class="jurusan-tag">BDP</span>
+      <span class="jurusan-chip">BDP</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#00838f,#26c6da)"><i class="fas fa-briefcase"></i></div>
-      <h3>Otomatisasi & Tata Kelola Perkantoran</h3>
-      <p>Administrasi perkantoran, manajemen arsip, komunikasi bisnis, dan teknologi perkantoran modern.</p>
-      <span class="jurusan-tag">OTKP</span>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#00505a,#00838f)"><i class="fas fa-briefcase"></i></div>
+      <h3>Otomatisasi &amp; Tata Kelola Perkantoran</h3>
+      <p>Administrasi perkantoran, manajemen arsip, komunikasi bisnis, dan teknologi modern.</p>
+      <span class="jurusan-chip">OTKP</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#c62828,#ef5350)"><i class="fas fa-motorcycle"></i></div>
-      <h3>Teknik & Bisnis Sepeda Motor</h3>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#7a1010,#c62828)"><i class="fas fa-motorcycle"></i></div>
+      <h3>Teknik &amp; Bisnis Sepeda Motor</h3>
       <p>Perawatan, perbaikan, dan pengelolaan bisnis bengkel sepeda motor sesuai standar pabrikan.</p>
-      <span class="jurusan-tag">TBSM</span>
+      <span class="jurusan-chip">TBSM</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#4527a0,#7e57c2)"><i class="fas fa-film"></i></div>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#2a1a6a,#4527a0)"><i class="fas fa-film"></i></div>
       <h3>Multimedia</h3>
       <p>Desain grafis, videografi, animasi, editing video, dan produksi konten kreatif digital.</p>
-      <span class="jurusan-tag">MM</span>
+      <span class="jurusan-chip">MM</span>
     </div>
     <div class="jurusan-card">
-      <div class="jurusan-icon" style="background:linear-gradient(135deg,#558b2f,#9ccc65)"><i class="fas fa-robot"></i></div>
+      <div class="jurusan-icon" style="background:linear-gradient(135deg,#1a3a20,#2e6030)"><i class="fas fa-robot"></i></div>
       <h3>Teknik Elektronika Industri</h3>
-      <p>Sistem elektronika, otomasi industri, PLC, robotika, dan instrumentasi untuk kebutuhan manufaktur.</p>
-      <span class="jurusan-tag">TEI</span>
+      <p>Sistem elektronika, otomasi industri, PLC, robotika, dan instrumentasi manufaktur.</p>
+      <span class="jurusan-chip">TEI</span>
     </div>
   </div>
 </section>
 
 
 <!-- ══ EKSKUL ══ -->
-<section id="ekskul">
-  <div class="section-header">
-    <span class="section-tag">Kegiatan Siswa</span>
-    <h2>Ekstrakurikuler</h2>
-    <div class="divider"></div>
+<section id="ekskul" class="bg-white">
+  <div class="section-header container">
+    <div class="section-label">Kegiatan Siswa</div>
+    <h2>Ekstra<span class="gold">kurikuler</span></h2>
+    <div class="divider-gold"></div>
     <p>Pengembangan diri siswa melalui berbagai kegiatan ekstrakurikuler yang terorganisir.</p>
   </div>
   <div class="ekskul-grid container">
-    <div class="ekskul-item">
-      <i class="fas fa-user-shield"></i>
-      <h4>Pramuka</h4>
-      <p>Ekstrakurikuler wajib pembentukan karakter</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-flag"></i>
-      <h4>Paskibra</h4>
-      <p>Pasukan pengibar bendera sekolah & kabupaten</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-first-aid"></i>
-      <h4>PMR</h4>
-      <p>Palang Merah Remaja — pertolongan pertama</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-fist-raised"></i>
-      <h4>Pencak Silat</h4>
-      <p>Seni bela diri tradisional Indonesia</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-futbol"></i>
-      <h4>Sepak Bola</h4>
-      <p>Tim sepak bola berprestasi tingkat kabupaten</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-volleyball-ball"></i>
-      <h4>Bola Voli</h4>
-      <p>Tim voli putra dan putri</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-basketball-ball"></i>
-      <h4>Bola Basket</h4>
-      <p>Tim basket aktif kompetisi antar sekolah</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-table-tennis"></i>
-      <h4>Tenis Meja</h4>
-      <p>Olahraga tenis meja individu & beregu</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-mosque"></i>
-      <h4>Rohis</h4>
-      <p>Kerohanian Islam — OSIS & kegiatan keagamaan</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-music"></i>
-      <h4>Seni Musik</h4>
-      <p>Band, vokal grup, dan seni pertunjukan</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-paint-brush"></i>
-      <h4>Seni Rupa & Desain</h4>
-      <p>Desain grafis, ilustrasi, dan seni kreatif</p>
-    </div>
-    <div class="ekskul-item">
-      <i class="fas fa-car-alt"></i>
-      <h4>Otomotif Club</h4>
-      <p>Praktik lanjut otomotif & modifikasi kendaraan</p>
-    </div>
+    <div class="ekskul-item"><i class="fas fa-user-shield"></i><h4>Pramuka</h4><p>Ekstrakurikuler wajib pembentukan karakter</p></div>
+    <div class="ekskul-item"><i class="fas fa-flag"></i><h4>Paskibra</h4><p>Pasukan pengibar bendera sekolah &amp; kabupaten</p></div>
+    <div class="ekskul-item"><i class="fas fa-first-aid"></i><h4>PMR</h4><p>Palang Merah Remaja &mdash; pertolongan pertama</p></div>
+    <div class="ekskul-item"><i class="fas fa-fist-raised"></i><h4>Pencak Silat</h4><p>Seni bela diri tradisional Indonesia</p></div>
+    <div class="ekskul-item"><i class="fas fa-futbol"></i><h4>Sepak Bola</h4><p>Tim sepak bola berprestasi tingkat kabupaten</p></div>
+    <div class="ekskul-item"><i class="fas fa-volleyball-ball"></i><h4>Bola Voli</h4><p>Tim voli putra dan putri</p></div>
+    <div class="ekskul-item"><i class="fas fa-basketball-ball"></i><h4>Bola Basket</h4><p>Tim basket aktif kompetisi antar sekolah</p></div>
+    <div class="ekskul-item"><i class="fas fa-table-tennis"></i><h4>Tenis Meja</h4><p>Olahraga tenis meja individu &amp; beregu</p></div>
+    <div class="ekskul-item"><i class="fas fa-mosque"></i><h4>Rohis</h4><p>Kerohanian Islam &mdash; kegiatan keagamaan</p></div>
+    <div class="ekskul-item"><i class="fas fa-music"></i><h4>Seni Musik</h4><p>Band, vokal grup, dan seni pertunjukan</p></div>
+    <div class="ekskul-item"><i class="fas fa-paint-brush"></i><h4>Seni Rupa &amp; Desain</h4><p>Desain grafis, ilustrasi, dan seni kreatif</p></div>
+    <div class="ekskul-item"><i class="fas fa-car-alt"></i><h4>Otomotif Club</h4><p>Praktik lanjut otomotif &amp; modifikasi kendaraan</p></div>
   </div>
 </section>
 
 <!-- ══ FASILITAS ══ -->
-<section id="fasilitas">
-  <div class="section-header">
-    <span class="section-tag">Infrastruktur</span>
-    <h2>Fasilitas Sekolah</h2>
-    <div class="divider"></div>
+<section id="fasilitas" class="bg-off">
+  <div class="section-header container">
+    <div class="section-label">Infrastruktur</div>
+    <h2>Fasilitas <span class="gold">Sekolah</span></h2>
+    <div class="divider-gold"></div>
     <p>Fasilitas lengkap dan modern untuk mendukung proses belajar mengajar yang optimal.</p>
   </div>
-  <div class="fasilitas-grid">
+  <div class="fasilitas-grid container">
     <div class="fasilitas-card">
-      <div class="fasilitas-img" style="background:#e3f2fd">💻</div>
-      <div class="fasilitas-body">
-        <h4>Lab Komputer</h4>
-        <p>4 laboratorium komputer dengan spesifikasi terkini, dilengkapi akses internet berkecepatan tinggi.</p>
-      </div>
+      <div class="fasilitas-img" style="background:linear-gradient(145deg,#e3eeff,#c8d8f8)">💻</div>
+      <div class="fasilitas-body"><h4>Lab Komputer</h4><p>4 laboratorium komputer spesifikasi terkini, dilengkapi akses internet berkecepatan tinggi.</p></div>
     </div>
     <div class="fasilitas-card">
-      <div class="fasilitas-img" style="background:#fff3e0">🔧</div>
-      <div class="fasilitas-body">
-        <h4>Bengkel Otomotif</h4>
-        <p>Bengkel otomotif lengkap dengan peralatan standar industri untuk praktik kendaraan ringan dan motor.</p>
-      </div>
+      <div class="fasilitas-img" style="background:linear-gradient(145deg,#fff0e0,#ffe0c0)">🔧</div>
+      <div class="fasilitas-body"><h4>Bengkel Otomotif</h4><p>Bengkel lengkap dengan peralatan standar industri untuk praktik kendaraan ringan dan motor.</p></div>
     </div>
     <div class="fasilitas-card">
-      <div class="fasilitas-img" style="background:#e8f5e9">📚</div>
-      <div class="fasilitas-body">
-        <h4>Perpustakaan Digital</h4>
-        <p>Koleksi buku lengkap dan akses e-library dengan ribuan referensi digital untuk mendukung belajar.</p>
-      </div>
+      <div class="fasilitas-img" style="background:linear-gradient(145deg,#e8f5e9,#c8e6c9)">📚</div>
+      <div class="fasilitas-body"><h4>Perpustakaan Digital</h4><p>Koleksi buku lengkap dan akses e-library dengan ribuan referensi digital.</p></div>
     </div>
     <div class="fasilitas-card">
-      <div class="fasilitas-img" style="background:#f3e5f5">⚡</div>
-      <div class="fasilitas-body">
-        <h4>Lab Kelistrikan</h4>
-        <p>Laboratorium teknik instalasi tenaga listrik dengan panel training dan peralatan elektronikal.</p>
-      </div>
+      <div class="fasilitas-img" style="background:linear-gradient(145deg,#f3e5f5,#e1bee7)">⚡</div>
+      <div class="fasilitas-body"><h4>Lab Kelistrikan</h4><p>Laboratorium teknik instalasi tenaga listrik dengan panel training dan peralatan elektronikal.</p></div>
     </div>
     <div class="fasilitas-card">
-      <div class="fasilitas-img" style="background:#e0f7fa">🏋️</div>
-      <div class="fasilitas-body">
-        <h4>Aula & Lapangan</h4>
-        <p>Aula serbaguna berkapasitas besar, lapangan olahraga, dan GOR untuk kegiatan siswa.</p>
-      </div>
+      <div class="fasilitas-img" style="background:linear-gradient(145deg,#e0f7fa,#b2ebf2)">🏋️</div>
+      <div class="fasilitas-body"><h4>Aula &amp; Lapangan</h4><p>Aula serbaguna berkapasitas besar, lapangan olahraga, dan GOR untuk kegiatan siswa.</p></div>
     </div>
     <div class="fasilitas-card">
-      <div class="fasilitas-img" style="background:#fce4ec">🎬</div>
-      <div class="fasilitas-body">
-        <h4>Studio Multimedia</h4>
-        <p>Studio produksi konten digital dengan peralatan videografi, green screen, dan software editing profesional.</p>
-      </div>
+      <div class="fasilitas-img" style="background:linear-gradient(145deg,#fce4ec,#f8bbd9)">🎬</div>
+      <div class="fasilitas-body"><h4>Studio Multimedia</h4><p>Studio produksi konten digital dengan peralatan videografi, green screen, dan software editing profesional.</p></div>
     </div>
   </div>
 </section>
 
 
 <!-- ══ PRESTASI ══ -->
-<section id="prestasi">
-  <div class="section-header">
-    <span class="section-tag">Penghargaan</span>
-    <h2>Prestasi Sekolah</h2>
-    <div class="divider"></div>
-    <p>Berbagai pencapaian membanggakan yang diraih oleh siswa dan sekolah di tingkat regional hingga nasional.</p>
+<section id="prestasi" class="bg-dark">
+  <div class="section-header container">
+    <div class="section-label">Penghargaan</div>
+    <h2>Prestasi <span class="gold">Sekolah</span></h2>
+    <div class="divider-gold"></div>
+    <p>Pencapaian membanggakan yang diraih siswa dan sekolah di tingkat regional hingga nasional.</p>
   </div>
-  <div class="prestasi-grid">
+  <div class="prestasi-grid container">
     <div class="prestasi-card">
       <span class="prestasi-medal">🥇</span>
       <h4>Juara 1 LKS Tingkat Provinsi</h4>
-      <p>Lomba Kompetensi Siswa bidang Teknik Komputer & Jaringan Tingkat Provinsi Jawa Tengah.</p>
-      <div class="year">Jawa Tengah · 2023</div>
+      <p>Lomba Kompetensi Siswa bidang Teknik Komputer &amp; Jaringan Tingkat Provinsi Jawa Tengah.</p>
+      <div class="prestasi-meta"><i class="fas fa-map-marker-alt"></i> Jawa Tengah &nbsp;·&nbsp; <i class="fas fa-calendar"></i> 2023</div>
     </div>
     <div class="prestasi-card">
       <span class="prestasi-medal">🏆</span>
       <h4>SMK Terbaik Kabupaten Sragen</h4>
       <p>Penghargaan sebagai sekolah menengah kejuruan terbaik berdasarkan nilai UN dan akreditasi.</p>
-      <div class="year">Sragen · 2023</div>
+      <div class="prestasi-meta"><i class="fas fa-map-marker-alt"></i> Sragen &nbsp;·&nbsp; <i class="fas fa-calendar"></i> 2023</div>
     </div>
     <div class="prestasi-card">
       <span class="prestasi-medal">🥈</span>
       <h4>Juara 2 LKS Otomotif Nasional</h4>
       <p>Lomba Kompetensi Siswa bidang Teknik Kendaraan Ringan Tingkat Nasional.</p>
-      <div class="year">Nasional · 2022</div>
+      <div class="prestasi-meta"><i class="fas fa-map-marker-alt"></i> Nasional &nbsp;·&nbsp; <i class="fas fa-calendar"></i> 2022</div>
     </div>
     <div class="prestasi-card">
       <span class="prestasi-medal">🎖️</span>
       <h4>Juara 1 Olimpiade Akuntansi</h4>
       <p>Olimpiade akuntansi tingkat kabupaten yang diikuti seluruh SMK se-Kabupaten Sragen.</p>
-      <div class="year">Sragen · 2023</div>
+      <div class="prestasi-meta"><i class="fas fa-map-marker-alt"></i> Sragen &nbsp;·&nbsp; <i class="fas fa-calendar"></i> 2023</div>
     </div>
     <div class="prestasi-card">
       <span class="prestasi-medal">🌟</span>
       <h4>Sekolah Adiwiyata Tingkat Nasional</h4>
       <p>Penghargaan sekolah peduli dan berbudaya lingkungan dari Kementerian Lingkungan Hidup.</p>
-      <div class="year">Nasional · 2022</div>
+      <div class="prestasi-meta"><i class="fas fa-map-marker-alt"></i> Nasional &nbsp;·&nbsp; <i class="fas fa-calendar"></i> 2022</div>
     </div>
     <div class="prestasi-card">
       <span class="prestasi-medal">🥇</span>
       <h4>Juara 1 Desain Grafis Tingkat Provinsi</h4>
       <p>Kompetisi desain grafis dan multimedia antar SMK se-Provinsi Jawa Tengah.</p>
-      <div class="year">Jawa Tengah · 2024</div>
+      <div class="prestasi-meta"><i class="fas fa-map-marker-alt"></i> Jawa Tengah &nbsp;·&nbsp; <i class="fas fa-calendar"></i> 2024</div>
     </div>
   </div>
 </section>
 
 <!-- ══ KONTAK ══ -->
-<section id="kontak">
-  <div class="section-header">
-    <span class="section-tag">Hubungi Kami</span>
-    <h2>Informasi Kontak</h2>
-    <div class="divider"></div>
+<section id="kontak" class="bg-white">
+  <div class="section-header container">
+    <div class="section-label">Hubungi Kami</div>
+    <h2>Informasi <span class="gold">Kontak</span></h2>
+    <div class="divider-gold"></div>
     <p>Jangan ragu untuk menghubungi kami. Tim kami siap membantu menjawab pertanyaan Anda.</p>
   </div>
-  <div class="kontak-grid">
-    <div class="kontak-info">
-      <h3>Kontak & Lokasi</h3>
+  <div class="kontak-wrap container">
+    <div class="kontak-head">
+      <h3>Kontak &amp; <span>Lokasi</span></h3>
       <div class="kontak-item">
-        <div class="kontak-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-        <div>
-          <h4>Alamat</h4>
-          <p>Jl. Raya Sukowati No.1, Sragen,<br>Jawa Tengah 57213</p>
-        </div>
+        <div class="kontak-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div><h4>Alamat</h4><p>Jl. Raya Sukowati No.1, Sragen, Jawa Tengah 57213</p></div>
       </div>
       <div class="kontak-item">
-        <div class="kontak-item-icon"><i class="fas fa-phone-alt"></i></div>
-        <div>
-          <h4>Telepon</h4>
-          <p>(0271) 891006</p>
-        </div>
+        <div class="kontak-icon"><i class="fas fa-phone-alt"></i></div>
+        <div><h4>Telepon</h4><p>(0271) 891006</p></div>
       </div>
       <div class="kontak-item">
-        <div class="kontak-item-icon"><i class="fas fa-envelope"></i></div>
-        <div>
-          <h4>Email</h4>
-          <p>smkn2sragen@gmail.com</p>
-        </div>
+        <div class="kontak-icon"><i class="fas fa-envelope"></i></div>
+        <div><h4>Email</h4><p>smkn2sragen@gmail.com</p></div>
       </div>
       <div class="kontak-item">
-        <div class="kontak-item-icon"><i class="fas fa-clock"></i></div>
-        <div>
-          <h4>Jam Operasional</h4>
-          <p>Senin – Sabtu: 07.00 – 16.00 WIB</p>
-        </div>
+        <div class="kontak-icon"><i class="fas fa-clock"></i></div>
+        <div><h4>Jam Operasional</h4><p>Senin &ndash; Sabtu: 07.00 &ndash; 16.00 WIB</p></div>
       </div>
     </div>
     <div class="kontak-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6!2d111.0!3d-7.43!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a6e2a6e2a6e2a%3A0x0!2sSragen%2C+Jawa+Tengah!5e0!3m2!1sid!2sid!4v1"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6!2d111.0!3d-7.43!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a6e2a6e2a6e2a%3A0x0!2sSragen%2C+Jawa+Tengah!5e0!3m2!1sid!2sid!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
@@ -838,91 +945,86 @@
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h3>SMK Negeri 2 <span>Sragen</span></h3>
-      <p>Sekolah kejuruan unggulan di Kabupaten Sragen yang berkomitmen mencetak lulusan kompeten, berkarakter, dan siap kerja.</p>
-      <div class="footer-social">
+  <div class="footer-wrap">
+    <div>
+      <div class="footer-brand-name">SMK Negeri 2 <span>Sragen</span></div>
+      <p class="footer-desc">Sekolah kejuruan unggulan di Kabupaten Sragen yang berkomitmen mencetak lulusan kompeten, berkarakter, dan siap kerja.</p>
+      <div class="footer-socials">
         <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
-    <div class="footer-links">
-      <h4>Menu Utama</h4>
+    <div class="footer-col">
+      <h5>Menu Utama</h5>
       <ul>
         <li><a href="#tentang">Tentang Sekolah</a></li>
-        <li><a href="#visi-misi">Visi & Misi</a></li>
+        <li><a href="#visi-misi">Visi &amp; Misi</a></li>
         <li><a href="#jurusan">Program Keahlian</a></li>
         <li><a href="#fasilitas">Fasilitas</a></li>
         <li><a href="#prestasi">Prestasi</a></li>
         <li><a href="#kontak">Kontak</a></li>
       </ul>
     </div>
-    <div class="footer-links">
-      <h4>Program Keahlian</h4>
+    <div class="footer-col">
+      <h5>Program Keahlian</h5>
       <ul>
-        <li><a href="#jurusan">Teknik Komputer & Jaringan</a></li>
+        <li><a href="#jurusan">Teknik Komputer &amp; Jaringan</a></li>
         <li><a href="#jurusan">Teknik Kendaraan Ringan</a></li>
-        <li><a href="#jurusan">Akuntansi & Keuangan</a></li>
+        <li><a href="#jurusan">Akuntansi &amp; Keuangan</a></li>
         <li><a href="#jurusan">Multimedia</a></li>
         <li><a href="#jurusan">Teknik Instalasi Listrik</a></li>
-        <li><a href="#jurusan">Lihat Semua →</a></li>
+        <li><a href="#jurusan">Lihat Semua &rarr;</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2024 <span>SMK Negeri 2 Sragen</span>. Hak Cipta Dilindungi. | Dibuat dengan ❤️ untuk kemajuan pendidikan.</p>
+    <p>&copy; 2024 <span>SMK Negeri 2 Sragen</span>. Hak Cipta Dilindungi. Dibuat dengan dedikasi untuk kemajuan pendidikan.</p>
   </div>
 </footer>
 
 <script>
-  // Hamburger nav toggle
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
 
-  // Navbar shrink on scroll
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      nav.style.padding = '0 5%';
-      nav.style.height = '60px';
-    } else {
-      nav.style.height = '70px';
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Smooth scroll active link highlight
+  // Active link highlight
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navAs = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--secondary)' : '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 110) current = s.getAttribute('id'); });
+    navAs.forEach(a => {
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.style.color = isActive ? 'var(--gold-bright)' : '';
     });
   });
 
-  // Fade-in on scroll animation
-  const observer = new IntersectionObserver((entries) => {
+  // Scroll-reveal animation
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.style.opacity = '1';
         e.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(e.target);
       }
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.jurusan-card, .fasilitas-card, .prestasi-card, .ekskul-item, .vm-card, .kontak-item').forEach(el => {
+  document.querySelectorAll(
+    '.jurusan-card, .fasilitas-card, .prestasi-card, .ekskul-item, .vm-card, .kontak-item, .stat-box, .info-row'
+  ).forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    revealObserver.observe(el);
   });
 </script>
 </body>
