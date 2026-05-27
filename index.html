@@ -460,6 +460,7 @@
         border-bottom: 1px solid var(--border);
       }
       .nav-links.open { display: flex; }
+      .nav-links li a { padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
       .hamburger { display: flex; }
     }
     @media (max-width: 600px) {
@@ -553,7 +554,10 @@
       <div class="stat-box"><span class="stat-num">150<sup style="font-size:0.5em;color:var(--gold)">+</sup></span><div class="stat-lbl">Guru &amp; Staff</div></div>
     </div>
   </div>
-  <div class="hero-scroll">Scroll ke bawah <i class="fas fa-chevron-down"></i></div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
 </section>
 
 
@@ -641,7 +645,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- ══ JURUSAN ══ -->
 <section id="jurusan">
@@ -881,8 +884,8 @@
         <a href="#" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
       </div>
     </div>
-    <div class="footer-links">
-      <h4>Menu Utama</h4>
+    <div class="footer-col">
+      <h5>Menu Utama</h5>
       <ul>
         <li><a href="#tentang">Tentang Sekolah</a></li>
         <li><a href="#visi-misi">Visi &amp; Misi</a></li>
@@ -892,8 +895,8 @@
         <li><a href="#kontak">Kontak</a></li>
       </ul>
     </div>
-    <div class="footer-links">
-      <h4>Program Keahlian</h4>
+    <div class="footer-col">
+      <h5>Program Keahlian</h5>
       <ul>
         <li><a href="#jurusan">Teknik Komputer &amp; Jaringan</a></li>
         <li><a href="#jurusan">Teknik Kendaraan Ringan</a></li>
@@ -925,7 +928,7 @@
 
   /* ── Active nav link ── */
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navAs = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => {
