@@ -341,13 +341,14 @@
     }
     .vm-card h3 { font-size: 20px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; }
     .vm-card p { font-size: 14.5px; color: var(--text-2); line-height: 1.85; font-style: italic; margin-bottom: 0; }
-    .vm-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .vm-list { list-style: none; display: flex; flex-direction: column; gap: 12px; counter-reset: misi-counter; }
     .vm-list li {
       display: flex; align-items: flex-start; gap: 12px;
       font-size: 14px; color: var(--text-2); line-height: 1.7;
+      counter-increment: misi-counter;
     }
     .vm-list li::before {
-      content: '✓'; font-size: 11px; font-weight: 800;
+      content: counter(misi-counter); font-size: 11px; font-weight: 800;
       color: var(--navy); background: var(--navy-dim);
       width: 20px; height: 20px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
