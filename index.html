@@ -187,17 +187,58 @@
     .about-img-wrap { position: relative; }
     .about-img {
       width: 100%; aspect-ratio: 4/5; border-radius: var(--r-2xl);
-      background: var(--gray-1); overflow: hidden; position: relative;
-      display: flex; align-items: center; justify-content: center;
+      background: var(--navy-dk); overflow: hidden; position: relative;
     }
-    .about-img i { font-size: 6rem; color: var(--navy); opacity: .12; }
+    /* Slideshow */
+    .slide {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active { opacity: 1; }
+    .slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 6s ease;
+    }
+    .slide.active img { transform: scale(1); }
+    .slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(18,36,72,.1) 0%, rgba(18,36,72,.55) 100%);
+    }
     .about-img-badge {
-      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-      background: var(--navy); color: #fff; border-radius: 100px;
+      position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,.15); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff; border-radius: 100px;
       padding: 10px 22px; font-size: 12px; font-weight: 600;
       white-space: nowrap; display: flex; align-items: center; gap: 8px;
+      z-index: 3;
     }
-    .about-img-badge i { color: var(--gold); }
+    .about-img-badge i { color: var(--gold-lt); }
+    /* Dots */
+    .slide-dots {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 3;
+    }
+    .slide-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); border: none; cursor: pointer;
+      transition: background .3s, transform .3s; padding: 0;
+    }
+    .slide-dot.active { background: #fff; transform: scale(1.3); }
+    /* Prev / Next arrows */
+    .slide-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.18); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.3); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 3; font-size: 13px;
+      transition: background .2s;
+    }
+    .slide-arrow:hover { background: rgba(255,255,255,.35); }
+    .slide-arrow.prev { left: 14px; }
+    .slide-arrow.next { right: 14px; }
     .about-avatars { display: flex; align-items: center; margin-top: 20px; gap: 12px; }
     .about-avatar-stack { display: flex; }
     .about-avatar {
@@ -930,9 +971,32 @@
   <div class="container">
     <div class="about-grid">
       <div class="about-img-wrap rv">
-        <div class="about-img">
-          <i class="fas fa-school"></i>
+        <div class="about-img" id="aboutSlider">
+          <div class="slide active">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" alt="Gerbang SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/42944920_1890171144435131_8386577090693483445_n(1).jpg" alt="Kegiatan SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/59450345_371680263555244_5513103156207457382_n.jpg" alt="Siswa SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/ganjar-di-smk-sargen1.jpeg" alt="Kunjungan ke SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
           <div class="about-img-badge"><i class="fas fa-star"></i> Akreditasi A · BAN-S/M</div>
+          <button class="slide-arrow prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="slide-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+          <div class="slide-dots">
+            <button class="slide-dot active" onclick="goSlide(0)"></button>
+            <button class="slide-dot" onclick="goSlide(1)"></button>
+            <button class="slide-dot" onclick="goSlide(2)"></button>
+            <button class="slide-dot" onclick="goSlide(3)"></button>
+          </div>
         </div>
         <div class="about-avatars">
           <div class="about-avatar-stack">
@@ -1799,7 +1863,22 @@
   if (ageEl) ageEl.dataset.target = schoolAge; // set data-target agar ikut animasi count-up
   document.getElementById('footerYear').textContent = now.getFullYear();
 
-  // ── Navbar scroll
+  // ── About Slideshow
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#aboutSlider .slide');
+  const dots = document.querySelectorAll('#aboutSlider .slide-dot');
+
+  function goSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+  function moveSlide(dir) { goSlide(currentSlide + dir); }
+  setInterval(() => moveSlide(1), 4500);
+
+
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
 
