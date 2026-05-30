@@ -887,7 +887,7 @@
     <div class="hero-bg-pattern"></div>
   </div>
   <div class="hero-inner container">
-    <div class="hero-badge rv"><div class="hero-badge-dot"></div> Terakreditasi A &nbsp;·&nbsp; Est. 1992</div>
+    <div class="hero-badge rv"><div class="hero-badge-dot"></div> Terakreditasi A &nbsp;·&nbsp; Est. 2002</div>
     <h1 class="hero-title rv d1">Membentuk Generasi <span>Unggul, Berkarakter,</span> dan Siap Kerja</h1>
     <p class="hero-desc rv d2">SMK Negeri 2 Sragen — sekolah kejuruan negeri terkemuka di Kabupaten Sragen yang mencetak lulusan kompeten dan berdaya saing tinggi di dunia industri.</p>
     <div class="hero-btns rv d3">
@@ -895,7 +895,7 @@
       <a href="#tentang" class="btn-outline-white"><i class="fas fa-info-circle"></i> Profil Sekolah</a>
     </div>
     <div class="hero-stats rv d4">
-      <div class="hstat"><div class="hstat-num" data-target="32">0</div><div class="hstat-lbl">Tahun Berdiri</div></div>
+      <div class="hstat"><div class="hstat-num" id="schoolAge">0</div><div class="hstat-lbl">Tahun Berdiri</div></div>
       <div class="hstat"><div class="hstat-num" data-target="1900">0</div><div class="hstat-lbl">Siswa Aktif</div></div>
       <div class="hstat"><div class="hstat-num" data-target="6">0</div><div class="hstat-lbl">Program Keahlian</div></div>
       <div class="hstat"><div class="hstat-num" data-target="150">0</div><div class="hstat-lbl">Tenaga Pendidik</div></div>
@@ -940,7 +940,7 @@
             <div class="about-avatar"><i class="fas fa-user"></i></div>
             <div class="about-avatar"><i class="fas fa-user"></i></div>
           </div>
-          <div class="about-avatar-text">Dipercaya <strong>lebih dari 12.000 siswa</strong> sejak 1992</div>
+          <div class="about-avatar-text">Berdiri sejak <strong>5 Maret 2002</strong> · SK Bupati No. 421.5/36/03/2002</div>
         </div>
       </div>
       <div class="rv d1">
@@ -1781,13 +1781,22 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <p>© 2025 SMK Negeri 2 Sragen. Seluruh hak cipta dilindungi.</p>
+      <p>© <span id="footerYear"></span> SMK Negeri 2 Sragen. Seluruh hak cipta dilindungi.</p>
       <div class="foot-bottom-badge"><i class="fas fa-circle" style="font-size:6px;color:var(--navy)"></i> Terakreditasi A</div>
     </div>
   </div>
 </footer>
 
 <script>
+  // ── Umur sekolah & tahun footer otomatis
+  const FOUNDING_DATE = new Date(2002, 2, 5); // 5 Maret 2002
+  const now = new Date();
+  const schoolAge = now.getFullYear() - FOUNDING_DATE.getFullYear() -
+    (now < new Date(now.getFullYear(), 2, 5) ? 1 : 0);
+  const ageEl = document.getElementById('schoolAge');
+  if (ageEl) ageEl.textContent = schoolAge;
+  document.getElementById('footerYear').textContent = now.getFullYear();
+
   // ── Navbar scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
