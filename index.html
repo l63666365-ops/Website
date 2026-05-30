@@ -1794,7 +1794,7 @@
   const schoolAge = now.getFullYear() - FOUNDING_DATE.getFullYear() -
     (now < new Date(now.getFullYear(), 2, 5) ? 1 : 0);
   const ageEl = document.getElementById('schoolAge');
-  if (ageEl) ageEl.textContent = schoolAge;
+  if (ageEl) ageEl.dataset.target = schoolAge; // set data-target agar ikut animasi count-up
   document.getElementById('footerYear').textContent = now.getFullYear();
 
   // ── Navbar scroll
