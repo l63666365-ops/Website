@@ -1150,7 +1150,7 @@
       </div>
       <div class="prestasi-banner-right">🏆</div>
     </div>
-    <div class="prestasi-grid" id="prestasiGrid">
+    <div class="prestasi-grid">
       <!-- Diisi otomatis dari _data/prestasi/*.json -->
       <div class="prcard rv d1">
         <span class="prcard-medal">🥇</span>
@@ -1308,9 +1308,9 @@
       </div>
       <a href="#" class="btn-navy" style="margin-top:0;">Semua Berita <i class="fas fa-arrow-right"></i></a>
     </div>
-    <div class="berita-grid" id="beritaGrid">
+    <div class="berita-grid">
       <!-- Berita utama -->
-      <div class="berita-main rv d1" id="beritaUtama">
+      <div class="berita-main rv d1">
         <div class="berita-main-img">
           🏆
           <span class="berita-main-cat">Prestasi</span>
@@ -1323,7 +1323,7 @@
         </div>
       </div>
       <!-- Berita list -->
-      <div class="berita-list rv d2" id="beritaList">
+      <div class="berita-list rv d2">
         <div class="berita-item">
           <div class="berita-item-img">📡</div>
           <div class="berita-item-body">
@@ -2004,168 +2004,6 @@
     }, 100);
   }
 
-  // ══════════════════════════════════════════════════════
-  // ── DYNAMIC CONTENT LOADER (dari _data/*.json) ────────
-  // ══════════════════════════════════════════════════════
-
-  const BASE = window.location.origin + window.location.pathname.replace(/\/$/, '');
-  const delay = ['d1','d2','d3','d4'];
-
-  // Helper: ambil semua file JSON dari sebuah folder via GitHub API
-  async function fetchAll(folder) {
-    try {
-      const apiUrl = `https://api.github.com/repos/l63666365-ops/Website/contents/_data/${folder}?ref=main`;
-      const res = await fetch(apiUrl);
-      if (!res.ok) return [];
-      const files = await res.json();
-      const jsonFiles = files.filter(f => f.name.endsWith('.json'));
-      const results = await Promise.all(
-        jsonFiles.map(f => fetch(f.download_url).then(r => r.json()).catch(() => null))
-      );
-      return results.filter(Boolean);
-    } catch { return []; }
-  }
-
-  // ── PRESTASI ─────────────────────────────────────────
-  async function loadPrestasi() {
-    const data = await fetchAll('prestasi');
-    if (!data.length) return;
-    const grid = document.getElementById('prestasiGrid');
-    if (!grid) return;
-    grid.innerHTML = data.map((p, i) => `
-      <div class="prcard rv ${delay[i%4]}">
-        <span class="prcard-medal">${p.medali}</span>
-        <span class="prcard-lvl">${p.tingkat}</span>
-        <h4>${p.judul}</h4>
-        <p>${p.deskripsi}</p>
-      </div>`).join('');
-    grid.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
-  }
-
-  // ── BERITA ───────────────────────────────────────────
-  async function loadBerita() {
-    const data = await fetchAll('berita');
-    if (!data.length) return;
-    // Sort terbaru dulu, utama di depan
-    data.sort((a, b) => (b.utama ? 1 : 0) - (a.utama ? 1 : 0));
-    const utama = data.find(b => b.utama) || data[0];
-    const list  = data.filter(b => b !== utama).slice(0, 4);
-
-    const elUtama = document.getElementById('beritaUtama');
-    if (elUtama) {
-      elUtama.innerHTML = `
-        <div class="berita-main-img">
-          ${utama.foto ? `<img src="${utama.foto}" alt="${utama.judul}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">` : utama.emoji}
-          <span class="berita-main-cat">${utama.kategori}</span>
-        </div>
-        <div class="berita-main-body">
-          <div class="berita-main-date"><i class="fas fa-calendar-alt"></i> ${utama.tanggal}</div>
-          <div class="berita-main-title">${utama.judul}</div>
-          <div class="berita-main-snippet">${utama.ringkasan}</div>
-          <a href="#" class="berita-main-read">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
-        </div>`;
-    }
-
-    const elList = document.getElementById('beritaList');
-    if (elList) {
-      elList.innerHTML = list.map(b => `
-        <div class="berita-item">
-          <div class="berita-item-img">${b.foto ? `<img src="${b.foto}" alt="${b.judul}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">` : b.emoji}</div>
-          <div class="berita-item-body">
-            <div class="berita-item-cat">${b.kategori}</div>
-            <div class="berita-item-title">${b.judul}</div>
-            <div class="berita-item-date"><i class="fas fa-calendar-alt"></i> ${b.tanggal}</div>
-          </div>
-        </div>`).join('');
-    }
-  }
-
-  // ── GALERI ───────────────────────────────────────────
-  async function loadGaleri() {
-    const data = await fetchAll('galeri');
-    if (!data.length) return;
-    const grid = document.querySelector('.galeri-grid');
-    if (!grid) return;
-    grid.innerHTML = data.map(g => `
-      <div class="galeri-item ${g.ukuran === 'big' ? 'big' : g.ukuran === 'wide' ? 'wide' : ''}"
-           style="${g.foto ? '' : 'background:linear-gradient(135deg,#1a3566,#2451a0);'}"
-           onclick="openLightbox('${g.judul}')">
-        ${g.foto
-          ? `<img src="${g.foto}" alt="${g.judul}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">`
-          : g.emoji}
-        <div class="galeri-overlay"><span class="galeri-caption">${g.judul}</span></div>
-      </div>`).join('');
-  }
-
-  // ── TESTIMONI ────────────────────────────────────────
-  async function loadTestimoni() {
-    const data = await fetchAll('testimoni');
-    if (!data.length) return;
-    const grid = document.querySelector('.testi-grid');
-    if (!grid) return;
-    const colors = [
-      'linear-gradient(135deg,#1a3566,#2451a0)',
-      'linear-gradient(135deg,#122448,#1a3566)',
-      'linear-gradient(135deg,#1a3566,#122448)',
-      'linear-gradient(135deg,#2451a0,#1a3566)'
-    ];
-    grid.innerHTML = data.map((t, i) => `
-      <div class="tcard rv ${i%2===0?'d1':'d2'}" style="background:${colors[i%4]}">
-        <div class="tcard-bg"></div>
-        <div class="tcard-img-placeholder"><i class="fas ${t.ikon}"></i></div>
-        <div class="tcard-body">
-          <p class="tcard-quote">"${t.kutipan}"</p>
-          <div class="tcard-person">
-            <div class="tcard-avatar"><i class="fas fa-user"></i></div>
-            <div><div class="tcard-name">${t.nama}</div><div class="tcard-role">${t.peran}</div></div>
-          </div>
-        </div>
-      </div>`).join('');
-    grid.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
-  }
-
-  // ── PENGUMUMAN ───────────────────────────────────────
-  async function loadPengumuman() {
-    const data = await fetchAll('pengumuman');
-    if (!data.length) return;
-    data.sort((a, b) => (b.utama ? 1 : 0) - (a.utama ? 1 : 0));
-    const utama  = data.find(p => p.utama);
-    const others = data.filter(p => !p.utama);
-
-    if (utama) {
-      const bannerEl = document.querySelector('.info-alert .info-alert-title');
-      const dateEl   = document.querySelector('.info-alert .info-alert-date');
-      if (bannerEl) bannerEl.textContent = utama.judul;
-      if (dateEl)   dateEl.innerHTML = `<i class="fas fa-calendar-alt"></i> ${utama.tanggal}`;
-    }
-
-    const container = document.querySelector('.pengumuman-grid > div:first-child');
-    if (!container) return;
-    const existing = container.querySelectorAll('.info-card');
-    existing.forEach(el => el.remove());
-
-    const viewAllBtn = container.querySelector('[style*="text-align:center"]');
-    others.slice(0, 5).forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'info-card rv d2';
-      card.innerHTML = `
-        <div class="info-card-dot ${p.dot}"></div>
-        <div class="info-card-body">
-          <div class="info-card-title">${p.judul}</div>
-          <div class="info-card-meta"><i class="fas fa-clock"></i> ${p.tanggal} &nbsp;·&nbsp; ${p.kategori}</div>
-        </div>
-        <i class="fas fa-chevron-right" style="color:var(--text-3);font-size:12px;"></i>`;
-      rvObs.observe(card);
-      container.insertBefore(card, viewAllBtn);
-    });
-  }
-
-  // ── JALANKAN SEMUA ───────────────────────────────────
-  loadPrestasi();
-  loadBerita();
-  loadGaleri();
-  loadTestimoni();
-  loadPengumuman();
 
 </script>
 </body>
