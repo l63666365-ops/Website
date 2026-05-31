@@ -1,0 +1,151 @@
+backend:
+  name: github
+  repo: l63666365-ops/Website
+  branch: main
+  base_url: https://api.netlify.com
+
+media_folder: "assets/img/uploads"
+public_folder: "assets/img/uploads"
+
+locale: id
+
+collections:
+
+  # ── BERITA ──────────────────────────────────────────────
+  - name: "berita"
+    label: "📰 Berita"
+    label_singular: "Berita"
+    folder: "_data/berita"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Judul", name: "judul", widget: "string" }
+      - { label: "Tanggal", name: "tanggal", widget: "datetime", format: "DD MMMM YYYY", date_format: "DD MMMM YYYY", time_format: false }
+      - label: "Kategori"
+        name: "kategori"
+        widget: "select"
+        options: ["Prestasi", "Teknologi", "Kesiswaan", "Akademik", "Lingkungan", "Umum"]
+      - { label: "Foto (URL)", name: "foto", widget: "string", required: false, hint: "URL foto berita" }
+      - { label: "Emoji Foto", name: "emoji", widget: "string", default: "📰", hint: "Emoji yang tampil jika tidak ada foto" }
+      - { label: "Ringkasan", name: "ringkasan", widget: "text", hint: "Maksimal 2-3 kalimat" }
+      - { label: "Isi Lengkap", name: "isi", widget: "markdown", required: false }
+      - { label: "Tampilkan sebagai Berita Utama", name: "utama", widget: "boolean", default: false }
+
+  # ── PRESTASI ────────────────────────────────────────────
+  - name: "prestasi"
+    label: "🏆 Prestasi"
+    label_singular: "Prestasi"
+    folder: "_data/prestasi"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Nama Prestasi", name: "judul", widget: "string" }
+      - label: "Tingkat"
+        name: "tingkat"
+        widget: "select"
+        options: ["Tingkat Kecamatan", "Tingkat Kabupaten", "Tingkat Provinsi", "Tingkat Nasional", "Tingkat Internasional", "Penghargaan Lingkungan"]
+      - label: "Medali"
+        name: "medali"
+        widget: "select"
+        options: ["🥇", "🥈", "🥉", "🏆", "🌿", "⭐"]
+      - { label: "Deskripsi", name: "deskripsi", widget: "string", hint: "Contoh: Lomba Kompetensi Siswa Bidang Otomotif — Jawa Tengah" }
+      - { label: "Tahun", name: "tahun", widget: "string", hint: "Contoh: 2025" }
+
+  # ── GALERI ──────────────────────────────────────────────
+  - name: "galeri"
+    label: "📸 Galeri Foto"
+    label_singular: "Foto"
+    folder: "_data/galeri"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Judul Foto", name: "judul", widget: "string" }
+      - { label: "URL Foto", name: "foto", widget: "string", hint: "URL gambar (dari GitHub, Google Drive, dll)" }
+      - { label: "Emoji (jika foto tidak ada)", name: "emoji", widget: "string", default: "📸" }
+      - label: "Ukuran Tampilan"
+        name: "ukuran"
+        widget: "select"
+        options:
+          - { label: "Normal", value: "normal" }
+          - { label: "Besar (2x lebar)", value: "big" }
+          - { label: "Lebar (2x panjang)", value: "wide" }
+        default: "normal"
+
+  # ── TESTIMONI ───────────────────────────────────────────
+  - name: "testimoni"
+    label: "💬 Kata Siswa & Alumni"
+    label_singular: "Testimoni"
+    folder: "_data/testimoni"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Nama", name: "nama", widget: "string" }
+      - { label: "Peran / Status", name: "peran", widget: "string", hint: "Contoh: Ketua OSIS / Alumni TKJ 2023" }
+      - { label: "Kutipan", name: "kutipan", widget: "text" }
+      - label: "Ikon"
+        name: "ikon"
+        widget: "select"
+        options:
+          - { label: "Siswa/Alumni", value: "fa-user-graduate" }
+          - { label: "Pekerja Industri", value: "fa-hard-hat" }
+          - { label: "PMR / Kesehatan", value: "fa-heartbeat" }
+          - { label: "Teknologi", value: "fa-network-wired" }
+          - { label: "Umum", value: "fa-user" }
+
+  # ── PENGUMUMAN ──────────────────────────────────────────
+  - name: "pengumuman"
+    label: "📢 Pengumuman"
+    label_singular: "Pengumuman"
+    folder: "_data/pengumuman"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Judul", name: "judul", widget: "string" }
+      - { label: "Tanggal", name: "tanggal", widget: "datetime", format: "DD MMMM YYYY", date_format: "DD MMMM YYYY", time_format: false }
+      - label: "Kategori"
+        name: "kategori"
+        widget: "select"
+        options: ["PPDB", "Akademik", "Kesiswaan", "Administrasi", "Umum"]
+      - label: "Tipe Dot"
+        name: "dot"
+        widget: "select"
+        options:
+          - { label: "🔴 Baru (merah)", value: "new" }
+          - { label: "🟡 Info (kuning)", value: "info" }
+          - { label: "🔵 Biasa (biru)", value: "normal" }
+        default: "normal"
+      - { label: "Tampilkan sebagai Banner Utama", name: "utama", widget: "boolean", default: false }
+
+  # ── AGENDA ──────────────────────────────────────────────
+  - name: "agenda"
+    label: "📅 Agenda & Kalender"
+    label_singular: "Agenda"
+    folder: "_data/agenda"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Judul Kegiatan", name: "judul", widget: "string" }
+      - { label: "Tanggal", name: "tanggal", widget: "datetime", format: "DD MMMM YYYY", date_format: "DD MMMM YYYY", time_format: false }
+      - { label: "Hari (angka)", name: "hari", widget: "string", hint: "Contoh: 5" }
+      - { label: "Bulan (singkat)", name: "bulan", widget: "string", hint: "Contoh: Jun" }
+      - label: "Jenis"
+        name: "jenis"
+        widget: "select"
+        options:
+          - { label: "Kegiatan", value: "kegiatan" }
+          - { label: "Libur", value: "libur" }
+          - { label: "PPDB", value: "ppdb" }
+      - { label: "Waktu", name: "waktu", widget: "string", hint: "Contoh: 08.00 – 16.00 WIB" }
+      - { label: "Lokasi / Keterangan", name: "lokasi", widget: "string", hint: "Contoh: Aula Sekolah / Online" }
