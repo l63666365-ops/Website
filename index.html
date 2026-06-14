@@ -1,0 +1,2689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" />
+  <title>SMK Negeri 2 Sragen — Excellent, Competent, Character</title>
+  <meta name="description" content="SMK Negeri 2 Sragen — sekolah kejuruan unggulan di Kabupaten Sragen, Jawa Tengah. 6 program keahlian, akreditasi A, dan ribuan alumni terserap industri." />
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="SMK Negeri 2 Sragen" />
+  <meta property="og:title"        content="SMK Negeri 2 Sragen — Excellent, Competent, Character" />
+  <meta property="og:description"  content="SMK Negeri 2 Sragen — sekolah kejuruan unggulan di Kabupaten Sragen, Jawa Tengah. 6 program keahlian, akreditasi A, dan ribuan alumni terserap industri." />
+  <meta property="og:image"        content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="SMK Negeri 2 Sragen — Excellent, Competent, Character" />
+  <meta name="twitter:description" content="SMK Negeri 2 Sragen — sekolah kejuruan unggulan di Kabupaten Sragen, Jawa Tengah. 6 program keahlian, akreditasi A, dan ribuan alumni terserap industri." />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    // Sembunyikan halaman hanya kalau perlu scroll ke section lain saat refresh
+    // (kalau di hero / posisi 0, biarkan muncul langsung — tidak perlu opacity trick)
+    (function () {
+      var navType = ((performance.getEntriesByType('navigation')[0]) || {}).type;
+      var saved   = localStorage.getItem('smkn2_scroll_pos');
+      var targetY = saved ? parseInt(saved, 10) : 0;
+      var needHide = (navType === 'reload' || navType === 'back_forward') && targetY > 200;
+      if (needHide) document.documentElement.style.opacity = '0';
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #1a3566;
+      --navy-dk:   #122448;
+      --navy-lt:   #2451a0;
+      --navy-dim:  rgba(26,53,102,0.07);
+      --gold:      #e8a020;
+      --gold-lt:   #f5c842;
+      --white:     #ffffff;
+      --gray-1:    #f7f8fc;
+      --gray-2:    #eef0f6;
+      --gray-3:    #d1d5e0;
+      --text-1:    #0f1a35;
+      --text-2:    #4a5578;
+      --text-3:    #8a94b8;
+      --r-sm:  8px; --r-md: 16px; --r-lg: 24px; --r-xl: 32px; --r-2xl: 48px;
+      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--text-1); line-height: 1.65; overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-1); }
+    ::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 4px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── PAGE ENTRY — fade-in halus hanya saat perlu (dikontrol JS via inline transition) ── */
+    html.page-fading {
+      transition: opacity .4s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* REVEAL */
+    .rv { opacity: 0; transform: translateY(32px); transition: opacity .55s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1); }
+    .rv.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s} .d4{transition-delay:.28s}
+
+
+    /* ── NAVBAR ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-2);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(26,53,102,.1); }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      height: 64px; display: flex; align-items: center; gap: 0;
+      /* Pastikan navbar tidak pernah lebih lebar dari layar */
+      overflow: hidden;
+    }
+    .nav-logo { flex-shrink: 0; display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
+    .nav-right { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-left: 4px; }    .nav-logo-icon {
+      width: 52px; height: 52px; border-radius: 10px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo-icon img {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+    .nav-logo-text { font-size: 14px; font-weight: 700; color: var(--text-1); line-height: 1.3; }
+    .nav-logo-sub { font-size: 10px; color: var(--text-3); font-weight: 400; display: block; }
+    .nav-menu {
+      display: flex; align-items: center; gap: 4px;
+      overflow-x: auto; flex: 1; margin: 0 8px;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .nav-menu::-webkit-scrollbar { display: none; }
+    .nav-menu a {
+      font-size: 13.5px; font-weight: 500; color: var(--text-2);
+      text-decoration: none; padding: 6px 14px; border-radius: 8px;
+      transition: color .2s, background .2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .nav-menu a:hover, .nav-menu a.act { color: var(--navy); background: var(--navy-dim); }
+    .nav-cta {
+      background: var(--navy) !important; color: #fff !important;
+      font-weight: 700 !important; border-radius: 100px !important;
+      padding: 8px 20px !important; margin-left: 8px;
+      transition: background .2s, transform .2s !important;
+    }
+    .nav-cta:hover { background: var(--navy-lt) !important; transform: translateY(-1px) !important; }
+    /* Tombol hamburger — hidden di desktop */
+    .nav-hamburger {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 9px;
+      align-items: center; justify-content: center;
+      font-size: 16px; color: var(--text-2);
+      transition: background .2s, color .2s;
+      flex-shrink: 0;
+    }
+    .nav-hamburger:hover { background: var(--navy-dim); color: var(--navy); }
+
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; position: relative; display: flex; align-items: center;
+      overflow: hidden; padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(135deg, var(--navy-dk) 0%, var(--navy) 50%, var(--navy-lt) 100%);
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: url('https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg') center/cover no-repeat;
+      opacity: .22;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 1;
+      background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .hero-inner {
+      position: relative; z-index: 2; width: 100%;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 80px 24px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 100px; padding: 6px 18px; margin-bottom: 28px;
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,.9);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .hero-title {
+      font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 800;
+      color: #fff; line-height: 1.15; margin-bottom: 20px;
+      max-width: 800px;
+    }
+    .hero-title span { color: var(--gold-lt); }
+    .hero-desc {
+      font-size: 17px; color: rgba(255,255,255,.78); line-height: 1.85;
+      max-width: 560px; margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #fff; color: var(--navy);
+      padding: 13px 30px; border-radius: 100px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.28); }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 2px solid rgba(255,255,255,.5); color: #fff;
+      padding: 13px 30px; border-radius: 100px;
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      transition: border-color .25s, background .25s;
+    }
+    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+    .hero-stats {
+      display: flex; gap: 0; margin-top: 64px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--r-xl); overflow: hidden; backdrop-filter: blur(10px);
+    }
+    .hstat {
+      flex: 1; padding: 24px 32px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .hstat:last-child { border-right: none; }
+    .hstat-num { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1; }
+    .hstat-lbl { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── TICKER ── */
+    .ticker { background: var(--navy); padding: 13px 0; overflow: hidden; }
+    .ticker-track { display: flex; gap: 48px; animation: tick 28s linear infinite; white-space: nowrap; }
+    .ticker-item {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,.8);
+    }
+    .ticker-item i { color: var(--gold); font-size: 6px; }
+    @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── SECTION HEADER ── */
+    .s-tag {
+      display: inline-block; background: var(--navy-dim); color: var(--navy);
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .s-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800;
+      color: var(--text-1); line-height: 1.22; margin-bottom: 14px;
+    }
+    .s-title em { font-style: normal; color: var(--navy); }
+    .s-desc { font-size: 15.5px; color: var(--text-2); line-height: 1.85; max-width: 560px; }
+    .s-header { margin-bottom: 52px; }
+    .s-header.c { text-align: center; }
+    .s-header.c .s-desc { margin: 0 auto; }
+
+    /* ── ABOUT / SAMBUTAN ── */
+    .about { padding: 96px 0; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%; aspect-ratio: 4/5; border-radius: var(--r-2xl);
+      background: var(--navy-dk); overflow: hidden; position: relative;
+    }
+    /* Slideshow */
+    .slide {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active { opacity: 1; }
+    .slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 6s ease;
+    }
+    .slide.active img { transform: scale(1); }
+    .slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(18,36,72,.1) 0%, rgba(18,36,72,.55) 100%);
+    }
+    .about-img-badge {
+      position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,.15); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff; border-radius: 100px;
+      padding: 10px 22px; font-size: 12px; font-weight: 600;
+      white-space: nowrap; display: flex; align-items: center; gap: 8px;
+      z-index: 3;
+    }
+    .about-img-badge i { color: var(--gold-lt); }
+    /* Dots */
+    .slide-dots {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 3;
+    }
+    .slide-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); border: none; cursor: pointer;
+      transition: background .3s, transform .3s; padding: 0;
+    }
+    .slide-dot.active { background: #fff; transform: scale(1.3); }
+    /* Prev / Next arrows */
+    .slide-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,.18); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.3); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 3; font-size: 13px;
+      transition: background .2s;
+    }
+    .slide-arrow:hover { background: rgba(255,255,255,.35); }
+    .slide-arrow.prev { left: 14px; }
+    .slide-arrow.next { right: 14px; }
+    .about-avatars { display: flex; align-items: center; margin-top: 20px; gap: 12px; }
+    .about-avatar-stack { display: flex; }
+    .about-avatar {
+      width: 36px; height: 36px; border-radius: 50%; border: 2px solid #fff;
+      background: var(--gray-2); margin-left: -10px; display: flex; align-items: center;
+      justify-content: center; font-size: 14px; color: var(--navy); overflow: hidden;
+    }
+    .about-avatar:first-child { margin-left: 0; }
+    .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .about-avatar-text { font-size: 12px; color: var(--text-2); font-weight: 500; }
+    .about-avatar-text strong { color: var(--text-1); }
+    .about-quote {
+      font-size: 17px; font-style: italic; color: var(--navy); font-weight: 600;
+      border-left: 3px solid var(--gold); padding-left: 18px; margin-bottom: 18px; line-height: 1.6;
+    }
+    .about-body-text { font-size: 15px; color: var(--text-2); line-height: 1.9; margin-bottom: 14px; }
+    .about-name { font-weight: 700; color: var(--text-1); font-size: 15px; margin-top: 20px; }
+    .about-role { font-size: 13px; color: var(--text-3); font-style: italic; }
+    .btn-navy {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--navy); color: #fff;
+      padding: 13px 28px; border-radius: 100px;
+      font-size: 13.5px; font-weight: 700; text-decoration: none;
+      letter-spacing: .3px; margin-top: 28px;
+      transition: background .25s, transform .25s, box-shadow .25s;
+      box-shadow: 0 6px 20px rgba(26,53,102,.25);
+    }
+    .btn-navy:hover { background: var(--navy-lt); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,53,102,.35); }
+
+    /* ── PROGRAM CARDS ── */
+    .program { padding: 96px 0; background: var(--gray-1); }
+    .program-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .pcard {
+      background: var(--white); border-radius: var(--r-xl);
+      padding: 40px 28px; text-align: center;
+      border: 1px solid var(--gray-2);
+      box-shadow: 0 2px 12px rgba(26,53,102,.06);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .pcard:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,53,102,.13); border-color: var(--navy); }
+    .pcard-ico {
+      width: 64px; height: 64px; border-radius: var(--r-md);
+      background: var(--navy-dim); margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: var(--navy);
+      transition: background .3s, color .3s;
+    }
+    .pcard:hover .pcard-ico { background: var(--navy); color: var(--gold-lt); }
+    .pcard h3 { font-size: 15px; font-weight: 700; color: var(--text-1); margin-bottom: 10px; }
+    .pcard p { font-size: 13.5px; color: var(--text-2); line-height: 1.75; margin-bottom: 20px; }
+    .pcard-link {
+      font-size: 12px; font-weight: 700; color: var(--navy);
+      text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: gap .2s;
+    }
+    .pcard-link:hover { gap: 10px; }
+
+    /* ── TESTIMONIALS ── */
+    .testi { padding: 96px 0; background: var(--white); }
+    .testi-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .tcard {
+      border-radius: var(--r-xl); overflow: hidden; position: relative;
+      min-height: 360px; display: flex; align-items: flex-end;
+      background: var(--navy-dk);
+    }
+    /* foto background penuh */
+    .tcard-photo {
+      position: absolute; inset: 0;
+    }
+    .tcard-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top;
+      transition: transform .45s;
+    }
+    .tcard:hover .tcard-photo img { transform: scale(1.04); }
+    /* overlay gradient gelap dari bawah */
+    .tcard-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,16,40,.92) 0%, rgba(8,16,40,.45) 50%, rgba(8,16,40,.08) 100%);
+      z-index: 1;
+    }
+    .tcard-body { position: relative; z-index: 2; padding: 28px; width: 100%; }
+    .tcard-quote {
+      font-size: 13.5px; color: rgba(255,255,255,.93); line-height: 1.8;
+      margin-bottom: 18px; font-style: italic;
+    }
+    .tcard-person { display: flex; align-items: center; gap: 12px; }
+    .tcard-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,.5);
+    }
+    .tcard-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .tcard-name { font-size: 13.5px; font-weight: 700; color: #fff; }
+    .tcard-role { font-size: 11.5px; color: rgba(255,255,255,.65); }
+
+    /* ── VISI MISI ── */
+    .vismis { padding: 96px 0; background: var(--gray-1); }
+    .vismis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .vm-card {
+      background: var(--white); border-radius: var(--r-xl); padding: 40px 36px;
+      border: 1px solid var(--gray-2); box-shadow: 0 2px 12px rgba(26,53,102,.05);
+      transition: box-shadow .3s, border-color .3s;
+    }
+    .vm-card:hover { box-shadow: 0 10px 32px rgba(26,53,102,.1); border-color: var(--navy); }
+    .vm-ico {
+      width: 52px; height: 52px; border-radius: var(--r-md);
+      background: var(--navy); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--gold-lt); margin-bottom: 20px;
+    }
+    .vm-card h3 { font-size: 20px; font-weight: 800; color: var(--text-1); margin-bottom: 14px; }
+    .vm-card p { font-size: 14.5px; color: var(--text-2); line-height: 1.85; font-style: italic; margin-bottom: 0; }
+    .vm-list { list-style: none; display: flex; flex-direction: column; gap: 12px; counter-reset: misi-counter; }
+    .vm-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; color: var(--text-2); line-height: 1.7;
+      counter-increment: misi-counter;
+    }
+    .vm-list li::before {
+      content: counter(misi-counter); font-size: 11px; font-weight: 800;
+      color: var(--navy); background: var(--navy-dim);
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+
+    /* ── JURUSAN ── */
+    .jurusan { padding: 96px 0; background: var(--white); }
+    .jurusan-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .jcard {
+      background: var(--white); border: 1px solid var(--gray-2);
+      border-radius: var(--r-xl); padding: 32px 26px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(26,53,102,.05);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .jcard:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(26,53,102,.12); border-color: var(--navy); }
+    .jcard { cursor: pointer; }
+    .prcard { cursor: pointer; }
+    .berita-main { cursor: pointer; }
+    .berita-item { cursor: pointer; }
+    .fcard { cursor: pointer; }
+    .bkk-card { cursor: pointer; }
+    .pcard { cursor: pointer; }
+    .jcard-num {
+      position: absolute; top: 16px; right: 20px;
+      font-size: 3.5rem; font-weight: 800; color: rgba(26,53,102,.06); line-height: 1;
+      transition: color .3s;
+    }
+    .jcard:hover .jcard-num { color: rgba(26,53,102,.11); }
+    .jcard-ico {
+      width: 52px; height: 52px; border-radius: var(--r-md); margin-bottom: 18px;
+      background: var(--navy-dim); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--navy);
+      transition: background .3s, color .3s;
+    }
+    .jcard:hover .jcard-ico { background: var(--navy); color: var(--gold-lt); }
+    .jcard h3 { font-size: 14.5px; font-weight: 700; color: var(--text-1); margin-bottom: 10px; line-height: 1.4; }
+    .jcard p { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; }
+    .jcard-tag {
+      display: inline-block; background: var(--navy-dim); color: var(--navy);
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+    }
+
+    /* ── FASILITAS ── */
+    .fasil { padding: 96px 0; background: var(--gray-1); }
+    .fasil-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .fcard {
+      background: var(--white); border-radius: var(--r-lg); padding: 28px 20px;
+      text-align: center; border: 1px solid var(--gray-2);
+      box-shadow: 0 2px 8px rgba(26,53,102,.05);
+      transition: transform .28s, box-shadow .28s, border-color .28s;
+    }
+    .fcard:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(26,53,102,.12); border-color: var(--navy); }
+    .fcard i { font-size: 1.8rem; color: var(--navy); display: block; margin-bottom: 12px; transition: transform .28s; }
+    .fcard:hover i { transform: scale(1.15); }
+    .fcard h4 { font-size: 12.5px; font-weight: 700; color: var(--text-1); line-height: 1.4; }
+
+    /* ── PRESTASI ── */
+    .prestasi { padding: 96px 0; background: var(--white); }
+    .prestasi-banner {
+      background: linear-gradient(135deg, var(--gold) 0%, #d4890a 60%, var(--navy-dk) 100%);
+      border-radius: var(--r-2xl); padding: 52px 52px 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end;
+      overflow: hidden; margin-bottom: 48px;
+    }
+    .prestasi-banner-left { padding-bottom: 52px; }
+    .prestasi-banner h2 { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 16px; line-height: 1.25; }
+    .prestasi-banner p { font-size: 15px; color: rgba(255,255,255,.82); line-height: 1.8; margin-bottom: 28px; }
+    .btn-white-sm {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--navy);
+      padding: 11px 24px; border-radius: 100px;
+      font-size: 13px; font-weight: 700; text-decoration: none;
+      transition: transform .2s;
+    }
+    .btn-white-sm:hover { transform: translateY(-2px); }
+    .prestasi-banner-right {
+      display: flex; align-items: flex-end; justify-content: center;
+      font-size: 9rem; line-height: 1;
+    }
+    .prestasi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .prcard {
+      background: var(--white); border: 1px solid var(--gray-2);
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: 0 2px 8px rgba(26,53,102,.06);
+      transition: transform .28s, box-shadow .28s;
+      cursor: pointer; display: flex; flex-direction: column;
+    }
+    .prcard:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(26,53,102,.13); }
+    /* slot foto atas */
+    .prcard-photo {
+      width: 100%; height: 148px; overflow: hidden; flex-shrink: 0;
+      background: var(--gray-2);
+      position: relative;
+    }
+    .prcard-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .38s;
+    }
+    .prcard:hover .prcard-photo img { transform: scale(1.06); }
+    /* placeholder kalau belum ada foto */
+    .prcard-photo-empty {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #eef0f8 0%, #dde3f0 100%);
+      font-size: 2.8rem; color: var(--gray-3);
+    }
+    /* konten teks di bawah foto */
+    .prcard-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+    .prcard-medal { font-size: 1.6rem; margin-bottom: 8px; display: block; line-height: 1; }
+    .prcard-lvl {
+      font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--navy); margin-bottom: 7px; display: block;
+    }
+    .prcard h4 {
+      font-size: 13.5px; font-weight: 700; color: var(--text-1);
+      margin-bottom: 6px; line-height: 1.45;
+    }
+    .prcard p { font-size: 12px; color: var(--text-2); line-height: 1.6; margin-top: auto; }
+
+    /* ── STATS (NAVY SECTION) ── */
+    .stats-section {
+      padding: 80px 0;
+      background: var(--navy);
+      position: relative; overflow: hidden;
+    }
+    .stats-section::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .stats-inner { position: relative; z-index: 1; text-align: center; }
+    .stats-inner h2 { font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 800; color: #fff; margin-bottom: 10px; }
+    .stats-inner p { font-size: 15px; color: rgba(255,255,255,.7); margin-bottom: 52px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.12); border-radius: var(--r-xl); overflow: hidden; }
+    .stat-item { background: rgba(255,255,255,.07); padding: 36px 24px; text-align: center; }
+    .stat-num { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1; }
+    .stat-lbl { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--gray-1); border-top: 1px solid var(--gray-2); padding: 60px 0 0; }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .foot-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .foot-logo-icon {
+      width: 52px; height: 52px; border-radius: 9px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .foot-logo-icon img {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+    .foot-logo-name { font-size: 14px; font-weight: 700; color: var(--text-1); }
+    .foot-desc { font-size: 13.5px; color: var(--text-2); line-height: 1.8; margin-bottom: 20px; }
+    .foot-socials { display: flex; gap: 8px; }
+    .foot-social {
+      width: 34px; height: 34px; border-radius: 9px; background: var(--white);
+      border: 1px solid var(--gray-3); display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--text-2); text-decoration: none;
+      transition: all .2s;
+    }
+    .foot-social:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .foot-col-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); margin-bottom: 16px; }
+    .foot-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .foot-links a { font-size: 13.5px; color: var(--text-2); text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: 6px; }
+    .foot-links a::before { content: '→'; font-size: 11px; color: var(--text-3); }
+    .foot-links a:hover { color: var(--navy); }
+    .foot-contact-item { display: flex; gap: 10px; margin-bottom: 12px; align-items: flex-start; }
+    .foot-contact-ico {
+      width: 28px; height: 28px; border-radius: 7px; background: var(--navy-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--navy); flex-shrink: 0; margin-top: 1px;
+    }
+    .foot-contact-item span { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .foot-bottom {
+      border-top: 1px solid var(--gray-2); padding: 20px 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    }
+    .foot-bottom p { font-size: 12px; color: var(--text-3); }
+    .foot-bottom-badge {
+      display: flex; align-items: center; gap: 6px; background: var(--navy-dim);
+      border-radius: 100px; padding: 4px 14px; font-size: 11px; font-weight: 600; color: var(--navy);
+    }
+
+    /* ── SEARCH BAR in NAVBAR ── */
+    .nav-search {
+      position: relative; display: flex; align-items: center;
+    }
+    .nav-search-input {
+      width: 0; padding: 0; border: none; outline: none; background: transparent;
+      font-family: var(--sans); font-size: 13.5px; color: var(--text-1);
+      transition: width .3s, padding .3s, border .3s;
+      border-radius: 100px;
+    }
+    .nav-search.open .nav-search-input {
+      width: 200px; padding: 7px 16px;
+      background: var(--gray-1); border: 1.5px solid var(--gray-2);
+    }
+    .nav-search-btn {
+      background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--text-2);
+      transition: background .2s, color .2s;
+    }
+    .nav-search-btn:hover { background: var(--navy-dim); color: var(--navy); }
+
+    /* ── PENGUMUMAN / INFO ── */
+    .pengumuman { padding: 72px 0; background: var(--gray-1); }
+    .pengumuman-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .info-alert {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: var(--r-xl); padding: 28px 32px;
+      display: flex; align-items: center; gap: 18px;
+      margin-bottom: 20px; position: relative; overflow: hidden;
+      /* Fix overflow di mobile */
+      max-width: 100%; box-sizing: border-box; width: 100%;
+    }
+    .info-alert::before {
+      content: ''; position: absolute; right: -20px; top: -20px;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+    .info-alert-ico {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--gold-lt);
+    }
+    .info-alert-body { flex: 1; min-width: 0; overflow: hidden; }
+    .info-alert-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 4px; }
+    .info-alert-title { font-size: 14.5px; font-weight: 700; color: #fff; line-height: 1.45; word-break: break-word; overflow-wrap: break-word; }
+    .info-alert-date { font-size: 11.5px; color: rgba(255,255,255,.6); margin-top: 4px; word-break: break-word; overflow-wrap: break-word; }
+    .info-alert-arrow { color: rgba(255,255,255,.5); font-size: 14px; flex-shrink: 0; }
+
+    .info-card {
+      background: var(--white); border: 1px solid var(--gray-2);
+      border-radius: var(--r-lg); padding: 16px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 10px; cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+      overflow: hidden; width: 100%; box-sizing: border-box;
+    }
+    .info-card:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.1); }
+    .info-card-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: var(--navy); margin-top: 6px;
+    }
+    .info-card-dot.new  { background: #e53e3e; box-shadow: 0 0 0 3px rgba(229,62,62,.2); }
+    .info-card-dot.info { background: var(--gold); }
+    .info-card-body { flex: 1; min-width: 0; }
+    .info-card-top  { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; flex-wrap: wrap; }
+    .info-card-badge {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+      padding: 2px 9px; border-radius: 100px; white-space: nowrap;
+    }
+    .info-card-badge.ppdb    { background: #fff3cd; color: #856404; }
+    .info-card-badge.kesiswaan { background: var(--navy-dim); color: var(--navy); }
+    .info-card-badge.administrasi { background: #e8f5e9; color: #2e7d32; }
+    .info-card-badge.akademik { background: #e3f2fd; color: #1565c0; }
+    .info-card-badge.umum    { background: var(--gray-2); color: var(--text-2); }
+    .info-card-status {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 9px; border-radius: 100px;
+      background: #d4edda; color: #155724; white-space: nowrap;
+    }
+    .info-card-title { font-size: 13.5px; font-weight: 700; color: var(--text-1); line-height: 1.5; margin-bottom: 4px; }
+    .info-card-snippet { font-size: 12px; color: var(--text-2); line-height: 1.6; margin-bottom: 5px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .info-card-meta { font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 4px; }
+    .info-card-arrow { color: var(--text-3); font-size: 11px; flex-shrink: 0; margin-top: 4px; }
+
+    .ppdb-box {
+      background: var(--white); border: 2px solid var(--navy);
+      border-radius: var(--r-xl); padding: 28px 24px; text-align: center;
+      position: sticky; top: 80px;
+    }
+    .ppdb-box-ico { font-size: 2.5rem; margin-bottom: 12px; }
+    .ppdb-box h4 { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .ppdb-box p { font-size: 13px; color: var(--text-2); margin-bottom: 20px; line-height: 1.6; }
+    .ppdb-box .btn-navy { margin-top: 0; width: 100%; justify-content: center; }
+    .ppdb-deadline { background: var(--gray-1); border-radius: var(--r-md); padding: 10px 16px; margin-top: 14px; }
+    .ppdb-deadline span { font-size: 11px; color: var(--text-3); display: block; }
+    .ppdb-deadline strong { font-size: 13px; color: var(--text-1); }
+
+    /* ── BERITA TERBARU ── */
+    .berita { padding: 96px 0; background: var(--white); }
+    .berita-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
+    .berita-main {
+      background: var(--gray-1); border-radius: var(--r-xl);
+      overflow: hidden; cursor: pointer;
+      border: 1px solid var(--gray-2);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .berita-main:hover { box-shadow: 0 16px 48px rgba(26,53,102,.14); transform: translateY(-3px); }
+    .berita-main-img {
+      height: 240px; background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative; overflow: hidden;
+    }
+    .berita-main-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(18,36,72,.6) 100%);
+    }
+    .berita-main-cat {
+      position: absolute; top: 16px; left: 16px; z-index: 1;
+      background: var(--gold); color: var(--navy-dk);
+      font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .berita-main-body { padding: 24px; }
+    .berita-main-date { font-size: 11px; color: var(--text-3); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .berita-main-title { font-size: 17px; font-weight: 800; color: var(--text-1); line-height: 1.4; margin-bottom: 10px; }
+    .berita-main-snippet { font-size: 13.5px; color: var(--text-2); line-height: 1.75; }
+    .berita-main-read { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 12.5px; font-weight: 700; color: var(--navy); text-decoration: none; transition: gap .2s; }
+    .berita-main-read:hover { gap: 10px; }
+
+    .berita-list { display: flex; flex-direction: column; gap: 14px; }
+    .berita-item {
+      background: var(--gray-1); border-radius: var(--r-lg);
+      display: flex; gap: 14px; padding: 14px;
+      cursor: pointer; border: 1px solid var(--gray-2);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .berita-item:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.09); }
+    .berita-item-img {
+      width: 80px; height: 72px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--navy), var(--navy-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+    .berita-item-body { flex: 1; }
+    .berita-item-cat { font-size: 9.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 4px; }
+    .berita-item-title { font-size: 13px; font-weight: 700; color: var(--text-1); line-height: 1.45; margin-bottom: 5px; }
+    .berita-item-date { font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+    .berita-more { text-align: center; margin-top: 32px; }
+
+    /* ── GALERI FOTO ── */
+    .galeri { padding: 96px 0; background: var(--gray-1); }
+
+    /* ── Layout galeri: 2 baris, masing-masing punya pola berbeda ── */
+    .galeri-mosaic {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    /* Baris 1: 1 besar kiri + 2 kecil kanan atas + 1 medium kanan bawah */
+    .galeri-row { display: grid; gap: 10px; }
+    .galeri-row-1 { grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 180px; }
+    .galeri-row-1 .gi-0 { grid-row: span 2; }             /* foto 1 — tinggi penuh */
+    .galeri-row-1 .gi-1 { }                                /* foto 2 — kanan atas kiri */
+    .galeri-row-1 .gi-2 { }                                /* foto 3 — kanan atas kanan */
+    .galeri-row-1 .gi-3 { grid-column: span 2; }           /* foto 4 — kanan bawah lebar */
+
+    /* Baris 2: 4 kolom × 3 baris, 7 foto mengisi semua slot               */
+    /* Kolom: 1fr 1fr 1.8fr 1.2fr | Baris: 190px 190px 190px             */
+    /* gi-0: kol1 baris1 | gi-1: kol2 baris1                             */
+    /* gi-2: kol3 baris1-2 (tinggi) | gi-3: kol4 baris1-2 (tinggi)       */
+    /* gi-4: kol1-2 baris3 (lebar) | gi-5: kol3-4 baris3 (lebar)         */
+    /* gi-6: kol1-2 baris2 (lebar) — mengisi sisa slot kol1-2 baris2     */
+    .galeri-row-2 { grid-template-columns: 1fr 1fr 1.8fr 1.2fr; grid-template-rows: 190px 190px 190px; }
+    .galeri-row-2 .gi-0 { }                                    /* foto 5  — kol1 baris1 */
+    .galeri-row-2 .gi-1 { }                                    /* foto 6  — kol2 baris1 */
+    .galeri-row-2 .gi-2 { grid-row: span 2; }                  /* foto 7  — kol3 baris1-2 tinggi */
+    .galeri-row-2 .gi-3 { grid-row: span 2; }                  /* foto 8  — kol4 baris1-2 tinggi */
+    .galeri-row-2 .gi-4 { grid-column: span 2; }               /* foto 9  — kol1-2 baris2 lebar */
+    .galeri-row-2 .gi-5 { grid-column: span 2; }               /* foto 10 — kol1-2 baris3 lebar */
+    .galeri-row-2 .gi-6 { grid-column: 3 / span 2; grid-row: 3; } /* foto 11 — kol3-4 baris3 */
+
+    .galeri-item {
+      border-radius: var(--r-md); overflow: hidden;
+      background: var(--navy-dk);
+      cursor: pointer; position: relative;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .galeri-item:hover { transform: scale(1.025); box-shadow: 0 12px 40px rgba(26,53,102,.28); z-index: 2; }
+    .galeri-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .galeri-item:hover img { transform: scale(1.07); }
+    .galeri-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,20,50,.7) 0%, transparent 55%);
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 14px;
+    }
+    .galeri-item:hover .galeri-overlay { opacity: 1; }
+    .galeri-caption {
+      color: #fff; font-size: 12px; font-weight: 600; line-height: 1.4;
+    }
+    .galeri-item:hover .galeri-caption { opacity: 1; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.9); display: none;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner { position: relative; max-width: 90vw; text-align: center; }
+    .lightbox-img {
+      width: 100%; max-height: 80vh; border-radius: var(--r-lg);
+      background: var(--navy); display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; min-height: 400px; min-width: 600px;
+    }
+    .lightbox-close {
+      position: absolute; top: -44px; right: 0;
+      background: rgba(255,255,255,.15); border: none; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 50%;
+      color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── BKK ── */
+    .bkk { padding: 96px 0; background: var(--white); }
+    .bkk-header-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .bkk-stats { display: flex; gap: 32px; }
+    .bkk-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .bkk-stat-lbl { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+    .bkk-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 32px; }
+    .bkk-card {
+      background: var(--gray-1); border: 1px solid var(--gray-2);
+      border-radius: var(--r-xl); padding: 24px;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .bkk-card:hover { border-color: var(--navy); box-shadow: 0 8px 28px rgba(26,53,102,.1); transform: translateY(-3px); }
+    .bkk-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; gap: 10px; }
+    .bkk-company {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      background: var(--navy); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--gold-lt);
+    }
+    .bkk-badge-new {
+      background: rgba(229,62,62,.12); color: #e53e3e;
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px; white-space: nowrap; margin-top: 4px;
+    }
+    .bkk-badge-hot {
+      background: rgba(232,160,32,.12); color: var(--gold);
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 100px; white-space: nowrap; margin-top: 4px;
+    }
+    .bkk-company-name { font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 4px; }
+    .bkk-posisi { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+    .bkk-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .bkk-tag {
+      background: var(--navy-dim); color: var(--navy);
+      font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    }
+    .bkk-card-foot { display: flex; align-items: center; justify-content: space-between; }
+    .bkk-deadline { font-size: 11px; color: var(--text-3); display: flex; align-items: center; gap: 5px; }
+    .bkk-apply {
+      background: var(--navy); color: #fff;
+      font-size: 11.5px; font-weight: 700; padding: 7px 18px; border-radius: 100px;
+      text-decoration: none; transition: background .2s;
+    }
+    .bkk-apply:hover { background: var(--navy-lt); }
+    .bkk-banner {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: var(--r-xl); padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      flex-wrap: wrap;
+    }
+    .bkk-banner-left h3 { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .bkk-banner-left p { font-size: 14px; color: rgba(255,255,255,.7); }
+    .bkk-banner-right { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy-dk);
+      padding: 12px 24px; border-radius: 100px;
+      font-size: 13px; font-weight: 800; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(232,160,32,.35); }
+
+    /* ── KALENDER & AGENDA ── */
+    .agenda-section { padding: 96px 0; background: var(--gray-1); }
+    .agenda-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; align-items: start; }
+
+    /* Calendar widget */
+    .cal-widget {
+      background: var(--white); border-radius: var(--r-xl); padding: 28px;
+      border: 1px solid var(--gray-2); box-shadow: 0 2px 12px rgba(26,53,102,.05);
+    }
+    .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .cal-month { font-size: 15px; font-weight: 800; color: var(--text-1); }
+    .cal-nav { display: flex; gap: 4px; }
+    .cal-nav-btn {
+      width: 30px; height: 30px; border: none; background: var(--gray-1);
+      border-radius: 8px; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-size: 12px; color: var(--text-2);
+      transition: background .2s, color .2s;
+    }
+    .cal-nav-btn:hover { background: var(--navy); color: #fff; }
+    .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin-bottom: 4px; }
+    .cal-day-name { text-align: center; font-size: 10.5px; font-weight: 700; color: var(--text-3); text-transform: uppercase; padding: 6px 0; }
+    .cal-days { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; }
+    .cal-day {
+      text-align: center; padding: 7px 3px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-2); cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .cal-day:hover { background: var(--navy-dim); color: var(--navy); }
+    .cal-day.today { background: var(--navy); color: #fff; font-weight: 800; }
+    .cal-day.has-event { position: relative; color: var(--navy); font-weight: 700; }
+    .cal-day.has-event::after {
+      content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+      width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+    }
+    .cal-day.empty { color: transparent; pointer-events: none; }
+
+    /* Agenda list */
+    .agenda-list { display: flex; flex-direction: column; gap: 12px; }
+    .agenda-item {
+      background: var(--white); border-radius: var(--r-lg); padding: 18px 20px;
+      display: flex; gap: 16px; border: 1px solid var(--gray-2);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .agenda-item:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.08); }
+    .agenda-date {
+      min-width: 52px; text-align: center; background: var(--navy-dim);
+      border-radius: 10px; padding: 8px 4px; flex-shrink: 0;
+    }
+    .agenda-date-day { font-size: 1.4rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .agenda-date-mon { font-size: 9.5px; font-weight: 700; text-transform: uppercase; color: var(--text-3); margin-top: 2px; letter-spacing: 1px; }
+    .agenda-body { flex: 1; }
+    .agenda-title { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 5px; }
+    .agenda-meta { font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .agenda-meta span { display: flex; align-items: center; gap: 5px; }
+    .agenda-badge {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 10px; border-radius: 100px;
+    }
+    .agenda-badge.akademik { background: rgba(26,53,102,.1); color: var(--navy); }
+    .agenda-badge.kegiatan { background: rgba(232,160,32,.15); color: #a06010; }
+    .agenda-badge.libur { background: rgba(229,62,62,.1); color: #c53030; }
+
+    /* ── JAJAK PENDAPAT ── */
+    .poll-section { padding: 80px 0; background: var(--white); }
+    .poll-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .poll-widget {
+      background: var(--gray-1); border-radius: var(--r-xl); padding: 36px 32px;
+      border: 1px solid var(--gray-2);
+    }
+    .poll-question { font-size: 17px; font-weight: 800; color: var(--text-1); margin-bottom: 24px; line-height: 1.5; }
+    .poll-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .poll-option {
+      display: flex; align-items: center; gap: 12px; cursor: pointer;
+      padding: 12px 16px; border-radius: var(--r-lg); border: 1.5px solid var(--gray-2);
+      background: var(--white); transition: border-color .2s, background .2s;
+    }
+    .poll-option:hover { border-color: var(--navy); background: var(--navy-dim); }
+    .poll-option input[type="radio"] { accent-color: var(--navy); width: 16px; height: 16px; flex-shrink: 0; }
+    .poll-option label { font-size: 14px; font-weight: 500; color: var(--text-1); cursor: pointer; flex: 1; }
+    .poll-submit {
+      background: var(--navy); color: #fff; border: none; cursor: pointer;
+      padding: 12px 28px; border-radius: 100px;
+      font-family: var(--sans); font-size: 13.5px; font-weight: 700;
+      transition: background .2s, transform .2s;
+    }
+    .poll-submit:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .poll-result-bar { display: none; }
+    .poll-result-bar.show { display: block; }
+    .poll-result-item { margin-bottom: 14px; }
+    .poll-result-label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .poll-result-label span { font-size: 13px; font-weight: 600; color: var(--text-1); }
+    .poll-result-label strong { font-size: 13px; font-weight: 800; color: var(--navy); }
+    .poll-bar { height: 8px; background: var(--gray-2); border-radius: 100px; overflow: hidden; }
+    .poll-bar-fill { height: 100%; background: linear-gradient(90deg, var(--navy), var(--navy-lt)); border-radius: 100px; transition: width 1s ease; }
+    .poll-total { font-size: 12px; color: var(--text-3); margin-top: 16px; text-align: center; }
+
+    .poll-info-box {
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy));
+      border-radius: var(--r-xl); padding: 36px 32px; color: #fff;
+    }
+    .poll-info-box h4 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .poll-info-box p { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.75; margin-bottom: 24px; }
+    .poll-info-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .poll-info-stat { background: rgba(255,255,255,.1); border-radius: var(--r-lg); padding: 16px; text-align: center; }
+    .poll-info-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--gold-lt); line-height: 1; }
+    .poll-info-stat-lbl { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── RESPONSIVE ── */
+    /* ══════════════════════════════════════
+       RESPONSIVE — TABLET (≤ 1024px)
+    ══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .about-grid          { grid-template-columns: 1fr; gap: 36px; }
+      .vismis-grid         { grid-template-columns: 1fr; gap: 20px; }
+      .berita-grid         { grid-template-columns: 1fr; gap: 20px; }
+      .agenda-grid         { grid-template-columns: 1fr; gap: 20px; }
+      .poll-grid           { grid-template-columns: 1fr; gap: 20px; }
+      .pengumuman-grid     { grid-template-columns: 1fr; gap: 20px; }
+      .footer-grid         { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .prestasi-banner     { grid-template-columns: 1fr; padding: 40px 36px 0; }
+      .prestasi-banner-right { display: none; }
+      .ppdb-box            { position: static; }
+      .program-grid        { grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — MOBILE (≤ 768px)
+    ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      /* ── Section padding lebih compact */
+      .about, .vismis, .jurusan, .fasil, .prestasi,
+      .berita, .testi, .program, .pengumuman,
+      .bkk, .stats-section, .galeri,
+      .agenda-section, .poll-section { padding: 56px 0; }
+
+      /* ── Navbar mobile: logo + hamburger + CTA ikon */
+      .nav-inner          { padding: 0 12px; overflow: visible; }
+      .nav-logo-text      { font-size: 12.5px; }
+      .nav-logo-sub       { display: none; }
+      .nav-logo-icon      { width: 36px; height: 36px; border-radius: 8px; }
+      /* Sembunyikan menu horizontal, tampilkan dropdown via hamburger */
+      .nav-menu           { display: none; }
+      .nav-menu.open      {
+        display: flex; flex-direction: column; align-items: stretch;
+        position: fixed; top: 64px; left: 0; right: 0;
+        background: rgba(255,255,255,.98); backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--gray-2);
+        box-shadow: 0 8px 24px rgba(26,53,102,.12);
+        padding: 10px 16px 16px; gap: 2px; z-index: 998;
+        max-height: calc(100vh - 64px); overflow-y: auto;
+      }
+      .nav-menu.open a    { font-size: 14px; padding: 10px 14px; border-radius: 10px; }
+      /* Tombol hamburger */
+      .nav-hamburger      { display: flex; align-items: center; justify-content: center; }
+      /* nav-right dorong ke kanan */
+      .nav-right          { margin-left: auto; }
+      /* Search icon disembunyikan di mobile */
+      .nav-search-btn     { display: none; }
+      /* CTA: tampilkan teks pendek */
+      .nav-cta            { padding: 7px 14px !important; font-size: 12px !important; margin-left: 4px; white-space: nowrap; flex-shrink: 0; }
+      /* ── Hero */
+      .hero-inner         { padding: 60px 20px; }
+      .hero-desc          { font-size: 15px; }
+      .hero-btns          { flex-direction: column; align-items: center; gap: 10px; }
+      .btn-white, .btn-outline-white { width: 100%; max-width: 280px; justify-content: center; }
+      .hero-stats         { flex-direction: column; border-radius: var(--r-lg); margin-top: 40px; }
+      .hstat              { padding: 18px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); }
+      .hstat:last-child   { border-bottom: none; }
+      .hstat-num          { font-size: 1.7rem; }
+
+      /* ── About */
+      .about-grid         { grid-template-columns: 1fr; gap: 32px; }
+      .about-img          { aspect-ratio: 16/9; border-radius: var(--r-xl); }
+      .about-quote        { font-size: 15px; }
+      .about-body-text    { font-size: 14px; }
+
+      /* ── Visi Misi */
+      .vismis-grid        { grid-template-columns: 1fr; gap: 16px; }
+      .vm-card            { padding: 28px 24px; }
+
+      /* ── Jurusan */
+      .jurusan-grid       { grid-template-columns: repeat(2,1fr); gap: 14px; }
+      .jcard              { padding: 24px 18px; }
+      .jcard h3           { font-size: 13px; }
+      .jcard p            { font-size: 12px; }
+
+      /* ── Fasilitas */
+      .fasil-grid         { grid-template-columns: repeat(3,1fr); gap: 12px; }
+      .fcard              { padding: 20px 12px; }
+      .fcard i            { font-size: 1.5rem; }
+      .fcard h4           { font-size: 11px; }
+
+      /* ── Prestasi */
+      .prestasi-banner    { padding: 32px 24px 0; border-radius: var(--r-xl); }
+      .prestasi-banner h2 { font-size: 1.5rem; }
+      .prestasi-banner p  { font-size: 13.5px; }
+      .prestasi-grid      { grid-template-columns: repeat(2,1fr); gap: 14px; }
+
+      /* ── BKK */
+      .bkk-banner         { flex-direction: column; gap: 16px; }
+      .bkk-header-row     { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .bkk-grid           { grid-template-columns: repeat(2,1fr); }
+
+      /* ── Program */
+      .program-grid       { grid-template-columns: repeat(2,1fr); gap: 14px; }
+      .pcard              { padding: 28px 20px; }
+
+      /* ── Berita */
+      .berita-grid        { grid-template-columns: 1fr; gap: 20px; }
+      .berita-main-img    { height: 200px; }
+
+      /* ── Galeri mobile: susun flex column, semua item sama tinggi, tanpa space kosong */
+      .galeri-mosaic      { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .galeri-row         { display: contents; }
+      .galeri-row-1,
+      .galeri-row-2       { display: contents; }
+      .galeri-row-1 .gi-0,
+      .galeri-row-1 .gi-1,
+      .galeri-row-1 .gi-2,
+      .galeri-row-1 .gi-3,
+      .galeri-row-2 .gi-0,
+      .galeri-row-2 .gi-1,
+      .galeri-row-2 .gi-2,
+      .galeri-row-2 .gi-3,
+      .galeri-row-2 .gi-4,
+      .galeri-row-2 .gi-5,
+      .galeri-row-2 .gi-6 { grid-column: span 1; grid-row: span 1; }
+      .galeri-mosaic .galeri-item { min-height: 130px; position: relative; }
+
+      /* ── Testimonial */
+      .testi-grid         { grid-template-columns: 1fr; gap: 16px; }
+      .tcard              { min-height: 300px; }
+
+      /* ── Pengumuman */
+      .info-alert         { padding: 16px 14px; gap: 12px; border-radius: var(--r-lg); align-items: flex-start; }
+      .info-alert-ico     { width: 36px; height: 36px; font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+      .info-alert-title   { font-size: 13px; white-space: normal; }
+      .info-alert-date    { font-size: 11px; white-space: normal; }
+      .info-alert-arrow   { display: none; }
+      .info-card          { padding: 12px 14px; gap: 10px; }
+      .info-card-snippet  { white-space: normal; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+      .info-card-top      { flex-wrap: wrap; }
+      .ppdb-box           { position: static; padding: 20px 16px; }
+
+      /* ── Agenda */
+      .agenda-grid        { grid-template-columns: 1fr; gap: 16px; }
+      .cal-widget         { padding: 20px 16px; }
+      .agenda-item        { padding: 14px 16px; gap: 12px; }
+
+      /* ── Poll */
+      .poll-widget        { padding: 24px 18px; }
+      .poll-info-box      { padding: 24px 18px; }
+      .poll-grid          { grid-template-columns: 1fr; gap: 20px; }
+      .poll-info-stats    { grid-template-columns: repeat(2,1fr); gap: 12px; }
+
+      /* ── Stats */
+      .stats-grid         { grid-template-columns: 1fr; gap: 1px; }
+      .stat-num           { font-size: 2.2rem; }
+
+      /* ── Footer */
+      .footer-grid        { grid-template-columns: 1fr; gap: 28px; }
+      .footer             { padding: 40px 0 0; }
+      .foot-bottom        { flex-direction: column; text-align: center; }
+
+      /* ── Lightbox */
+      .lightbox-img       { min-width: 90vw; min-height: 220px; }
+
+      /* ── Section header */
+      .s-header           { margin-bottom: 28px; }
+      .s-desc             { font-size: 14px; }
+      /* Kurangi gap header berita dan bkk */
+      .berita .rv[style], .bkk-header-row { margin-bottom: 24px !important; }
+      /* Kurangi margin prestasi banner */
+      .prestasi-banner    { margin-bottom: 28px; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — SMALL MOBILE (≤ 480px)
+    ══════════════════════════════════════ */
+    @media (max-width: 480px) {
+      /* ── Container lebih nafas */
+      .container          { padding: 0 16px; }
+
+      /* ── Navbar lebih compact */
+      .nav-inner          { padding: 0 10px; }
+      .nav-menu a         { font-size: 13.5px; padding: 10px 12px; }
+      .nav-cta            { padding: 6px 11px !important; font-size: 11.5px !important; }
+      .nav-logo-text      { font-size: 12px; }
+
+      /* ── Hero */
+      .hero-inner         { padding: 48px 16px; }
+      .hero-title         { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+      .hero-badge         { font-size: 10px; padding: 5px 14px; }
+
+      /* ── Section judul */
+      .s-title            { font-size: clamp(1.45rem, 6vw, 1.9rem); }
+
+      /* ── About */
+      .about-img          { aspect-ratio: 4/3; }
+
+      /* ── Jurusan & Program — 1 kolom di HP kecil */
+      .jurusan-grid       { grid-template-columns: 1fr; gap: 12px; }
+      .program-grid       { grid-template-columns: 1fr; gap: 12px; }
+
+      /* ── Fasilitas — 2 kolom tetap */
+      .fasil-grid         { grid-template-columns: repeat(2,1fr); gap: 10px; }
+      .fcard              { padding: 18px 10px; }
+
+      /* ── Prestasi */
+      .prestasi-grid      { grid-template-columns: 1fr; gap: 14px; }
+      .prestasi-banner    { padding: 24px 20px 0; }
+
+      /* ── BKK */
+      .bkk-grid           { grid-template-columns: 1fr; }
+
+      /* ── Poll info stats */
+      .poll-info-stats    { grid-template-columns: repeat(2,1fr); }
+
+      /* ── Info alert compact */
+      .info-alert         { flex-direction: row; padding: 16px 14px; }
+      .info-alert-ico     { width: 36px; height: 36px; font-size: 15px; }
+
+      /* ── Visi Misi padding */
+      .vm-card            { padding: 24px 18px; }
+      .vm-card h3         { font-size: 17px; }
+
+      /* ── Stats */
+      .stat-num           { font-size: 2rem; }
+      .stats-inner p      { font-size: 13.5px; }
+
+      /* ── Section padding lebih kecil lagi di HP sangat kecil */
+      .about, .vismis, .jurusan, .fasil, .prestasi,
+      .berita, .testi, .program, .pengumuman,
+      .bkk, .stats-section, .galeri,
+      .agenda-section, .poll-section { padding: 44px 0; }
+      /* Kurangi gap header section */
+      .s-header           { margin-bottom: 22px; }
+      /* Footer lebih compact */
+      .footer             { padding: 32px 0 0; }
+      .footer-grid        { gap: 22px; margin-bottom: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- ══ NAVBAR ══ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon"><img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo SMKN 2 Sragen" /></div>
+      <div>
+        <div class="nav-logo-text">SMK Negeri 2 Sragen</div>
+        <span class="nav-logo-sub">Kabupaten Sragen · Jawa Tengah</span>
+      </div>
+    </a>
+    <div class="nav-menu" id="navMenu">
+      <a href="#tentang">Profil</a>
+      <a href="#visi-misi">Visi &amp; Misi</a>
+      <a href="#jurusan">Program</a>
+      <a href="#fasilitas">Fasilitas</a>
+      <a href="#prestasi">Prestasi</a>
+      <a href="#bkk">Mitra</a>
+      <a href="#berita">Berita</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#pengumuman">Info</a>
+      <a href="#agenda">Kalender</a>
+      <a href="#polling">Polling</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search" id="navSearch">
+        <input type="text" class="nav-search-input" placeholder="Cari informasi..." id="searchInput" />
+        <button class="nav-search-btn" id="searchBtn" onclick="toggleSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <a href="#kontak" class="nav-cta">Hubungi Kami</a>
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleNavMenu()" aria-label="Menu"><i class="fas fa-bars" id="hamburgerIcon"></i></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-pattern"></div>
+  </div>
+  <div class="hero-inner container">
+    <div class="hero-badge rv"><div class="hero-badge-dot"></div> Terakreditasi A &nbsp;·&nbsp; Est. 2002</div>
+    <h1 class="hero-title rv d1">Membentuk Generasi <span>Unggul, Berkarakter,</span> dan Siap Kerja</h1>
+    <p class="hero-desc rv d2">SMK Negeri 2 Sragen — sekolah kejuruan negeri terkemuka di Kabupaten Sragen yang mencetak lulusan kompeten dan berdaya saing tinggi di dunia industri.</p>
+    <div class="hero-btns rv d3">
+      <a href="#jurusan" class="btn-white"><i class="fas fa-graduation-cap"></i> Lihat Program Kami</a>
+      <a href="#tentang" class="btn-outline-white"><i class="fas fa-info-circle"></i> Profil Sekolah</a>
+    </div>
+    <div class="hero-stats rv d4">
+      <div class="hstat"><div class="hstat-num" id="schoolAge">0</div><div class="hstat-lbl">Tahun Berdiri</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="1900">0</div><div class="hstat-lbl">Siswa Aktif</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="6">0</div><div class="hstat-lbl">Program Keahlian</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="120">0</div><div class="hstat-lbl">Tenaga Pendidik</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Kendaraan Ringan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Instalasi Tenaga Listrik</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Desain Pemodelan &amp; Informasi Bangunan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Konstruksi &amp; Perumahan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Komputer &amp; Jaringan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Pemesinan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Terakreditasi A · BAN-S/M</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Sekolah Adiwiyata</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Kendaraan Ringan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Instalasi Tenaga Listrik</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Desain Pemodelan &amp; Informasi Bangunan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Konstruksi &amp; Perumahan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Komputer &amp; Jaringan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Teknik Pemesinan</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Terakreditasi A · BAN-S/M</span>
+    <span class="ticker-item"><i class="fas fa-circle"></i> Sekolah Adiwiyata</span>
+  </div>
+</div>
+
+
+<section class="about" id="tentang">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap rv">
+        <div class="about-img" id="aboutSlider">
+          <div class="slide active">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" alt="Gerbang SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/42944920_1890171144435131_8386577090693483445_n(1).jpg" alt="Kegiatan SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/59450345_371680263555244_5513103156207457382_n.jpg" alt="Siswa SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide">
+            <img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/ganjar-di-smk-sargen1.jpeg" alt="Kunjungan ke SMKN 2 Sragen" loading="lazy" />
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="about-img-badge"><i class="fas fa-star"></i> Akreditasi A · BAN-S/M</div>
+          <button class="slide-arrow prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="slide-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+          <div class="slide-dots">
+            <button class="slide-dot active" onclick="goSlide(0)"></button>
+            <button class="slide-dot" onclick="goSlide(1)"></button>
+            <button class="slide-dot" onclick="goSlide(2)"></button>
+            <button class="slide-dot" onclick="goSlide(3)"></button>
+          </div>
+        </div>
+        <div class="about-avatars">
+          <div class="about-avatar-stack">
+            <div class="about-avatar"><i class="fas fa-user"></i></div>
+            <div class="about-avatar"><i class="fas fa-user"></i></div>
+            <div class="about-avatar"><i class="fas fa-user"></i></div>
+          </div>
+          <div class="about-avatar-text">Berdiri sejak <strong>5 Maret 2002</strong> · SK Bupati No. 421.5/36/03/2002</div>
+        </div>
+      </div>
+      <div class="rv d1">
+        <div class="s-tag">Profil Sekolah</div>
+        <h2 class="s-title">Mengenal <em>SMK Negeri 2 Sragen</em></h2>
+        <p class="about-quote">"Kami tidak hanya mencetak lulusan yang kompeten secara teknis, tetapi juga pribadi yang berkarakter kuat, beriman, dan mampu berdampak nyata bagi bangsa dan lingkungannya."</p>
+        <p class="about-body-text">SMK Negeri 2 Sragen adalah sekolah menengah kejuruan negeri berstatus <strong>Terakreditasi A</strong> yang berdiri sejak 5 Maret 2002 berdasarkan SK Bupati Sragen No. 421.5/36/03/2002. Sekolah ini berkomitmen mencetak lulusan kompeten, berkarakter mulia, dan siap bersaing di dunia industri nasional maupun internasional.</p>
+        <p class="about-body-text">Dengan dukungan fasilitas berstandar industri, tenaga pendidik berpengalaman bersertifikasi, dan kemitraan aktif dengan ratusan dunia usaha &amp; industri (DUDI), SMKN 2 Sragen terus berkembang menjadi rujukan pendidikan vokasi terbaik di Jawa Tengah. Sekolah ini juga meraih penghargaan sebagai <strong>Sekolah Adiwiyata</strong> dan aktif mengimplementasikan <strong>Kurikulum Merdeka</strong>.</p>
+        <div class="about-name">Dr. Sutikno, S.Pd., M.Pd.</div>
+        <div class="about-role">Kepala SMK Negeri 2 Sragen</div>
+        <a href="#kontak" class="btn-navy"><i class="fas fa-arrow-right"></i> Hubungi Kami</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vismis" id="visi-misi">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Arah &amp; Tujuan</div>
+      <h2 class="s-title">Visi &amp; <em>Misi</em> SMKN 2 Sragen</h2>
+      <p class="s-desc">Landasan filosofis dan operasional yang mengarahkan setiap langkah pengembangan institusi.</p>
+    </div>
+    <div class="vismis-grid">
+      <div class="vm-card rv d1">
+        <div class="vm-ico"><i class="fas fa-eye"></i></div>
+        <h3>Visi</h3>
+        <p>"Menghasilkan tamatan yang beriman &amp; bertaqwa, kompeten, kompetitif, berkepribadian nasional dan berwawasan global yang peduli lingkungan."</p>
+      </div>
+      <div class="vm-card rv d2">
+        <div class="vm-ico"><i class="fas fa-paper-plane"></i></div>
+        <h3>Misi</h3>
+        <ul class="vm-list">
+          <li>Membentuk kepribadian yang berakhlaq mulia dan bertaqwa terhadap Tuhan Yang Maha Esa.</li>
+          <li>Meningkatkan mutu sumber daya manusia melalui peningkatan Knowledge, Skills dan Attitude.</li>
+          <li>Menyiapkan tamatan yang mampu bersaing di tingkat nasional maupun internasional.</li>
+          <li>Membentuk sikap dan perilaku peserta didik yang berakar pada nilai-nilai budaya bangsa Indonesia.</li>
+          <li>Menyiapkan tamatan agar mampu mengadaptasikan diri terhadap perkembangan ilmu pengetahuan dan teknologi.</li>
+          <li>Menyiapkan tamatan yang mandiri dan berjiwa enterpreneur.</li>
+          <li>Membentuk sikap dan perilaku warga sekolah yang peduli terhadap lingkungan.</li>
+          <li>Menyiapkan sikap pola hidup sehat di lingkungan sekolah.</li>
+          <li>Mengolah limbah menjadi sesuatu yang bermanfaat.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JURUSAN ══ -->
+<section class="jurusan" id="jurusan">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Program Keahlian</div>
+      <h2 class="s-title">6 Jurusan <em>Unggulan</em></h2>
+      <p class="s-desc">Dirancang sesuai standar SKKNI dan kebutuhan industri, membekali siswa dengan kompetensi teknis terukur.</p>
+    </div>
+    <div class="jurusan-grid" id="jurusan-grid">
+      <div class="jcard rv d1" onclick="goToDetail('jurusan','tpm','jurusan')">
+        <span class="jcard-num">01</span>
+        <div class="jcard-ico"><i class="fas fa-cog"></i></div>
+        <h3>Teknik Pemesinan</h3>
+        <p>Pengoperasian mesin bubut, frais, CNC, dan peralatan pemesinan presisi untuk produksi komponen industri.</p>
+        <span class="jcard-tag">Teknik Mesin</span>
+      </div>
+      <div class="jcard rv d2" onclick="goToDetail('jurusan','tkro','jurusan')">
+        <span class="jcard-num">02</span>
+        <div class="jcard-ico"><i class="fas fa-car"></i></div>
+        <h3>Teknik Kendaraan Ringan</h3>
+        <p>Perawatan, perbaikan, dan teknologi kendaraan ringan bermotor sesuai standar industri otomotif modern.</p>
+        <span class="jcard-tag">Teknik Otomotif</span>
+      </div>
+      <div class="jcard rv d3" onclick="goToDetail('jurusan','dpib','jurusan')">
+        <span class="jcard-num">03</span>
+        <div class="jcard-ico"><i class="fas fa-drafting-compass"></i></div>
+        <h3>Desain Pemodelan &amp; Informasi Bangunan</h3>
+        <p>Perancangan bangunan, gambar teknik, dan teknologi BIM berbasis perangkat lunak desain terkini.</p>
+        <span class="jcard-tag">Teknik Bangunan</span>
+      </div>
+      <div class="jcard rv d1" onclick="goToDetail('jurusan','tkp','jurusan')">
+        <span class="jcard-num">04</span>
+        <div class="jcard-ico"><i class="fas fa-home"></i></div>
+        <h3>Teknik Konstruksi &amp; Perumahan</h3>
+        <p>Perencanaan, pelaksanaan, dan pengawasan konstruksi bangunan perumahan sesuai standar teknis dan keselamatan kerja.</p>
+        <span class="jcard-tag">Teknik Konstruksi</span>
+      </div>
+      <div class="jcard rv d2" onclick="goToDetail('jurusan','titl','jurusan')">
+        <span class="jcard-num">05</span>
+        <div class="jcard-ico"><i class="fas fa-bolt"></i></div>
+        <h3>Teknik Instalasi Tenaga Listrik</h3>
+        <p>Instalasi, pemeliharaan, dan perbaikan sistem kelistrikan skala industri maupun residensial.</p>
+        <span class="jcard-tag">Teknik Ketenagalistrikan</span>
+      </div>
+      <div class="jcard rv d3" onclick="goToDetail('jurusan','tkj','jurusan')">
+        <span class="jcard-num">06</span>
+        <div class="jcard-ico"><i class="fas fa-laptop-code"></i></div>
+        <h3>Teknik Komputer &amp; Jaringan</h3>
+        <p>Instalasi jaringan, keamanan siber, administrasi server, cloud computing, dan infrastruktur IT.</p>
+        <span class="jcard-tag">Teknologi Informasi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FASILITAS ══ -->
+<section class="fasil" id="fasilitas">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Sarana &amp; Prasarana</div>
+      <h2 class="s-title">Fasilitas <em>Berstandar Industri</em></h2>
+      <p class="s-desc">Infrastruktur lengkap dan modern yang mendukung proses pembelajaran praktik secara optimal.</p>
+    </div>
+    <div class="fasil-grid" id="fasil-grid">
+      <div class="fcard rv d1" onclick="goToDetail('fasilitas','ruang_kelas','fasilitas')" style="cursor:pointer;"><i class="fas fa-chalkboard-teacher"></i><h4>Ruang Kelas</h4></div>
+      <div class="fcard rv d2" onclick="goToDetail('fasilitas','perpustakaan','fasilitas')" style="cursor:pointer;"><i class="fas fa-book-reader"></i><h4>Perpustakaan</h4></div>
+      <div class="fcard rv d3" onclick="goToDetail('fasilitas','lapangan','fasilitas')" style="cursor:pointer;"><i class="fas fa-futbol"></i><h4>Lapangan Olahraga</h4></div>
+      <div class="fcard rv d4" onclick="goToDetail('fasilitas','masjid','fasilitas')" style="cursor:pointer;"><i class="fas fa-mosque"></i><h4>Masjid &amp; Mushola</h4></div>
+      <div class="fcard rv d1" onclick="goToDetail('fasilitas','kantin','fasilitas')" style="cursor:pointer;"><i class="fas fa-utensils"></i><h4>Kantin Sehat</h4></div>
+      <div class="fcard rv d2" onclick="goToDetail('fasilitas','uks','fasilitas')" style="cursor:pointer;"><i class="fas fa-shield-alt"></i><h4>UKS</h4></div>
+      <div class="fcard rv d3" onclick="goToDetail('fasilitas','koperasi','fasilitas')" style="cursor:pointer;"><i class="fas fa-store"></i><h4>Koperasi Sekolah</h4></div>
+      <div class="fcard rv d4" onclick="goToDetail('fasilitas','kamar_mandi','fasilitas')" style="cursor:pointer;"><i class="fas fa-restroom"></i><h4>Kamar Mandi</h4></div>
+      <div class="fcard rv d1" onclick="goToDetail('fasilitas','bengkel_cnc','fasilitas')" style="cursor:pointer;"><i class="fas fa-industry"></i><h4>Bengkel CNC</h4></div>
+      <div class="fcard rv d2" onclick="goToDetail('fasilitas','bengkel_otomotif','fasilitas')" style="cursor:pointer;"><i class="fas fa-tools"></i><h4>Bengkel Otomotif</h4></div>
+      <div class="fcard rv d3" onclick="goToDetail('fasilitas','workshop_bangunan','fasilitas')" style="cursor:pointer;"><i class="fas fa-hard-hat"></i><h4>Workshop Bangunan</h4></div>
+      <div class="fcard rv d4" onclick="goToDetail('fasilitas','workshop_konstruksi','fasilitas')" style="cursor:pointer;"><i class="fas fa-hammer"></i><h4>Workshop Konstruksi</h4></div>
+      <div class="fcard rv d1" onclick="goToDetail('fasilitas','lab_listrik','fasilitas')" style="cursor:pointer;"><i class="fas fa-bolt"></i><h4>Lab Instalasi Listrik</h4></div>
+      <div class="fcard rv d2" onclick="goToDetail('fasilitas','lab_jaringan','fasilitas')" style="cursor:pointer;"><i class="fas fa-wifi"></i><h4>Lab Jaringan &amp; Server</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRESTASI ══ -->
+<section class="prestasi" id="prestasi">
+  <div class="container">
+    <div class="prestasi-banner rv">
+      <div class="prestasi-banner-left">
+        <div class="s-tag" style="background:rgba(255,255,255,.2);color:#fff;">Galeri Prestasi</div>
+        <h2>Prestasi Siswa yang Membanggakan</h2>
+        <p>Kami bangga dengan pencapaian siswa-siswi kami. Setiap tahun, siswa SMKN 2 Sragen aktif meraih puluhan prestasi di berbagai bidang.</p>
+        <a href="prestasi.html" id="btn-lihat-semua" class="btn-white-sm" style="display:none;"><i class="fas fa-trophy"></i> Lihat Semua Juara</a>
+      </div>
+      <div class="prestasi-banner-right">🏆</div>
+    </div>
+    <div class="prestasi-grid" id="prestasi-grid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">
+        <i class="fas fa-spinner fa-spin"></i> Memuat prestasi...
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BKK — BURSA KERJA KHUSUS ══ -->
+<section class="bkk" id="bkk">
+  <div class="container">
+    <div class="bkk-header-row rv">
+      <div>
+        <div class="s-tag">Kemitraan Industri</div>
+        <h2 class="s-title">Mitra <em>Industri & DUDI</em></h2>
+        <p class="s-desc" style="max-width:480px;">SMK Negeri 2 Sragen menjalin kerja sama aktif dengan ratusan perusahaan dan industri terkemuka, memastikan lulusan terserap langsung di dunia kerja.</p>
+      </div>
+      <div class="bkk-stats">
+        <div>
+          <div class="bkk-stat-num">120+</div>
+          <div class="bkk-stat-lbl">Mitra Perusahaan</div>
+        </div>
+        <div>
+          <div class="bkk-stat-num">1.2K+</div>
+          <div class="bkk-stat-lbl">Alumni Tersalurkan</div>
+        </div>
+        <div>
+          <div class="bkk-stat-num">95%</div>
+          <div class="bkk-stat-lbl">Tingkat Serapan</div>
+        </div>
+      </div>
+    </div>
+    <div class="bkk-grid" id="bkk-grid">
+      <div class="bkk-card rv d1">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-industry"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Sinar Mas Agribusiness</div>
+              <div style="font-size:11px;color:var(--text-3);">Sragen, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-new">Mitra Aktif</span>
+        </div>
+        <div class="bkk-posisi">Mitra Teknik Mesin & Manufaktur</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">Teknik Mesin</span>
+          <span class="bkk-tag">Magang & Kerja</span>
+          <span class="bkk-tag">Kunjungan Industri</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-handshake"></i> MoU Aktif 2024–2027</div>
+        </div>
+      </div>
+      <div class="bkk-card rv d2">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-network-wired"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Telkom Indonesia</div>
+              <div style="font-size:11px;color:var(--text-3);">Solo, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-hot">⭐ Unggulan</span>
+        </div>
+        <div class="bkk-posisi">Mitra Teknologi Informasi & Jaringan</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">TKJ</span>
+          <span class="bkk-tag">Sertifikasi</span>
+          <span class="bkk-tag">Praktik Kerja</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-handshake"></i> MoU Aktif 2024–2027</div>
+        </div>
+      </div>
+      <div class="bkk-card rv d3">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-bolt"></i></div>
+            <div>
+              <div class="bkk-company-name">PT PLN (Persero) ULP Sragen</div>
+              <div style="font-size:11px;color:var(--text-3);">Sragen, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-new">Mitra Aktif</span>
+        </div>
+        <div class="bkk-posisi">Mitra Ketenagalistrikan & Energi</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">TITL</span>
+          <span class="bkk-tag">Praktik Kerja</span>
+          <span class="bkk-tag">Kunjungan Industri</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-handshake"></i> MoU Aktif 2025–2028</div>
+        </div>
+      </div>
+      <div class="bkk-card rv d1">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-car"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Toyota Astra Motor</div>
+              <div style="font-size:11px;color:var(--text-3);">Karanganyar, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-hot">⭐ Unggulan</span>
+        </div>
+        <div class="bkk-posisi">Mitra Teknik Kendaraan Ringan</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">TKR</span>
+          <span class="bkk-tag">Praktik Kerja</span>
+          <span class="bkk-tag">Rekrutmen Lulusan</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-handshake"></i> MoU Aktif 2024–2027</div>
+        </div>
+      </div>
+      <div class="bkk-card rv d2">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-hard-hat"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Waskita Karya (Persero)</div>
+              <div style="font-size:11px;color:var(--text-3);">Semarang, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-new">Mitra Aktif</span>
+        </div>
+        <div class="bkk-posisi">Mitra Teknik Konstruksi & Bangunan</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">TKP</span>
+          <span class="bkk-tag">DPIB</span>
+          <span class="bkk-tag">Kunjungan Industri</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-handshake"></i> MoU Aktif 2025–2028</div>
+        </div>
+      </div>
+      <div class="bkk-card rv d3">
+        <div class="bkk-card-top">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div class="bkk-company"><i class="fas fa-cogs"></i></div>
+            <div>
+              <div class="bkk-company-name">PT Damatex Salatiga</div>
+              <div style="font-size:11px;color:var(--text-3);">Salatiga, Jawa Tengah</div>
+            </div>
+          </div>
+          <span class="bkk-badge-new">Mitra Aktif</span>
+        </div>
+        <div class="bkk-posisi">Mitra Industri Manufaktur & Pemesinan</div>
+        <div class="bkk-tags">
+          <span class="bkk-tag">Teknik Mesin</span>
+          <span class="bkk-tag">Magang</span>
+          <span class="bkk-tag">Rekrutmen Lulusan</span>
+        </div>
+        <div class="bkk-card-foot">
+          <div class="bkk-deadline"><i class="fas fa-handshake"></i> MoU Aktif 2024–2026</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;" class="rv">
+      <a href="detail.html?section=mitra&id=semua" class="btn-navy" style="margin-top:0;display:inline-flex;">
+        <i class="fas fa-handshake"></i> Lihat Semua Mitra Industri
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BERITA TERBARU ══ -->
+<section class="berita" id="berita">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;" class="rv">
+      <div>
+        <div class="s-tag">Berita Sekolah</div>
+        <h2 class="s-title">Berita <em>Terbaru</em></h2>
+        <p class="s-desc" style="max-width:440px;">Informasi kegiatan, prestasi, dan perkembangan terkini di SMK Negeri 2 Sragen.</p>
+      </div>
+      <a href="berita.html" class="btn-navy" style="margin-top:0;">Semua Berita <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="berita-grid" id="berita-grid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-3);">
+        <i class="fas fa-spinner fa-spin"></i> Memuat berita...
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERI FOTO ══ -->
+<section class="galeri" id="galeri">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px;" class="rv">
+      <div>
+        <div class="s-tag">Galeri Foto</div>
+        <h2 class="s-title">Momen &amp; <em>Kegiatan</em></h2>
+        <p class="s-desc" style="max-width:440px;">Abadikan setiap momen berharga kegiatan siswa dan sekolah di SMKN 2 Sragen.</p>
+      </div>
+      <a href="galeri.html" class="btn-navy" style="margin-top:0;">Lihat Semua <i class="fas fa-images"></i></a>
+    </div>
+    <div class="galeri-mosaic rv d1" id="galeri-mosaic">
+      <div style="text-align:center;padding:60px 0;color:var(--text-3);">
+        <i class="fas fa-spinner fa-spin"></i> Memuat galeri...
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <div class="lightbox-img" id="lightboxImg">📸</div>
+    <p id="lightboxCaption" style="color:rgba(255,255,255,.8);margin-top:12px;font-size:13.5px;"></p>
+  </div>
+</div>
+
+<!-- ══ PROGRAM UNGGULAN ══ -->
+<section class="program" id="program">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Program Unggulan</div>
+      <h2 class="s-title">Apa yang Kami <em>Tawarkan</em></h2>
+      <p class="s-desc">Program pembinaan siswa yang komprehensif untuk mencetak generasi unggul dan berdaya saing.</p>
+    </div>
+    <div class="program-grid">
+      <div class="pcard rv d1" onclick="goToDetail('program','ekstrakurikuler','program')">
+        <div class="pcard-ico"><i class="fas fa-futbol"></i></div>
+        <h3>Ekstrakurikuler</h3>
+        <p>15+ pilihan ekskul — olahraga, seni, robotik, pramuka, hingga keagamaan.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d2" onclick="goToDetail('program','osis','program')">
+        <div class="pcard-ico"><i class="fas fa-users"></i></div>
+        <h3>OSIS &amp; MPK</h3>
+        <p>Organisasi siswa untuk melatih jiwa kepemimpinan, manajemen, dan demokrasi sejak dini.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d3" onclick="goToDetail('program','paskibra','program')">
+        <div class="pcard-ico"><i class="fas fa-flag"></i></div>
+        <h3>Paskibra</h3>
+        <p>Unit pasukan pengibar bendera berprestasi — aktif di lomba LKBB tingkat kabupaten dan provinsi.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d1" onclick="goToDetail('program','pkl','program')">
+        <div class="pcard-ico"><i class="fas fa-industry"></i></div>
+        <h3>Praktik Kerja Lapangan</h3>
+        <p>Program magang di 120+ mitra industri DUDI selama 6 bulan untuk pengalaman kerja nyata.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d2" onclick="goToDetail('program','sertifikasi','program')">
+        <div class="pcard-ico"><i class="fas fa-certificate"></i></div>
+        <h3>Sertifikasi Kompetensi</h3>
+        <p>Uji kompetensi resmi melalui LSP-P1 terakreditasi BNSP untuk bekal karir lulusan.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d3" onclick="goToDetail('program','bkk','program')">
+        <div class="pcard-ico"><i class="fas fa-briefcase"></i></div>
+        <h3>Bursa Kerja Khusus</h3>
+        <p>Menyalurkan alumni ke 120+ mitra perusahaan dengan tingkat serapan kerja 95%.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d1" onclick="goToDetail('program','lks','program')">
+        <div class="pcard-ico"><i class="fas fa-trophy"></i></div>
+        <h3>Lomba Kompetensi Siswa</h3>
+        <p>Pembinaan siswa berprestasi untuk kompetisi LKS dari tingkat kabupaten hingga nasional.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="pcard rv d2" onclick="goToDetail('program','karakter','program')">
+        <div class="pcard-ico"><i class="fas fa-heart"></i></div>
+        <h3>Pembinaan Karakter</h3>
+        <p>Program P5, kajian keagamaan, dan pembiasaan disiplin untuk mencetak siswa berkarakter.</p>
+        <a class="pcard-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testi" id="testi">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Apa Kata Mereka</div>
+      <h2 class="s-title">Kata Siswa &amp; <em>Alumni</em></h2>
+      <p class="s-desc">Beberapa siswa dan alumni memberikan feedback terkait proses pembinaan di SMKN 2 Sragen.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard rv d1">
+        <div class="tcard-photo">
+          <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_214515.jpg" alt="Annisa Rahma" />
+        </div>
+        <div class="tcard-bg"></div>
+        <div class="tcard-body">
+          <p class="tcard-quote">"Melalui OSIS, saya belajar memimpin, mengelola acara besar dan berani berpendapat. Sekolah ini benar-benar mendukung kami untuk berkembang."</p>
+          <div class="tcard-person">
+            <div class="tcard-avatar">
+              <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_214515.jpg" alt="Annisa Rahma" />
+            </div>
+            <div><div class="tcard-name">Annisa Rahma</div><div class="tcard-role">Ketua OSIS</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard rv d2">
+        <div class="tcard-photo">
+          <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_214542.jpg" alt="Ridwan" />
+        </div>
+        <div class="tcard-bg"></div>
+        <div class="tcard-body">
+          <p class="tcard-quote">"Disiplin dan mental siap kerja yang saya dapatkan. Saya tidak kaget lagi saat memasuki dunia industri — semua sudah dipersiapkan di sini."</p>
+          <div class="tcard-person">
+            <div class="tcard-avatar">
+              <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_214542.jpg" alt="Ridwan" />
+            </div>
+            <div><div class="tcard-name">Ridwan</div><div class="tcard-role">Bekerja di Mitra Industri</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard rv d1">
+        <div class="tcard-photo">
+          <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_214604.jpg" alt="Putri" />
+        </div>
+        <div class="tcard-bg"></div>
+        <div class="tcard-body">
+          <p class="tcard-quote">"Masuk eskul PMR membuka wawasan saya tentang kemanusiaan dan kesehatan. Saya bangga bisa aktif berkegiatan sambil tetap berprestasi."</p>
+          <div class="tcard-person">
+            <div class="tcard-avatar">
+              <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_214604.jpg" alt="Putri" />
+            </div>
+            <div><div class="tcard-name">Putri</div><div class="tcard-role">Anggota PMR</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard rv d2">
+        <div class="tcard-photo">
+          <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_220521.jpg" alt="Mentari" />
+        </div>
+        <div class="tcard-bg"></div>
+        <div class="tcard-body">
+          <p class="tcard-quote">"Program TKJ di sini luar biasa. Laboratorium jaringan yang lengkap dan guru yang berpengalaman membuat saya siap terjun ke dunia IT."</p>
+          <div class="tcard-person">
+            <div class="tcard-avatar">
+              <img src="https://raw.githubusercontent.com/tua468/nn/refs/heads/main/IMG_20260609_220521.jpg" alt="Mentari" />
+            </div>
+            <div><div class="tcard-name">Mentari</div><div class="tcard-role">Alumni TKJ 2023</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PENGUMUMAN & INFO ══ -->
+<section class="pengumuman" id="pengumuman">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;" class="rv">
+      <div>
+        <div class="s-tag">Info &amp; Pengumuman</div>
+        <h2 class="s-title">Info <em>Terkini</em> Sekolah</h2>
+        <p class="s-desc" style="max-width:480px;">Pengumuman resmi, PPDB, dan informasi penting langsung dari SMK Negeri 2 Sragen.</p>
+      </div>
+    </div>
+        <div class="pengumuman-grid" id="pengumuman-grid">
+      <div>
+        <div style="text-align:center;padding:40px;color:var(--text-3);">
+          <i class="fas fa-spinner fa-spin"></i> Memuat info...
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KALENDER & AGENDA ══ -->
+<section class="agenda-section" id="agenda">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Jadwal Sekolah</div>
+      <h2 class="s-title">Kalender &amp; <em>Agenda</em></h2>
+      <p class="s-desc">Pantau kegiatan dan agenda penting SMK Negeri 2 Sragen setiap bulannya.</p>
+    </div>
+    <div class="agenda-grid">
+      <!-- Kalender widget -->
+      <div class="cal-widget rv d1">
+        <div class="cal-header">
+          <div class="cal-month" id="calMonth">Mei 2026</div>
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="cal-nav-btn" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="cal-days-header">
+          <div class="cal-day-name">Min</div><div class="cal-day-name">Sen</div>
+          <div class="cal-day-name">Sel</div><div class="cal-day-name">Rab</div>
+          <div class="cal-day-name">Kam</div><div class="cal-day-name">Jum</div>
+          <div class="cal-day-name">Sab</div>
+        </div>
+        <div class="cal-days" id="calDays"></div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--gray-2);display:flex;gap:16px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--navy);"></div> Hari Ini
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--gold);"></div> Ada Agenda
+          </div>
+        </div>
+      </div>
+      <!-- Agenda list -->
+      <div class="rv d2">
+        <div class="agenda-list">
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">05</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge akademik">Akademik</span>
+              </div>
+              <div class="agenda-title">Pengambilan Ijazah Alumni 2025</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> 08.00 – 14.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Aula Sekolah</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">07</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge kegiatan">Kesiswaan</span>
+              </div>
+              <div class="agenda-title">Pelantikan Pengurus OSIS Angkatan XIII</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> 07.30 – 12.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Lapangan Upacara</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">10</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge akademik">PPDB</span>
+              </div>
+              <div class="agenda-title">Pembukaan PPDB Gelombang 1 Tahun 2026</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> Mulai 08.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Online &amp; Offline</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">16</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge libur">Libur</span>
+              </div>
+              <div class="agenda-title">Libur Hari Raya Waisak Nasional</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> Seharian</span>
+                <span><i class="fas fa-info-circle"></i> Libur Nasional</span>
+              </div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <div class="agenda-date-day">28</div>
+              <div class="agenda-date-mon">Jun</div>
+            </div>
+            <div class="agenda-body">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="agenda-badge kegiatan">Kegiatan</span>
+              </div>
+              <div class="agenda-title">LKS Internal — Seleksi Peserta Tingkat Kabupaten</div>
+              <div class="agenda-meta">
+                <span><i class="fas fa-clock"></i> 08.00 – 16.00 WIB</span>
+                <span><i class="fas fa-map-marker-alt"></i> Workshop Jurusan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JAJAK PENDAPAT ══ -->
+<section class="poll-section" id="polling">
+  <div class="container">
+    <div class="s-header c rv">
+      <div class="s-tag">Jajak Pendapat</div>
+      <h2 class="s-title">Suara <em>Kamu</em> Penting!</h2>
+      <p class="s-desc">Ikuti jajak pendapat dan bantu kami meningkatkan kualitas layanan sekolah.</p>
+    </div>
+    <div class="poll-grid">
+      <div class="poll-widget rv d1">
+        <div class="poll-question" id="pollQuestion">Memuat polling...</div>
+        <div class="poll-options" id="pollOptions"></div>
+        <button class="poll-submit" id="pollSubmitBtn" style="display:none;">Kirim Jawaban <i class="fas fa-paper-plane"></i></button>
+        <div class="poll-result-bar" id="pollResults"></div>
+      </div>
+      <div class="poll-info-box rv d2">
+        <h4>Mengapa Suaramu Penting?</h4>
+        <p>Jajak pendapat ini membantu manajemen SMKN 2 Sragen dalam menentukan prioritas pengembangan fasilitas dan layanan sekolah.</p>
+        <div class="poll-info-stats">
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num" id="statResponden">0</div>
+            <div class="poll-info-stat-lbl">Total Responden</div>
+          </div>
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num" id="statAktif">0</div>
+            <div class="poll-info-stat-lbl">Polling Aktif</div>
+          </div>
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num" id="statSelesai">0</div>
+            <div class="poll-info-stat-lbl">Polling Selesai</div>
+          </div>
+          <div class="poll-info-stat">
+            <div class="poll-info-stat-num" id="statPartisipasi">0%</div>
+            <div class="poll-info-stat-lbl">Tingkat Partisipasi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="container stats-inner">
+    <h2 class="rv">SMKN 2 Sragen Dalam Angka</h2>
+    <p class="rv d1">Biarkan data yang berbicara — cerminan nyata dari dinamika dan rekam jejak prestasi kami.</p>
+    <div class="stats-grid rv d2">
+      <div class="stat-item">
+        <div class="stat-num" data-target="1900">0</div>
+        <div class="stat-lbl">Siswa Aktif</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="120">0</div>
+        <div class="stat-lbl">Tenaga Pendidik</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="50">0</div>
+        <div class="stat-lbl">Prestasi Per Tahun</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer" id="kontak">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="rv">
+        <div class="foot-logo">
+          <div class="foot-logo-icon"><img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo SMKN 2 Sragen" /></div>
+          <div class="foot-logo-name">SMK Negeri 2 Sragen</div>
+        </div>
+        <p class="foot-desc">Mencetak generasi vokasi yang unggul, berkarakter, dan berdaya saing tinggi untuk masa depan industri Indonesia.</p>
+        <div class="foot-socials">
+          <a href="https://web.facebook.com/smkn2srg/" target="_blank" rel="noopener noreferrer" class="foot-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/smkn2sragen/" target="_blank" rel="noopener noreferrer" class="foot-social"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@smknegeri2sragenofficial" target="_blank" rel="noopener noreferrer" class="foot-social"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@smkn.2.sragen.off" target="_blank" rel="noopener noreferrer" class="foot-social"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="rv d1">
+        <div class="foot-col-title">Navigasi</div>
+        <ul class="foot-links">
+          <li><a href="#tentang">Profil Sekolah</a></li>
+          <li><a href="#visi-misi">Visi &amp; Misi</a></li>
+          <li><a href="#jurusan">Program Keahlian</a></li>
+          <li><a href="#fasilitas">Fasilitas</a></li>
+          <li><a href="#prestasi">Prestasi</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="rv d2">
+        <div class="foot-col-title">Kontak Kami</div>
+        <div class="foot-contact-item">
+          <div class="foot-contact-ico"><i class="fas fa-map-marker-alt"></i></div>
+          <a href="https://maps.app.goo.gl/UZdoSWioQVaHhh8c6" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">
+            <span>Jl. Dr. Sutomo No.4, Kebayan 1, Sragen Kulon, Kec. Sragen, Kabupaten Sragen, Jawa Tengah 57212</span>
+          </a>
+        </div>
+        <div class="foot-contact-item">
+          <div class="foot-contact-ico"><i class="fas fa-phone-alt"></i></div>
+          <a href="tel:+62271891047" style="color:inherit;text-decoration:none;"><span>(0271) 891047</span></a>
+        </div>
+        <div class="foot-contact-item">
+          <div class="foot-contact-ico"><i class="fas fa-envelope"></i></div>
+          <a href="mailto:smkn2sragen@gmail.com" style="color:inherit;text-decoration:none;"><span>smkn2sragen@gmail.com</span></a>
+        </div>
+        <div class="foot-contact-item">
+          <div class="foot-contact-ico"><i class="fas fa-globe"></i></div>
+          <a href="https://tua468.github.io/Website/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;"><span>www.smkn2sragen.sch.id</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© <span id="footerYear"></span> SMK Negeri 2 Sragen. Seluruh hak cipta dilindungi.</p>
+      <a href="admin.html" class="foot-bottom-badge" style="text-decoration:none;cursor:pointer;" title="Admin Panel"><i class="fas fa-circle" style="font-size:6px;color:var(--navy)"></i> Terakreditasi A</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Umur sekolah & tahun footer otomatis
+  const FOUNDING_DATE = new Date(2002, 2, 5); // 5 Maret 2002
+  const now = new Date();
+  const schoolAge = now.getFullYear() - FOUNDING_DATE.getFullYear() -
+    (now < new Date(now.getFullYear(), 2, 5) ? 1 : 0);
+  const ageEl = document.getElementById('schoolAge');
+  if (ageEl) ageEl.dataset.target = schoolAge; // set data-target agar ikut animasi count-up
+  document.getElementById('footerYear').textContent = now.getFullYear();
+
+  // ── About Slideshow
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#aboutSlider .slide');
+  const dots = document.querySelectorAll('#aboutSlider .slide-dot');
+
+  function goSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+  function moveSlide(dir) { goSlide(currentSlide + dir); }
+  setInterval(() => moveSlide(1), 4500);
+
+
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+  // ── Scroll reveal
+  const rvObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); rvObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+  // ── Count-up
+  function countUp(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = target >= 50 ? '+' : '';
+    const dur = 1800, step = target / (dur / 16);
+    let cur = 0;
+    const t = setInterval(() => {
+      cur += step;
+      if (cur >= target) { el.textContent = target.toLocaleString('id-ID') + suffix; clearInterval(t); }
+      else el.textContent = Math.floor(cur).toLocaleString('id-ID');
+    }, 16);
+  }
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-target]').forEach(countUp);
+        countObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.hero-stats, .stats-grid').forEach(el => countObs.observe(el));
+
+  // ── Active nav
+  const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const activeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('act'));
+        const a = document.querySelector(`.nav-menu a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('act');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => activeObs.observe(s));
+
+  // ── SCROLL PERSISTENCE ───────────────────────────────────
+  (function () {
+    var KEY        = 'smkn2_scroll_pos';
+    var navType    = ((performance.getEntriesByType('navigation')[0]) || {}).type;
+    var isReload   = navType === 'reload';
+    var isBackFwd  = navType === 'back_forward';
+    var isNewVisit = !isReload && !isBackFwd;
+    var saved      = localStorage.getItem(KEY);
+    var targetY    = saved ? Math.max(0, parseInt(saved, 10)) : 0;
+    // hasTarget: hanya kalau perlu scroll ke section selain hero
+    var hasTarget  = (isReload || isBackFwd) && targetY > 200;
+
+    // ── Fade-in: pakai CSS transition (bukan animation), opacity 0→1
+    //    Hanya dipanggil kalau halaman memang disembunyikan dulu (hasTarget)
+    function revealPage() {
+      var html = document.documentElement;
+      html.classList.add('page-fading');     // pasang transition
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          html.style.opacity = '1';           // trigger fade-in
+          setTimeout(function () {
+            html.classList.remove('page-fading');
+            html.style.opacity = '';
+          }, 450);
+        });
+      });
+    }
+
+    // ── Smooth scroll ke posisi tersimpan
+    function scrollToSaved() {
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+      setTimeout(function () {
+        document.documentElement.style.scrollBehavior = '';
+      }, 1200);
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+      if (isNewVisit) {
+        // Kunjungan baru: pastikan posisi tersimpan dihapus, halaman langsung visible
+        if (!sessionStorage.getItem('doRestore')) localStorage.removeItem(KEY);
+        // Tidak perlu apa-apa — halaman sudah visible (tidak disembunyikan di <head>)
+        return;
+      }
+
+      // Refresh / back-forward di hero (targetY <= 200):
+      // Tidak disembunyikan di <head>, tidak perlu fade — langsung visible, animasi .rv jalan normal
+      if (!hasTarget) {
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      // Refresh / back-forward di section lain:
+      // Halaman sudah opacity:0 dari <head> → mulai dari atas → fade-in → smooth scroll
+      window.scrollTo(0, 0);
+      revealPage();
+      setTimeout(scrollToSaved, 500);
+    });
+
+    // Setelah Firebase render: pastikan posisi tetap tepat
+    window.addEventListener('load', function () {
+      if (hasTarget) {
+        setTimeout(function () {
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }, 800);
+      }
+    });
+
+    // Simpan posisi setiap scroll (debounce 200ms)
+    var _t;
+    window.addEventListener('scroll', function () {
+      clearTimeout(_t);
+      _t = setTimeout(function () {
+        localStorage.setItem(KEY, String(window.scrollY));
+      }, 200);
+    }, { passive: true });
+
+    // Simpan tepat sebelum refresh
+    window.addEventListener('beforeunload', function () {
+      localStorage.setItem(KEY, String(window.scrollY));
+    });
+  })();
+
+  // ── Navigate to detail — simpan scroll position
+  function goToDetail(section, id, anchor) {
+    sessionStorage.setItem('scrollPos', window.scrollY);
+    sessionStorage.setItem('scrollAnchor', anchor || '');
+    window.location.href = 'detail.html?section=' + section + '&id=' + id + '&from=' + (anchor || '');
+  }
+
+  // ── Restore scroll position saat kembali dari halaman detail
+  window.addEventListener('pageshow', function (e) {
+    var pos       = sessionStorage.getItem('scrollPos');
+    var doRestore = sessionStorage.getItem('doRestore');
+    if (pos && doRestore === '1') {
+      sessionStorage.removeItem('doRestore');
+      requestAnimationFrame(function () {
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo({ top: parseInt(pos, 10), behavior: 'instant' });
+        setTimeout(function () {
+          document.documentElement.style.scrollBehavior = '';
+        }, 100);
+      });
+    }
+  });
+
+  // ── Search toggle
+  function toggleSearch() {
+    const s = document.getElementById('navSearch');
+    const inp = document.getElementById('searchInput');
+    s.classList.toggle('open');
+    if (s.classList.contains('open')) {
+      inp.focus();
+    }
+  }
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+      alert('Mencari: ' + e.target.value + '\n(Fitur pencarian akan terhubung ke database sekolah)');
+    }
+    if (e.key === 'Escape') toggleSearch();
+  });
+
+  // ── Hamburger menu toggle (mobile)
+  function toggleNavMenu() {
+    const menu = document.getElementById('navMenu');
+    const icon = document.getElementById('hamburgerIcon');
+    const isOpen = menu.classList.toggle('open');
+    icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  // Tutup menu saat link di-klik
+  document.getElementById('navMenu').querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      const menu = document.getElementById('navMenu');
+      if (menu.classList.contains('open')) {
+        menu.classList.remove('open');
+        document.getElementById('hamburgerIcon').className = 'fas fa-bars';
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // ── Lightbox
+  function openLightbox(caption, fotoUrl) {
+    document.getElementById('lightbox').classList.add('open');
+    document.getElementById('lightboxCaption').textContent = caption;
+    document.body.style.overflow = 'hidden';
+    const lbImg = document.getElementById('lightboxImg');
+    if (fotoUrl) {
+      lbImg.innerHTML = `<img src="${fotoUrl}" alt="${caption}" style="max-width:100%;max-height:80vh;border-radius:12px;display:block;" />`;
+    } else {
+      // fallback: cari dari DOM
+      lbImg.innerHTML = '📸';
+      const allItems = document.querySelectorAll('.galeri-item');
+      allItems.forEach(item => {
+        const cap = item.querySelector('.galeri-caption');
+        if (cap && cap.textContent === caption) {
+          const img = item.querySelector('img');
+          if (img) {
+            lbImg.innerHTML = `<img src="${img.src}" alt="${caption}" style="width:100%;max-height:80vh;object-fit:contain;border-radius:var(--r-lg);" />`;
+          }
+        }
+      });
+    }
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ── Kalender
+  let calYear = 2026, calMonth = 4; // Mei = index 4
+  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const eventDays = [5, 7, 10, 16, 28]; // Hari yang ada agenda di Juni 2026
+
+  function renderCalendar() {
+    const today = new Date();
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    document.getElementById('calMonth').textContent = monthNames[calMonth] + ' ' + calYear;
+    let html = '';
+    for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+      const hasEvent = eventDays.includes(d) && calMonth === 5; // Juni
+      html += `<div class="cal-day${isToday ? ' today' : ''}${hasEvent ? ' has-event' : ''}">${d}</div>`;
+    }
+    document.getElementById('calDays').innerHTML = html;
+  }
+  function changeMonth(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0)  { calMonth = 11; calYear--; }
+    renderCalendar();
+  }
+  renderCalendar();
+
+  // submitPoll didefinisikan di dalam module Firebase di bawah
+
+
+</script>
+
+<!-- ── Firebase: update 5 section dari Firestore ── -->
+<script type="module">
+  import { initializeApp }  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, getDocs, onSnapshot }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const app = initializeApp({
+    apiKey: "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
+    authDomain: "smkn2sragen-e487b.firebaseapp.com",
+    projectId: "smkn2sragen-e487b",
+    storageBucket: "smkn2sragen-e487b.firebasestorage.app",
+    messagingSenderId: "602192129071",
+    appId: "1:602192129071:web:884e02ba2bd6766df22ada"
+  });
+  const db = getFirestore(app);
+
+  // ── Helper: observe koleksi & update grid saat ada perubahan
+  function watchCol(colName, callback) {
+    onSnapshot(collection(db, colName), snap => {
+      if (!snap.empty) callback(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    }, err => console.warn(colName, err));
+  }
+
+  // ── PRESTASI — max 9, urut: bobot tingkat (Internasional > Nasional > Provinsi > Kabupaten) lalu tahun terbaru
+  const tingkatBobot = { 'Internasional': 4, 'Nasional': 3, 'Provinsi': 2, 'Kabupaten': 1 };
+  function sortPrestasi(data) {
+    return [...data].sort((a, b) => {
+      const bobotA = tingkatBobot[a.tingkat] || 0;
+      const bobotB = tingkatBobot[b.tingkat] || 0;
+      if (bobotB !== bobotA) return bobotB - bobotA;          // tingkat lebih tinggi duluan
+      return (parseInt(b.tahun) || 0) - (parseInt(a.tahun) || 0); // tahun terbaru duluan
+    });
+  }
+  function renderPrcard(d, i, delays) {
+    return `
+      <div class="prcard rv on ${delays[i % 3]}" onclick="goToDetail('prestasi','${d.id}','prestasi')" style="cursor:pointer;">
+        <div class="prcard-photo">
+          ${d.foto
+            ? `<img src="${d.foto}" alt="${d.nama||''}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'prcard-photo-empty\\'>🏆</div>'" />`
+            : `<div class="prcard-photo-empty">🏆</div>`
+          }
+        </div>
+        <div class="prcard-body">
+          <span class="prcard-medal">${d.medal||'🏆'}</span>
+          <span class="prcard-lvl">Tingkat ${d.tingkat||''}</span>
+          <h4>${d.nama||''}</h4>
+          <p>${d.keterangan||''}</p>
+        </div>
+      </div>`;
+  }
+  watchCol('prestasi', data => {
+    const grid   = document.getElementById('prestasi-grid');
+    const btnAll = document.getElementById('btn-lihat-semua');
+    if (!grid || !data.length) return;
+    const sorted  = sortPrestasi(data);
+    const tampil  = sorted.slice(0, 9);
+    const delays  = ['d1','d2','d3'];
+    grid.innerHTML = tampil.map((d, i) => renderPrcard(d, i, delays)).join('');
+    // tampilkan tombol hanya kalau data lebih dari 9
+    if (btnAll) btnAll.style.display = sorted.length > 9 ? 'inline-flex' : 'none';
+  });
+
+  // ── BERITA — sort terbaru, tampil 1 utama + 4 list = 5 total, tanpa badge kategori di foto
+  watchCol('berita', data => {
+    const grid = document.getElementById('berita-grid');
+    if (!grid) return;
+    const pub = data
+      .filter(d => d.status === 'Publish')
+      .sort((a, b) => (b.tanggal || '').localeCompare(a.tanggal || ''));
+    if (!pub.length) return;
+    const [utama, ...rest] = pub;
+    grid.innerHTML = `
+      <div class="berita-main rv on d1" onclick="goToDetail('berita','${utama.id}','berita')">
+        <div class="berita-main-img" style="background:var(--navy-dk);padding:0;">
+          <img src="${utama.foto||''}" alt="${utama.judul||''}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" loading="lazy" onerror="this.style.display='none'" />
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(18,36,72,.5) 100%);"></div>
+        </div>
+        <div class="berita-main-body">
+          <div class="berita-main-date"><i class="fas fa-calendar-alt"></i> ${utama.tanggal||''}</div>
+          <div class="berita-main-title">${utama.judul||''}</div>
+          <div class="berita-main-snippet">${utama.ringkasan||''}</div>
+          <a href="#" class="berita-main-read">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="berita-list rv on d2">
+        ${rest.slice(0,4).map(d => `
+        <div class="berita-item" onclick="goToDetail('berita','${d.id}','berita')">
+          <div class="berita-item-img" style="overflow:hidden;padding:0;background:var(--navy);">
+            <img src="${d.foto||''}" alt="" style="width:100%;height:100%;object-fit:cover;" loading="lazy" onerror="this.style.display='none'" />
+          </div>
+          <div class="berita-item-body">
+            <div class="berita-item-cat">${d.kategori||''}</div>
+            <div class="berita-item-title">${d.judul||''}</div>
+            <div class="berita-item-date"><i class="fas fa-calendar-alt"></i> ${d.tanggal||''}</div>
+          </div>
+        </div>`).join('')}
+      </div>`;
+  });
+
+  // ── GALERI — mosaic 2 baris (10 foto), urut terbaru
+  watchCol('galeri', data => {
+    const wrap = document.getElementById('galeri-mosaic');
+    if (!wrap) return;
+    const sorted = data
+      .filter(d => d.status !== 'Sembunyikan')
+      .sort((a, b) => {
+        // Sort by createdAt desc, fallback by judul
+        const tA = a.createdAt?.seconds || 0;
+        const tB = b.createdAt?.seconds || 0;
+        return tB - tA;
+      });
+    if (!sorted.length) return;
+
+    // Filter hanya yang punya foto valid
+    const withFoto = sorted.filter(d => d.foto && d.foto.trim() !== '');
+    // 10 foto = genap di mobile 2 kolom (5 baris × 2), tanpa slot kosong
+    // Desktop: 11 foto, Mobile: 10 foto (genap di 2 kolom)
+    const isMobile = window.innerWidth <= 768;
+    const tampil = withFoto.slice(0, isMobile ? 10 : 11);
+
+    // helper buat item
+    const gi = (d, cls='') => `
+      <div class="galeri-item ${cls}" onclick="openLightbox('${(d.judul||'').replace(/'/g,"\\'")}','${(d.foto||'')}')">
+        <img src="${d.foto||''}" alt="${d.judul||''}" loading="lazy" onerror="this.closest('.galeri-item').style.display='none'" />
+        <div class="galeri-overlay"><span class="galeri-caption">${d.judul||''}</span></div>
+      </div>`;
+
+    // Baris 1: foto 0–3 (4 foto)
+    const r1 = tampil.slice(0, 4);
+    // Baris 2: desktop 7 foto (mengisi grid 4kol×3baris), mobile 6 foto (grid 2kol × 3baris)
+    const r2 = tampil.slice(4);
+
+    wrap.innerHTML = `
+      <div class="galeri-row galeri-row-1">
+        ${r1[0] ? gi(r1[0], 'gi-0') : ''}
+        ${r1[1] ? gi(r1[1], 'gi-1') : ''}
+        ${r1[2] ? gi(r1[2], 'gi-2') : ''}
+        ${r1[3] ? gi(r1[3], 'gi-3') : ''}
+      </div>
+      ${r2.length ? `
+      <div class="galeri-row galeri-row-2">
+        ${r2[0] ? gi(r2[0], 'gi-0') : ''}
+        ${r2[1] ? gi(r2[1], 'gi-1') : ''}
+        ${r2[2] ? gi(r2[2], 'gi-2') : ''}
+        ${r2[3] ? gi(r2[3], 'gi-3') : ''}
+        ${r2[4] ? gi(r2[4], 'gi-4') : ''}
+        ${r2[5] ? gi(r2[5], 'gi-5') : ''}
+        ${r2[6] ? gi(r2[6], 'gi-6') : ''}
+      </div>` : ''}`;
+  });
+
+  // ── PENGUMUMAN
+  watchCol('pengumuman', data => {
+    const grid = document.getElementById('pengumuman-grid');
+    if (!grid) return;
+    const aktif = data
+      .filter(d => d.status === 'Aktif')
+      .sort((a, b) => (b.tanggal || '').localeCompare(a.tanggal || ''));
+    if (!aktif.length) return;
+    const [top, ...rest] = aktif;
+
+    const badgeClass = kat => {
+      const k = (kat||'').toLowerCase();
+      if (k === 'ppdb') return 'ppdb';
+      if (k === 'kesiswaan') return 'kesiswaan';
+      if (k === 'administrasi') return 'administrasi';
+      if (k === 'akademik') return 'akademik';
+      return 'umum';
+    };
+
+    grid.innerHTML = `
+      <div>
+        <div class="info-alert rv on d1" onclick="goToDetail('pengumuman','${top.id}','pengumuman')" style="cursor:pointer;">
+          <div class="info-alert-ico"><i class="fas fa-bullhorn"></i></div>
+          <div class="info-alert-body">
+            <div class="info-alert-tag">🔥 Terbaru · ${top.kategori||''}</div>
+            <div class="info-alert-title">${top.judul||''}</div>
+            <div class="info-alert-date"><i class="fas fa-calendar-alt"></i> ${top.tanggal||''} &nbsp;·&nbsp; ${top.isi ? top.isi.slice(0,60)+(top.isi.length>60?'...':'') : ''}</div>
+          </div>
+          <i class="fas fa-chevron-right info-alert-arrow"></i>
+        </div>
+        ${rest.slice(0,4).map(d => `
+        <div class="info-card rv on d2" onclick="goToDetail('pengumuman','${d.id}','pengumuman')" style="cursor:pointer;">
+          <div class="info-card-dot ${d.kategori==='PPDB'?'new':d.kategori==='Akademik'?'info':''}"></div>
+          <div class="info-card-body">
+            <div class="info-card-top">
+              <span class="info-card-badge ${badgeClass(d.kategori)}">${d.kategori||''}</span>
+              <span class="info-card-status">${d.status||'Aktif'}</span>
+            </div>
+            <div class="info-card-title">${d.judul||''}</div>
+            ${d.isi ? `<div class="info-card-snippet">${d.isi.slice(0,80)}${d.isi.length>80?'...':''}</div>` : ''}
+            <div class="info-card-meta"><i class="fas fa-calendar-alt"></i> ${d.tanggal||''}</div>
+          </div>
+          <i class="fas fa-chevron-right info-card-arrow"></i>
+        </div>`).join('')}
+        <div style="text-align:center;margin-top:20px;">
+          <a href="pengumuman.html" class="btn-navy" style="margin-top:0;display:inline-flex;"><i class="fas fa-list"></i> Lihat Semua Pengumuman</a>
+        </div>
+      </div>`;
+  });
+
+  // ── POLLING — baca dari Firebase, vote disimpan lokal per device
+  let _pollId      = null;
+  let _pilihanList = [];
+  let _localVotes  = {}; // akumulasi semua votes dari semua user di device ini
+
+  watchCol('polling', data => {
+    const aktif   = data.filter(d => d.status === 'Aktif');
+    const selesai = data.filter(d => d.status === 'Tutup');
+    if (!aktif.length) return;
+    const p = aktif[0];
+    _pollId      = p.id;
+    _pilihanList = [p.pilihan1, p.pilihan2, p.pilihan3, p.pilihan4].filter(Boolean);
+
+    // Baca votes dari localStorage untuk polling ini
+    const savedVotes = JSON.parse(localStorage.getItem('poll_votes_' + _pollId) || 'null');
+    const votes = _pilihanList.map((_, i) => savedVotes ? (savedVotes[i] || 0) : 0);
+    const total = votes.reduce((a, b) => a + b, 0);
+    const sudahVote = localStorage.getItem('voted_' + _pollId);
+
+    // Update pertanyaan
+    const qEl = document.getElementById('pollQuestion');
+    if (qEl) qEl.textContent = p.pertanyaan || '';
+
+    // Update stats
+    const el = id => document.getElementById(id);
+    if (el('statResponden'))   el('statResponden').textContent  = total;
+    if (el('statAktif'))       el('statAktif').textContent      = aktif.length;
+    if (el('statSelesai'))     el('statSelesai').textContent    = selesai.length;
+    if (el('statPartisipasi')) el('statPartisipasi').textContent = total > 0 ? Math.min(100, Math.round(total/(total+2)*100)) + '%' : '0%';
+
+    const btn = document.getElementById('pollSubmitBtn');
+    const oEl = document.getElementById('pollOptions');
+    const res = document.getElementById('pollResults');
+
+    if (sudahVote !== null) {
+      // Sudah vote — sembunyikan form, tampilkan hasil
+      if (oEl) oEl.style.display = 'none';
+      if (btn) btn.style.display = 'none';
+      _renderPollResults(votes, total, _pilihanList);
+      if (res) { res.classList.add('show'); setTimeout(_animateBars, 150); }
+    } else {
+      // Belum vote — tampilkan form
+      if (oEl) {
+        oEl.style.display = '';
+        oEl.innerHTML = _pilihanList.map((opt, i) => `
+          <label class="poll-option">
+            <input type="radio" name="poll" value="${i}">
+            <label>${opt}</label>
+          </label>`).join('');
+      }
+      if (btn) btn.style.display = '';
+      _renderPollResults(votes, total, _pilihanList);
+      if (res) res.classList.remove('show');
+    }
+  });
+
+  function _renderPollResults(votes, total, labels) {
+    const res = document.getElementById('pollResults');
+    if (!res) return;
+    res.innerHTML = `<div style="height:1px;background:var(--gray-2);margin:20px 0;"></div>` +
+      labels.map((lbl, i) => {
+        const pct = total > 0 ? Math.round(votes[i] / total * 100) : 0;
+        return `<div class="poll-result-item">
+          <div class="poll-result-label"><span>${lbl}</span><strong>${pct}%</strong></div>
+          <div class="poll-bar"><div class="poll-bar-fill" style="width:0%" data-width="${pct}%"></div></div>
+        </div>`;
+      }).join('') +
+      `<div class="poll-total">Total responden: <strong>${total} suara</strong></div>`;
+  }
+
+  function _animateBars() {
+    document.querySelectorAll('.poll-bar-fill').forEach(bar => {
+      bar.style.transition = 'width .6s ease';
+      bar.style.width = bar.dataset.width;
+    });
+  }
+
+  // ── submitPoll — simpan ke localStorage (tidak butuh Firebase write)
+  window.submitPoll = function() {
+    const selected = document.querySelector('input[name="poll"]:checked');
+    if (!selected) { alert('Pilih salah satu jawaban terlebih dahulu!'); return; }
+    if (!_pollId)  { alert('Polling belum dimuat, coba refresh.'); return; }
+
+    const idx = parseInt(selected.value);
+
+    // Ambil votes yang sudah ada, tambah 1 untuk pilihan ini
+    const savedVotes = JSON.parse(localStorage.getItem('poll_votes_' + _pollId) || '{}');
+    savedVotes[idx] = (savedVotes[idx] || 0) + 1;
+    localStorage.setItem('poll_votes_' + _pollId, JSON.stringify(savedVotes));
+    localStorage.setItem('voted_' + _pollId, String(idx));
+
+    // Hitung ulang
+    const votes = _pilihanList.map((_, i) => savedVotes[i] || 0);
+    const total = votes.reduce((a, b) => a + b, 0);
+
+    // Update stats
+    const el = id => document.getElementById(id);
+    if (el('statResponden')) el('statResponden').textContent = total;
+
+    // Sembunyikan form & tombol
+    const oEl = document.getElementById('pollOptions');
+    const btn = document.getElementById('pollSubmitBtn');
+    if (oEl) oEl.style.display = 'none';
+    if (btn) btn.style.display = 'none';
+
+    // Tampilkan hasil
+    _renderPollResults(votes, total, _pilihanList);
+    const res = document.getElementById('pollResults');
+    if (res) { res.classList.add('show'); setTimeout(_animateBars, 150); }
+  };
+
+  // Pasang event listener ke tombol setelah module load
+  const pollBtn = document.getElementById('pollSubmitBtn');
+  if (pollBtn) pollBtn.addEventListener('click', window.submitPoll);
+</script>
+
+</body>
+</html>

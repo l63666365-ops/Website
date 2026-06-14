@@ -1,0 +1,137 @@
+/*
+ * SMKN 2 Sragen — Shared Sub-Page Stylesheet
+ * Digunakan oleh: berita.html, galeri.html, prestasi.html,
+ *                 pengumuman.html, detail.html
+ * index.html, admin.html, dashboard.html punya struktur
+ * tersendiri dan tidak menggunakan file ini.
+ */
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── CSS VARIABLES ── */
+:root {
+  --navy:     #1a3566;
+  --navy-dk:  #122448;
+  --navy-lt:  #2451a0;
+  --navy-dim: rgba(26,53,102,0.07);
+  --gold:     #e8a020;
+  --gold-lt:  #f5c842;
+  --white:    #ffffff;
+  --gray-1:   #f7f8fc;
+  --gray-2:   #eef0f6;
+  --gray-3:   #d1d5e0;
+  --text-1:   #0f1a35;
+  --text-2:   #4a5578;
+  --text-3:   #8a94b8;
+  --r-sm: 8px; --r-md: 16px; --r-lg: 24px; --r-xl: 32px; --r-2xl: 48px;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--text-1); }
+
+/* ── CONTAINER ── */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* ── NAVBAR ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--gray-2);
+  box-shadow: 0 2px 20px rgba(26,53,102,.08);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 24px;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  overflow: hidden;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; flex-shrink: 1; }
+.nav-logo-icon { width: 38px; height: 38px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.nav-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+/* support both .nav-logo-name (sub-pages) and .nav-logo-text (detail.html) */
+.nav-logo-name,
+.nav-logo-text { font-size: 13.5px; font-weight: 700; color: var(--text-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-logo-sub  { font-size: 10px; color: var(--text-3); display: block; white-space: nowrap; }
+.nav-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gray-1); border: 1px solid var(--gray-2);
+  color: var(--text-2); padding: 7px 18px; border-radius: 100px;
+  font-size: 12.5px; font-weight: 600; text-decoration: none;
+  transition: all .2s; flex-shrink: 0; white-space: nowrap; cursor: pointer;
+}
+.nav-back:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+/* ── HERO BASE (background & padding diatur per halaman) ── */
+.hero { margin-top: 64px; position: relative; overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+  color: #fff; padding: 5px 16px; border-radius: 100px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+.hero p   { font-size: 15px; color: rgba(255,255,255,.78); max-width: 520px; line-height: 1.8; }
+.hero-stats { display: flex; gap: 32px; margin-top: 28px; flex-wrap: wrap; }
+.hero-stat  { text-align: center; }
+.hero-stat-num { font-size: 1.9rem; font-weight: 800; color: #fff; line-height: 1; }
+.hero-stat-lbl { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--white); border-bottom: 1px solid var(--gray-2);
+  position: sticky; top: 64px; z-index: 90;
+  box-shadow: 0 2px 12px rgba(26,53,102,.06);
+}
+.filter-inner { display: flex; align-items: center; gap: 10px; padding: 13px 0; flex-wrap: wrap; }
+.filter-label { font-size: 11.5px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: 1px; margin-right: 4px; white-space: nowrap; }
+.filter-btn {
+  padding: 7px 18px; border-radius: 100px; border: 1.5px solid var(--gray-3);
+  background: var(--white); color: var(--text-2);
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.filter-btn:hover  { border-color: var(--navy); color: var(--navy); }
+.filter-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; box-shadow: 0 4px 12px rgba(26,53,102,.25); }
+.filter-count { margin-left: auto; font-size: 12.5px; color: var(--text-3); white-space: nowrap; }
+.filter-count strong { color: var(--navy); }
+
+/* ── LOADING / EMPTY STATES ── */
+.loading-state { text-align: center; padding: 80px 0; color: var(--text-3); font-size: 14px; }
+.loading-state i { font-size: 2rem; margin-bottom: 12px; display: block; }
+.empty-state { text-align: center; padding: 64px 24px; color: var(--text-3); }
+.empty-state i { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+.empty-state p { font-size: 14px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-inner    { padding: 0 14px; }
+  .nav-logo-name,
+  .nav-logo-text { font-size: 12px; }
+  .nav-logo-sub { display: none; }
+  .nav-back     { padding: 6px 12px; font-size: 11.5px; gap: 6px; }
+  .filter-inner {
+    flex-wrap: nowrap; overflow-x: auto; gap: 8px;
+    padding: 10px 0; scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .filter-inner::-webkit-scrollbar { display: none; }
+  .filter-label { display: none; }
+  .filter-count { display: none; }
+  .filter-btn   { flex-shrink: 0; }
+}
+@media (max-width: 440px) {
+  .nav-inner    { padding: 0 12px; }
+  .nav-logo-icon { width: 32px; height: 32px; }
+  .nav-logo-name,
+  .nav-logo-text { font-size: 11.5px; }
+  .container    { padding: 0 12px; }
+  .filter-btn   { padding: 5px 12px; font-size: 11px; }
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" />
+  <title>Semua Berita — SMK Negeri 2 Sragen</title>
+  <meta name="description" content="Berita dan informasi terkini seputar kegiatan, prestasi, dan perkembangan SMK Negeri 2 Sragen." />
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="SMK Negeri 2 Sragen" />
+  <meta property="og:title"        content="Semua Berita — SMK Negeri 2 Sragen" />
+  <meta property="og:description"  content="Berita dan informasi terkini seputar kegiatan, prestasi, dan perkembangan SMK Negeri 2 Sragen." />
+  <meta property="og:image"        content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Semua Berita — SMK Negeri 2 Sragen" />
+  <meta name="twitter:description" content="Berita dan informasi terkini seputar kegiatan, prestasi, dan perkembangan SMK Negeri 2 Sragen." />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dk) 0%, var(--navy) 60%, var(--navy-lt) 100%);
+      padding: 56px 0 48px;
+    }
+
+    /* ── MAIN ── */
+    .main { padding: 48px 0 80px; }
+
+    /* Berita utama (card besar) */
+    .berita-featured {
+      display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px;
+      margin-bottom: 48px;
+    }
+    .berita-card-big {
+      border-radius: var(--r-xl); overflow: hidden; cursor: pointer;
+      border: 1px solid var(--gray-2); background: var(--white);
+      box-shadow: 0 4px 20px rgba(26,53,102,.08);
+      transition: transform .28s, box-shadow .28s;
+      display: flex; flex-direction: column;
+    }
+    .berita-card-big:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(26,53,102,.14); }
+    .berita-card-big-img { height: 240px; overflow: hidden; position: relative; background: var(--navy-dk); }
+    .berita-card-big-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .berita-card-big:hover .berita-card-big-img img { transform: scale(1.05); }
+    .berita-card-big-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; }
+    .berita-card-cat {
+      display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--navy); background: var(--navy-dim);
+      padding: 3px 10px; border-radius: 100px; margin-bottom: 10px;
+    }
+    .berita-card-title { font-size: 1.05rem; font-weight: 800; color: var(--text-1); line-height: 1.4; margin-bottom: 10px; }
+    .berita-card-snippet { font-size: 13px; color: var(--text-2); line-height: 1.75; margin-bottom: 14px; flex: 1; }
+    .berita-card-date { font-size: 11.5px; color: var(--text-3); display: flex; align-items: center; gap: 5px; margin-top: auto; }
+
+    /* Sidebar berita */
+    .berita-sidebar { display: flex; flex-direction: column; gap: 14px; }
+    .berita-card-sm {
+      display: flex; gap: 14px; cursor: pointer; padding: 14px;
+      border-radius: var(--r-md); border: 1px solid var(--gray-2);
+      background: var(--white); transition: border-color .2s, box-shadow .2s;
+    }
+    .berita-card-sm:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.1); }
+    .berita-card-sm-img { width: 80px; height: 68px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: var(--navy-dk); }
+    .berita-card-sm-img img { width: 100%; height: 100%; object-fit: cover; }
+    .berita-card-sm-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .berita-card-sm-cat { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 5px; }
+    .berita-card-sm-title { font-size: 12.5px; font-weight: 700; color: var(--text-1); line-height: 1.4; margin-bottom: 5px; }
+    .berita-card-sm-date { font-size: 11px; color: var(--text-3); }
+
+    /* Divider */
+    .month-divider { display: flex; align-items: center; gap: 14px; margin: 36px 0 20px; }
+    .month-badge { background: var(--navy); color: #fff; font-size: 12px; font-weight: 800; padding: 5px 18px; border-radius: 100px; white-space: nowrap; }
+    .month-line { flex: 1; height: 1px; background: var(--gray-2); }
+
+    /* Grid berita bawah */
+    .berita-grid-all { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .berita-card-med {
+      border-radius: var(--r-lg); overflow: hidden; cursor: pointer;
+      border: 1px solid var(--gray-2); background: var(--white);
+      box-shadow: 0 2px 10px rgba(26,53,102,.06);
+      transition: transform .28s, box-shadow .28s;
+      display: flex; flex-direction: column;
+    }
+    .berita-card-med:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(26,53,102,.12); }
+    .berita-card-med-img { height: 160px; overflow: hidden; background: var(--navy-dk); }
+    .berita-card-med-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .38s; }
+    .berita-card-med:hover .berita-card-med-img img { transform: scale(1.06); }
+    .berita-card-med-body { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; }
+    .berita-card-med-cat { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 7px; }
+    .berita-card-med-title { font-size: 13px; font-weight: 700; color: var(--text-1); line-height: 1.45; margin-bottom: 8px; flex: 1; }
+    .berita-card-med-date { font-size: 11px; color: var(--text-3); margin-top: auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .berita-featured { grid-template-columns: 1fr; }
+      .berita-sidebar { flex-direction: row; flex-wrap: wrap; }
+      .berita-card-sm { flex: 1 1 calc(50% - 7px); }
+    }
+    @media (max-width: 640px) {
+      .berita-grid-all { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .berita-card-sm { flex: 1 1 100%; }
+    }
+    @media (max-width: 440px) {
+      .berita-grid-all { grid-template-columns: 1fr; }
+      .berita-card-big-img { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo SMKN 2 Sragen" />
+      </div>
+      <div>
+        <div class="nav-logo-name">SMK Negeri 2 Sragen</div>
+        <span class="nav-logo-sub">Kabupaten Sragen · Jawa Tengah</span>
+      </div>
+    </a>
+    <a href="index.html#berita" class="nav-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-tag"><i class="fas fa-newspaper"></i> Berita Sekolah</div>
+    <h1>Semua Berita<br>SMKN 2 Sragen</h1>
+    <p>Informasi terkini seputar kegiatan, prestasi, dan perkembangan SMK Negeri 2 Sragen.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-total">—</div>
+        <div class="hero-stat-lbl">Total Berita</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FILTER BAR ── -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <span class="filter-label"><i class="fas fa-filter"></i> Kategori:</span>
+      <button class="filter-btn active" data-filter="Semua">Semua</button>
+      <button class="filter-btn" data-filter="Prestasi">Prestasi</button>
+      <button class="filter-btn" data-filter="Kesiswaan">Kesiswaan</button>
+      <button class="filter-btn" data-filter="Teknologi">Teknologi</button>
+      <button class="filter-btn" data-filter="Akademik">Akademik</button>
+      <button class="filter-btn" data-filter="Lingkungan">Lingkungan</button>
+      <button class="filter-btn" data-filter="Umum">Umum</button>
+      <span class="filter-count">Menampilkan <strong id="count-display">0</strong> berita</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<main class="main">
+  <div class="container">
+    <div id="content-area">
+      <div class="loading-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        Memuat berita...
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── FIREBASE ── -->
+<script type="module">
+  import { initializeApp }  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, onSnapshot }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const app = initializeApp({
+    apiKey:            "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
+    authDomain:        "smkn2sragen-e487b.firebaseapp.com",
+    projectId:         "smkn2sragen-e487b",
+    storageBucket:     "smkn2sragen-e487b.firebasestorage.app",
+    messagingSenderId: "602192129071",
+    appId:             "1:602192129071:web:884e02ba2bd6766df22ada"
+  });
+  const db = getFirestore(app);
+
+  let allData      = [];
+  let activeFilter = 'Semua';
+
+  function sortBerita(data) {
+    return [...data]
+      .filter(d => d.status === 'Publish')
+      .sort((a, b) => (b.tanggal || '').localeCompare(a.tanggal || ''));
+  }
+
+  function goDetail(id) {
+    window.location.href = `detail.html?section=berita&id=${id}&from=berita`;
+  }
+
+  function cardBigHTML(d) {
+    return `
+      <div class="berita-card-big" onclick="goDetail_('${d.id}')">
+        <div class="berita-card-big-img">
+          <img src="${d.foto||''}" alt="${(d.judul||'').replace(/"/g,'&quot;')}" loading="lazy" onerror="this.style.display='none'" />
+        </div>
+        <div class="berita-card-big-body">
+          <span class="berita-card-cat">${d.kategori||'Berita'}</span>
+          <div class="berita-card-title">${d.judul||''}</div>
+          <div class="berita-card-snippet">${d.ringkasan||''}</div>
+          <div class="berita-card-date"><i class="fas fa-calendar-alt"></i> ${d.tanggal||''}</div>
+        </div>
+      </div>`;
+  }
+
+  function cardSmHTML(d) {
+    return `
+      <div class="berita-card-sm" onclick="goDetail_('${d.id}')">
+        <div class="berita-card-sm-img">
+          <img src="${d.foto||''}" alt="" loading="lazy" onerror="this.style.display='none'" />
+        </div>
+        <div class="berita-card-sm-body">
+          <div class="berita-card-sm-cat">${d.kategori||''}</div>
+          <div class="berita-card-sm-title">${d.judul||''}</div>
+          <div class="berita-card-sm-date"><i class="fas fa-calendar-alt"></i> ${d.tanggal||''}</div>
+        </div>
+      </div>`;
+  }
+
+  function cardMedHTML(d) {
+    return `
+      <div class="berita-card-med" onclick="goDetail_('${d.id}')">
+        <div class="berita-card-med-img">
+          <img src="${d.foto||''}" alt="" loading="lazy" onerror="this.style.display='none'" />
+        </div>
+        <div class="berita-card-med-body">
+          <div class="berita-card-med-cat">${d.kategori||''}</div>
+          <div class="berita-card-med-title">${d.judul||''}</div>
+          <div class="berita-card-med-date"><i class="fas fa-calendar-alt"></i> ${d.tanggal||''}</div>
+        </div>
+      </div>`;
+  }
+
+  window.goDetail_ = id => {
+    window.location.href = `detail.html?section=berita&id=${id}&from=berita`;
+  };
+
+  function render() {
+    const area = document.getElementById('content-area');
+    const filtered = activeFilter === 'Semua'
+      ? allData
+      : allData.filter(d => d.kategori === activeFilter);
+
+    document.getElementById('count-display').textContent = filtered.length;
+
+    if (!filtered.length) {
+      area.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><p>Tidak ada berita untuk kategori "<strong>${activeFilter}</strong>".</p></div>`;
+      return;
+    }
+
+    const [top, second, ...rest] = filtered;
+
+    // Baris 1: featured (big + sidebar kecil)
+    let html = `<div class="berita-featured">
+      ${cardBigHTML(top)}
+      <div class="berita-sidebar">
+        ${second ? cardSmHTML(second) : ''}
+        ${rest.slice(0,2).map(d => cardSmHTML(d)).join('')}
+      </div>
+    </div>`;
+
+    // Sisanya dalam grid 3 kolom, dikelompokkan per tahun
+    const sisanya = rest.slice(2);
+    if (sisanya.length) {
+      const byYear = {};
+      sisanya.forEach(d => {
+        const y = (d.tanggal || '').slice(0, 4) || 'Lainnya';
+        if (!byYear[y]) byYear[y] = [];
+        byYear[y].push(d);
+      });
+      const years = Object.keys(byYear).sort((a, b) => b.localeCompare(a));
+      html += years.map(y => `
+        <div class="month-divider">
+          <span class="month-badge"><i class="fas fa-calendar"></i> ${y}</span>
+          <div class="month-line"></div>
+        </div>
+        <div class="berita-grid-all">
+          ${byYear[y].map(d => cardMedHTML(d)).join('')}
+        </div>`).join('');
+    }
+
+    area.innerHTML = html;
+  }
+
+  // Realtime listener
+  onSnapshot(collection(db, 'berita'), snap => {
+    allData = sortBerita(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    document.getElementById('stat-total').textContent = allData.length;
+    render();
+  }, err => {
+    document.getElementById('content-area').innerHTML =
+      `<div class="loading-state" style="color:#e53e3e;"><i class="fas fa-exclamation-circle"></i>Gagal memuat: ${err.message}</div>`;
+  });
+
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      render();
+      document.querySelector('.main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

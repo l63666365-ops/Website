@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" />
+  <title>Galeri Momen — SMK Negeri 2 Sragen</title>
+  <meta name="description" content="Galeri foto dan dokumentasi momen kegiatan, prestasi, dan kehidupan sehari-hari siswa SMK Negeri 2 Sragen." />
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="SMK Negeri 2 Sragen" />
+  <meta property="og:title"        content="Galeri Momen — SMK Negeri 2 Sragen" />
+  <meta property="og:description"  content="Galeri foto dan dokumentasi momen kegiatan, prestasi, dan kehidupan sehari-hari siswa SMK Negeri 2 Sragen." />
+  <meta property="og:image"        content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Galeri Momen — SMK Negeri 2 Sragen" />
+  <meta name="twitter:description" content="Galeri foto dan dokumentasi momen kegiatan, prestasi, dan kehidupan sehari-hari siswa SMK Negeri 2 Sragen." />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--gray-1); }
+    /* galeri pakai border-radius lebih kecil & container lebih lebar */
+    :root { --r-md: 14px; --r-lg: 20px; }
+    .container, .nav-inner { max-width: 1200px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dk) 0%, var(--navy) 60%, var(--navy-lt) 100%);
+      padding: 52px 0 44px;
+    }
+    .hero h1 { margin-bottom: 10px; }
+    .hero p  { font-size: 14.5px; color: rgba(255,255,255,.75); }
+    .hero-stat-num { font-size: 1.8rem; }
+
+    /* filter overrides (galeri pakai tombol sedikit lebih kecil) */
+    .filter-btn   { padding: 6px 16px; font-size: 12px; }
+    .filter-count { font-size: 12px; }
+
+    /* ── MAIN ── */
+    .main { padding: 40px 0 80px; }
+
+    /* Masonry 3 kolom */
+    .masonry { columns: 3; column-gap: 12px; }
+    .masonry-item {
+      break-inside: avoid; margin-bottom: 12px;
+      border-radius: var(--r-md); overflow: hidden;
+      cursor: pointer; position: relative;
+      background: var(--navy-dk);
+      box-shadow: 0 2px 10px rgba(26,53,102,.1);
+      transition: transform .28s, box-shadow .28s;
+      display: block;
+    }
+    .masonry-item:hover { transform: translateY(-3px) scale(1.015); box-shadow: 0 12px 36px rgba(26,53,102,.2); z-index: 2; }
+    .masonry-item img { width: 100%; height: auto; display: block; transition: filter .3s; }
+    .masonry-item:hover img { filter: brightness(.88); }
+    .masonry-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,20,50,.72) 0%, transparent 50%);
+      opacity: 0; transition: opacity .28s;
+      display: flex; align-items: flex-end; padding: 14px;
+    }
+    .masonry-item:hover .masonry-overlay { opacity: 1; }
+    .masonry-caption { color: #fff; font-size: 12px; font-weight: 600; line-height: 1.4; }
+    .masonry-cat-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(0,0,0,.45); backdrop-filter: blur(6px);
+      color: #fff; font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 100px;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lb {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.88); align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .lb.open { display: flex; }
+    .lb-inner {
+      position: relative; max-width: 900px; width: 100%;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .lb-inner img { max-width: 100%; max-height: 80vh; border-radius: 12px; object-fit: contain; display: block; }
+    .lb-caption { color: rgba(255,255,255,.82); font-size: 13px; margin-top: 12px; text-align: center; }
+    .lb-close {
+      position: fixed; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero      { padding: 36px 0 30px; }
+      .hero h1   { font-size: clamp(1.4rem, 5.5vw, 2rem); }
+      .hero p    { font-size: 13.5px; }
+      .masonry   { columns: 2; column-gap: 8px; }
+      .masonry-item { margin-bottom: 8px; }
+      .main      { padding: 24px 0 48px; }
+    }
+    @media (max-width: 440px) {
+      .masonry   { columns: 2; column-gap: 6px; }
+      .masonry-item { margin-bottom: 6px; }
+      .main      { padding: 20px 0 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo" /></div>
+      <div>
+        <div class="nav-logo-name">SMK Negeri 2 Sragen</div>
+        <span class="nav-logo-sub">Kabupaten Sragen · Jawa Tengah</span>
+      </div>
+    </a>
+    <a href="index.html#galeri" class="nav-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-tag"><i class="fas fa-images"></i> Galeri Foto</div>
+    <h1>Semua Momen &amp;<br>Kegiatan SMKN 2 Sragen</h1>
+    <p>Dokumentasi kegiatan, prestasi, dan momen berharga siswa SMKN 2 Sragen.</p>
+    <div style="margin-top:24px;">
+      <div class="hero-stat-num" id="stat-total">—</div>
+      <div class="hero-stat-lbl">Total Foto</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <span class="filter-label"><i class="fas fa-tag"></i> Kategori:</span>
+      <button class="filter-btn active" data-filter="Semua">Semua</button>
+      <button class="filter-btn" data-filter="Kegiatan">Kegiatan</button>
+      <button class="filter-btn" data-filter="Prestasi">Prestasi</button>
+      <button class="filter-btn" data-filter="Gedung">Gedung</button>
+      <button class="filter-btn" data-filter="Praktik">Praktik</button>
+      <button class="filter-btn" data-filter="Wisuda">Wisuda</button>
+      <button class="filter-btn" data-filter="Lainnya">Lainnya</button>
+      <span class="filter-count">Menampilkan <strong id="count-display">0</strong> foto</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="container">
+    <div id="content-area">
+      <div class="loading-state"><i class="fas fa-spinner fa-spin"></i>Memuat galeri...</div>
+    </div>
+  </div>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <div class="lb-inner" onclick="event.stopPropagation()">
+    <button class="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
+    <img id="lb-img" src="" alt="" />
+    <div class="lb-caption" id="lb-caption"></div>
+  </div>
+</div>
+
+<script>
+  function openLb(src, caption) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lb-caption').textContent = caption;
+    document.getElementById('lb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    document.getElementById('lb').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, onSnapshot }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const app = initializeApp({
+    apiKey:            "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
+    authDomain:        "smkn2sragen-e487b.firebaseapp.com",
+    projectId:         "smkn2sragen-e487b",
+    storageBucket:     "smkn2sragen-e487b.firebasestorage.app",
+    messagingSenderId: "602192129071",
+    appId:             "1:602192129071:web:884e02ba2bd6766df22ada"
+  });
+  const db = getFirestore(app);
+
+  let allData = [];
+  let activeFilter = 'Semua';
+
+  function sortData(data) {
+    return [...data]
+      .filter(d => d.status !== 'Sembunyikan')
+      .sort((a, b) => {
+        const tA = a.createdAt?.seconds || 0;
+        const tB = b.createdAt?.seconds || 0;
+        return tB - tA;
+      });
+  }
+
+  function render() {
+    const area = document.getElementById('content-area');
+    const filtered = activeFilter === 'Semua'
+      ? allData
+      : allData.filter(d => d.kategori === activeFilter);
+
+    document.getElementById('count-display').textContent = filtered.length;
+
+    if (!filtered.length) {
+      area.innerHTML = `<div class="loading-state" style="padding:60px 0;"><i class="fas fa-search"></i>Tidak ada foto untuk kategori "${activeFilter}".</div>`;
+      return;
+    }
+
+    area.innerHTML = `<div class="masonry">
+      ${filtered.map(d => `
+        <div class="masonry-item" onclick="openLb('${d.foto||''}','${(d.judul||'').replace(/'/g,"\\'")}')">
+          ${d.kategori ? `<span class="masonry-cat-badge">${d.kategori}</span>` : ''}
+          <img src="${d.foto||''}" alt="${d.judul||''}" loading="lazy" onerror="this.closest('.masonry-item').style.display='none'" />
+          <div class="masonry-overlay"><span class="masonry-caption">${d.judul||''}</span></div>
+        </div>`).join('')}
+    </div>`;
+  }
+
+  onSnapshot(collection(db, 'galeri'), snap => {
+    allData = sortData(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    document.getElementById('stat-total').textContent = allData.length;
+    render();
+  }, err => {
+    document.getElementById('content-area').innerHTML =
+      `<div class="loading-state" style="color:#e53e3e;"><i class="fas fa-exclamation-circle"></i>Gagal memuat: ${err.message}</div>`;
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      render();
+      document.querySelector('.main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

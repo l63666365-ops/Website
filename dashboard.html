@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" />
+  <title>Dashboard Admin — SMK Negeri 2 Sragen</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a3566; --navy-dk: #122448; --navy-lt: #2451a0;
+      --gold: #e8a020; --gold-lt: #f5c842;
+      --white: #ffffff; --gray-1: #f7f8fc; --gray-2: #eef0f6; --gray-3: #d1d5e0;
+      --text-1: #0f1a35; --text-2: #4a5578; --text-3: #8a94b8;
+      --green: #38a169; --red: #e53e3e; --orange: #dd6b20;
+      --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --sidebar-w: 260px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--gray-1); color: var(--text-1); display: flex; min-height: 100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w); background: var(--navy-dk);
+      position: fixed; top: 0; left: 0; bottom: 0;
+      display: flex; flex-direction: column;
+      z-index: 100; transition: transform .3s;
+    }
+    .sidebar-logo {
+      padding: 24px 20px; border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sidebar-logo-icon {
+      width: 40px; height: 40px; border-radius: 9px;
+      overflow: hidden; background: rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sidebar-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .sidebar-logo-text .name { font-size: 12.5px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .sidebar-logo-text .sub { font-size: 10px; color: rgba(255,255,255,.45); }
+
+    .sidebar-section-title {
+      font-size: 9.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.35); padding: 20px 20px 8px;
+    }
+    .sidebar-nav { flex: 1; overflow-y: auto; padding-bottom: 16px; }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 11px 20px; font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,.65); text-decoration: none; cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .nav-item:hover { background: rgba(255,255,255,.06); color: rgba(255,255,255,.9); }
+    .nav-item.active { background: rgba(255,255,255,.1); color: #fff; border-left-color: var(--gold); }
+    .nav-item i { width: 16px; text-align: center; font-size: 13px; }
+    .nav-item .badge {
+      margin-left: auto; background: var(--gold); color: var(--navy-dk);
+      font-size: 9px; font-weight: 800; padding: 1px 7px; border-radius: 100px;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px; border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .admin-info { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .admin-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--navy-lt); display: flex; align-items: center;
+      justify-content: center; font-size: 14px; color: var(--gold-lt); flex-shrink: 0;
+    }
+    .admin-name { font-size: 12.5px; font-weight: 600; color: #fff; }
+    .admin-role { font-size: 10.5px; color: rgba(255,255,255,.45); }
+    .btn-logout {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; padding: 9px 14px; border-radius: 9px;
+      background: rgba(229,62,62,.15); border: 1px solid rgba(229,62,62,.25);
+      color: #fc8181; font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-logout:hover { background: rgba(229,62,62,.25); }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: var(--sidebar-w); flex: 1;
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: var(--white); border-bottom: 1px solid var(--gray-2);
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-left h2 { font-size: 17px; font-weight: 800; color: var(--text-1); }
+    .topbar-left p { font-size: 12px; color: var(--text-3); }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .topbar-btn {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: var(--gray-1); border: 1px solid var(--gray-2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: var(--text-2); cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .topbar-btn:hover { background: var(--navy); color: #fff; }
+    .view-site-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--navy); color: #fff;
+      padding: 8px 16px; border-radius: 100px;
+      font-size: 12.5px; font-weight: 700; text-decoration: none;
+      transition: background .2s;
+    }
+    .view-site-btn:hover { background: var(--navy-lt); }
+
+    /* Content area */
+    .content { padding: 32px; flex: 1; }
+
+    /* ── PANELS (tabs) ── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── OVERVIEW CARDS ── */
+    .overview-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+    .ov-card {
+      background: var(--white); border-radius: 16px; padding: 20px 22px;
+      border: 1px solid var(--gray-2);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .ov-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .ov-icon.navy { background: rgba(26,53,102,.1); color: var(--navy); }
+    .ov-icon.gold { background: rgba(232,160,32,.12); color: var(--gold); }
+    .ov-icon.green { background: rgba(56,161,105,.12); color: var(--green); }
+    .ov-icon.red { background: rgba(229,62,62,.1); color: var(--red); }
+    .ov-num { font-size: 1.6rem; font-weight: 800; color: var(--text-1); line-height: 1; }
+    .ov-lbl { font-size: 11.5px; color: var(--text-3); margin-top: 3px; }
+
+    /* ── SECTION HEADER ── */
+    .sec-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    }
+    .sec-header h3 { font-size: 16px; font-weight: 800; color: var(--text-1); }
+    .sec-header p { font-size: 12.5px; color: var(--text-3); margin-top: 2px; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--navy); color: #fff;
+      padding: 9px 18px; border-radius: 100px;
+      font-family: var(--sans); font-size: 12.5px; font-weight: 700;
+      border: none; cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .btn-danger {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(229,62,62,.1); color: var(--red);
+      padding: 7px 14px; border-radius: 100px;
+      font-family: var(--sans); font-size: 11.5px; font-weight: 700;
+      border: 1px solid rgba(229,62,62,.2); cursor: pointer; transition: background .2s;
+    }
+    .btn-danger:hover { background: rgba(229,62,62,.18); }
+    .btn-edit {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(26,53,102,.08); color: var(--navy);
+      padding: 7px 14px; border-radius: 100px;
+      font-family: var(--sans); font-size: 11.5px; font-weight: 700;
+      border: 1px solid rgba(26,53,102,.15); cursor: pointer; transition: background .2s;
+    }
+    .btn-edit:hover { background: rgba(26,53,102,.15); }
+    .btn-sm {
+      padding: 5px 12px !important; font-size: 11px !important;
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      background: var(--white); border-radius: 16px;
+      border: 1px solid var(--gray-2); overflow: hidden;
+    }
+    .table-toolbar {
+      padding: 16px 20px; border-bottom: 1px solid var(--gray-2);
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1; min-width: 180px; padding: 8px 14px;
+      border: 1.5px solid var(--gray-3); border-radius: 100px;
+      font-family: var(--sans); font-size: 13px; color: var(--text-1);
+      outline: none; background: var(--gray-1);
+    }
+    .search-input:focus { border-color: var(--navy); background: var(--white); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--gray-1); padding: 11px 16px;
+      text-align: left; font-size: 11px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--text-3);
+      border-bottom: 1px solid var(--gray-2);
+    }
+    tbody tr { border-bottom: 1px solid var(--gray-2); transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--gray-1); }
+    tbody td { padding: 13px 16px; font-size: 13px; color: var(--text-2); vertical-align: middle; }
+    tbody td strong { color: var(--text-1); font-weight: 600; }
+    .td-actions { display: flex; gap: 6px; }
+
+    /* Badge status */
+    .status {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: .5px;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+    .status.aktif { background: rgba(56,161,105,.12); color: var(--green); }
+    .status.aktif::before { background: var(--green); }
+    .status.draft { background: rgba(139,148,184,.12); color: var(--text-3); }
+    .status.draft::before { background: var(--text-3); }
+    .status.hot { background: rgba(232,160,32,.12); color: var(--orange); }
+    .status.hot::before { background: var(--orange); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.55);
+      z-index: 900; display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 20px;
+      width: 100%; max-width: 560px;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,.3);
+      animation: modalIn .25s ease;
+    }
+    @keyframes modalIn { from { opacity:0; transform: translateY(20px) scale(.97); } to { opacity:1; transform: none; } }
+    .modal-header {
+      padding: 24px 28px 0;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 { font-size: 17px; font-weight: 800; color: var(--text-1); }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--gray-1); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--text-2); transition: background .2s;
+    }
+    .modal-close:hover { background: var(--gray-2); }
+    .modal-body { padding: 20px 28px 28px; }
+
+    /* Form fields */
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block; font-size: 11.5px; font-weight: 700;
+      color: var(--text-2); margin-bottom: 7px; letter-spacing: .3px;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%; padding: 10px 14px;
+      border: 1.5px solid var(--gray-3); border-radius: 10px;
+      font-family: var(--sans); font-size: 13.5px; color: var(--text-1);
+      background: var(--gray-1); outline: none;
+      transition: border-color .2s, background .2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--navy); background: var(--white);
+    }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .modal-footer {
+      padding: 16px 28px; border-top: 1px solid var(--gray-2);
+      display: flex; gap: 10px; justify-content: flex-end;
+    }
+    .btn-cancel {
+      padding: 9px 20px; border-radius: 100px;
+      background: var(--gray-1); border: 1px solid var(--gray-3);
+      font-family: var(--sans); font-size: 13px; font-weight: 600;
+      color: var(--text-2); cursor: pointer;
+    }
+    .btn-save {
+      padding: 9px 24px; border-radius: 100px;
+      background: var(--navy); border: none;
+      font-family: var(--sans); font-size: 13px; font-weight: 700;
+      color: #fff; cursor: pointer; transition: background .2s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .btn-save:hover { background: var(--navy-lt); }
+
+    /* ── CUSTOM CONFIRM DIALOG ── */
+    .confirm-overlay {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,.45); backdrop-filter: blur(3px);
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .confirm-overlay.open { display: flex; }
+    .confirm-dialog {
+      background: var(--white); border-radius: 20px;
+      padding: 36px 32px 28px; width: 100%; max-width: 380px;
+      text-align: center; position: relative;
+      box-shadow: 0 24px 60px rgba(0,0,0,.22), 0 0 0 1px rgba(0,0,0,.05);
+      animation: confirmIn .22s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes confirmIn {
+      from { opacity: 0; transform: scale(.88) translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .confirm-ico {
+      width: 60px; height: 60px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin: 0 auto 18px;
+    }
+    .confirm-ico.danger  { background: rgba(229,62,62,.1);  color: #e53e3e; }
+    .confirm-ico.warning { background: rgba(232,160,32,.12); color: var(--gold); }
+    .confirm-ico.navy    { background: rgba(26,53,102,.1);   color: var(--navy); }
+    .confirm-title { font-size: 17px; font-weight: 800; color: var(--text-1); margin-bottom: 8px; }
+    .confirm-msg   { font-size: 13.5px; color: var(--text-2); line-height: 1.7; margin-bottom: 26px; }
+    .confirm-btns  { display: flex; gap: 10px; }
+    .confirm-btn-cancel {
+      flex: 1; padding: 11px; border-radius: 100px;
+      background: var(--gray-1); border: 1.5px solid var(--gray-3);
+      font-family: var(--sans); font-size: 13px; font-weight: 600;
+      color: var(--text-2); cursor: pointer; transition: background .2s;
+    }
+    .confirm-btn-cancel:hover { background: var(--gray-2); }
+    .confirm-btn-ok {
+      flex: 1; padding: 11px; border-radius: 100px; border: none;
+      font-family: var(--sans); font-size: 13px; font-weight: 700;
+      color: #fff; cursor: pointer; transition: opacity .2s, transform .15s;
+    }
+    .confirm-btn-ok:hover { opacity: .88; transform: translateY(-1px); }
+    .confirm-btn-ok.danger  { background: #e53e3e; }
+    .confirm-btn-ok.warning { background: var(--gold); color: var(--navy-dk); }
+    .confirm-btn-ok.navy    { background: var(--navy); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      background: var(--navy-dk); color: #fff;
+      padding: 12px 20px; border-radius: 12px;
+      font-size: 13px; font-weight: 600;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.25);
+      transform: translateY(80px); opacity: 0;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast i { color: var(--gold-lt); }
+
+    /* ── QUICK EDIT CARD ── */
+    .edit-card {
+      background: var(--white); border-radius: 16px;
+      border: 1px solid var(--gray-2); margin-bottom: 16px; overflow: hidden;
+    }
+    .edit-card-header {
+      padding: 16px 20px; background: var(--gray-1);
+      border-bottom: 1px solid var(--gray-2);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .edit-card-header h4 { font-size: 14px; font-weight: 700; color: var(--text-1); }
+    .edit-card-body { padding: 20px; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .overview-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: none; }
+      .main { margin-left: 0; }
+      .overview-grid { grid-template-columns: 1fr 1fr; }
+      .content { padding: 20px 16px; }
+      .topbar { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-icon">
+      <img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo" />
+    </div>
+    <div class="sidebar-logo-text">
+      <div class="name">SMKN 2 Sragen</div>
+      <div class="sub">Admin Panel</div>
+    </div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="sidebar-section-title">Kelola Konten</div>
+    <a class="nav-item active" onclick="showPanel('overview')"><i class="fas fa-th-large"></i> Overview</a>
+    <a class="nav-item" onclick="showPanel('prestasi')"><i class="fas fa-trophy"></i> Prestasi</a>
+    <a class="nav-item" onclick="showPanel('berita')"><i class="fas fa-newspaper"></i> Berita</a>
+    <a class="nav-item" onclick="showPanel('galeri')"><i class="fas fa-images"></i> Galeri / Momen</a>
+    <a class="nav-item" onclick="showPanel('pengumuman')"><i class="fas fa-bullhorn"></i> Info &amp; Pengumuman</a>
+    <a class="nav-item" onclick="showPanel('polling')"><i class="fas fa-poll"></i> Polling / Suara</a>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="admin-info">
+      <div class="admin-avatar"><i class="fas fa-user-shield"></i></div>
+      <div>
+        <div class="admin-name">Administrator</div>
+        <div class="admin-role" id="sidebarEmail">admin@smkn2sragen.sch.id</div>
+      </div>
+    </div>
+    <button class="btn-logout" onclick="logoutFirebase()"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="main">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h2>SMK Negeri 2 Sragen</h2>
+    </div>
+    <div class="topbar-right">
+      <a href="index.html" target="_blank" class="view-site-btn"><i class="fas fa-external-link-alt"></i> Lihat Website</a>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- ══ OVERVIEW ══ -->
+    <div class="panel active" id="panel-overview">
+      <div class="overview-grid">
+        <div class="ov-card">
+          <div class="ov-icon navy"><i class="fas fa-graduation-cap"></i></div>
+          <div><div class="ov-num">6</div><div class="ov-lbl">Program Keahlian</div></div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-icon gold"><i class="fas fa-trophy"></i></div>
+          <div><div class="ov-num" id="ov-num-prestasi">—</div><div class="ov-lbl">Prestasi Tercatat</div></div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-icon green"><i class="fas fa-bullhorn"></i></div>
+          <div><div class="ov-num" id="ov-num-pengumuman">—</div><div class="ov-lbl">Pengumuman Aktif</div></div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-icon red"><i class="fas fa-newspaper"></i></div>
+          <div><div class="ov-num" id="ov-num-berita">—</div><div class="ov-lbl">Berita Terpublish</div></div>
+        </div>
+      </div>
+
+      <div class="edit-card">
+        <div class="edit-card-header">
+          <h4><i class="fas fa-info-circle" style="color:var(--navy);margin-right:8px;"></i>Panduan Penggunaan</h4>
+        </div>
+        <div class="edit-card-body">
+          <p style="font-size:13.5px;color:var(--text-2);line-height:1.8;margin-bottom:12px;">Gunakan menu di sidebar kiri untuk mengelola konten website SMKN 2 Sragen. Semua perubahan akan tersimpan secara lokal dan bisa dilihat langsung di website.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PRESTASI ══ -->
+    <div class="panel" id="panel-prestasi">
+      <div class="sec-header">
+        <div><h3>Data Prestasi Siswa</h3></div>
+        <button class="btn-primary" onclick="openModal('prestasi')"><i class="fas fa-plus"></i> Tambah Prestasi</button>
+      </div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" placeholder="Cari prestasi..." oninput="filterTable(this,'tbl-prestasi')" />
+        </div>
+        <table id="tbl-prestasi">
+          <thead><tr><th>Medali</th><th>Nama Prestasi</th><th>Tingkat</th><th>Keterangan</th><th>Tahun</th><th>Foto</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr><td>🥇</td><td><strong>Juara 1 LKS Teknik Kendaraan Ringan</strong></td><td>Provinsi</td><td>LKS Bidang Otomotif — Jawa Tengah</td><td>2025</td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('prestasi',{id:1})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>🏆</td><td><strong>Finalis LKS Nasional Teknik Listrik</strong></td><td>Nasional</td><td>LKS Tingkat Nasional — Jakarta</td><td>2025</td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('prestasi',{id:2})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>🥇</td><td><strong>Juara Umum Olimpiade Sains Terapan</strong></td><td>Kabupaten</td><td>OST Kabupaten Sragen</td><td>2025</td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('prestasi',{id:3})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>🥇</td><td><strong>Juara 3 Khitobah Putri MAPSI SMK</strong></td><td>Provinsi</td><td>MAPSI Jawa Tengah 2025</td><td>2025</td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('prestasi',{id:4})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>🥈</td><td><strong>Juara 2 LKS Desain Pemodelan Bangunan</strong></td><td>Provinsi</td><td>LKS Bidang Teknik Bangunan</td><td>2024</td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('prestasi',{id:5})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>🎖️</td><td><strong>Piala Bergilir LKBB Garuda Muda Season 1</strong></td><td>Kabupaten</td><td>Paskibra SMKN 2 Sragen</td><td>2025</td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('prestasi',{id:6})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ BERITA ══ -->
+    <div class="panel" id="panel-berita">
+      <div class="sec-header">
+        <div><h3>Berita &amp; Artikel</h3></div>
+        <button class="btn-primary" onclick="openModal('berita')"><i class="fas fa-plus"></i> Tambah Berita</button>
+      </div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" placeholder="Cari berita..." oninput="filterTable(this,'tbl-berita')" />
+        </div>
+        <table id="tbl-berita">
+          <thead><tr><th>Tanggal</th><th>Judul Berita</th><th>Kategori</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr><td>25 Nov 2025</td><td><strong>Elsa Mutia Hafid Raih Juara 3 Khitobah MAPSI Jawa Tengah 2025</strong></td><td>Prestasi</td><td><span class="status aktif">Publish</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('berita',{id:1})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>20 Nov 2025</td><td><strong>SMKN 2 Sragen Rebut Piala Bergilir LKBB Garuda Muda Season 1</strong></td><td>Kesiswaan</td><td><span class="status aktif">Publish</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('berita',{id:2})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>5 Nov 2025</td><td><strong>SMKN 2 Sragen Terima Bantuan Lab Fiber Optic dari Kominfo</strong></td><td>Teknologi</td><td><span class="status aktif">Publish</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('berita',{id:3})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>5 Mar 2025</td><td><strong>HUT ke-23 SMKN 2 Sragen dengan Penanaman 2.300 Pohon</strong></td><td>Lingkungan</td><td><span class="status draft">Draft</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('berita',{id:4})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ GALERI ══ -->
+    <div class="panel" id="panel-galeri">
+      <div class="sec-header">
+        <div><h3>Galeri Foto &amp; Momen Kegiatan</h3></div>
+        <button class="btn-primary" onclick="openModal('galeri')"><i class="fas fa-plus"></i> Upload Foto</button>
+      </div>
+      <div class="table-wrap">
+        <div class="table-toolbar">
+          <input class="search-input" placeholder="Cari foto..." oninput="filterTable(this,'tbl-galeri')" />
+        </div>
+        <table id="tbl-galeri">
+          <thead><tr><th>Preview</th><th>Judul / Caption</th><th>Kategori</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr><td><div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" style="width:100%;height:100%;object-fit:cover;" /></div></td><td><strong>Gerbang Utama SMKN 2 Sragen</strong></td><td>Gedung</td><td><span class="status aktif">Tampil</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('galeri',{id:1})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td><div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/42944920_1890171144435131_8386577090693483445_n(1).jpg" style="width:100%;height:100%;object-fit:cover;" /></div></td><td><strong>Kegiatan Siswa SMKN 2 Sragen</strong></td><td>Kegiatan</td><td><span class="status aktif">Tampil</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('galeri',{id:2})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td><div style="width:56px;height:40px;border-radius:7px;overflow:hidden;background:var(--gray-2);display:flex;align-items:center;justify-content:center;font-size:18px;">⚙️</div></td><td><strong>Praktik Bengkel CNC — Teknik Pemesinan</strong></td><td>Praktik</td><td><span class="status aktif">Tampil</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('galeri',{id:3})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ PENGUMUMAN ══ -->
+    <div class="panel" id="panel-pengumuman">
+      <div class="sec-header">
+        <div><h3>Info &amp; Pengumuman</h3></div>
+        <button class="btn-primary" onclick="openModal('pengumuman')"><i class="fas fa-plus"></i> Tambah Pengumuman</button>
+      </div>
+      <div class="table-wrap">
+        <table id="tbl-pengumuman">
+          <thead><tr><th>Tanggal</th><th>Judul Pengumuman</th><th>Kategori</th><th>Status</th><th>Foto</th><th>Aksi</th></tr></thead>
+          <tbody>
+            <tr><td>01 Jun 2026</td><td><strong>PPDB Tahun Ajaran 2025/2026 resmi dibuka!</strong></td><td>PPDB</td><td><span class="status aktif">Aktif</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('pengumuman',{id:1})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>05 Jun 2026</td><td><strong>Pengambilan Ijazah Alumni Angkatan 2025</strong></td><td>Administrasi</td><td><span class="status aktif">Aktif</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('pengumuman',{id:2})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+            <tr><td>07 Jun 2026</td><td><strong>Pelantikan Taruna OSIS Angkatan XIII</strong></td><td>Kesiswaan</td><td><span class="status aktif">Aktif</span></td><td class="td-actions"><button class="btn-edit btn-sm" onclick="openModal('pengumuman',{id:3})"><i class="fas fa-edit"></i> Edit</button><button class="btn-danger btn-sm"><i class="fas fa-trash"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ POLLING ══ -->
+    <div class="panel" id="panel-polling">
+      <div class="sec-header">
+        <div><h3>Polling &amp; Jajak Pendapat</h3></div>
+        <button class="btn-primary" onclick="openModal('polling')"><i class="fas fa-plus"></i> Buat Polling</button>
+      </div>
+      <div id="polling-live-container">
+        <div style="text-align:center;padding:40px;color:var(--text-3);"><i class="fas fa-spinner fa-spin"></i> Memuat polling...</div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- ══ MODAL ══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Edit Data</h3>
+      <button class="modal-close" onclick="closeModalDirect()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModalDirect()">Batal</button>
+      <button class="btn-save" onclick="saveModal()"><i class="fas fa-save"></i> Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── CUSTOM CONFIRM DIALOG ── -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-dialog">
+    <div class="confirm-ico danger" id="confirmIco"><i id="confirmIcoIcon" class="fas fa-trash-alt"></i></div>
+    <div class="confirm-title" id="confirmTitle">Hapus Item</div>
+    <div class="confirm-msg"   id="confirmMsg">Apakah kamu yakin?</div>
+    <div class="confirm-btns">
+      <button class="confirm-btn-cancel" id="confirmCancel">Batal</button>
+      <button class="confirm-btn-ok danger" id="confirmOk">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Perubahan berhasil disimpan!</span></div>
+
+<!-- Script UI — tidak butuh Firebase, langsung tersedia -->
+<!-- ── Script UI (global, tidak butuh Firebase) ── -->
+<script>
+  const panels = {
+    overview:   { title:'Dashboard Overview' },
+    prestasi:   { title:'Prestasi Siswa' },
+    berita:     { title:'Berita & Artikel' },
+    galeri:     { title:'Galeri / Momen Kegiatan' },
+    pengumuman: { title:'Info & Pengumuman' },
+    polling:    { title:'Polling / Suara' },
+  };
+
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const panel = document.getElementById('panel-' + id);
+    if (panel) panel.classList.add('active');
+    const navEl = document.querySelector('.nav-item[onclick="showPanel(\'' + id + '\')"]');
+    if (navEl) navEl.classList.add('active');
+    const el = document.getElementById('topbarTitle');
+    if (el && panels[id]) el.textContent = panels[id].title;
+    if (window._loadTable) window._loadTable(id);
+    // Simpan panel aktif biar tidak reset saat refresh
+    localStorage.setItem('dash_panel', id);
+  }
+
+  // Restore panel SEGERA saat halaman load — sebelum Firebase selesai init
+  // Hanya switch CSS class, load tabel nanti dihandle initDashboard
+  (function immediateRestore() {
+    const last = localStorage.getItem('dash_panel');
+    if (!last) return;
+    const panel = document.getElementById('panel-' + last);
+    if (!panel) return;
+    // Switch panel aktif
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    panel.classList.add('active');
+    // Switch nav aktif
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const nav = document.querySelector('.nav-item[onclick="showPanel(\'' + last + '\')"]');
+    if (nav) nav.classList.add('active');
+    // Update topbar title
+    const el = document.getElementById('topbarTitle');
+    if (el && panels[last]) el.textContent = panels[last].title;
+  })();
+
+  function filterTable(input, tableId) {
+    const q = input.value.toLowerCase();
+    document.querySelectorAll('#' + tableId + ' tbody tr').forEach(row => {
+      row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+  }
+  function closeModalDirect() {
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+
+  function saveModal() {
+    if (window._fbSave) { window._fbSave(); return; }
+    closeModalDirect();
+    showToast('Tersimpan!');
+  }
+
+  function openModal(col, dataOrNull) {
+    if (window._fbOpenModal) { window._fbOpenModal(col, dataOrNull || null); return; }
+    document.getElementById('modalTitle').textContent = 'Tambah ' + col;
+    document.getElementById('modalBody').innerHTML = '<p style="padding:20px;color:#8a94b8;">Menunggu Firebase...</p>';
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function openEdit(col, id) {
+    if (window._fbEdit) { window._fbEdit(col, id); return; }
+  }
+
+  function deleteItem(col, id, name) {
+    if (window._fbDelete) { window._fbDelete(col, id, name); return; }
+    window.customConfirm({
+      title: 'Hapus Item', okText: 'Hapus', okClass: 'danger', icon: 'fas fa-trash-alt',
+      msg: `Yakin hapus <strong>"${name}"</strong>?`,
+    }).then(ok => { if (ok) showToast('Dihapus!'); });
+  }
+
+  async function confirmDelete(col, id, name) {
+    if (arguments.length === 1) { name = col; col = null; id = null; }
+    if (window._fbDelete && col && id) { window._fbDelete(col, id, name); return; }
+    const ok = await window.customConfirm({
+      title: 'Hapus Item', okText: 'Hapus', okClass: 'danger', icon: 'fas fa-trash-alt',
+      msg: `Yakin hapus <strong>"${name}"</strong>?<br><small style="color:#e53e3e;">Tindakan ini tidak bisa dibatalkan.</small>`,
+    });
+    if (ok) showToast('"' + name + '" berhasil dihapus!');
+  }
+
+  // ── Custom confirm dialog (menggantikan browser confirm())
+  window.customConfirm = ({ title = 'Konfirmasi', msg = '', okText = 'OK', okClass = 'danger', icon = 'fas fa-exclamation-triangle' }) => {
+    return new Promise(resolve => {
+      const overlay   = document.getElementById('confirmOverlay');
+      const icoEl     = document.getElementById('confirmIco');
+      const icoIcon   = document.getElementById('confirmIcoIcon');
+      const titleEl   = document.getElementById('confirmTitle');
+      const msgEl     = document.getElementById('confirmMsg');
+      const okBtn     = document.getElementById('confirmOk');
+      const cancelBtn = document.getElementById('confirmCancel');
+
+      icoEl.className   = `confirm-ico ${okClass}`;
+      icoIcon.className = icon;
+      titleEl.textContent = title;
+      msgEl.innerHTML     = msg;
+      okBtn.textContent   = okText;
+      okBtn.className     = `confirm-btn-ok ${okClass}`;
+
+      overlay.classList.add('open');
+
+      const done = (result) => {
+        overlay.classList.remove('open');
+        okBtn.onclick     = null;
+        cancelBtn.onclick = null;
+        overlay.onclick   = null;
+        resolve(result);
+      };
+
+      okBtn.onclick     = () => done(true);
+      cancelBtn.onclick = () => done(false);
+      overlay.onclick   = (e) => { if (e.target === overlay) done(false); };
+    });
+  };
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg || 'Berhasil!';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  function saveToast() { showToast('Perubahan berhasil disimpan!'); }
+
+  function logout() {
+    if (window._fbLogout) { window._fbLogout(); return; }
+    window.location.href = 'admin.html';
+  }
+</script>
+
+<!-- ── Firebase Module ── -->
+<script type="module">
+  import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  import { getFirestore, collection, doc, getDocs, getDoc, addDoc, updateDoc, deleteDoc, setDoc, serverTimestamp, onSnapshot }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
+    authDomain: "smkn2sragen-e487b.firebaseapp.com",
+    projectId: "smkn2sragen-e487b",
+    storageBucket: "smkn2sragen-e487b.firebasestorage.app",
+    messagingSenderId: "602192129071",
+    appId: "1:602192129071:web:884e02ba2bd6766df22ada"
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  // ── Auth guard
+  onAuthStateChanged(auth, user => {
+    if (!user) { window.location.href = 'admin.html'; return; }
+    document.getElementById('sidebarEmail').textContent = user.email;
+    initDashboard();
+  });
+
+  // ── Logout
+  window._fbLogout = async () => {
+    const ok = await window.customConfirm({
+      title: 'Keluar dari Dashboard',
+      msg: 'Yakin ingin keluar dari panel admin?',
+      okText: 'Keluar', okClass: 'navy', icon: 'fas fa-sign-out-alt',
+    });
+    if (ok) signOut(auth).then(() => { window.location.href = 'admin.html'; });
+  };
+  window.logoutFirebase = window._fbLogout;
+
+  // ── Seed data awal
+  const SEED = {
+    prestasi: [
+      { medal:'🥇', nama:'Juara 1 LKS Teknik Kendaraan Ringan', tingkat:'Provinsi', keterangan:'LKS Bidang Otomotif — Jawa Tengah', tahun:'2025', status:'Aktif', foto:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80' },
+      { medal:'🏆', nama:'Finalis LKS Nasional Teknik Instalasi Listrik', tingkat:'Nasional', keterangan:'LKS Tingkat Nasional — Jakarta', tahun:'2025', status:'Aktif', foto:'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80' },
+      { medal:'🥇', nama:'Juara Umum Olimpiade Sains Terapan', tingkat:'Kabupaten', keterangan:'OST Kabupaten Sragen', tahun:'2025', status:'Aktif', foto:'https://images.unsplash.com/photo-1532094349884-543559244a92?w=600&q=80' },
+      { medal:'🥇', nama:'Juara 3 Khitobah Putri MAPSI SMK', tingkat:'Provinsi', keterangan:'MAPSI Jawa Tengah 2025', tahun:'2025', status:'Aktif', foto:'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&q=80' },
+      { medal:'🥈', nama:'Juara 2 LKS Desain Pemodelan Bangunan', tingkat:'Provinsi', keterangan:'LKS Bidang Teknik Bangunan', tahun:'2024', status:'Aktif', foto:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&q=80' },
+      { medal:'🎖️', nama:'Piala Bergilir LKBB Garuda Muda Season 1', tingkat:'Kabupaten', keterangan:'Paskibra SMKN 2 Sragen', tahun:'2025', status:'Aktif', foto:'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=600&q=80' },
+    ],
+    berita: [
+      { judul:'Elsa Mutia Hafid Raih Juara 3 Khitobah Putri MAPSI SMK Jawa Tengah 2025', kategori:'Prestasi', tanggal:'2025-11-25', ringkasan:'Ajang bergengsi MAPSI tingkat SMK se-Provinsi Jawa Tengah 2025 mengharumkan nama SMKN 2 Sragen.', isi:'Sragen — Siswi SMKN 2 Sragen, Elsa Mutia Hafid, berhasil meraih Juara 3 cabang Khitobah Putri MAPSI SMK Provinsi Jawa Tengah 2025. Prestasi ini menjadi kebanggaan seluruh warga SMKN 2 Sragen dan membuktikan bahwa siswa sekolah ini tidak hanya unggul di bidang teknik, tetapi juga di bidang keagamaan.', foto:'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&q=80', status:'Publish' },
+      { judul:'SMKN 2 Sragen Rebut Piala Bergilir LKBB Garuda Muda Season 1', kategori:'Kesiswaan', tanggal:'2025-11-20', ringkasan:'Tim Paskibra SMKN 2 Sragen berhasil merebut Piala Bergilir LKBB Garuda Muda Season 1.', isi:'Sragen — Tim Paskibra SMKN 2 Sragen berhasil merebut Piala Bergilir LKBB Garuda Muda Season 1. Kompetisi baris-berbaris bergengsi tingkat kabupaten ini diikuti puluhan tim dari berbagai sekolah di Kabupaten Sragen. Keberhasilan ini menjadi bukti nyata hasil latihan intensif dan kedisiplinan tinggi yang ditanamkan pada setiap anggota Paskibra SMKN 2 Sragen.', foto:'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=800&q=80', status:'Publish' },
+      { judul:'SMKN 2 Sragen Terima Bantuan Lab Fiber Optic dari Kominfo', kategori:'Teknologi', tanggal:'2025-11-05', ringkasan:'SMKN 2 Sragen menerima bantuan laboratorium Fiber Optic dari Kementerian Kominfo.', isi:'Sragen — SMKN 2 Sragen resmi menerima bantuan laboratorium fiber optic dari Kementerian Kominfo. Laboratorium ini akan digunakan oleh siswa jurusan TKJ untuk mempelajari teknologi jaringan berbasis serat optik yang semakin banyak digunakan oleh industri telekomunikasi nasional.', foto:'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80', status:'Publish' },
+      { judul:'Siswa SMKN 2 Sragen Ikuti Uji Kompetensi Keahlian LSP-P1 2025', kategori:'Akademik', tanggal:'2025-10-15', ringkasan:'Ratusan siswa kelas XII SMKN 2 Sragen resmi mengikuti Uji Kompetensi Keahlian (UKK) melalui LSP-P1 terakreditasi BNSP untuk meraih sertifikat kompetensi yang diakui secara nasional oleh dunia industri.', isi:'Sragen, 15 Oktober 2025 — Ratusan siswa kelas XII SMKN 2 Sragen secara serentak mengikuti Uji Kompetensi Keahlian (UKK) yang diselenggarakan oleh Lembaga Sertifikasi Profesi Pihak Pertama (LSP-P1) SMKN 2 Sragen. LSP-P1 ini telah mengantongi lisensi resmi dari Badan Nasional Sertifikasi Profesi (BNSP), sehingga setiap sertifikat yang dikeluarkan memiliki kekuatan hukum dan diakui secara nasional oleh perusahaan-perusahaan di seluruh Indonesia.\\nUKK dilaksanakan secara praktik langsung di bengkel dan laboratorium masing-masing jurusan. Sebanyak enam program keahlian mengikuti uji ini: Teknik Komputer & Jaringan (TKJ), Teknik Kendaraan Ringan Otomotif (TKRO), Teknik Instalasi Tenaga Listrik (TITL), Teknik Pemesinan (TPM), Desain Pemodelan & Informasi Bangunan (DPIB), serta Teknik Konstruksi & Perumahan (TKP). Setiap siswa diuji oleh asesor bersertifikat yang kompeten di bidangnya.\\nProses uji kompetensi berlangsung selama dua hari penuh dengan sistem giliran per kelompok. Siswa diharuskan menyelesaikan proyek kerja nyata sesuai skema kompetensi yang telah ditetapkan, mulai dari perakitan jaringan komputer, tune-up kendaraan, instalasi panel listrik, hingga pembuatan gambar teknik bangunan menggunakan software AutoCAD.\\nKepala SMKN 2 Sragen menyatakan bahwa sertifikat BNSP ini adalah bukti nyata kompetensi lulusan yang tidak perlu diragukan lagi oleh industri. Dengan memiliki sertifikat ini, para lulusan SMKN 2 Sragen semakin percaya diri memasuki dunia kerja dan memiliki daya saing yang kuat, baik di tingkat lokal, nasional, maupun untuk program kerja ke luar negeri.', foto:'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80', status:'Publish' },
+      { judul:'SMKN 2 Sragen Gelar Job Fair Mini, 15 Perusahaan Buka Rekrutmen Langsung', kategori:'Kesiswaan', tanggal:'2025-09-28', ringkasan:'BKK SMKN 2 Sragen sukses menggelar Job Fair Mini yang dihadiri 15 perusahaan mitra dari berbagai sektor industri. Ratusan siswa kelas XII dan alumni langsung mengikuti sesi wawancara kerja dan pendaftaran magang di lingkungan sekolah.', isi:'Sragen, 28 September 2025 — Bursa Kerja Khusus (BKK) SMKN 2 Sragen sukses menggelar Job Fair Mini di Aula Utama sekolah. Kegiatan ini diikuti oleh 15 perusahaan mitra dari berbagai sektor industri dan dihadiri ratusan siswa kelas XII serta alumni yang antusias memanfaatkan kesempatan melamar kerja dan mendaftar program magang secara langsung tanpa harus keluar dari lingkungan sekolah.\\nPerusahaan yang berpartisipasi berasal dari sektor manufaktur otomotif, teknologi informasi dan jaringan, ketenagalistrikan, konstruksi bangunan, serta industri pengolahan di wilayah Solo Raya, Jawa Tengah, dan nasional. Beberapa di antaranya merupakan mitra aktif SMKN 2 Sragen yang selama ini menjadi tempat PKL (Praktik Kerja Lapangan) dan telah terbukti menyerap alumni sekolah ini.\\nSetiap peserta Job Fair mendapatkan kesempatan untuk langsung menemui perwakilan HRD, mengikuti sesi wawancara singkat, dan menyerahkan berkas lamaran di stand masing-masing perusahaan. Panitia BKK juga menyediakan layanan konsultasi CV gratis di area tersendiri, sehingga peserta yang belum siap dokumennya tetap bisa mendapatkan arahan sebelum menghadapi pewawancara.\\nKoordinator BKK SMKN 2 Sragen menyampaikan bahwa Job Fair Mini ini adalah wujud nyata komitmen sekolah dalam memastikan lulusan tidak sekadar memiliki ijazah, tetapi langsung tersalurkan ke industri. Dengan tingkat serapan yang saat ini mencapai 95%, SMKN 2 Sragen terus memperkuat jaringan mitra dan akan menjadikan Job Fair sebagai agenda rutin dua kali setahun demi membuka lebih banyak peluang bagi para lulusan.', foto:'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80', status:'Publish' },
+    ],
+    galeri: [
+      { judul:'Gerbang Utama SMKN 2 Sragen', foto:'https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg', kategori:'Gedung', status:'Tampil' },
+      { judul:'Kegiatan Siswa SMKN 2 Sragen', foto:'https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/42944920_1890171144435131_8386577090693483445_n(1).jpg', kategori:'Kegiatan', status:'Tampil' },
+    ],
+    pengumuman: [
+      { judul:'Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2025/2026 resmi dibuka!', kategori:'PPDB', tanggal:'2026-06-01', isi:'SMKN 2 Sragen dengan bangga mengumumkan bahwa Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2025/2026 resmi dibuka mulai 1 Juni 2026. Pendaftaran dilakukan secara online melalui website resmi SPMB Jawa Tengah di alamat spmb.jatengprov.go.id.\n\nCalon peserta didik yang ingin mendaftar ke SMKN 2 Sragen dapat memilih salah satu dari enam program keahlian yang tersedia: Teknik Pemesinan (TPM), Teknik Kendaraan Ringan Otomotif (TKRO), Teknik Instalasi Tenaga Listrik (TITL), Teknik Komputer & Jaringan (TKJ), Desain Pemodelan & Informasi Bangunan (DPIB), dan Teknik Konstruksi & Perumahan (TKP).\n\nPersyaratan pendaftaran meliputi: ijazah atau SKL SMP/MTs/sederajat, akta kelahiran, kartu keluarga, pas foto terbaru ukuran 3x4, dan surat keterangan sehat dari dokter. Pastikan seluruh dokumen diunggah dalam format yang sesuai melalui portal SPMB sebelum batas waktu pendaftaran.\n\nUntuk informasi lebih lanjut mengenai jadwal seleksi, daya tampung, dan persyaratan teknis, calon peserta didik dan orang tua dapat menghubungi panitia PPDB SMKN 2 Sragen di nomor yang tertera di website sekolah atau datang langsung ke ruang Tata Usaha pada hari kerja pukul 08.00–14.00 WIB.', status:'Aktif' },
+      { judul:'Pengambilan Ijazah Alumni Angkatan 2025 — Mulai 5 Juni 2026', kategori:'Administrasi', tanggal:'2026-06-05', isi:'Kepada seluruh alumni SMKN 2 Sragen Angkatan 2025, pengambilan ijazah dan dokumen kelulusan resmi dibuka mulai Kamis, 5 Juni 2026 bertempat di Aula Utama SMKN 2 Sragen.\n\nWaktu pengambilan adalah setiap hari Senin hingga Jumat pukul 08.00–14.00 WIB. Alumni diwajibkan hadir secara langsung dengan membawa kartu identitas diri (KTP atau kartu pelajar yang masih berlaku) serta surat pengambilan yang telah diberikan sebelumnya. Pengambilan diwakilkan hanya diperbolehkan dengan membawa surat kuasa bermaterai dan fotokopi identitas pemberi kuasa.\n\nDokumen yang dapat diambil meliputi: Ijazah asli, Transkrip Nilai (SKHUN), Sertifikat Kompetensi LSP-P1 BNSP, dan dokumen pendukung lainnya yang telah disiapkan oleh pihak sekolah.\n\nBagi alumni yang belum menyelesaikan administrasi sekolah (SPP, peminjaman buku perpustakaan, dll.), dimohon untuk menyelesaikannya terlebih dahulu di bagian administrasi sebelum mengambil ijazah. Informasi lebih lanjut dapat menghubungi Tata Usaha SMKN 2 Sragen.', status:'Aktif' },
+      { judul:'Pelantikan Taruna OSIS Angkatan XIII — Sabtu, 7 Juni 2026', kategori:'Kesiswaan', tanggal:'2026-06-07', isi:'SMKN 2 Sragen akan menggelar Pelantikan Pengurus OSIS dan MPK Angkatan XIII pada Sabtu, 7 Juni 2026 mulai pukul 07.30 WIB di Lapangan Upacara SMKN 2 Sragen. Kegiatan ini menandai resmi bergantinya tongkat kepemimpinan organisasi siswa kepada pengurus terpilih periode 2026/2027.\n\nPengurus OSIS Angkatan XIII telah melalui proses seleksi ketat yang meliputi seleksi berkas, uji tulis, dan presentasi program kerja di hadapan dewan guru dan MPK. Terpilihnya pengurus baru ini menjadi bukti bahwa regenerasi kepemimpinan siswa di SMKN 2 Sragen berjalan dengan sehat dan demokratis.\n\nSeluruh siswa SMKN 2 Sragen diwajibkan hadir dalam kegiatan pelantikan ini dengan mengenakan seragam lengkap. Orang tua dan wali siswa yang ingin menyaksikan pelantikan dipersilakan hadir dan mengambil tempat di area yang telah disediakan panitia.\n\nUsai pelantikan, akan dilanjutkan dengan serah terima program kerja dari pengurus lama kepada pengurus baru, serta penandatanganan komitmen pengurus OSIS Angkatan XIII di hadapan Kepala SMKN 2 Sragen.', status:'Aktif' },
+      { judul:'Jadwal Asesmen Sumatif Akhir Semester Genap TA 2025/2026', kategori:'Akademik', tanggal:'2026-05-20', isi:'SMKN 2 Sragen mengumumkan jadwal pelaksanaan Asesmen Sumatif Akhir Semester (ASAS) Genap Tahun Ajaran 2025/2026. Asesmen akan dilaksanakan mulai Senin, 8 Juni 2026 hingga Sabtu, 14 Juni 2026 untuk seluruh siswa kelas X dan XI.\n\nAsesmen dilaksanakan secara Computer Based Test (CBT) menggunakan laboratorium komputer sekolah dan dibagi dalam dua sesi per hari. Sesi pertama dimulai pukul 07.30 WIB dan sesi kedua pukul 10.00 WIB. Siswa diwajibkan hadir 15 menit sebelum sesi dimulai dengan membawa kartu peserta asesmen yang dapat diambil di wali kelas masing-masing.\n\nMateri yang diujikan meliputi seluruh kompetensi dasar yang telah dipelajari selama semester genap, baik mata pelajaran umum maupun mata pelajaran kejuruan sesuai program keahlian. Siswa disarankan untuk mempersiapkan diri dengan mempelajari kembali materi dari awal semester.\n\nBagi siswa yang berhalangan hadir karena sakit atau keperluan mendesak, wajib menyerahkan surat keterangan kepada wali kelas paling lambat pada hari pelaksanaan asesmen untuk mendapatkan jadwal susulan. Jadwal lengkap per jurusan dapat dilihat di papan pengumuman kelas masing-masing.', status:'Aktif' },
+      { judul:'Orientasi Siswa Baru (MPLS) TA 2025/2026 — Pendaftaran Panitia Dibuka', kategori:'Kesiswaan', tanggal:'2026-05-15', isi:'OSIS SMKN 2 Sragen membuka pendaftaran panitia Masa Pengenalan Lingkungan Sekolah (MPLS) Tahun Ajaran 2025/2026. MPLS akan dilaksanakan pada minggu pertama masuk sekolah di bulan Juli 2026 dan diperuntukkan bagi seluruh siswa baru kelas X.\n\nSiswa kelas XI yang berminat menjadi panitia MPLS dapat mendaftarkan diri melalui formulir yang tersedia di sekretariat OSIS atau mengisi form digital yang dapat diakses melalui link yang disebarkan oleh pengurus OSIS di grup kelas masing-masing. Pendaftaran dibuka mulai 15 Mei hingga 31 Mei 2026.\n\nPersyaratan menjadi panitia MPLS: siswa kelas XI aktif, memiliki nilai sikap minimal B (Baik), tidak sedang menjalani sanksi akademik, mendapat persetujuan orang tua, dan bersedia mengikuti seluruh rangkaian pelatihan panitia yang dijadwalkan pada bulan Juni 2026.\n\nMPLS SMKN 2 Sragen dirancang sebagai kegiatan edukatif dan menyenangkan yang bebas dari perpeloncoan. Seluruh rangkaian kegiatan telah mendapat persetujuan dari pihak sekolah dan bertujuan untuk membantu siswa baru mengenal lingkungan, fasilitas, program keahlian, dan kegiatan ekstrakurikuler yang tersedia di SMKN 2 Sragen.', status:'Aktif' },
+    ],
+    polling: [
+      { pertanyaan:'Menurut kamu, fasilitas mana yang perlu ditingkatkan di SMKN 2 Sragen?', pilihan1:'Lab Komputer & Jaringan', pilihan2:'Bengkel Praktik', pilihan3:'Perpustakaan Digital', pilihan4:'Kantin & Area Istirahat', status:'Aktif', votes0:0, votes1:0, votes2:0, votes3:0 },
+    ],
+  };
+
+  async function seedIfEmpty(colName, items) {
+    const snap = await getDocs(collection(db, colName));
+    if (!snap.empty) return;
+    for (const item of items) {
+      await addDoc(collection(db, colName), { ...item, createdAt: serverTimestamp() });
+    }
+    console.log('Seeded:', colName);
+  }
+
+  // ── Update overview counters dari Firestore
+  async function updateOverviewCounts() {
+    try {
+      const [prestasiSnap, beritaSnap, pengumumanSnap] = await Promise.all([
+        getDocs(collection(db, 'prestasi')),
+        getDocs(collection(db, 'berita')),
+        getDocs(collection(db, 'pengumuman')),
+      ]);
+
+      const elPrestasi    = document.getElementById('ov-num-prestasi');
+      const elBerita      = document.getElementById('ov-num-berita');
+      const elPengumuman  = document.getElementById('ov-num-pengumuman');
+
+      if (elPrestasi)   elPrestasi.textContent   = prestasiSnap.size;
+      if (elBerita)     elBerita.textContent      = beritaSnap.docs.filter(d => d.data().status === 'Publish').length;
+      if (elPengumuman) elPengumuman.textContent  = pengumumanSnap.docs.filter(d => d.data().status === 'Aktif').length;
+    } catch(e) {
+      console.warn('Overview count error:', e);
+    }
+  }
+
+  // ── Init dashboard
+  async function initDashboard() {
+    await Promise.all([
+      seedIfEmpty('prestasi',   SEED.prestasi),
+      seedIfEmpty('berita',     SEED.berita),
+      seedIfEmpty('galeri',     SEED.galeri),
+      seedIfEmpty('pengumuman', SEED.pengumuman),
+      seedIfEmpty('polling',    SEED.polling),
+    ]);
+    updateOverviewCounts();
+    loadTable('prestasi');
+    loadTable('berita');
+    loadTable('galeri');
+    loadTable('pengumuman');
+    loadTable('polling');
+
+    // Load tabel untuk panel yang sedang aktif (restore dari localStorage)
+    const lastPanel = localStorage.getItem('dash_panel');
+    if (lastPanel && lastPanel !== 'overview') {
+      loadTable(lastPanel);
+    }
+  }
+
+  // ── Load tabel dari Firestore
+  async function loadTable(colName) {
+    const tbody = document.querySelector('#tbl-' + colName + ' tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:20px;color:#8a94b8;"><i class="fas fa-spinner fa-spin"></i> Memuat...</td></tr>';
+    try {
+      const snap = await getDocs(collection(db, colName));
+      if (snap.empty) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:20px;color:#8a94b8;">Belum ada data.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = snap.docs.map(d => renderRow(colName, d.id, d.data())).join('');
+    } catch(e) {
+      tbody.innerHTML = '<tr><td colspan="10" style="text-align:center;padding:20px;color:#e53e3e;">Error: ' + e.message + '</td></tr>';
+    }
+  }
+  window._loadTable = loadTable;
+
+  // ── Realtime panel polling
+  function loadPollingPanel() {
+    const container = document.getElementById('polling-live-container');
+    if (!container) return;
+    onSnapshot(collection(db, 'polling'), snap => {
+      if (snap.empty) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-3);">Belum ada polling. Klik "Buat Polling" untuk membuat baru.</div>';
+        return;
+      }
+      container.innerHTML = snap.docs.map(docSnap => {
+        const d  = docSnap.data();
+        const id = docSnap.id;
+        const pilihanList = [d.pilihan1, d.pilihan2, d.pilihan3, d.pilihan4].filter(Boolean);
+        const votes  = pilihanList.map((_, i) => parseInt(d['votes' + i] || 0));
+        const total  = votes.reduce((a, b) => a + b, 0);
+        const bars   = pilihanList.map((lbl, i) => {
+          const pct = total > 0 ? Math.round(votes[i] / total * 100) : 0;
+          return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="flex:1;background:var(--gray-2);border-radius:100px;height:8px;overflow:hidden;">
+              <div style="width:${pct}%;height:100%;background:var(--navy);border-radius:100px;transition:width .6s;"></div>
+            </div>
+            <span style="font-size:12px;font-weight:700;color:var(--navy);min-width:36px;">${pct}%</span>
+            <span style="font-size:12px;color:var(--text-2);min-width:140px;">${lbl} (${votes[i]})</span>
+          </div>`;
+        }).join('');
+        const statusBadge = d.status === 'Aktif'
+          ? '<span style="background:#d4edda;color:#155724;font-size:10px;font-weight:700;padding:2px 10px;border-radius:100px;">Aktif</span>'
+          : '<span style="background:#f8d7da;color:#721c24;font-size:10px;font-weight:700;padding:2px 10px;border-radius:100px;">Tutup</span>';
+        return `<div class="edit-card" style="margin-bottom:16px;">
+          <div class="edit-card-header" style="display:flex;justify-content:space-between;align-items:center;">
+            <h4 style="margin:0;">❓ ${d.pertanyaan||'-'}</h4>
+            ${statusBadge}
+          </div>
+          <div class="edit-card-body">
+            ${bars}
+            <div style="font-size:12px;color:var(--text-3);margin-top:8px;margin-bottom:16px;">Total responden: <strong>${total} orang</strong></div>
+            <div style="display:flex;gap:10px;">
+              <button class="btn-edit btn-sm" onclick="openEdit('polling','${id}')"><i class="fas fa-edit"></i> Edit</button>
+              <button class="btn-danger btn-sm" onclick="deleteItem('polling','${id}','${(d.pertanyaan||'').replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i> Hapus</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+    }, err => console.warn('polling panel', err));
+  }
+  loadPollingPanel();
+
+  // ── Render baris tabel
+  function renderRow(col, id, d) {
+    const nm = (d.nama||d.judul||d.posisi||d.pertanyaan||'').replace(/'/g, "\\'");
+    const acts = `<td class="td-actions">
+      <button class="btn-edit btn-sm" onclick="openEdit('${col}','${id}')"><i class="fas fa-edit"></i> Edit</button>
+      <button class="btn-danger btn-sm" onclick="deleteItem('${col}','${id}','${nm}')"><i class="fas fa-trash"></i></button>
+    </td>`;
+    if (col==='prestasi')   return `<tr><td>${d.medal||'-'}</td><td><strong>${d.nama||'-'}</strong></td><td>${d.tingkat||'-'}</td><td>${d.keterangan||'-'}</td><td>${d.tahun||'-'}</td><td>${d.foto ? `<div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="${d.foto}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div>` : '<span style="font-size:11px;color:#aaa;">-</span>'}</td>${acts}</tr>`;
+    if (col==='berita')     return `<tr><td>${d.tanggal||'-'}</td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status ${d.status==='Publish'?'aktif':'draft'}">${d.status||'Draft'}</span></td>${acts}</tr>`;
+    if (col==='galeri')     return `<tr><td><div style="width:56px;height:40px;border-radius:7px;overflow:hidden;background:#eef0f6;"><img src="${d.foto||''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div></td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status aktif">${d.status||'Tampil'}</span></td>${acts}</tr>`;
+    if (col==='pengumuman') return `<tr><td>${d.tanggal||'-'}</td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status aktif">${d.status||'Aktif'}</span></td><td>${d.foto ? `<div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="${d.foto}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div>` : '<span style="font-size:11px;color:#aaa;">-</span>'}</td>${acts}</tr>`;
+    if (col==='polling')    return `<tr><td><strong>${(d.pertanyaan||'').slice(0,60)}...</strong></td><td>${d.status||'-'}</td><td style="font-size:12px;color:var(--text-2);">${[0,1,2,3].map(i=> d['pilihan'+(i+1)] ? `${d['pilihan'+(i+1)]}: <b>${d['votes'+i]||0}</b>` : '').filter(Boolean).join(' · ')}</td>${acts}</tr>`;
+    return `<tr><td colspan="10">${JSON.stringify(d)}</td></tr>`;
+  }
+
+  // ── Form builder
+  function fotoField(val) {
+    const safe = (val||'').replace(/"/g, '&quot;');
+    return `<div class="field">
+      <label>Foto</label>
+      <div id="fotoPreviewWrap" style="margin-bottom:8px;border-radius:10px;overflow:hidden;max-height:140px;background:var(--gray-2);${val ? '' : 'display:none;'}">
+        <img id="fotoPreview" src="${safe}" style="width:100%;max-height:140px;object-fit:cover;display:block;" onerror="this.parentElement.style.display='none'" />
+      </div>
+      <input type="hidden" name="foto" id="fotoUrl" value="${safe}" />
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <label style="display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;padding:8px 18px;border-radius:100px;font-size:12.5px;font-weight:700;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+          <i class="fas fa-upload"></i> Upload Foto
+          <input type="file" accept="image/*" style="display:none;" onchange="window.uploadFotoToStorage(this)" />
+        </label>
+        <span id="uploadStatus" style="font-size:12px;color:var(--text-3);">
+          ${val
+            ? '<i class="fas fa-check-circle" style="color:#38a169;margin-right:4px;"></i>Foto tersimpan'
+            : 'Belum ada foto — upload atau tempel URL di bawah'}
+        </span>
+      </div>
+      <div id="uploadProgressWrap" style="display:none;margin-top:10px;">
+        <div style="background:var(--gray-2);border-radius:100px;height:6px;overflow:hidden;">
+          <div id="uploadProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--navy),var(--navy-lt));border-radius:100px;transition:width .35s ease;"></div>
+        </div>
+        <div id="uploadProgressLabel" style="font-size:11px;color:var(--text-3);margin-top:4px;text-align:right;">0%</div>
+      </div>
+      <input type="text" id="fotoUrlText" placeholder="Atau tempel URL gambar di sini..."
+        value="${safe}"
+        style="margin-top:8px;width:100%;padding:8px 12px;border:1.5px solid var(--gray-3);border-radius:10px;font-size:13px;font-family:var(--sans);outline:none;"
+        oninput="document.getElementById('fotoUrl').value=this.value;var p=document.getElementById('fotoPreview');var w=document.getElementById('fotoPreviewWrap');if(this.value){p.src=this.value;w.style.display='block';}else{w.style.display='none';}" />
+    </div>`;
+  }
+
+  function buildForm(col, d) {
+    const f  = (lbl,name,val,type='text') => `<div class="field"><label>${lbl}</label><input type="${type}" name="${name}" value="${(val||'').toString().replace(/"/g,'&quot;')}" /></div>`;
+    const ta = (lbl,name,val) => `<div class="field"><label>${lbl}</label><textarea name="${name}">${val||''}</textarea></div>`;
+    const sl = (lbl,name,opts,val) => `<div class="field"><label>${lbl}</label><select name="${name}">${opts.map(o=>`<option${o===val?' selected':''}>${o}</option>`).join('')}</select></div>`;
+    if (col==='prestasi')   return sl('Medali','medal',['🥇','🥈','🥉','🏆','🎖️'],d.medal)+f('Nama Prestasi','nama',d.nama)+sl('Tingkat','tingkat',['Kabupaten','Provinsi','Nasional','Internasional'],d.tingkat)+ta('Keterangan (singkat)','keterangan',d.keterangan)+f('Tahun','tahun',d.tahun,'number')+fotoField(d.foto)+ta('Deskripsi (opsional — tampil di halaman detail)','deskripsi',d.deskripsi);
+    if (col==='berita')     return f('Judul Berita','judul',d.judul)+sl('Kategori','kategori',['Prestasi','Teknologi','Kesiswaan','Akademik','Lingkungan','Umum'],d.kategori)+f('Tanggal','tanggal',d.tanggal,'date')+ta('Ringkasan','ringkasan',d.ringkasan)+ta('Isi Berita','isi',d.isi)+fotoField(d.foto)+sl('Status','status',['Publish','Draft'],d.status);
+    if (col==='galeri')     return f('Judul / Caption','judul',d.judul)+fotoField(d.foto)+sl('Kategori','kategori',['Gedung','Kegiatan','Prestasi','Praktik','Wisuda','Lainnya'],d.kategori)+sl('Status','status',['Tampil','Sembunyikan'],d.status);
+    if (col==='pengumuman') return f('Judul','judul',d.judul)+sl('Kategori','kategori',['PPDB','Akademik','Kesiswaan','Administrasi','Umum'],d.kategori)+f('Tanggal','tanggal',d.tanggal,'date')+ta('Isi','isi',d.isi)+fotoField(d.foto)+sl('Status','status',['Aktif','Arsip'],d.status);
+    if (col==='polling')    return ta('Pertanyaan','pertanyaan',d.pertanyaan)+f('Pilihan 1','pilihan1',d.pilihan1)+f('Pilihan 2','pilihan2',d.pilihan2)+f('Pilihan 3','pilihan3',d.pilihan3)+f('Pilihan 4','pilihan4',d.pilihan4)+sl('Status','status',['Aktif','Tutup'],d.status)+'<div class="field"><label style=\'color:#e53e3e;font-size:12px;\'>⚠️ Reset votes ke 0 saat simpan? <input type="checkbox" name="resetVotes" /></label></div>';
+    return '<p>Form tidak tersedia.</p>';
+  }
+
+  // ── Helper progress bar
+  function setProgress(pct, duration) {
+    const wrap  = document.getElementById('uploadProgressWrap');
+    const bar   = document.getElementById('uploadProgressBar');
+    const label = document.getElementById('uploadProgressLabel');
+    if (!wrap || !bar) return;
+    wrap.style.display = 'block';
+    bar.style.transition = `width ${duration != null ? duration : 350}ms ease`;
+    bar.style.width = pct + '%';
+    if (label) label.textContent = pct + '%';
+  }
+
+  // ── Upload foto: compress di browser, simpan base64 ke Firestore
+  window.uploadFotoToStorage = async (input) => {
+    const file = input.files[0];
+    if (!file) return;
+
+    const statusEl    = document.getElementById('uploadStatus');
+    const urlHidden   = document.getElementById('fotoUrl');
+    const urlText     = document.getElementById('fotoUrlText');
+    const preview     = document.getElementById('fotoPreview');
+    const previewWrap = document.getElementById('fotoPreviewWrap');
+
+    window._uploadInProgress = true;
+    setProgress(0, 0);
+    statusEl.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:4px;color:var(--navy);"></i>Memproses foto...';
+
+    try {
+      setProgress(15, 300);
+
+      // Baca file sebagai data URL
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = e => resolve(e.target.result);
+        reader.onerror = () => reject(new Error('Gagal membaca file'));
+        reader.readAsDataURL(file);
+      });
+
+      setProgress(40, 400);
+
+      // Resize & compress pakai Canvas (max 1200x900, quality 0.82)
+      const compressed = await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const MAX_W = 1200, MAX_H = 900;
+          let w = img.width, h = img.height;
+          if (w > MAX_W) { h = Math.round(h * MAX_W / w); w = MAX_W; }
+          if (h > MAX_H) { w = Math.round(w * MAX_H / h); h = MAX_H; }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', 0.82));
+        };
+        img.onerror = () => reject(new Error('Gagal memproses gambar'));
+        img.src = dataUrl;
+      });
+
+      setProgress(85, 400);
+
+      // Cek ukuran akhir (Firestore max 1MB per dokumen)
+      const sizeKB = Math.round(compressed.length * 0.75 / 1024);
+      if (compressed.length > 950000) {
+        throw new Error(`Foto terlalu besar setelah dikompres (${sizeKB} KB). Coba foto yang lebih kecil.`);
+      }
+
+      // Simpan ke field & tampilkan preview
+      urlHidden.value = compressed;
+      if (urlText) {
+        urlText.value    = `📷 ${file.name}  (${sizeKB} KB)`;
+        urlText.readOnly = true;
+        urlText.style.color = 'var(--text-3)';
+      }
+      preview.src = compressed;
+      previewWrap.style.display = 'block';
+
+      setProgress(100, 200);
+      setTimeout(() => {
+        const pw = document.getElementById('uploadProgressWrap');
+        if (pw) pw.style.display = 'none';
+        statusEl.innerHTML = `<i class="fas fa-check-circle" style="color:#38a169;margin-right:4px;"></i>Foto siap — ${sizeKB} KB`;
+      }, 500);
+
+      window._uploadInProgress = false;
+
+    } catch(e) {
+      console.error('[Upload] error:', e);
+      const pw = document.getElementById('uploadProgressWrap');
+      if (pw) pw.style.display = 'none';
+      statusEl.innerHTML = `<i class="fas fa-times-circle" style="color:#e53e3e;margin-right:4px;"></i>Gagal: ${e.message}`;
+      window._uploadInProgress = false;
+    }
+  };
+
+  // ── Open edit
+  window._fbEdit = async (col, id) => {
+    let d = {};
+    if (id) { const snap = await getDoc(doc(db, col, id)); d = snap.data() || {}; }
+    window._curCol = col; window._curId = id;
+    document.getElementById('modalTitle').textContent = (id ? 'Edit ' : 'Tambah ') + col.charAt(0).toUpperCase() + col.slice(1);
+    document.getElementById('modalBody').innerHTML = buildForm(col, d);
+    document.getElementById('modalOverlay').classList.add('open');
+  };
+  window._fbOpenModal = (col, dataOrNull) => { window._fbEdit(col, dataOrNull ? dataOrNull.id : null); };
+  window.openEdit = window._fbEdit;
+
+  // ── Save
+  window._fbSave = async () => {
+    if (window._uploadInProgress) { showToast('⏳ Tunggu upload foto selesai dulu!'); return; }
+    const inputs = document.getElementById('modalBody').querySelectorAll('input,textarea,select');
+    const data = {}; inputs.forEach(el => { if (el.name) data[el.name] = el.value; });
+    data.updatedAt = serverTimestamp();
+    // Reset votes kalau checkbox dicentang
+    const resetVotes = document.querySelector('input[name="resetVotes"]');
+    if (resetVotes && resetVotes.checked) {
+      data.votes0 = 0; data.votes1 = 0; data.votes2 = 0; data.votes3 = 0;
+    }
+    // Pastikan votes selalu ada saat create baru
+    if (!window._curId && window._curCol === 'polling') {
+      data.votes0 = data.votes0 || 0;
+      data.votes1 = data.votes1 || 0;
+      data.votes2 = data.votes2 || 0;
+      data.votes3 = data.votes3 || 0;
+    }
+    try {
+      if (window._curId) { await updateDoc(doc(db, window._curCol, window._curId), data); }
+      else { data.createdAt = serverTimestamp(); await addDoc(collection(db, window._curCol), data); }
+      closeModalDirect();
+      showToast('✅ Berhasil disimpan!');
+      loadTable(window._curCol);
+      updateOverviewCounts();
+    } catch(e) { showToast('❌ Gagal: ' + e.message); }
+  };
+  window.saveModal = window._fbSave;
+
+  // ── Delete
+  window._fbDelete = async (col, id, name) => {
+    const ok = await window.customConfirm({
+      title: 'Hapus Item',
+      msg: `Yakin hapus <strong>"${name}"</strong>?<br><small style="color:#e53e3e;margin-top:4px;display:block;">Tindakan ini tidak bisa dibatalkan.</small>`,
+      okText: 'Hapus', okClass: 'danger', icon: 'fas fa-trash-alt',
+    });
+    if (!ok) return;
+    try {
+      await deleteDoc(doc(db, col, id));
+      showToast('🗑️ "' + name + '" berhasil dihapus.');
+      loadTable(col);
+      updateOverviewCounts();
+    } catch(e) { showToast('❌ Gagal: ' + e.message); }
+  };
+  window.deleteItem = window._fbDelete;
+</script>
+
+</body>
+</html>

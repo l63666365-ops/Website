@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" />
+  <title>Galeri Prestasi — SMK Negeri 2 Sragen</title>
+  <meta name="description" content="Rekam jejak prestasi siswa SMK Negeri 2 Sragen dari tingkat kabupaten hingga internasional — LKS, olimpiade, MAPSI, dan masih banyak lagi." />
+  <meta property="og:type"         content="website" />
+  <meta property="og:site_name"    content="SMK Negeri 2 Sragen" />
+  <meta property="og:title"        content="Galeri Prestasi — SMK Negeri 2 Sragen" />
+  <meta property="og:description"  content="Rekam jejak prestasi siswa SMK Negeri 2 Sragen dari tingkat kabupaten hingga internasional — LKS, olimpiade, MAPSI, dan masih banyak lagi." />
+  <meta property="og:image"        content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Galeri Prestasi — SMK Negeri 2 Sragen" />
+  <meta name="twitter:description" content="Rekam jejak prestasi siswa SMK Negeri 2 Sragen dari tingkat kabupaten hingga internasional — LKS, olimpiade, MAPSI, dan masih banyak lagi." />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--white); }
+
+    /* ── HERO (gold gradient) ── */
+    .hero {
+      background: linear-gradient(135deg, var(--gold) 0%, #d4890a 55%, var(--navy-dk) 100%);
+      padding: 64px 0 52px;
+    }
+    .hero::before { background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px); }
+    .hero-tag { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 14px; }
+    .hero p  { color: rgba(255,255,255,.82); max-width: 560px; }
+    .hero-stats { gap: 32px; margin-top: 32px; }
+    .hero-stat-num { font-size: 2rem; }
+
+    /* ── MAIN ── */
+    .main { padding: 48px 0 80px; }
+
+    /* Tahun divider */
+    .year-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; margin-top: 40px; }
+    .year-divider:first-child { margin-top: 0; }
+    .year-badge { background: var(--navy); color: #fff; font-size: 13px; font-weight: 800; padding: 5px 18px; border-radius: 100px; white-space: nowrap; }
+    .year-line { flex: 1; height: 1px; background: var(--gray-2); }
+
+    /* Grid kartu */
+    .pr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 8px; }
+    .prcard {
+      background: var(--white); border: 1px solid var(--gray-2);
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: 0 2px 8px rgba(26,53,102,.06);
+      transition: transform .28s, box-shadow .28s;
+      cursor: pointer; display: flex; flex-direction: column;
+    }
+    .prcard:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(26,53,102,.13); }
+    .prcard-photo { width: 100%; height: 148px; overflow: hidden; flex-shrink: 0; background: var(--gray-2); position: relative; }
+    .prcard-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .38s; }
+    .prcard:hover .prcard-photo img { transform: scale(1.06); }
+    .prcard-photo-empty {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #eef0f8 0%, #dde3f0 100%); font-size: 2.8rem;
+    }
+    .prcard-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+    .prcard-medal { font-size: 1.6rem; margin-bottom: 8px; display: block; line-height: 1; }
+    .prcard-lvl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--navy); margin-bottom: 7px; display: block; }
+    .prcard h4 { font-size: 13.5px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; line-height: 1.45; }
+    .prcard p  { font-size: 12px; color: var(--text-2); line-height: 1.6; margin-top: auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .pr-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .hero-stats { gap: 20px; }
+    }
+    @media (max-width: 480px) {
+      .pr-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .prcard-photo { height: 120px; }
+      .hero h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo SMKN 2 Sragen" />
+      </div>
+      <div>
+        <div class="nav-logo-name">SMK Negeri 2 Sragen</div>
+        <span class="nav-logo-sub">Kabupaten Sragen · Jawa Tengah</span>
+      </div>
+    </a>
+    <a href="index.html#prestasi" class="nav-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-tag"><i class="fas fa-trophy"></i> Galeri Prestasi</div>
+    <h1>Semua Prestasi Siswa<br>SMKN 2 Sragen</h1>
+    <p>Rekam jejak pencapaian siswa-siswi kami dari tingkat kabupaten hingga internasional.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-total">—</div>
+        <div class="hero-stat-lbl">Total Prestasi</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-intl">—</div>
+        <div class="hero-stat-lbl">Internasional</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-nas">—</div>
+        <div class="hero-stat-lbl">Nasional</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="stat-prov">—</div>
+        <div class="hero-stat-lbl">Provinsi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FILTER BAR ── -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <span class="filter-label"><i class="fas fa-filter"></i> Filter:</span>
+      <button class="filter-btn active" data-filter="Semua">Semua</button>
+      <button class="filter-btn" data-filter="Internasional">🌏 Internasional</button>
+      <button class="filter-btn" data-filter="Nasional">🇮🇩 Nasional</button>
+      <button class="filter-btn" data-filter="Provinsi">🏛️ Provinsi</button>
+      <button class="filter-btn" data-filter="Kabupaten">🏘️ Kabupaten</button>
+      <span class="filter-count">Menampilkan <strong id="count-display">0</strong> prestasi</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<main class="main">
+  <div class="container">
+    <div id="content-area">
+      <div class="loading-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        Memuat data prestasi...
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ── FIREBASE ── -->
+<script type="module">
+  import { initializeApp }  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, collection, onSnapshot }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const app = initializeApp({
+    apiKey:            "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
+    authDomain:        "smkn2sragen-e487b.firebaseapp.com",
+    projectId:         "smkn2sragen-e487b",
+    storageBucket:     "smkn2sragen-e487b.firebasestorage.app",
+    messagingSenderId: "602192129071",
+    appId:             "1:602192129071:web:884e02ba2bd6766df22ada"
+  });
+  const db = getFirestore(app);
+
+  // ── bobot urutan tingkat
+  const BOBOT = { 'Internasional': 4, 'Nasional': 3, 'Provinsi': 2, 'Kabupaten': 1 };
+
+  function sortData(data) {
+    return [...data].sort((a, b) => {
+      const bA = BOBOT[a.tingkat] || 0, bB = BOBOT[b.tingkat] || 0;
+      if (bB !== bA) return bB - bA;
+      return (parseInt(b.tahun) || 0) - (parseInt(a.tahun) || 0);
+    });
+  }
+
+  function cardHTML(d) {
+    return `
+      <div class="prcard" onclick="window.location.href='detail.html?section=prestasi&id=${d.id}&from=prestasi'" style="cursor:pointer;">
+        <div class="prcard-photo">
+          ${d.foto
+            ? `<img src="${d.foto}" alt="${(d.nama||'').replace(/"/g,'&quot;')}" loading="lazy"
+                    onerror="this.parentElement.innerHTML='<div class=\\'prcard-photo-empty\\'>${d.medal||'🏆'}</div>'" />`
+            : `<div class="prcard-photo-empty">${d.medal||'🏆'}</div>`
+          }
+        </div>
+        <div class="prcard-body">
+          <span class="prcard-medal">${d.medal||'🏆'}</span>
+          <span class="prcard-lvl">Tingkat ${d.tingkat||''}</span>
+          <h4>${d.nama||''}</h4>
+          <p>${d.keterangan||''}</p>
+        </div>
+      </div>`;
+  }
+
+  let allData      = [];
+  let activeFilter = 'Semua';
+
+  function render() {
+    const area = document.getElementById('content-area');
+    const filtered = activeFilter === 'Semua'
+      ? allData
+      : allData.filter(d => d.tingkat === activeFilter);
+
+    // update counter
+    document.getElementById('count-display').textContent = filtered.length;
+
+    if (!filtered.length) {
+      area.innerHTML = `<div class="pr-grid"><div class="empty-state">
+        <i class="fas fa-search"></i>
+        <p>Tidak ada prestasi untuk filter "<strong>${activeFilter}</strong>".</p>
+      </div></div>`;
+      return;
+    }
+
+    // kelompokkan per tahun
+    const byYear = {};
+    filtered.forEach(d => {
+      const y = d.tahun || 'Lainnya';
+      if (!byYear[y]) byYear[y] = [];
+      byYear[y].push(d);
+    });
+
+    // urutkan tahun dari terbesar
+    const years = Object.keys(byYear).sort((a, b) => parseInt(b) - parseInt(a));
+
+    area.innerHTML = years.map(year => `
+      <div class="year-divider">
+        <span class="year-badge"><i class="fas fa-calendar-alt"></i> ${year}</span>
+        <div class="year-line"></div>
+      </div>
+      <div class="pr-grid">
+        ${byYear[year].map(d => cardHTML(d)).join('')}
+      </div>
+    `).join('');
+  }
+
+  function updateStats(data) {
+    document.getElementById('stat-total').textContent = data.length;
+    document.getElementById('stat-intl').textContent  = data.filter(d => d.tingkat === 'Internasional').length;
+    document.getElementById('stat-nas').textContent   = data.filter(d => d.tingkat === 'Nasional').length;
+    document.getElementById('stat-prov').textContent  = data.filter(d => d.tingkat === 'Provinsi').length;
+  }
+
+  // ── realtime listener
+  onSnapshot(collection(db, 'prestasi'), snap => {
+    allData = sortData(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    updateStats(allData);
+    render();
+  }, err => {
+    document.getElementById('content-area').innerHTML =
+      `<div class="loading-state" style="color:#e53e3e;"><i class="fas fa-exclamation-circle"></i>Gagal memuat data: ${err.message}</div>`;
+  });
+
+  // ── filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      render();
+      // scroll ke konten
+      document.querySelector('.main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

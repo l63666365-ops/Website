@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" />
+  <title>Detail — SMK Negeri 2 Sragen</title>
+  <meta name="description" content="Informasi lengkap seputar berita, prestasi, dan pengumuman dari SMK Negeri 2 Sragen." />
+  <meta property="og:type"         content="article" />
+  <meta property="og:site_name"    content="SMK Negeri 2 Sragen" />
+  <meta property="og:title"        content="Detail — SMK Negeri 2 Sragen" />
+  <meta property="og:description"  content="Informasi lengkap seputar berita, prestasi, dan pengumuman dari SMK Negeri 2 Sragen." />
+  <meta property="og:image"        content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Detail — SMK Negeri 2 Sragen" />
+  <meta name="twitter:description" content="Informasi lengkap seputar berita, prestasi, dan pengumuman dari SMK Negeri 2 Sragen." />
+  <meta name="twitter:image"       content="https://raw.githubusercontent.com/l63666365-ops/Foto/refs/heads/main/plang-smk-1-scaled.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--white); line-height: 1.65; }
+
+    /* detail.html pakai layout lebih sempit & tinggi nav sedikit beda */
+    .container, .nav-inner { max-width: 1000px; }
+    .nav-inner { height: 62px; }
+
+    /* ── HERO DETAIL ── */
+    .detail-hero {
+      padding-top: 62px; min-height: 360px; position: relative;
+      display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .detail-hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--navy-dk), var(--navy), var(--navy-lt));
+    }
+    .detail-hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .18; }
+    .detail-hero-pattern {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .detail-hero-inner { position: relative; z-index: 2; width: 100%; padding: 48px 24px 40px; max-width: 1000px; margin: 0 auto; }
+    .detail-cat {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.9); border-radius: 100px;
+      padding: 5px 16px; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .detail-cat i { color: var(--gold-lt); font-size: 9px; }
+    .detail-hero-title { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 14px; max-width: 700px; }
+    .detail-hero-title span { color: var(--gold-lt); }
+    .detail-hero-desc { font-size: 15px; color: rgba(255,255,255,.75); max-width: 580px; line-height: 1.8; margin-bottom: 24px; }
+    .detail-meta-row { display: flex; flex-wrap: wrap; gap: 16px; }
+    .detail-meta-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,.65); }
+    .detail-meta-item i { color: var(--gold-lt); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 16px 0; border-bottom: 1px solid var(--gray-2);
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--text-3); flex-wrap: wrap;
+    }
+    .breadcrumb a { color: var(--navy); text-decoration: none; font-weight: 600; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb i { font-size: 9px; }
+
+    /* ── CONTENT ── */
+    .detail-body { padding: 48px 0 80px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start; }
+    .detail-section { margin-bottom: 40px; }
+    .detail-section h2 { font-size: 1.25rem; font-weight: 800; color: var(--text-1); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--gray-2); display: flex; align-items: center; gap: 10px; }
+    .detail-section h2 i { color: var(--navy); font-size: 1rem; }
+    .detail-section p { font-size: 14.5px; color: var(--text-2); line-height: 1.9; margin-bottom: 14px; }
+    .detail-section ul, .detail-section ol { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .detail-section li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-2); line-height: 1.7; }
+    .detail-section li::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--navy); flex-shrink: 0; margin-top: 7px; }
+
+    /* Info grid */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .info-item { background: var(--gray-1); border-radius: var(--r-md); padding: 16px 18px; border: 1px solid var(--gray-2); }
+    .info-item-label { font-size: 10.5px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-3); margin-bottom: 5px; }
+    .info-item-value { font-size: 14px; font-weight: 700; color: var(--text-1); }
+
+    /* Photo grid mini */
+    .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 20px; }
+    .photo-item { border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; background: var(--gray-2); cursor: pointer; transition: transform .2s, box-shadow .2s; }
+    .photo-item:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgba(26,53,102,.15); }
+    .photo-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Tags */
+    .tag-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag { background: rgba(26,53,102,.08); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: .5px; padding: 5px 14px; border-radius: 100px; border: 1px solid rgba(26,53,102,.12); }
+
+    /* Sidebar */
+    .detail-sidebar { position: sticky; top: 80px; }
+    .sidebar-card { background: var(--white); border-radius: var(--r-xl); padding: 24px; border: 1px solid var(--gray-2); box-shadow: 0 2px 16px rgba(26,53,102,.07); margin-bottom: 20px; }
+    .sidebar-card h4 { font-size: 13px; font-weight: 800; color: var(--text-1); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-2); display: flex; align-items: center; gap: 8px; }
+    .sidebar-card h4 i { color: var(--navy); }
+    .sidebar-link { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text-2); transition: background .2s, color .2s; cursor: pointer; margin-bottom: 2px; }
+    .sidebar-link:hover, .sidebar-link.active { background: rgba(26,53,102,.07); color: var(--navy); }
+    .sidebar-link i { width: 16px; text-align: center; font-size: 12px; color: var(--navy); }
+    .btn-cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--navy); color: #fff; border-radius: 100px; text-decoration: none; font-size: 13.5px; font-weight: 700; transition: background .2s, transform .2s; margin-top: 12px; }
+    .btn-cta:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .btn-cta.gold-btn { background: var(--gold); color: var(--navy-dk); }
+    .btn-cta.gold-btn:hover { background: var(--gold-lt); }
+
+    /* Related cards */
+    .related-card { display: flex; gap: 12px; padding: 12px; border-radius: 12px; border: 1px solid var(--gray-2); cursor: pointer; text-decoration: none; transition: border-color .2s, box-shadow .2s; margin-bottom: 10px; }
+    .related-card:hover { border-color: var(--navy); box-shadow: 0 4px 16px rgba(26,53,102,.1); }
+    .related-thumb { width: 60px; height: 52px; border-radius: 9px; flex-shrink: 0; background: linear-gradient(135deg, var(--navy), var(--navy-lt)); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; overflow: hidden; }
+    .related-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .related-title { font-size: 12.5px; font-weight: 700; color: var(--text-1); line-height: 1.4; margin-bottom: 4px; }
+    .related-meta { font-size: 11px; color: var(--text-3); }
+
+    /* Highlight box */
+    .highlight-box { background: linear-gradient(135deg, var(--navy-dk), var(--navy)); border-radius: var(--r-xl); padding: 28px; color: #fff; margin-bottom: 28px; }
+    .highlight-box h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; }
+    .highlight-box p { font-size: 13.5px; color: rgba(255,255,255,.75); line-height: 1.75; margin-bottom: 16px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .detail-grid { grid-template-columns: 1fr; }
+      .detail-sidebar { position: static; }
+      .info-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 480px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><img src="https://smkn2sragen.sch.id/twosra-iot/assets/img/profile-img.png" alt="Logo" /></div>
+      <div>
+        <div class="nav-logo-text">SMK Negeri 2 Sragen</div>
+        <span class="nav-logo-sub">Kabupaten Sragen · Jawa Tengah</span>
+      </div>
+    </a>
+    <a onclick="goBack()" class="nav-back"><i class="fas fa-arrow-left"></i> Kembali</a>
+  </div>
+</nav>
+
+<!-- HERO — diisi dinamis via JS -->
+<div class="detail-hero" id="detailHero">
+  <div class="detail-hero-bg">
+    <img id="heroBgImg" src="" alt="" />
+  </div>
+  <div class="detail-hero-pattern"></div>
+  <div class="detail-hero-inner container">
+    <div class="detail-cat" id="heroCat"><i class="fas fa-circle"></i> <span id="heroCatText">Kategori</span></div>
+    <h1 class="detail-hero-title" id="heroTitle">Judul Konten</h1>
+    <p class="detail-hero-desc" id="heroDesc">Deskripsi singkat konten ini.</p>
+    <div class="detail-meta-row" id="heroMeta"></div>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div style="background:var(--gray-1);border-bottom:1px solid var(--gray-2);">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+      <i class="fas fa-chevron-right"></i>
+      <span id="bcSection">Section</span>
+      <i class="fas fa-chevron-right"></i>
+      <span id="bcTitle" style="color:var(--text-1);font-weight:600;">Judul</span>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="detail-body">
+  <div class="container">
+    <div class="detail-grid">
+      <!-- Main -->
+      <div class="detail-main" id="detailMain">
+        <!-- Diisi dinamis -->
+      </div>
+
+      <!-- Sidebar -->
+      <div class="detail-sidebar">
+        <div class="sidebar-card" id="sidebarInfo">
+          <!-- Diisi dinamis -->
+        </div>
+        <div class="sidebar-card" id="sidebarNavCepat">
+          <h4><i class="fas fa-compass"></i> Navigasi Cepat</h4>
+          <a class="sidebar-link" onclick="goDetail('jurusan','tpm')"><i class="fas fa-cog"></i> Teknik Pemesinan (TP)</a>
+          <a class="sidebar-link" onclick="goDetail('jurusan','tkro')"><i class="fas fa-car"></i> Teknik Kendaraan Ringan (TKR)</a>
+          <a class="sidebar-link" onclick="goDetail('jurusan','dpib')"><i class="fas fa-drafting-compass"></i> Desain Pemodelan &amp; Informasi Bangunan (DPIB)</a>
+          <a class="sidebar-link" onclick="goDetail('jurusan','tkp')"><i class="fas fa-home"></i> Teknik Konstruksi &amp; Perumahan (TKP)</a>
+          <a class="sidebar-link" onclick="goDetail('jurusan','titl')"><i class="fas fa-bolt"></i> Teknik Instalasi Tenaga Listrik (TITL)</a>
+          <a class="sidebar-link" onclick="goDetail('jurusan','tkj')"><i class="fas fa-laptop-code"></i> Teknik Komputer &amp; Jaringan (TKJ)</a>
+        </div>
+        <div class="sidebar-card">
+          <h4><i class="fas fa-link"></i> Konten Terkait</h4>
+          <div id="relatedContent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// DATA KONTEN
+// ══════════════════════════════════════════════
+const DATA = {
+
+  // ── PROGRAM UNGGULAN ──
+  program: {
+    ekstrakurikuler: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-futbol',
+      title: 'Ekstrakurikuler SMKN 2 Sragen',
+      desc: 'Wadah pengembangan bakat dan minat siswa dengan 15+ pilihan kegiatan — olahraga, seni, teknologi, pramuka, hingga keagamaan.',
+      heroImg: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=1200&q=80',
+      meta: [{ icon: 'fas fa-list', text: '15+ Pilihan Ekskul' }, { icon: 'fas fa-calendar', text: 'Aktif Setiap Minggu' }],
+      main: `
+        <div class="highlight-box">
+          <h3>🏅 Ekstrakurikuler SMKN 2 Sragen</h3>
+          <p>SMKN 2 Sragen menyediakan lebih dari 15 pilihan kegiatan ekstrakurikuler yang dirancang untuk mengembangkan bakat, minat, dan karakter siswa di luar jam pelajaran.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-star"></i> Ekskul Unggulan</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Paskibra</div><div class="info-item-value">Juara LKBB Kabupaten</div></div>
+            <div class="info-item"><div class="info-item-label">Pramuka</div><div class="info-item-value">Wajib Kelas X</div></div>
+            <div class="info-item"><div class="info-item-label">PMR</div><div class="info-item-value">Palang Merah Remaja</div></div>
+            <div class="info-item"><div class="info-item-label">Robotik & IT</div><div class="info-item-value">Lomba LKS TKJ</div></div>
+            <div class="info-item"><div class="info-item-label">Futsal & Voli</div><div class="info-item-value">Olahraga Prestasi</div></div>
+            <div class="info-item"><div class="info-item-label">Seni & Budaya</div><div class="info-item-value">Karawitan, Tari</div></div>
+            <div class="info-item"><div class="info-item-label">Rohis & IPNU</div><div class="info-item-value">Keagamaan Islam</div></div>
+            <div class="info-item"><div class="info-item-label">Mapsi</div><div class="info-item-value">Juara Provinsi 2025</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Ekstrakurikuler</h2>
+          <p>Kegiatan ekstrakurikuler di SMKN 2 Sragen dikelola secara profesional oleh pembina berpengalaman. Setiap siswa diwajibkan mengikuti minimal satu kegiatan ekskul sebagai bagian dari pengembangan diri.</p>
+          <p>Berbagai prestasi telah diraih di tingkat kabupaten, provinsi, bahkan nasional melalui jalur ekstrakurikuler, membuktikan bahwa SMKN 2 Sragen tidak hanya unggul secara akademik-teknis.</p>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Paskibra</span><span class="tag">Pramuka</span><span class="tag">PMR</span>
+          <span class="tag">Robotik</span><span class="tag">Futsal</span><span class="tag">Karawitan</span>
+          <span class="tag">Rohis</span><span class="tag">Mapsi</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-futbol"></i> Info Ekskul</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Pendaftaran ekskul dilakukan di awal tahun ajaran. Hubungi wali kelas atau bagian kesiswaan untuk info lebih lanjut.</div>
+        <a href="index.html#program" class="btn-cta"><i class="fas fa-arrow-left"></i> Kembali ke Program</a>`,
+    },
+    osis: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-users',
+      title: 'OSIS & MPK SMKN 2 Sragen',
+      desc: 'Organisasi Siswa Intra Sekolah dan Majelis Perwakilan Kelas sebagai wadah kepemimpinan dan demokrasi siswa.',
+      heroImg: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
+      meta: [{ icon: 'fas fa-users', text: 'Angkatan XIII — 2025/2026' }, { icon: 'fas fa-star', text: 'Pelantikan Juni 2026' }],
+      main: `
+        <div class="highlight-box">
+          <h3>🏛️ OSIS & MPK — Sekolah Mini Demokrasi</h3>
+          <p>OSIS SMKN 2 Sragen adalah organisasi siswa yang dipilih secara demokratis untuk mewakili seluruh siswa, mengelola kegiatan sekolah, dan membentuk jiwa kepemimpinan nyata.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang OSIS & MPK</h2>
+          <p>Organisasi Siswa Intra Sekolah (OSIS) adalah satu-satunya wadah organisasi resmi siswa di sekolah. Didampingi oleh Majelis Perwakilan Kelas (MPK) yang berperan sebagai lembaga legislatif siswa.</p>
+          <p>Setiap tahun ajaran, OSIS dipilih melalui mekanisme pemilihan langsung yang melibatkan seluruh siswa — proses belajar demokrasi sejak bangku sekolah.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-tasks"></i> Program Kerja OSIS</h2>
+          <ul>
+            <li>Peringatan Hari Besar Nasional dan Keagamaan</li>
+            <li>MOS / MPLS untuk siswa baru</li>
+            <li>Class Meeting dan Pentas Seni Sekolah</li>
+            <li>Lomba-lomba antar kelas (Futsal, Voli, dll)</li>
+            <li>Bakti sosial dan kegiatan lingkungan</li>
+            <li>Kerjasama dengan Paskibra dan PMR</li>
+          </ul>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Kepemimpinan</span><span class="tag">Demokrasi</span><span class="tag">Organisasi</span>
+          <span class="tag">Kesiswaan</span><span class="tag">Pengabdian</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-users"></i> OSIS SMKN 2 Sragen</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Angkatan XIII resmi dilantik pada Sabtu, 7 Juni 2026. Informasi kegiatan OSIS dapat dilihat di mading sekolah.</div>
+        <a href="index.html#program" class="btn-cta"><i class="fas fa-arrow-left"></i> Kembali ke Program</a>`,
+    },
+    paskibra: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-flag',
+      title: 'Paskibra SMKN 2 Sragen',
+      desc: 'Unit pasukan pengibar bendera kebanggaan SMKN 2 Sragen yang berprestasi di tingkat kabupaten dan provinsi.',
+      heroImg: 'https://images.unsplash.com/photo-1467533003447-e295ff1b0435?w=1200&q=80',
+      meta: [{ icon: 'fas fa-trophy', text: 'Piala Bergilir LKBB 2025' }, { icon: 'fas fa-medal', text: 'Garuda Muda Season 1' }],
+      main: `
+        <div class="highlight-box">
+          <h3>🚩 Paskibra — Kebanggaan SMKN 2 Sragen</h3>
+          <p>Paskibra SMKN 2 Sragen berhasil merebut Piala Bergilir LKBB Garuda Muda Season 1 tahun 2025, membuktikan kualitas dan dedikasi pasukan dalam melatih kedisiplinan dan kebanggaan nasional.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Paskibra</h2>
+          <p>Paskibra (Pasukan Pengibar Bendera) SMKN 2 Sragen adalah unit kegiatan sekolah yang bertugas mengibarkan bendera merah putih dalam upacara resmi dan mewakili sekolah dalam lomba baris-berbaris (LKBB).</p>
+          <p>Anggota Paskibra dipilih melalui seleksi ketat dan menjalani latihan intensif untuk membentuk kedisiplinan, kekompakan, dan rasa cinta tanah air.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-star"></i> Prestasi Paskibra</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">LKBB Garuda Muda S1</div><div class="info-item-value">🏆 Piala Bergilir 2025</div></div>
+            <div class="info-item"><div class="info-item-label">Tingkat</div><div class="info-item-value">Kabupaten Sragen</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Baris-berbaris</span><span class="tag">LKBB</span><span class="tag">Kedisiplinan</span>
+          <span class="tag">Nasionalisme</span><span class="tag">Prestasi</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-flag"></i> Paskibra</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Rekrutmen anggota baru dilakukan setiap awal tahun ajaran. Hubungi pembina kesiswaan untuk informasi pendaftaran.</div>
+        <a href="index.html#program" class="btn-cta"><i class="fas fa-arrow-left"></i> Kembali ke Program</a>`,
+    },
+    pkl: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-industry',
+      title: 'Praktik Kerja Lapangan (PKL)',
+      desc: 'Program magang wajib selama 6 bulan di dunia industri sebagai bekal pengalaman kerja nyata bagi siswa SMK.',
+      heroImg: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+      meta: [{ icon: 'fas fa-clock', text: '6 Bulan Magang' }, { icon: 'fas fa-building', text: '120+ Mitra DUDI' }],
+      main: `
+        <div class="highlight-box">
+          <h3>🏭 Praktik Kerja Lapangan</h3>
+          <p>PKL adalah program wajib selama kelas XI dimana siswa terjun langsung ke dunia industri selama 6 bulan. SMKN 2 Sragen bekerja sama dengan 120+ perusahaan dan industri di Solo Raya dan sekitarnya.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang PKL</h2>
+          <p>Praktik Kerja Lapangan (PKL) merupakan bagian kurikulum SMK yang tidak terpisahkan. Siswa ditempatkan di mitra industri selama 6 bulan untuk mendapatkan pengalaman kerja nyata sesuai kompetensi keahliannya.</p>
+          <p>Penempatan PKL dikoordinasi oleh Bursa Kerja Khusus (BKK) SMKN 2 Sragen yang memiliki jaringan dengan 120+ mitra industri di berbagai sektor.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-list"></i> Ketentuan PKL</h2>
+          <ul>
+            <li>Durasi: 6 bulan (semester 5 — kelas XI)</li>
+            <li>Penempatan sesuai kompetensi jurusan masing-masing</li>
+            <li>Didampingi guru pembimbing dan mentor industri</li>
+            <li>Laporan PKL sebagai syarat kenaikan kelas XII</li>
+            <li>Berpeluang langsung diterima kerja pasca lulus</li>
+          </ul>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Magang</span><span class="tag">Industri</span><span class="tag">DUDI</span>
+          <span class="tag">Pengalaman Kerja</span><span class="tag">Kurikulum SMK</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-industry"></i> Info PKL</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Untuk informasi penempatan PKL, hubungi koordinator BKK SMKN 2 Sragen di ruang BKK.</div>
+        <a href="index.html#bkk" class="btn-cta"><i class="fas fa-handshake"></i> Lihat Mitra Industri</a>`,
+    },
+    sertifikasi: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-certificate',
+      title: 'Sertifikasi Kompetensi LSP-P1',
+      desc: 'Uji kompetensi resmi terakreditasi BNSP melalui Lembaga Sertifikasi Profesi Pihak Pertama (LSP-P1) SMKN 2 Sragen.',
+      heroImg: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80',
+      meta: [{ icon: 'fas fa-award', text: 'Terakreditasi BNSP' }, { icon: 'fas fa-id-card', text: 'Sertifikat Kompetensi Nasional' }],
+      main: `
+        <div class="highlight-box">
+          <h3>📜 Sertifikasi Kompetensi BNSP</h3>
+          <p>SMKN 2 Sragen memiliki Lembaga Sertifikasi Profesi Pihak Pertama (LSP-P1) yang telah mendapatkan lisensi dari Badan Nasional Sertifikasi Profesi (BNSP). Sertifikat kompetensi ini diakui secara nasional oleh dunia industri.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Sertifikasi</h2>
+          <p>Setiap siswa kelas XII wajib mengikuti Uji Kompetensi Keahlian (UKK) sebagai syarat kelulusan. Melalui LSP-P1, siswa dapat memperoleh Sertifikat Kompetensi yang diakui oleh industri secara nasional.</p>
+          <p>Sertifikat ini menjadi nilai tambah yang signifikan saat melamar pekerjaan, karena membuktikan kompetensi yang terstandarisasi.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-list"></i> Bidang Sertifikasi</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">TKJ</div><div class="info-item-value">Jaringan Komputer</div></div>
+            <div class="info-item"><div class="info-item-label">TKRO</div><div class="info-item-value">Teknik Otomotif</div></div>
+            <div class="info-item"><div class="info-item-label">TITL</div><div class="info-item-value">Ketenagalistrikan</div></div>
+            <div class="info-item"><div class="info-item-label">TPM</div><div class="info-item-value">Teknik Pemesinan</div></div>
+            <div class="info-item"><div class="info-item-label">DPIB</div><div class="info-item-value">Desain Bangunan</div></div>
+            <div class="info-item"><div class="info-item-label">TKP</div><div class="info-item-value">Teknik Konstruksi</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">BNSP</span><span class="tag">LSP-P1</span><span class="tag">UKK</span>
+          <span class="tag">Sertifikat Nasional</span><span class="tag">Kompetensi</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-certificate"></i> Sertifikasi BNSP</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Uji kompetensi dilaksanakan pada semester 6 kelas XII. Hubungi koordinator LSP di ruang guru untuk informasi jadwal.</div>
+        <a href="index.html#program" class="btn-cta"><i class="fas fa-arrow-left"></i> Kembali ke Program</a>`,
+    },
+    bkk: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-briefcase',
+      title: 'Bursa Kerja Khusus (BKK)',
+      desc: 'Unit penyaluran kerja dan penempatan PKL SMKN 2 Sragen dengan jaringan 120+ mitra industri dan tingkat serapan 95%.',
+      heroImg: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&q=80',
+      meta: [{ icon: 'fas fa-building', text: '120+ Mitra' }, { icon: 'fas fa-chart-bar', text: '95% Tingkat Serapan' }, { icon: 'fas fa-users', text: '1.2K+ Alumni Tersalurkan' }],
+      main: `
+        <div class="highlight-box">
+          <h3>💼 Bursa Kerja Khusus SMKN 2 Sragen</h3>
+          <p>BKK SMKN 2 Sragen adalah unit yang bertanggung jawab menghubungkan lulusan dengan dunia kerja dan industri. Dengan jaringan 120+ mitra perusahaan, 95% lulusan berhasil terserap ke dunia kerja.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang BKK</h2>
+          <p>Bursa Kerja Khusus (BKK) merupakan unit pelayanan penempatan tenaga kerja yang dibentuk di SMK untuk memberikan pelayanan informasi pasar kerja, penyuluhan, bimbingan, dan penyaluran tamatan ke dunia kerja.</p>
+          <p>BKK SMKN 2 Sragen aktif menjalin kerjasama dengan perusahaan manufaktur, teknologi, energi, dan konstruksi di wilayah Solo Raya, Jawa Tengah, dan nasional.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-tasks"></i> Layanan BKK</h2>
+          <ul>
+            <li>Penyaluran lulusan ke mitra industri terakreditasi</li>
+            <li>Koordinasi penempatan PKL kelas XI</li>
+            <li>Job fair dan rekrutmen langsung di sekolah</li>
+            <li>Bimbingan karir dan pembuatan CV</li>
+            <li>Informasi lowongan kerja untuk alumni</li>
+          </ul>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Penempatan Kerja</span><span class="tag">Industri</span><span class="tag">Alumni</span>
+          <span class="tag">PKL</span><span class="tag">Rekrutmen</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-briefcase"></i> Kontak BKK</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Ruang BKK tersedia di gedung administrasi SMKN 2 Sragen. Buka Senin–Jumat pukul 08.00–14.00 WIB.</div>
+        <a href="index.html#bkk" class="btn-cta"><i class="fas fa-handshake"></i> Lihat Mitra Industri</a>`,
+    },
+    lks: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-trophy',
+      title: 'Lomba Kompetensi Siswa (LKS)',
+      desc: 'Program pembinaan siswa berprestasi untuk ajang kompetisi LKS dari tingkat kabupaten hingga nasional.',
+      heroImg: 'https://images.unsplash.com/photo-1567443024551-f3e3cc2be870?w=1200&q=80',
+      meta: [{ icon: 'fas fa-trophy', text: 'Juara 1 LKS Provinsi 2025' }, { icon: 'fas fa-medal', text: 'Finalis Nasional 2025' }],
+      main: `
+        <div class="highlight-box">
+          <h3>🏆 Lomba Kompetensi Siswa</h3>
+          <p>LKS adalah olimpiadenya SMK — ajang bergengsi yang mengukur kompetensi teknis siswa. SMKN 2 Sragen secara konsisten meraih prestasi di tingkat kabupaten, provinsi, bahkan nasional.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang LKS</h2>
+          <p>Lomba Kompetensi Siswa (LKS) adalah kompetisi tahunan yang diselenggarakan oleh Kemendikbud untuk mengukur dan meningkatkan kompetensi keahlian siswa SMK sesuai standar industri nasional dan internasional (WorldSkills).</p>
+          <p>SMKN 2 Sragen aktif membina siswa berprestasi untuk berkompetisi di berbagai bidang keahlian sesuai jurusan yang tersedia.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-star"></i> Prestasi LKS SMKN 2 Sragen</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">LKS Teknik KR</div><div class="info-item-value">🥇 Juara 1 Provinsi 2025</div></div>
+            <div class="info-item"><div class="info-item-label">LKS Teknik Listrik</div><div class="info-item-value">🏆 Finalis Nasional 2025</div></div>
+            <div class="info-item"><div class="info-item-label">LKS Teknik Konstruksi</div><div class="info-item-value">🥇 Juara 1 Kabupaten</div></div>
+            <div class="info-item"><div class="info-item-label">LKS Teknik Coding</div><div class="info-item-value">🥇 Juara 1 Kabupaten</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">LKS</span><span class="tag">Kompetisi</span><span class="tag">Prestasi</span>
+          <span class="tag">WorldSkills</span><span class="tag">Nasional</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-trophy"></i> LKS SMKN 2 Sragen</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Seleksi calon peserta LKS dilakukan setiap awal semester genap. Hubungi waka kesiswaan untuk informasi seleksi.</div>
+        <a href="index.html#prestasi" class="btn-cta"><i class="fas fa-medal"></i> Lihat Galeri Prestasi</a>`,
+    },
+    karakter: {
+      cat: 'Program Unggulan', catIcon: 'fas fa-heart',
+      title: 'Pembinaan Karakter Siswa',
+      desc: 'Program P5, kajian keagamaan, dan pembiasaan disiplin untuk mencetak lulusan SMKN 2 Sragen yang berkarakter dan berakhlak mulia.',
+      heroImg: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=80',
+      meta: [{ icon: 'fas fa-book', text: 'Kurikulum Merdeka' }, { icon: 'fas fa-mosque', text: 'Religius & Berkarakter' }],
+      main: `
+        <div class="highlight-box">
+          <h3>❤️ Pembinaan Karakter</h3>
+          <p>SMKN 2 Sragen tidak hanya mencetak lulusan yang kompeten secara teknis, tetapi juga berkarakter, disiplin, dan berakhlak mulia melalui berbagai program pembinaan yang terintegrasi dalam kurikulum.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Program Karakter</h2>
+          <ul>
+            <li>P5 — Projek Penguatan Profil Pelajar Pancasila (Kurikulum Merdeka)</li>
+            <li>Kajian Jumat — Pembinaan rohani rutin setiap minggu</li>
+            <li>Upacara Bendera — Pembentukan rasa nasionalisme</li>
+            <li>Pembiasaan 5S: Senyum, Salam, Sapa, Sopan, Santun</li>
+            <li>MPLS — Masa Pengenalan Lingkungan Sekolah untuk siswa baru</li>
+            <li>Anti-bullying dan program kesehatan mental siswa</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-award"></i> Nilai Karakter yang Dibentuk</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Religius</div><div class="info-item-value">Beriman & Bertakwa</div></div>
+            <div class="info-item"><div class="info-item-label">Nasionalis</div><div class="info-item-value">Cinta Tanah Air</div></div>
+            <div class="info-item"><div class="info-item-label">Integritas</div><div class="info-item-value">Jujur & Bertanggung Jawab</div></div>
+            <div class="info-item"><div class="info-item-label">Gotong Royong</div><div class="info-item-value">Kolaboratif & Peduli</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">P5</span><span class="tag">Pancasila</span><span class="tag">Religius</span>
+          <span class="tag">Disiplin</span><span class="tag">Karakter</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-heart"></i> Pembinaan Karakter</h4>
+        <div style="font-size:13px;color:var(--text-2);line-height:1.75;margin-bottom:14px;">Program pembinaan karakter terintegrasi dalam kegiatan sehari-hari di SMKN 2 Sragen, dipantau oleh wali kelas dan BK.</div>
+        <a href="index.html#program" class="btn-cta"><i class="fas fa-arrow-left"></i> Kembali ke Program</a>`,
+    },
+  },
+
+  // ── JURUSAN ──
+  jurusan: {
+    tkj: {
+      cat: 'Program Keahlian', catIcon: 'fas fa-laptop-code',
+      title: 'Teknik Komputer & Jaringan (TKJ)',
+      desc: 'Program keahlian yang mempersiapkan siswa menjadi profesional IT handal di bidang jaringan komputer, keamanan siber, dan infrastruktur teknologi informasi.',
+      heroImg: 'https://images.unsplash.com/photo-1562813733-b31f71025d54?w=1200&q=80',
+      meta: [
+        { icon: 'fas fa-users', text: '±72 Siswa/Angkatan' },
+        { icon: 'fas fa-certificate', text: 'Akreditasi A' },
+        { icon: 'fas fa-clock', text: '3 Tahun (6 Semester)' },
+      ],
+      main: `
+        <div class="highlight-box">
+          <h3>Teknik Komputer &amp; Jaringan (TKJ)</h3>
+          <p>Jurusan TKJ di SMKN 2 Sragen menjadi salah satu jurusan paling diminati. Didukung laboratorium jaringan modern dengan perangkat Cisco, fiber optic, dan server rack berstandar industri.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Jurusan</h2>
+          <p>Teknik Komputer dan Jaringan adalah program keahlian yang berada di bawah Bidang Keahlian Teknologi Informasi dan Komunikasi. Siswa dididik untuk menguasai instalasi, konfigurasi, dan pemeliharaan jaringan komputer skala kecil hingga enterprise.</p>
+          <p>Kurikulum TKJ SMKN 2 Sragen mengacu pada standar SKKNI dan disusun bersama mitra industri, termasuk PT Telkom Indonesia dan beberapa perusahaan IT di Solo Raya.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2>
+          <ul>
+            <li>Instalasi dan konfigurasi jaringan LAN, WAN, dan WLAN</li>
+            <li>Administrasi server Linux dan Windows Server</li>
+            <li>Keamanan jaringan dan siber (Cybersecurity)</li>
+            <li>Teknologi fiber optic dan structured cabling</li>
+            <li>Cloud computing dan virtualisasi (VMware, VirtualBox)</li>
+            <li>Pemrograman dasar: Python, HTML, CSS, JavaScript</li>
+            <li>Troubleshooting hardware dan software</li>
+            <li>Mikrotik RouterOS dan manajemen bandwidth</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-industry"></i> Peluang Karir & Industri</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Network Engineer</div><div class="info-item-value">Telekomunikasi & IT</div></div>
+            <div class="info-item"><div class="info-item-label">IT Support</div><div class="info-item-value">Semua Sektor</div></div>
+            <div class="info-item"><div class="info-item-label">Cyber Security Analyst</div><div class="info-item-value">Perbankan & Pemerintahan</div></div>
+            <div class="info-item"><div class="info-item-label">System Administrator</div><div class="info-item-value">Perusahaan Teknologi</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-images"></i> Fasilitas Lab TKJ</h2>
+          <div class="photo-grid">
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80" alt="Lab Jaringan" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1562813733-b31f71025d54?w=400&q=80" alt="Server Rack" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1587202372616-b43abea06c2a?w=400&q=80" alt="Lab Komputer" /></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Jaringan Komputer</span><span class="tag">Cisco</span><span class="tag">Linux</span>
+          <span class="tag">Fiber Optic</span><span class="tag">Cloud Computing</span><span class="tag">Cybersecurity</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Pendaftaran siswa baru SMKN 2 Sragen dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong> — bukan daftar langsung ke sekolah.</p>
+        <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta"><i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi</a>
+        <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;">
+          <i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i> Pastikan mendaftar melalui situs resmi pemerintah untuk menghindari penipuan.
+        </div>`,
+    },
+    tkro: {
+      cat: 'Program Keahlian', catIcon: 'fas fa-car',
+      title: 'Teknik Kendaraan Ringan (TKR)',
+      desc: 'Program keahlian unggulan yang mempersiapkan teknisi otomotif profesional sesuai standar industri kendaraan modern.',
+      heroImg: 'https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=1200&q=80',
+      meta: [{ icon: 'fas fa-users', text: '±72 Siswa/Angkatan' }, { icon: 'fas fa-trophy', text: 'Juara 1 LKS Provinsi 2025' }],
+      main: `
+        <div class="highlight-box">
+          <h3>Teknik Kendaraan Ringan (TKR)</h3>
+          <p>TKR SMKN 2 Sragen meraih Juara 1 LKS Tingkat Provinsi Jawa Tengah 2025. Bengkel dilengkapi dengan kendaraan praktik terbaru, engine stand EFI, dan peralatan scan tool berstandar bengkel resmi.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Jurusan</h2>
+          <p>Teknik Kendaraan Ringan merupakan program keahlian di bawah Bidang Teknologi dan Rekayasa. Siswa dididik untuk menguasai teknik perawatan, perbaikan, dan diagnosa kendaraan bermotor ringan berbasis teknologi terkini.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2>
+          <ul>
+            <li>Sistem bahan bakar konvensional dan EFI (Electronic Fuel Injection)</li>
+            <li>Sistem pengapian elektronik dan transmisi otomatis</li>
+            <li>Diagnosa kerusakan menggunakan scan tool modern</li>
+            <li>Sistem rem ABS, airbag, dan keselamatan aktif</li>
+            <li>Servis berkala dan tune-up mesin</li>
+            <li>Teknologi kendaraan listrik (EV) dasar</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-industry"></i> Peluang Karir</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Teknisi Bengkel Resmi</div><div class="info-item-value">Toyota, Honda, Suzuki</div></div>
+            <div class="info-item"><div class="info-item-label">Wirausaha Bengkel</div><div class="info-item-value">Bengkel Mandiri</div></div>
+            <div class="info-item"><div class="info-item-label">Quality Control</div><div class="info-item-value">Industri Otomotif</div></div>
+            <div class="info-item"><div class="info-item-label">Fleet Technician</div><div class="info-item-value">Perusahaan Transportasi</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-tools"></i> Fasilitas Bengkel TKR</h2>
+          <div class="photo-grid">
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=400&q=80" alt="Bengkel Otomotif" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Engine Stand" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&q=80" alt="Scan Tool" /></div>
+          </div>
+          <div class="info-grid" style="margin-top:16px;">
+            <div class="info-item"><div class="info-item-label">Kendaraan Praktik</div><div class="info-item-value">6 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Engine Stand EFI</div><div class="info-item-value">4 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Scan Tool Modern</div><div class="info-item-value">8 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">36 Siswa</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Otomotif</span><span class="tag">EFI</span><span class="tag">Scan Tool</span>
+          <span class="tag">Tune Up</span><span class="tag">Transmisi</span><span class="tag">Electric Vehicle</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Pendaftaran siswa baru dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong>.</p>
+        <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta"><i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi</a>
+        <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;"><i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i> Pendaftaran resmi hanya melalui situs pemerintah.</div>`,
+    },
+    titl: {
+      cat: 'Program Keahlian', catIcon: 'fas fa-bolt',
+      title: 'Teknik Instalasi Tenaga Listrik (TITL)',
+      desc: 'Program keahlian yang mempersiapkan tenaga ahli instalasi, pemeliharaan, dan perbaikan sistem kelistrikan industri maupun residensial.',
+      heroImg: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=80',
+      meta: [{ icon: 'fas fa-users', text: '±72 Siswa/Angkatan' }, { icon: 'fas fa-trophy', text: 'Finalis LKS Nasional' }],
+      main: `
+        <div class="highlight-box">
+          <h3>Teknik Instalasi Tenaga Listrik</h3>
+          <p>TITL SMKN 2 Sragen berhasil meloloskan siswanya ke Finalis LKS Nasional. Dilengkapi laboratorium instalasi listrik berstandar PLN dan bengkel panel listrik industri.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Jurusan</h2>
+          <p>Teknik Instalasi Tenaga Listrik (TITL) merupakan program keahlian di bawah Bidang Teknologi Ketenagalistrikan. Siswa dididik untuk menguasai instalasi, pemeliharaan, dan perbaikan sistem kelistrikan skala industri maupun residensial.</p>
+          <p>Kurikulum TITL SMKN 2 Sragen disusun mengacu pada standar SKKNI ketenagalistrikan, berkolaborasi dengan PT PLN (Persero) ULP Sragen sebagai mitra industri utama.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2>
+          <ul>
+            <li>Instalasi listrik tegangan rendah dan menengah</li>
+            <li>Pemasangan dan pemeliharaan panel distribusi</li>
+            <li>Sistem kontrol motor listrik (PLC dasar)</li>
+            <li>Instalasi panel surya (PLTS) dan energi terbarukan</li>
+            <li>Keselamatan kerja bidang kelistrikan (K3)</li>
+            <li>Pengukuran dan pengujian instalasi listrik</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-industry"></i> Peluang Karir</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Teknisi PLN</div><div class="info-item-value">PT PLN (Persero)</div></div>
+            <div class="info-item"><div class="info-item-label">Electrical Engineer</div><div class="info-item-value">Industri Manufaktur</div></div>
+            <div class="info-item"><div class="info-item-label">Teknisi Listrik Gedung</div><div class="info-item-value">Properti & Konstruksi</div></div>
+            <div class="info-item"><div class="info-item-label">Kontraktor Listrik</div><div class="info-item-value">Wirausaha Mandiri</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-bolt"></i> Fasilitas Lab TITL</h2>
+          <div class="photo-grid">
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&q=80" alt="Lab Listrik" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1558618047-3b8f8e1a7e1e?w=400&q=80" alt="Panel Distribusi" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80" alt="Panel Surya" /></div>
+          </div>
+          <div class="info-grid" style="margin-top:16px;">
+            <div class="info-item"><div class="info-item-label">Panel Distribusi</div><div class="info-item-value">8 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Trainer PLC</div><div class="info-item-value">6 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Modul PLTS</div><div class="info-item-value">2 Set</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">32 Siswa</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Instalasi Listrik</span><span class="tag">PLN</span><span class="tag">PLC</span>
+          <span class="tag">Panel Surya</span><span class="tag">K3 Listrik</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Pendaftaran siswa baru dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong>.</p>
+        <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta"><i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi</a>
+        <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;"><i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i> Pendaftaran resmi hanya melalui situs pemerintah.</div>`,
+    },
+    tpm: {
+      cat: 'Program Keahlian', catIcon: 'fas fa-cog',
+      title: 'Teknik Pemesinan (TP)',
+      desc: 'Program keahlian yang membekali siswa dengan kemampuan pengoperasian mesin bubut, frais, CNC, dan pemesinan presisi standar industri.',
+      heroImg: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+      meta: [{ icon: 'fas fa-users', text: '±72 Siswa/Angkatan' }, { icon: 'fas fa-industry', text: 'Berstandar Industri' }],
+      main: `
+        <div class="highlight-box"><h3>Teknik Pemesinan (TP)</h3><p>Bengkel CNC SMKN 2 Sragen dilengkapi mesin CNC turning dan milling terbaru. Siswa langsung berlatih pada mesin industri sesungguhnya.</p></div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Jurusan</h2>
+          <p>Teknik Pemesinan (TP) merupakan program keahlian di bawah Bidang Teknologi dan Rekayasa yang membekali siswa dengan kemampuan mengoperasikan mesin-mesin produksi berstandar industri.</p>
+          <p>Kurikulum disusun bersama mitra industri manufaktur di wilayah Solo Raya dan mengacu pada standar SKKNI Teknik Mesin untuk memastikan lulusan siap kerja.</p>
+        </div>
+        <div class="detail-section"><h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2><ul><li>Pengoperasian mesin bubut konvensional dan CNC</li><li>Pengoperasian mesin frais dan gerinda</li><li>Pemrograman CNC (G-code & M-code)</li><li>Gambar teknik mesin dengan AutoCAD</li><li>Pengukuran dan quality control produk</li><li>K3 bengkel permesinan</li></ul></div>
+        <div class="detail-section">
+          <h2><i class="fas fa-industry"></i> Peluang Karir & Industri</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Operator CNC</div><div class="info-item-value">Industri Manufaktur</div></div>
+            <div class="info-item"><div class="info-item-label">Teknisi Mesin</div><div class="info-item-value">Pabrik & Industri</div></div>
+            <div class="info-item"><div class="info-item-label">Quality Control</div><div class="info-item-value">Perusahaan Otomotif</div></div>
+            <div class="info-item"><div class="info-item-label">Wirausaha Bengkel</div><div class="info-item-value">Usaha Mandiri</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-cog"></i> Fasilitas Bengkel TP</h2>
+          <div class="photo-grid">
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=400&q=80" alt="Mesin CNC" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=80" alt="Mesin Bubut" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80" alt="Workshop Pemesinan" /></div>
+          </div>
+          <div class="info-grid" style="margin-top:16px;">
+            <div class="info-item"><div class="info-item-label">Mesin CNC</div><div class="info-item-value">4 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Mesin Bubut</div><div class="info-item-value">8 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Mesin Frais</div><div class="info-item-value">6 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">32 Siswa</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">CNC</span><span class="tag">Mesin Bubut</span><span class="tag">Frais</span><span class="tag">AutoCAD</span><span class="tag">Pemesinan Presisi</span></div>`,
+      sidebar: `<h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Pendaftaran siswa baru dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong>.</p>
+        <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta"><i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi</a>
+        <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;"><i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i> Pendaftaran resmi hanya melalui situs pemerintah.</div>`,
+    },
+    dpib: {
+      cat: 'Program Keahlian', catIcon: 'fas fa-drafting-compass',
+      title: 'Desain Pemodelan & Informasi Bangunan (DPIB)',
+      desc: 'Program keahlian perancangan bangunan, gambar teknik, dan teknologi BIM berbasis perangkat lunak desain terkini.',
+      heroImg: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+      meta: [{ icon: 'fas fa-trophy', text: 'Juara 2 LKS Provinsi' }, { icon: 'fas fa-users', text: '±72 Siswa/Angkatan' }],
+      main: `
+        <div class="highlight-box"><h3>Desain Pemodelan &amp; Informasi Bangunan (DPIB)</h3><p>Jurusan DPIB menjadi yang terdepan dalam penguasaan teknologi BIM (Building Information Modeling) di Jawa Tengah. Meraih Juara 2 LKS Provinsi 2024.</p></div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Jurusan</h2>
+          <p>Desain Pemodelan & Informasi Bangunan (DPIB) adalah program keahlian di bawah Bidang Teknologi Konstruksi yang mempersiapkan siswa sebagai drafter dan desainer bangunan profesional menggunakan teknologi terkini.</p>
+          <p>Kurikulum DPIB SMKN 2 Sragen mengintegrasikan teknologi BIM (Building Information Modeling) yang menjadi standar industri konstruksi modern, didukung software berlisensi seperti AutoCAD dan Revit.</p>
+        </div>
+        <div class="detail-section"><h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2><ul><li>Menggambar teknik bangunan dengan AutoCAD 2D & 3D</li><li>Pemodelan bangunan dengan Revit (BIM)</li><li>Desain arsitektur dan interior bangunan</li><li>Estimasi biaya dan RAB konstruksi</li><li>Gambar kerja struktur dan arsitektur</li><li>Presentasi desain menggunakan 3D rendering</li></ul></div>
+        <div class="detail-section">
+          <h2><i class="fas fa-industry"></i> Peluang Karir & Industri</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Drafter / Desainer</div><div class="info-item-value">Perusahaan Konstruksi</div></div>
+            <div class="info-item"><div class="info-item-label">BIM Modeler</div><div class="info-item-value">Konsultan Bangunan</div></div>
+            <div class="info-item"><div class="info-item-label">Estimator RAB</div><div class="info-item-value">Kontraktor & Developer</div></div>
+            <div class="info-item"><div class="info-item-label">Desainer Interior</div><div class="info-item-value">Perusahaan Properti</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-drafting-compass"></i> Fasilitas Lab DPIB</h2>
+          <div class="photo-grid">
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80" alt="Lab Desain" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Komputer Desain" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1545259742-f07cc6e76d27?w=400&q=80" alt="Software BIM" /></div>
+          </div>
+          <div class="info-grid" style="margin-top:16px;">
+            <div class="info-item"><div class="info-item-label">Komputer Desain</div><div class="info-item-value">32 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Software AutoCAD</div><div class="info-item-value">Berlisensi</div></div>
+            <div class="info-item"><div class="info-item-label">Software Revit BIM</div><div class="info-item-value">Berlisensi</div></div>
+            <div class="info-item"><div class="info-item-label">Printer A0/A1</div><div class="info-item-value">2 Unit</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">AutoCAD</span><span class="tag">Revit</span><span class="tag">BIM</span><span class="tag">Arsitektur</span><span class="tag">RAB</span><span class="tag">3D Rendering</span></div>`,
+      sidebar: `<h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Pendaftaran siswa baru dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong>.</p>
+        <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta"><i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi</a>
+        <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;"><i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i> Pendaftaran resmi hanya melalui situs pemerintah.</div>`,
+    },
+    tkp: {
+      cat: 'Program Keahlian', catIcon: 'fas fa-home',
+      title: 'Teknik Konstruksi & Perumahan (TKP)',
+      desc: 'Program keahlian perencanaan, pelaksanaan, dan pengawasan konstruksi bangunan perumahan sesuai standar teknis dan keselamatan kerja.',
+      heroImg: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+      meta: [{ icon: 'fas fa-users', text: '±72 Siswa/Angkatan' }],
+      main: `
+        <div class="highlight-box"><h3>Teknik Konstruksi &amp; Perumahan (TKP)</h3><p>Jurusan TKP mempersiapkan tenaga terampil di bidang konstruksi bangunan yang siap bekerja di perusahaan kontraktor maupun wirausaha mandiri.</p></div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Jurusan</h2>
+          <p>Teknik Konstruksi & Perumahan (TKP) adalah program keahlian di bawah Bidang Teknologi Konstruksi yang mempersiapkan tenaga kerja terampil di bidang konstruksi bangunan perumahan dan gedung.</p>
+          <p>Siswa dilatih langsung di workshop konstruksi yang dilengkapi material dan alat kerja berstandar industri, sehingga siap menghadapi dunia kerja konstruksi sejak lulus.</p>
+        </div>
+        <div class="detail-section"><h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2><ul><li>Pekerjaan pasangan bata, plester, dan acian</li><li>Pekerjaan konstruksi beton bertulang</li><li>Pemasangan keramik, kusen, dan pintu</li><li>Pekerjaan atap dan plafon</li><li>Pengawasan mutu dan K3 konstruksi</li><li>Pembacaan gambar teknik bangunan</li></ul></div>
+        <div class="detail-section">
+          <h2><i class="fas fa-industry"></i> Peluang Karir & Industri</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Pelaksana Lapangan</div><div class="info-item-value">Perusahaan Kontraktor</div></div>
+            <div class="info-item"><div class="info-item-label">Mandor Bangunan</div><div class="info-item-value">Proyek Konstruksi</div></div>
+            <div class="info-item"><div class="info-item-label">Teknisi Konstruksi</div><div class="info-item-value">Developer Properti</div></div>
+            <div class="info-item"><div class="info-item-label">Wirausaha Bangunan</div><div class="info-item-value">Usaha Mandiri</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-home"></i> Fasilitas Workshop TKP</h2>
+          <div class="photo-grid">
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" alt="Workshop Konstruksi" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1581094794329-c8112a89f12e?w=400&q=80" alt="Praktik Bangunan" /></div>
+            <div class="photo-item"><img src="https://images.unsplash.com/photo-1590593161427-f05f0bfa2651?w=400&q=80" alt="Alat Konstruksi" /></div>
+          </div>
+          <div class="info-grid" style="margin-top:16px;">
+            <div class="info-item"><div class="info-item-label">Area Workshop</div><div class="info-item-value">500 m²</div></div>
+            <div class="info-item"><div class="info-item-label">Alat Ukur</div><div class="info-item-value">Lengkap</div></div>
+            <div class="info-item"><div class="info-item-label">Material Praktik</div><div class="info-item-value">Tersedia</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">36 Siswa</div></div>
+          </div>
+        </div>
+        <div class="tag-wrap"><span class="tag">Konstruksi</span><span class="tag">Beton</span><span class="tag">K3</span><span class="tag">Bangunan</span><span class="tag">Perumahan</span></div>
+        <div class="tag-wrap"><span class="tag">Konstruksi</span><span class="tag">Beton</span><span class="tag">K3</span><span class="tag">Bangunan</span></div>`,
+      sidebar: `<h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+        <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">Pendaftaran siswa baru dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong>.</p>
+        <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta"><i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi</a>
+        <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;"><i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i> Pendaftaran resmi hanya melalui situs pemerintah.</div>`,
+    },
+  },
+
+  // ── PRESTASI ──
+  prestasi: {
+    lks_tkro: {
+      cat: 'Prestasi Siswa', catIcon: 'fas fa-trophy',
+      title: 'Juara 1 LKS Teknik Kendaraan Ringan — Jawa Tengah 2025',
+      desc: 'Siswa SMKN 2 Sragen berhasil meraih Juara 1 Lomba Kompetensi Siswa (LKS) Bidang Teknik Kendaraan Ringan tingkat Provinsi Jawa Tengah tahun 2025.',
+      heroImg: 'https://images.unsplash.com/photo-1567443024551-f3e3cc2be870?w=1200&q=80',
+      meta: [{ icon: 'fas fa-medal', text: '🥇 Juara 1' }, { icon: 'fas fa-map-marker-alt', text: 'Tingkat Provinsi' }, { icon: 'fas fa-calendar', text: 'Tahun 2025' }],
+      main: `
+        <div class="highlight-box"><h3>🏆 Juara 1 LKS Teknik Kendaraan Ringan</h3><p>Prestasi membanggakan dari siswa jurusan TKRO SMKN 2 Sragen yang berhasil menjuarai LKS tingkat Provinsi Jawa Tengah tahun 2025, mengalahkan peserta dari 35 kabupaten/kota.</p></div>
+        <div class="detail-section"><h2><i class="fas fa-info-circle"></i> Detail Prestasi</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Nama Lomba</div><div class="info-item-value">LKS Teknik Kendaraan Ringan</div></div>
+            <div class="info-item"><div class="info-item-label">Tingkat</div><div class="info-item-value">Provinsi Jawa Tengah</div></div>
+            <div class="info-item"><div class="info-item-label">Hasil</div><div class="info-item-value">🥇 Juara 1</div></div>
+            <div class="info-item"><div class="info-item-label">Tahun</div><div class="info-item-value">2025</div></div>
+          </div>
+          <p>Lomba Kompetensi Siswa (LKS) merupakan ajang bergengsi yang mempertemukan siswa SMK terbaik dari seluruh Jawa Tengah. Bidang Teknik Kendaraan Ringan menguji kemampuan diagnosa kerusakan, perawatan mesin, dan perbaikan sistem kendaraan ringan berteknologi terkini.</p>
+        </div>
+        <div class="tag-wrap"><span class="tag">LKS</span><span class="tag">Otomotif</span><span class="tag">Juara 1</span><span class="tag">Jawa Tengah</span><span class="tag">2025</span></div>`,
+      sidebar: `<h4><i class="fas fa-trophy"></i> Detail Penghargaan</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Medali</span><strong>🥇 Emas</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Tingkat</span><strong>Provinsi</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Tahun</span><strong>2025</strong></div>
+        </div>`,
+    },
+  },
+
+  // ── BERITA ──
+  berita: {
+    mapsi: {
+      cat: 'Berita Sekolah', catIcon: 'fas fa-newspaper',
+      title: 'Elsa Mutia Hafid Raih Juara 3 Khitobah Putri MAPSI SMK Jawa Tengah 2025',
+      desc: 'Ajang bergengsi MAPSI (Mata Pelajaran Pendidikan Agama Islam dan Seni Islami) tingkat SMK se-Provinsi Jawa Tengah 2025 mengharumkan nama SMKN 2 Sragen.',
+      heroImg: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=80',
+      meta: [{ icon: 'fas fa-calendar', text: '25 November 2025' }, { icon: 'fas fa-tag', text: 'Prestasi' }, { icon: 'fas fa-user', text: 'Elsa Mutia Hafid' }],
+      main: `
+        <div class="detail-section"><h2><i class="fas fa-newspaper"></i> Isi Berita</h2>
+          <p><strong>Sragen</strong> — Ajang bergengsi Mata Pelajaran Pendidikan Agama Islam dan Seni Islami (MAPSI) tingkat SMK se-Provinsi Jawa Tengah 2025 resmi digelar. Salah satu siswi SMKN 2 Sragen, <strong>Elsa Mutia Hafid</strong>, berhasil meraih Juara 3 pada cabang Khitobah Putri.</p>
+          <p>Prestasi ini membuktikan bahwa SMKN 2 Sragen bukan hanya unggul di bidang teknik dan kejuruan, tetapi juga mampu berprestasi di bidang keagamaan dan seni islami. Elsa berhasil mengalahkan puluhan peserta dari berbagai SMK se-Provinsi Jawa Tengah.</p>
+          <p>Kepala SMKN 2 Sragen, Dr. Sutikno, S.Pd., M.Pd., mengucapkan selamat dan bangga atas pencapaian Elsa. "Ini membuktikan bahwa pendidikan karakter dan keagamaan di sekolah kami berjalan dengan baik seiring dengan keunggulan vokasi," ujar beliau.</p>
+        </div>
+        <div class="tag-wrap"><span class="tag">MAPSI</span><span class="tag">Prestasi</span><span class="tag">Keagamaan</span><span class="tag">Jawa Tengah</span><span class="tag">2025</span></div>`,
+      sidebar: `<h4><i class="fas fa-info-circle"></i> Info Berita</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Tanggal</span><strong>25 Nov 2025</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Prestasi</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Penulis</span><strong>Redaksi</strong></div>
+        </div>`,
+    },
+    lkbb: {
+      cat: 'Berita Sekolah', catIcon: 'fas fa-newspaper',
+      title: 'SMKN 2 Sragen Rebut Piala Bergilir LKBB Garuda Muda Season 1',
+      desc: 'Tim Paskibra SMKN 2 Sragen berhasil merebut Piala Bergilir pada ajang LKBB (Lomba Ketangkasan Baris Berbaris) Garuda Muda Season 1.',
+      heroImg: 'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=1200&q=80',
+      meta: [{ icon: 'fas fa-calendar', text: '20 November 2025' }, { icon: 'fas fa-tag', text: 'Kesiswaan' }],
+      main: `
+        <div class="detail-section"><h2><i class="fas fa-newspaper"></i> Isi Berita</h2>
+          <p><strong>Sragen</strong> — Tim Paskibra SMK Negeri 2 Sragen berhasil merebut Piala Bergilir pada ajang LKBB (Lomba Ketangkasan Baris Berbaris) Garuda Muda Season 1. Kompetisi ini diikuti oleh puluhan sekolah dari wilayah eks-Karesidenan Surakarta.</p>
+          <p>Penampilan tim Paskibra SMKN 2 Sragen memukau dewan juri dengan kekompakan, ketepatan gerakan, dan penampilan visual yang memukau. Mereka berlatih keras selama beberapa bulan di bawah bimbingan pembina Paskibra sekolah.</p>
+        </div>
+        <div class="tag-wrap"><span class="tag">LKBB</span><span class="tag">Paskibra</span><span class="tag">Kesiswaan</span><span class="tag">Piala Bergilir</span></div>`,
+      sidebar: `<h4><i class="fas fa-info-circle"></i> Info Berita</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Tanggal</span><strong>20 Nov 2025</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kategori</span><strong>Kesiswaan</strong></div>
+        </div>`,
+    },
+  },
+
+  // ── FASILITAS ──
+  fasilitas: {
+    ruang_kelas: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-chalkboard-teacher',
+      title:'Ruang Kelas', desc:'Ruang kelas SMKN 2 Sragen dirancang nyaman dan kondusif untuk proses belajar mengajar dengan fasilitas modern.',
+      heroImg:'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80',
+      meta:[{icon:'fas fa-door-open',text:'30 Ruang'},{icon:'fas fa-snowflake',text:'Ber-AC'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Ruang Kelas</h2>
+        <p>SMKN 2 Sragen memiliki 30 ruang kelas yang nyaman dan representatif. Setiap ruang dilengkapi proyektor, papan tulis interaktif, dan AC untuk mendukung proses pembelajaran yang optimal.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Jumlah Ruang</div><div class="info-item-value">30 Kelas</div></div>
+          <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">36 Siswa/Kelas</div></div>
+          <div class="info-item"><div class="info-item-label">Fasilitas</div><div class="info-item-value">Proyektor + AC</div></div>
+          <div class="info-item"><div class="info-item-label">Kondisi</div><div class="info-item-value">Baik & Terawat</div></div>
+        </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80" alt="Ruang Kelas"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=400&q=80" alt="Kelas Modern"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&q=80" alt="Belajar"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-chalkboard-teacher"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Umum</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Jumlah</span><strong>30 Ruang</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kondisi</span><strong>Baik</strong></div>
+        </div>`,
+    },
+    perpustakaan: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-book-reader',
+      title:'Perpustakaan', desc:'Perpustakaan SMKN 2 Sragen menyediakan koleksi buku teknik, umum, dan akses digital untuk mendukung literasi siswa.',
+      heroImg:'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80',
+      meta:[{icon:'fas fa-book',text:'5.000+ Koleksi'},{icon:'fas fa-wifi',text:'Akses Digital'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Perpustakaan</h2>
+        <p>Perpustakaan SMKN 2 Sragen memiliki koleksi lebih dari 5.000 judul buku yang mencakup buku teknik kejuruan, buku umum, dan referensi ilmiah. Dilengkapi area baca yang nyaman dan akses internet.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Koleksi Buku</div><div class="info-item-value">5.000+ Judul</div></div>
+          <div class="info-item"><div class="info-item-label">Kapasitas Baca</div><div class="info-item-value">50 Orang</div></div>
+          <div class="info-item"><div class="info-item-label">Akses Internet</div><div class="info-item-value">Tersedia</div></div>
+          <div class="info-item"><div class="info-item-label">Jam Buka</div><div class="info-item-value">07.00–15.00</div></div>
+        </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400&q=80" alt="Perpustakaan"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80" alt="Koleksi Buku"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&q=80" alt="Area Baca"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-book-reader"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Umum</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Koleksi</span><strong>5.000+ Judul</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Jam Buka</span><strong>07.00–15.00</strong></div>
+        </div>`,
+    },
+    lapangan: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-futbol',
+      title:'Lapangan Olahraga', desc:'Lapangan olahraga SMKN 2 Sragen dilengkapi fasilitas lengkap untuk basket, voli, futsal, dan upacara bendera.',
+      heroImg:'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80',
+      meta:[{icon:'fas fa-futbol',text:'Basket & Voli'},{icon:'fas fa-running',text:'Futsal'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Lapangan Olahraga</h2>
+        <p>SMKN 2 Sragen memiliki lapangan olahraga multifungsi yang digunakan untuk kegiatan pembelajaran Pendidikan Jasmani, upacara bendera, dan berbagai kegiatan ekstrakurikuler olahraga.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Lapangan Basket</div><div class="info-item-value">1 Lapangan</div></div>
+          <div class="info-item"><div class="info-item-label">Lapangan Voli</div><div class="info-item-value">2 Lapangan</div></div>
+          <div class="info-item"><div class="info-item-label">Lapangan Futsal</div><div class="info-item-value">1 Lapangan</div></div>
+          <div class="info-item"><div class="info-item-label">Area Upacara</div><div class="info-item-value">Tersedia</div></div>
+        </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80" alt="Lapangan"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&q=80" alt="Basket"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=400&q=80" alt="Voli"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-futbol"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Olahraga</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Fasilitas</span><strong>Basket, Voli, Futsal</strong></div>
+        </div>`,
+    },
+    masjid: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-mosque',
+      title:'Masjid & Mushola', desc:'Masjid dan mushola SMKN 2 Sragen tersedia untuk kegiatan ibadah siswa, guru, dan karyawan sehari-hari.',
+      heroImg:'https://images.unsplash.com/photo-1564769625905-50e93615e769?w=1200&q=80',
+      meta:[{icon:'fas fa-mosque',text:'Masjid & Mushola'},{icon:'fas fa-users',text:'Kapasitas 200 Orang'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Masjid & Mushola</h2>
+        <p>SMKN 2 Sragen menyediakan fasilitas ibadah berupa masjid sekolah yang representatif dan mushola yang dapat digunakan oleh seluruh warga sekolah. Fasilitas ini mendukung pembentukan karakter religius siswa.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Kapasitas Masjid</div><div class="info-item-value">200 Jamaah</div></div>
+          <div class="info-item"><div class="info-item-label">Mushola</div><div class="info-item-value">3 Unit</div></div>
+          <div class="info-item"><div class="info-item-label">Tempat Wudhu</div><div class="info-item-value">Tersedia</div></div>
+          <div class="info-item"><div class="info-item-label">Kondisi</div><div class="info-item-value">Baik & Terawat</div></div>
+        </div></div>`,
+      sidebar:`<h4><i class="fas fa-mosque"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Ibadah</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kapasitas</span><strong>200 Jamaah</strong></div>
+        </div>`,
+    },
+    kantin: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-utensils',
+      title:'Kantin Sehat', desc:'Kantin SMKN 2 Sragen menyediakan makanan dan minuman sehat, terjangkau, dan higienis untuk seluruh warga sekolah.',
+      heroImg:'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=80',
+      meta:[{icon:'fas fa-utensils',text:'Menu Sehat'},{icon:'fas fa-leaf',text:'Higienis'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Kantin Sehat</h2>
+        <p>Kantin SMKN 2 Sragen dikelola secara profesional dengan memperhatikan higienitas dan nilai gizi makanan. Tersedia berbagai pilihan menu yang terjangkau dan menyehatkan bagi siswa.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Jumlah Stand</div><div class="info-item-value">8 Stand</div></div>
+          <div class="info-item"><div class="info-item-label">Kapasitas Duduk</div><div class="info-item-value">150 Orang</div></div>
+          <div class="info-item"><div class="info-item-label">Jam Operasional</div><div class="info-item-value">07.00–16.00</div></div>
+          <div class="info-item"><div class="info-item-label">Standar</div><div class="info-item-value">Kantin Sehat Sekolah</div></div>
+        </div></div>`,
+      sidebar:`<h4><i class="fas fa-utensils"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Umum</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Jam Buka</span><strong>07.00–16.00</strong></div>
+        </div>`,
+    },
+    uks: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-shield-alt',
+      title:'UKS (Unit Kesehatan Sekolah)', desc:'UKS SMKN 2 Sragen siap memberikan pertolongan pertama dan layanan kesehatan dasar bagi seluruh warga sekolah.',
+      heroImg:'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&q=80',
+      meta:[{icon:'fas fa-heartbeat',text:'Layanan Kesehatan'},{icon:'fas fa-user-md',text:'Tenaga Medis'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang UKS</h2>
+        <p>Unit Kesehatan Sekolah (UKS) SMKN 2 Sragen dilengkapi dengan peralatan P3K lengkap, tempat tidur pasien, dan obat-obatan dasar. Didukung oleh tenaga medis yang siap membantu saat siswa membutuhkan pertolongan pertama.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Tempat Tidur</div><div class="info-item-value">4 Unit</div></div>
+          <div class="info-item"><div class="info-item-label">Peralatan P3K</div><div class="info-item-value">Lengkap</div></div>
+          <div class="info-item"><div class="info-item-label">Tenaga Medis</div><div class="info-item-value">1 Perawat</div></div>
+          <div class="info-item"><div class="info-item-label">Jam Operasional</div><div class="info-item-value">07.00–15.00</div></div>
+        </div></div>`,
+      sidebar:`<h4><i class="fas fa-shield-alt"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Kesehatan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Jam Buka</span><strong>07.00–15.00</strong></div>
+        </div>`,
+    },
+    koperasi: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-store',
+      title:'Koperasi Sekolah', desc:'Koperasi SMKN 2 Sragen menyediakan kebutuhan alat tulis, seragam, dan kebutuhan belajar siswa dengan harga terjangkau.',
+      heroImg:'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=1200&q=80',
+      meta:[{icon:'fas fa-store',text:'Koperasi Aktif'},{icon:'fas fa-tag',text:'Harga Terjangkau'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Koperasi Sekolah</h2>
+        <p>Koperasi SMKN 2 Sragen dikelola secara mandiri oleh warga sekolah dan menyediakan berbagai kebutuhan belajar siswa mulai dari alat tulis, buku, seragam, hingga makanan ringan.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Produk Tersedia</div><div class="info-item-value">200+ Item</div></div>
+          <div class="info-item"><div class="info-item-label">Jam Buka</div><div class="info-item-value">07.00–15.00</div></div>
+          <div class="info-item"><div class="info-item-label">Jenis</div><div class="info-item-value">Koperasi Siswa</div></div>
+          <div class="info-item"><div class="info-item-label">Pembayaran</div><div class="info-item-value">Tunai & Transfer</div></div>
+        </div></div>`,
+      sidebar:`<h4><i class="fas fa-store"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Umum</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Jam Buka</span><strong>07.00–15.00</strong></div>
+        </div>`,
+    },
+    kamar_mandi: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-restroom',
+      title:'Kamar Mandi', desc:'SMKN 2 Sragen menyediakan kamar mandi bersih dan representatif yang terpisah untuk putra dan putri.',
+      heroImg:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=80',
+      meta:[{icon:'fas fa-restroom',text:'Putra & Putri'},{icon:'fas fa-star',text:'Bersih & Terawat'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Kamar Mandi</h2>
+        <p>SMKN 2 Sragen menyediakan fasilitas kamar mandi yang bersih, terpisah antara putra dan putri, tersebar di berbagai gedung sekolah untuk kemudahan akses seluruh warga sekolah.</p>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Jumlah Total</div><div class="info-item-value">24 Unit</div></div>
+          <div class="info-item"><div class="info-item-label">Kamar Mandi Putra</div><div class="info-item-value">12 Unit</div></div>
+          <div class="info-item"><div class="info-item-label">Kamar Mandi Putri</div><div class="info-item-value">12 Unit</div></div>
+          <div class="info-item"><div class="info-item-label">Kondisi</div><div class="info-item-value">Bersih & Terawat</div></div>
+        </div></div>`,
+      sidebar:`<h4><i class="fas fa-restroom"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Umum</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Jumlah</span><strong>24 Unit</strong></div>
+        </div>`,
+    },
+    bengkel_cnc: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-industry',
+      title:'Bengkel CNC — Teknik Pemesinan',
+      desc:'Bengkel CNC SMKN 2 Sragen dilengkapi mesin CNC turning dan milling berstandar industri untuk praktik siswa Teknik Pemesinan.',
+      heroImg:'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+      meta:[{icon:'fas fa-industry',text:'Berstandar Industri'},{icon:'fas fa-tools',text:'CNC Turning & Milling'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Bengkel CNC</h2>
+          <p>Bengkel CNC SMKN 2 Sragen merupakan salah satu bengkel kejuruan paling lengkap di Kabupaten Sragen. Dilengkapi dengan mesin CNC turning, CNC milling, mesin bubut konvensional, dan mesin frais.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Jumlah Mesin CNC</div><div class="info-item-value">4 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Mesin Bubut</div><div class="info-item-value">8 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">32 Siswa</div></div>
+            <div class="info-item"><div class="info-item-label">Standar</div><div class="info-item-value">Industri / SKKNI</div></div>
+          </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=400&q=80" alt="CNC"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&q=80" alt="Mesin Bubut"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80" alt="Workshop"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-industry"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Bengkel Kejuruan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kapasitas</span><strong>32 Siswa</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Standar</span><strong>Industri</strong></div>
+        </div>`,
+    },
+    bengkel_otomotif: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-tools',
+      title:'Bengkel Otomotif — Teknik Kendaraan Ringan',
+      desc:'Bengkel otomotif SMKN 2 Sragen dilengkapi kendaraan praktik, engine stand EFI, dan scan tool modern berstandar bengkel resmi.',
+      heroImg:'https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=1200&q=80',
+      meta:[{icon:'fas fa-car',text:'6 Kendaraan Praktik'},{icon:'fas fa-tools',text:'Scan Tool Modern'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Bengkel Otomotif</h2>
+          <p>Bengkel otomotif SMKN 2 Sragen dilengkapi dengan kendaraan praktik terbaru, engine stand EFI, transmisi otomatis, dan peralatan scan tool berstandar bengkel resmi untuk mendukung kompetensi siswa TKR.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Kendaraan Praktik</div><div class="info-item-value">6 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Engine Stand EFI</div><div class="info-item-value">4 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Scan Tool</div><div class="info-item-value">8 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">36 Siswa</div></div>
+          </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=400&q=80" alt="Bengkel Otomotif"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Engine Stand"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&q=80" alt="Scan Tool"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-tools"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Bengkel Kejuruan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kapasitas</span><strong>36 Siswa</strong></div>
+        </div>`,
+    },
+    workshop_bangunan: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-hard-hat',
+      title:'Workshop Bangunan — DPIB',
+      desc:'Workshop bangunan SMKN 2 Sragen untuk praktik menggambar teknik, pemodelan 3D, dan perancangan bangunan siswa DPIB.',
+      heroImg:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+      meta:[{icon:'fas fa-drafting-compass',text:'Lab Desain'},{icon:'fas fa-laptop',text:'32 Komputer'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Workshop Bangunan</h2>
+          <p>Workshop Bangunan DPIB SMKN 2 Sragen dilengkapi komputer berlisensi AutoCAD dan Revit untuk mendukung praktik menggambar teknik dan pemodelan bangunan berbasis BIM.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Komputer</div><div class="info-item-value">32 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Software AutoCAD</div><div class="info-item-value">Berlisensi</div></div>
+            <div class="info-item"><div class="info-item-label">Printer A0/A1</div><div class="info-item-value">2 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">32 Siswa</div></div>
+          </div></div>`,
+      sidebar:`<h4><i class="fas fa-hard-hat"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Kejuruan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kapasitas</span><strong>32 Siswa</strong></div>
+        </div>`,
+    },
+    workshop_konstruksi: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-hammer',
+      title:'Workshop Konstruksi — TKP',
+      desc:'Workshop konstruksi SMKN 2 Sragen dengan area luas untuk praktik pekerjaan bata, beton, keramik, dan konstruksi bangunan.',
+      heroImg:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+      meta:[{icon:'fas fa-hammer',text:'Area 500 m²'},{icon:'fas fa-hard-hat',text:'K3 Lengkap'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Workshop Konstruksi</h2>
+          <p>Workshop Konstruksi TKP SMKN 2 Sragen memiliki area seluas 500 m² yang digunakan untuk praktik pekerjaan konstruksi bangunan mulai dari pasangan bata, beton bertulang, hingga pekerjaan finising.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Luas Area</div><div class="info-item-value">500 m²</div></div>
+            <div class="info-item"><div class="info-item-label">Alat Ukur</div><div class="info-item-value">Lengkap</div></div>
+            <div class="info-item"><div class="info-item-label">Peralatan K3</div><div class="info-item-value">Tersedia</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">36 Siswa</div></div>
+          </div></div>`,
+      sidebar:`<h4><i class="fas fa-hammer"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Kejuruan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Luas</span><strong>500 m²</strong></div>
+        </div>`,
+    },
+    lab_listrik: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-bolt',
+      title:'Lab Instalasi Listrik — TITL',
+      desc:'Lab instalasi listrik SMKN 2 Sragen berstandar PLN, dilengkapi panel distribusi, trainer PLC, dan modul panel surya.',
+      heroImg:'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&q=80',
+      meta:[{icon:'fas fa-bolt',text:'Standar PLN'},{icon:'fas fa-solar-panel',text:'PLTS'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Lab Instalasi Listrik</h2>
+          <p>Lab Instalasi Listrik SMKN 2 Sragen dilengkapi panel distribusi, trainer PLC, modul panel surya (PLTS), dan berbagai peralatan ukur listrik berstandar industri dan PLN.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Panel Distribusi</div><div class="info-item-value">8 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Trainer PLC</div><div class="info-item-value">6 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Modul PLTS</div><div class="info-item-value">2 Set</div></div>
+            <div class="info-item"><div class="info-item-label">Kapasitas</div><div class="info-item-value">32 Siswa</div></div>
+          </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&q=80" alt="Lab Listrik"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80" alt="Panel Surya"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80" alt="Panel Distribusi"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-bolt"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Lab Kejuruan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kapasitas</span><strong>32 Siswa</strong></div>
+        </div>`,
+    },
+    lab_jaringan: {
+      cat:'Fasilitas Sekolah', catIcon:'fas fa-wifi',
+      title:'Lab Jaringan & Server — TKJ',
+      desc:'Lab jaringan SMKN 2 Sragen dilengkapi server rack, perangkat Cisco, fiber optic, dan cloud computing untuk praktik TKJ.',
+      heroImg:'https://images.unsplash.com/photo-1562813733-b31f71025d54?w=1200&q=80',
+      meta:[{icon:'fas fa-server',text:'Server Rack'},{icon:'fas fa-network-wired',text:'Cisco & Fiber Optic'}],
+      main:`<div class="detail-section"><h2><i class="fas fa-info-circle"></i> Tentang Lab Jaringan & Server</h2>
+          <p>Lab Jaringan & Server SMKN 2 Sragen merupakan salah satu lab TKJ terlengkap di Jawa Tengah. Dilengkapi server rack profesional, perangkat jaringan Cisco berlisensi, instalasi fiber optic, dan akses cloud computing.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Server Rack</div><div class="info-item-value">4 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Komputer Klien</div><div class="info-item-value">36 Unit</div></div>
+            <div class="info-item"><div class="info-item-label">Perangkat Cisco</div><div class="info-item-value">Router & Switch</div></div>
+            <div class="info-item"><div class="info-item-label">Fiber Optic</div><div class="info-item-value">Tersedia</div></div>
+          </div></div>
+        <div class="photo-grid">
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1562813733-b31f71025d54?w=400&q=80" alt="Server Rack"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80" alt="Fiber Optic"/></div>
+          <div class="photo-item"><img src="https://images.unsplash.com/photo-1587202372616-b43abea06c2a?w=400&q=80" alt="Lab Jaringan"/></div>
+        </div>`,
+      sidebar:`<h4><i class="fas fa-wifi"></i> Info Fasilitas</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Kategori</span><strong>Lab Kejuruan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Kapasitas</span><strong>36 Siswa</strong></div>
+        </div>`,
+    },
+  },
+  // ── MITRA INDUSTRI ──
+  mitra: {
+    semua: {
+      cat: 'Kemitraan Industri', catIcon: 'fas fa-handshake',
+      title: 'Mitra Industri & DUDI SMKN 2 Sragen',
+      desc: 'SMKN 2 Sragen menjalin kerja sama aktif dengan 120+ perusahaan dan industri terkemuka di berbagai bidang untuk memastikan lulusan siap kerja.',
+      heroImg: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80',
+      meta: [
+        { icon: 'fas fa-building', text: '120+ Mitra Perusahaan' },
+        { icon: 'fas fa-users', text: '1.200+ Alumni Tersalurkan' },
+        { icon: 'fas fa-chart-line', text: '95% Tingkat Serapan' },
+      ],
+      main: `
+        <div class="highlight-box">
+          <h3>Kemitraan Industri & DUDI</h3>
+          <p>SMKN 2 Sragen aktif menjalin kerja sama dengan Dunia Usaha dan Dunia Industri (DUDI) melalui perjanjian MoU resmi yang mencakup praktik kerja lapangan, kunjungan industri, rekrutmen lulusan, dan pengembangan kurikulum berbasis industri.</p>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-info-circle"></i> Tentang Kemitraan</h2>
+          <p>Program kemitraan SMKN 2 Sragen dirancang untuk menjembatani dunia pendidikan vokasi dengan kebutuhan nyata industri. Setiap mitra industri terlibat aktif dalam proses pembelajaran melalui berbagai bentuk kerja sama.</p>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">Jumlah Mitra</div><div class="info-item-value">120+ Perusahaan</div></div>
+            <div class="info-item"><div class="info-item-label">Alumni Tersalurkan</div><div class="info-item-value">1.200+ Orang</div></div>
+            <div class="info-item"><div class="info-item-label">Tingkat Serapan</div><div class="info-item-value">95%</div></div>
+            <div class="info-item"><div class="info-item-label">MoU Aktif</div><div class="info-item-value">45+ Perusahaan</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-handshake"></i> Mitra Unggulan</h2>
+          <div class="info-grid">
+            <div class="info-item"><div class="info-item-label">PT Telkom Indonesia</div><div class="info-item-value">TKJ — Sertifikasi & Praktik Kerja</div></div>
+            <div class="info-item"><div class="info-item-label">PT PLN (Persero)</div><div class="info-item-value">TITL — Praktik Kerja & Magang</div></div>
+            <div class="info-item"><div class="info-item-label">PT Toyota Astra Motor</div><div class="info-item-value">TKR — Rekrutmen & Praktik Kerja</div></div>
+            <div class="info-item"><div class="info-item-label">PT Sinar Mas Agribusiness</div><div class="info-item-value">Teknik Mesin — Magang & Kerja</div></div>
+            <div class="info-item"><div class="info-item-label">PT Waskita Karya</div><div class="info-item-value">TKP & DPIB — Kunjungan Industri</div></div>
+            <div class="info-item"><div class="info-item-label">PT Damatex Salatiga</div><div class="info-item-value">Teknik Mesin — Magang & Rekrutmen</div></div>
+          </div>
+        </div>
+        <div class="detail-section">
+          <h2><i class="fas fa-list-check"></i> Bentuk Kerja Sama</h2>
+          <ul>
+            <li>Praktik Kerja Lapangan (PKL) siswa di perusahaan mitra</li>
+            <li>Kunjungan industri untuk wawasan dunia kerja nyata</li>
+            <li>Rekrutmen langsung lulusan oleh perusahaan mitra</li>
+            <li>Sertifikasi kompetensi bersama industri</li>
+            <li>Pengembangan kurikulum berbasis kebutuhan industri</li>
+            <li>Pelatihan dan uji kompetensi oleh instruktur industri</li>
+          </ul>
+        </div>
+        <div class="tag-wrap">
+          <span class="tag">Kemitraan DUDI</span>
+          <span class="tag">PKL</span>
+          <span class="tag">Rekrutmen</span>
+          <span class="tag">MoU</span>
+          <span class="tag">Sertifikasi</span>
+        </div>`,
+      sidebar: `<h4><i class="fas fa-handshake"></i> Info Kemitraan</h4>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Total Mitra</span><strong>120+ Perusahaan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">MoU Aktif</span><strong>45+ Perusahaan</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);"><span style="color:var(--text-3);">Alumni Tersalurkan</span><strong>1.200+ Orang</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;"><span style="color:var(--text-3);">Tingkat Serapan</span><strong style="color:var(--navy);">95%</strong></div>
+        </div>
+        <a href="index.html#bkk" class="btn-cta" style="margin-top:14px;"><i class="fas fa-arrow-left"></i> Kembali ke Mitra</a>`,
+    },
+  },
+};
+
+// ══════════════════════════════════════════════
+// RENDER ENGINE
+// ══════════════════════════════════════════════
+function getParam(key) {
+  return new URLSearchParams(window.location.search).get(key);
+}
+
+function goDetail(section, id) {
+  // Simpan scroll position sebelum pindah
+  sessionStorage.setItem('scrollPos', window.scrollY);
+  window.location.href = `detail.html?section=${section}&id=${id}`;
+}
+
+function goBack() {
+  const pos     = sessionStorage.getItem('scrollPos');
+  const from    = getParam('from');
+  const section = getParam('section');
+  if (pos) sessionStorage.setItem('doRestore', '1');
+  if (from === 'prestasi') {
+    window.location.href = 'prestasi.html';
+  } else if (from === 'berita') {
+    window.location.href = 'berita.html';
+  } else if (section === 'berita') {
+    window.location.href = 'index.html#berita';
+  } else if (section === 'program') {
+    window.location.href = 'index.html#program';
+  } else if (section === 'mitra') {
+    window.location.href = 'index.html#bkk';
+  } else if (section === 'jurusan') {
+    window.location.href = 'index.html#jurusan';
+  } else if (section === 'fasilitas') {
+    window.location.href = 'index.html#fasilitas';
+  } else if (section === 'pengumuman') {
+    window.location.href = from === 'pengumuman' ? 'pengumuman.html' : 'index.html#pengumuman';
+  } else {
+    window.location.href = 'index.html';
+  }
+}
+
+function render() {
+  const section = getParam('section');
+  const id      = getParam('id');
+
+  // Default jika tidak ada param
+  if (!section || !id || !DATA[section] || !DATA[section][id]) {
+    renderDefault();
+    return;
+  }
+
+  const d = DATA[section][id];
+
+  // Hero
+  document.title = d.title + ' — SMK Negeri 2 Sragen';
+  document.getElementById('heroBgImg').src = d.heroImg;
+  document.getElementById('heroCatText').textContent = d.cat;
+  document.querySelector('#heroCat i').className = d.catIcon;
+  document.getElementById('heroTitle').innerHTML = d.title;
+  document.getElementById('heroDesc').textContent = d.desc;
+
+  // Meta
+  const metaRow = document.getElementById('heroMeta');
+  metaRow.innerHTML = (d.meta || []).map(m =>
+    `<div class="detail-meta-item"><i class="${m.icon}"></i> ${m.text}</div>`
+  ).join('');
+
+  // Breadcrumb
+  document.getElementById('bcSection').textContent = d.cat;
+  document.getElementById('bcTitle').textContent = d.title.length > 50 ? d.title.slice(0,50)+'…' : d.title;
+
+  // Main body
+  document.getElementById('detailMain').innerHTML = d.main;
+
+  // Sidebar
+  document.getElementById('sidebarInfo').innerHTML = d.sidebar;
+
+  // Sembunyikan navigasi cepat kalau bukan section jurusan
+  const navCepat = document.getElementById('sidebarNavCepat');
+  if (navCepat) navCepat.style.display = section === 'jurusan' ? '' : 'none';
+
+  // Sembunyikan konten terkait untuk program, berita, prestasi
+  const relCard = document.getElementById('relatedContent')?.closest('.sidebar-card');
+  if (relCard) relCard.style.display = ['program','berita','prestasi'].includes(section) ? 'none' : '';
+
+  // Related content
+  renderRelated(section, id);
+}
+
+// Urutan tetap: Mesin → Kendaraan → Desain → Konstruksi → Listrik → Komputer
+const JURUSAN_ORDER = ['tpm', 'tkro', 'dpib', 'tkp', 'titl', 'tkj'];
+
+function renderRelated(section, currentId) {
+  const sectionData = DATA[section] || {};
+  let keys;
+  if (section === 'jurusan') {
+    // Jurusan: urutan tetap
+    keys = JURUSAN_ORDER.filter(k => k !== currentId && sectionData.hasOwnProperty(k));
+  } else if (section === 'fasilitas') {
+    // Fasilitas: random shuffle, tampil semua kecuali yang sedang dibuka
+    keys = Object.keys(sectionData).filter(k => k !== currentId);
+    // Fisher-Yates shuffle
+    for (let i = keys.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [keys[i], keys[j]] = [keys[j], keys[i]];
+    }
+  } else {
+    keys = Object.keys(sectionData).filter(k => k !== currentId && sectionData.hasOwnProperty(k));
+  }
+  const container = document.getElementById('relatedContent');
+  if (keys.length === 0) {
+    container.innerHTML = '<p style="font-size:12.5px;color:var(--text-3);">Tidak ada konten terkait.</p>';
+    return;
+  }
+  container.innerHTML = keys.map(k => {
+    const item = sectionData[k];
+    return `<a class="related-card" onclick="goDetail('${section}','${k}')">
+      <div class="related-thumb" style="background:linear-gradient(135deg,var(--navy-dk),var(--navy-lt));display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <img src="${item.heroImg}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />
+      </div>
+      <div>
+        <div class="related-title">${item.title}</div>
+        <div class="related-meta">${item.cat}</div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+function renderDefault() {
+  document.getElementById('heroTitle').textContent = 'Konten SMKN 2 Sragen';
+  document.getElementById('heroDesc').textContent = 'Pilih konten yang ingin ditampilkan dari halaman utama.';
+  document.getElementById('heroCatText').textContent = 'Informasi';
+  document.getElementById('detailMain').innerHTML = `
+    <div style="text-align:center;padding:60px 20px;">
+      <div style="font-size:4rem;margin-bottom:16px;">📄</div>
+      <h2 style="font-size:1.4rem;font-weight:800;color:var(--text-1);margin-bottom:10px;">Pilih Konten</h2>
+      <p style="font-size:14px;color:var(--text-2);margin-bottom:24px;">Halaman detail ini menampilkan informasi lengkap setiap konten di website SMKN 2 Sragen.</p>
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:12px 28px;border-radius:100px;font-size:13.5px;font-weight:700;text-decoration:none;">
+        <i class="fas fa-home"></i> Kembali ke Beranda
+      </a>
+    </div>`;
+  document.getElementById('sidebarInfo').innerHTML = `<h4><i class="fas fa-compass"></i> Menu</h4><p style="font-size:13px;color:var(--text-3);">Pilih konten dari beranda.</p>`;
+}
+
+render();
+
+// Expose DATA ke window supaya Firebase module bisa cek
+window._DATA = DATA;
+</script>
+
+<!-- ══ FIREBASE — baca data dari Firestore ══ -->
+<script type="module">
+  import { initializeApp }  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, doc, getDoc, onSnapshot, collection, getDocs }
+    from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
+    authDomain: "smkn2sragen-e487b.firebaseapp.com",
+    projectId: "smkn2sragen-e487b",
+    storageBucket: "smkn2sragen-e487b.firebasestorage.app",
+    messagingSenderId: "602192129071",
+    appId: "1:602192129071:web:884e02ba2bd6766df22ada"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
+
+  // Map Firestore collection per section
+  const COL_MAP = {
+    jurusan:   'jurusan',
+    prestasi:  'prestasi',
+    berita:    'berita',
+    fasilitas: 'fasilitas',
+    program:   'program',
+    pengumuman:'pengumuman',
+  };
+
+  // Ambil params
+  const params  = new URLSearchParams(window.location.search);
+  const section = params.get('section');
+  const id      = params.get('id');
+
+  if (section && id && COL_MAP[section]) {
+    const hasLocal = window._DATA && window._DATA[section] && window._DATA[section][id];
+
+    if (!hasLocal) {
+      // Gunakan onSnapshot untuk pengumuman, berita, prestasi → realtime update
+      const realtimeSections = ['pengumuman', 'berita', 'prestasi'];
+      if (realtimeSections.includes(section)) {
+        onSnapshot(doc(db, COL_MAP[section], id), snap => {
+          if (snap.exists()) renderFromFirestore(section, id, snap.data());
+        }, err => console.warn('onSnapshot error:', err));
+      } else {
+        getDoc(doc(db, COL_MAP[section], id)).then(snap => {
+          if (snap.exists()) renderFromFirestore(section, id, snap.data());
+        }).catch(() => {});
+      }
+    }
+  }
+
+  // ── Render halaman dari data Firestore
+  function renderFromFirestore(section, id, d) {
+    if (section === 'jurusan') renderJurusan(id, d);
+    else if (section === 'berita') renderBerita(id, d);
+    else if (section === 'prestasi') renderPrestasi(id, d);
+    else if (section === 'fasilitas') renderFasilitas(id, d);
+    else if (section === 'pengumuman') renderPengumuman(id, d);
+  }
+
+  function setHero(cat, catIcon, title, desc, heroImg, meta=[]) {
+    document.title = title + ' — SMK Negeri 2 Sragen';
+    document.getElementById('heroBgImg').src = heroImg || '';
+    document.getElementById('heroCatText').textContent = cat;
+    document.querySelector('#heroCat i').className = catIcon;
+    document.getElementById('heroTitle').innerHTML = title;
+    document.getElementById('heroDesc').textContent = desc;
+    document.getElementById('heroMeta').innerHTML = meta.map(m =>
+      `<div class="detail-meta-item"><i class="${m.icon}"></i> ${m.text}</div>`).join('');
+    document.getElementById('bcSection').textContent = cat;
+    document.getElementById('bcTitle').textContent = title.length > 50 ? title.slice(0,50)+'…' : title;
+  }
+
+  const SPMB_SIDEBAR = `
+    <h4><i class="fas fa-graduation-cap"></i> Penerimaan Siswa Baru</h4>
+    <p style="font-size:13px;color:var(--text-2);line-height:1.7;margin-bottom:14px;">
+      Pendaftaran siswa baru SMKN 2 Sragen dilakukan melalui <strong>website resmi SPMB Jawa Tengah</strong>.
+    </p>
+    <a href="https://spmb.jatengprov.go.id" target="_blank" rel="noopener noreferrer" class="btn-cta">
+      <i class="fas fa-external-link-alt"></i> Daftar via SPMB Resmi
+    </a>
+    <div style="margin-top:12px;background:var(--gray-1);border-radius:10px;padding:12px 14px;font-size:11.5px;color:var(--text-3);line-height:1.6;">
+      <i class="fas fa-info-circle" style="color:var(--navy);margin-right:4px;"></i>
+      Pendaftaran resmi hanya melalui situs pemerintah.
+    </div>`;
+
+  function renderJurusan(id, d) {
+    setHero(
+      'Program Keahlian', d.icon || 'fas fa-graduation-cap',
+      d.nama || 'Program Keahlian',
+      d.deskripsi || '',
+      d.heroImg || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80',
+      [
+        { icon:'fas fa-users', text:'±72 Siswa/Angkatan' },
+        { icon:'fas fa-certificate', text:'Akreditasi A' },
+      ]
+    );
+    document.getElementById('detailMain').innerHTML = `
+      <div class="highlight-box">
+        <h3><i class="${d.icon||'fas fa-graduation-cap'}"></i> ${d.nama||''}</h3>
+        <p>${d.deskripsi||''}</p>
+      </div>
+      ${d.kompetensi ? `
+      <div class="detail-section">
+        <h2><i class="fas fa-book"></i> Kompetensi yang Dipelajari</h2>
+        <ul>${d.kompetensi.split('\n').filter(k=>k.trim()).map(k=>`<li>${k.trim()}</li>`).join('')}</ul>
+      </div>` : ''}
+      ${d.karir ? `
+      <div class="detail-section">
+        <h2><i class="fas fa-industry"></i> Peluang Karir</h2>
+        <p>${d.karir}</p>
+      </div>` : ''}
+      <div class="tag-wrap">
+        ${(d.tag||d.bidang||'').split(',').map(t=>`<span class="tag">${t.trim()}</span>`).join('')}
+      </div>`;
+    document.getElementById('sidebarInfo').innerHTML = SPMB_SIDEBAR;
+  }
+
+  function renderBerita(id, d) {
+    // Sembunyikan navigasi cepat & konten terkait
+    const navEl = document.getElementById('sidebarNavCepat');
+    if (navEl) navEl.style.display = 'none';
+    const relEl = document.getElementById('relatedContent');
+    if (relEl) { const card = relEl.closest('.sidebar-card'); if (card) card.style.display = 'none'; }
+
+    setHero(
+      'Berita Sekolah', 'fas fa-newspaper',
+      d.judul || 'Berita',
+      d.ringkasan || '',
+      d.foto || '',
+      [
+        { icon:'fas fa-calendar', text: d.tanggal||'' },
+        { icon:'fas fa-tag', text: d.kategori||'' },
+      ]
+    );
+    document.getElementById('detailMain').innerHTML = `
+      <div class="detail-section">
+        <h2><i class="fas fa-newspaper"></i> Isi Berita</h2>
+        ${(d.isi||'').split(/\\n|\n/).filter(l=>l.trim()).map(l=>`<p>${l.trim()}</p>`).join('')}
+      </div>
+      <div class="tag-wrap"><span class="tag">${d.kategori||''}</span></div>`;
+    document.getElementById('sidebarInfo').innerHTML = `
+      <h4><i class="fas fa-info-circle"></i> Info Berita</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--gray-2);">
+          <span style="color:var(--text-3);">Tanggal</span><strong>${d.tanggal||'-'}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;">
+          <span style="color:var(--text-3);">Kategori</span><strong>${d.kategori||'-'}</strong>
+        </div>
+      </div>`;
+  }
+
+  function renderPrestasi(id, d) {
+    // Sembunyikan navigasi cepat & konten terkait — tidak relevan untuk halaman prestasi
+    const navEl = document.getElementById('sidebarNavCepat');
+    if (navEl) navEl.style.display = 'none';
+    const relEl = document.getElementById('relatedContent');
+    if (relEl) { const card = relEl.closest('.sidebar-card'); if (card) card.style.display = 'none'; }
+
+    setHero(
+      'Prestasi Siswa', 'fas fa-trophy',
+      d.nama || 'Prestasi',
+      d.keterangan || '',
+      d.foto || 'https://images.unsplash.com/photo-1567443024551-f3e3cc2be870?w=1200&q=80',
+      [
+        { icon:'fas fa-medal',          text: d.medal||'🏆' },
+        { icon:'fas fa-map-marker-alt', text:'Tingkat '+(d.tingkat||'') },
+        { icon:'fas fa-calendar',       text:'Tahun '+(d.tahun||'') },
+      ]
+    );
+
+    // Paragraf deskripsi — split baris baru jadi <p> terpisah
+    const deskripsHTML = d.deskripsi
+      ? d.deskripsi.split('\n').filter(l => l.trim()).map(l => `<p>${l.trim()}</p>`).join('')
+      : '<p style="color:var(--text-3);font-style:italic;">Deskripsi belum tersedia.</p>';
+
+    document.getElementById('detailMain').innerHTML = `
+      <div class="highlight-box">
+        <h3>${d.medal||'🏆'} ${d.nama||''}</h3>
+        <p>${d.keterangan||''}</p>
+      </div>
+      ${d.foto ? `
+      <div class="detail-section">
+        <h2><i class="fas fa-image"></i> Foto Prestasi</h2>
+        <div style="border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:var(--gray-2);">
+          <img src="${d.foto}" alt="${d.nama||''}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+        </div>
+      </div>` : ''}
+      <div class="detail-section">
+        <h2><i class="fas fa-info-circle"></i> Detail Prestasi</h2>
+        <div class="info-grid">
+          <div class="info-item"><div class="info-item-label">Nama Prestasi</div><div class="info-item-value">${d.nama||'-'}</div></div>
+          <div class="info-item"><div class="info-item-label">Tingkat</div><div class="info-item-value">${d.tingkat||'-'}</div></div>
+          <div class="info-item"><div class="info-item-label">Tahun</div><div class="info-item-value">${d.tahun||'-'}</div></div>
+          <div class="info-item"><div class="info-item-label">Medali</div><div class="info-item-value">${d.medal||'-'}</div></div>
+        </div>
+      </div>
+      <div class="detail-section">
+        <h2><i class="fas fa-align-left"></i> Tentang Prestasi</h2>
+        ${deskripsHTML}
+      </div>`;
+
+    document.getElementById('sidebarInfo').innerHTML = `
+      <h4><i class="fas fa-trophy"></i> Info Prestasi</h4>
+      <div style="display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:10px 0;border-bottom:1px solid var(--gray-2);">
+          <span style="color:var(--text-3);">Medali</span><strong>${d.medal||'-'}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:10px 0;border-bottom:1px solid var(--gray-2);">
+          <span style="color:var(--text-3);">Tingkat</span><strong>${d.tingkat||'-'}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:10px 0;">
+          <span style="color:var(--text-3);">Tahun</span><strong>${d.tahun||'-'}</strong>
+        </div>
+      </div>
+      <a href="prestasi.html" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px;background:var(--navy);color:#fff;border-radius:100px;text-decoration:none;font-size:13px;font-weight:700;margin-top:16px;transition:background .2s;" onmouseover="this.style.background='#2451a0'" onmouseout="this.style.background='var(--navy)'">
+        <i class="fas fa-trophy"></i> Lihat Semua Prestasi
+      </a>`;
+  }
+
+  function renderFasilitas(id, d) {
+    setHero(
+      'Fasilitas Sekolah', d.icon||'fas fa-building',
+      d.nama || 'Fasilitas',
+      d.keterangan || '',
+      'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+      [{ icon:'fas fa-industry', text:'Berstandar Industri' }]
+    );
+    document.getElementById('detailMain').innerHTML = `
+      <div class="detail-section">
+        <h2><i class="${d.icon||'fas fa-building'}"></i> Tentang Fasilitas</h2>
+        <p>${d.keterangan||''}</p>
+      </div>`;
+    document.getElementById('sidebarInfo').innerHTML = `
+      <h4><i class="fas fa-info-circle"></i> Info Fasilitas</h4>
+      <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;">
+        <span style="color:var(--text-3);">Kategori</span><strong>${d.kategori||'-'}</strong>
+      </div>`;
+  }
+
+  function renderPengumuman(id, d) {
+    // Sembunyikan SEMUA sidebar
+    document.querySelectorAll('.detail-sidebar .sidebar-card').forEach(el => el.style.display = 'none');
+    document.querySelector('.detail-sidebar').style.display = 'none';
+    const grid = document.querySelector('.detail-grid');
+    if (grid) grid.style.gridTemplateColumns = '1fr';
+
+    // Foto per kategori
+    const fotoMap = {
+      'PPDB':          'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
+      'Akademik':      'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80',
+      'Kesiswaan':     'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
+      'Administrasi':  'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+      'Umum':          'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=1200&q=80',
+    };
+    const heroFoto = d.foto || fotoMap[d.kategori] || fotoMap['Umum'];
+
+    const badgeColor = {
+      'PPDB': '#e8a020', 'Kesiswaan': 'var(--navy-lt)',
+      'Administrasi': '#2e7d32', 'Akademik': '#1565c0', 'Umum': '#8a94b8'
+    }[d.kategori] || 'var(--navy)';
+
+    setHero(
+      'Info & Pengumuman', 'fas fa-bullhorn',
+      d.judul || 'Pengumuman',
+      d.kategori ? `Kategori: ${d.kategori}` : '',
+      heroFoto,
+      [
+        { icon: 'fas fa-calendar-alt', text: d.tanggal || '-' },
+        { icon: 'fas fa-tag',          text: d.kategori || '-' },
+        { icon: 'fas fa-check-circle', text: d.status || 'Aktif' },
+      ]
+    );
+
+    // Foto konten (gambar di dalam body)
+    const fotoKonten = d.foto || heroFoto;
+
+    // Isi paragraf
+    const isiHTML = d.isi
+      ? d.isi.split(/\\n|\n/).filter(l => l.trim()).map(l => `<p>${l.trim()}</p>`).join('')
+      : '<p style="color:var(--text-3);font-style:italic;">Isi pengumuman belum tersedia.</p>';
+
+    document.getElementById('detailMain').innerHTML = `
+      <div class="highlight-box" style="background:linear-gradient(135deg,var(--navy-dk),var(--navy));">
+        <h3 style="font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:10px;">
+          <i class="fas fa-bullhorn" style="color:var(--gold-lt);margin-right:8px;"></i>${d.judul||''}
+        </h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+          <span style="background:${badgeColor};color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;">${d.kategori||''}</span>
+          <span style="background:rgba(255,255,255,.15);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>${d.tanggal||'-'}</span>
+          <span style="background:rgba(255,255,255,.15);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;"><i class="fas fa-check-circle" style="margin-right:4px;"></i>${d.status||'Aktif'}</span>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2><i class="fas fa-image"></i> Foto</h2>
+        <div style="border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:var(--gray-2);margin-bottom:8px;">
+          <img src="${fotoKonten}" alt="${d.judul||''}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2><i class="fas fa-align-left"></i> Isi Pengumuman</h2>
+        ${isiHTML}
+      </div>
+
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--gray-2);">
+        <button onclick="goBack()" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;background:var(--navy);color:#fff;border-radius:100px;border:none;font-family:var(--sans);font-size:13px;font-weight:700;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='#2451a0'" onmouseout="this.style.background='var(--navy)'">
+          <i class="fas fa-arrow-left"></i> Kembali ke Info
+        </button>
+      </div>`;
+  }
+
+  // ── Render konten terkait dari Firestore
+  function renderRelatedFirestore(section, items) {
+    const container = document.getElementById('relatedContent');
+    if (!container || !items.length) return;
+
+    // Untuk jurusan: urutan tetap
+    let ordered = items;
+    if (section === 'jurusan') {
+      const ORDER = ['tpm','tkro','dpib','tkp','titl','tkj'];
+      ordered = ORDER.filter(k => items.find(i => i.id === k))
+                     .map(k => items.find(i => i.id === k));
+    }
+
+    container.innerHTML = ordered.map(item => {
+      const title = item.nama || item.judul || item.posisi || '';
+      const cat   = item.bidang || item.kategori || 'Program Keahlian';
+      const img   = item.heroImg || item.foto || '';
+      return `<a class="related-card" onclick="goDetail('${section}','${item.id}')">
+        <div class="related-thumb" style="background:linear-gradient(135deg,var(--navy-dk),var(--navy-lt));display:flex;align-items:center;justify-content:center;overflow:hidden;">
+          <img src="${img}" alt="${title}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />
+        </div>
+        <div>
+          <div class="related-title">${title}</div>
+          <div class="related-meta">${cat}</div>
+        </div>
+      </a>`;
+    }).join('');
+  }
+</script>
+</body>
+</html>
