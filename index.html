@@ -2371,9 +2371,9 @@
 <!-- ── Firebase: update 5 section dari Firestore ── -->
 <script type="module">
   import { initializeApp }  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getFirestore, collection, getDocs, onSnapshot }
+ import { getFirestore, collection, getDocs, onSnapshot, doc, updateDoc, increment }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
+  
   const app = initializeApp({
     apiKey: "AIzaSyAvkyQXtfQ3d4pfYxnOEuk1sq8QWArzWXY",
     authDomain: "smkn2sragen-e487b.firebaseapp.com",
@@ -2582,9 +2582,7 @@
     _pollId      = p.id;
     _pilihanList = [p.pilihan1, p.pilihan2, p.pilihan3, p.pilihan4].filter(Boolean);
 
-    // Baca votes dari localStorage untuk polling ini
-    const savedVotes = JSON.parse(localStorage.getItem('poll_votes_' + _pollId) || 'null');
-    const votes = _pilihanList.map((_, i) => savedVotes ? (savedVotes[i] || 0) : 0);
+    const votes = _pilihanList.map((_, i) => parseInt(p['votes' + i] || 0));
     const total = votes.reduce((a, b) => a + b, 0);
     const sudahVote = localStorage.getItem('voted_' + _pollId);
 
@@ -2647,38 +2645,27 @@
   }
 
   // ── submitPoll — simpan ke localStorage (tidak butuh Firebase write)
-  window.submitPoll = function() {
-    const selected = document.querySelector('input[name="poll"]:checked');
-    if (!selected) { alert('Pilih salah satu jawaban terlebih dahulu!'); return; }
-    if (!_pollId)  { alert('Polling belum dimuat, coba refresh.'); return; }
+ window.submitPoll = async function() {
+  const selected = document.querySelector('input[name="poll"]:checked');
+  if (!selected) { alert('Pilih salah satu jawaban terlebih dahulu!'); return; }
+  if (!_pollId)  { alert('Polling belum dimuat, coba refresh.'); return; }
 
-    const idx = parseInt(selected.value);
+  const idx = parseInt(selected.value);
+  const btn = document.getElementById('pollSubmitBtn');
+  if (btn) { btn.disabled = true; btn.style.opacity = '.6'; }
 
-    // Ambil votes yang sudah ada, tambah 1 untuk pilihan ini
-    const savedVotes = JSON.parse(localStorage.getItem('poll_votes_' + _pollId) || '{}');
-    savedVotes[idx] = (savedVotes[idx] || 0) + 1;
-    localStorage.setItem('poll_votes_' + _pollId, JSON.stringify(savedVotes));
-    localStorage.setItem('voted_' + _pollId, String(idx));
-
-    // Hitung ulang
-    const votes = _pilihanList.map((_, i) => savedVotes[i] || 0);
-    const total = votes.reduce((a, b) => a + b, 0);
-
-    // Update stats
-    const el = id => document.getElementById(id);
-    if (el('statResponden')) el('statResponden').textContent = total;
-
-    // Sembunyikan form & tombol
+  try {
+    await updateDoc(doc(db, 'polling', _pollId), { ['votes' + idx]: increment(1) });
+    localStorage.setItem('voted_' + _pollId, String(idx)); // cuma buat cegah vote dobel di device ini
     const oEl = document.getElementById('pollOptions');
-    const btn = document.getElementById('pollSubmitBtn');
     if (oEl) oEl.style.display = 'none';
     if (btn) btn.style.display = 'none';
-
-    // Tampilkan hasil
-    _renderPollResults(votes, total, _pilihanList);
-    const res = document.getElementById('pollResults');
-    if (res) { res.classList.add('show'); setTimeout(_animateBars, 150); }
-  };
+    // hasil terbaru otomatis muncul lewat onSnapshot di atas
+  } catch (e) {
+    alert('Gagal mengirim suara: ' + e.message);
+    if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+  }
+};
 
   // Pasang event listener ke tombol setelah module load
   const pollBtn = document.getElementById('pollSubmitBtn');
