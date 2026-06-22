@@ -416,7 +416,7 @@
   <!-- Topbar -->
   <div class="topbar">
     <div class="topbar-left">
-      <h2>SMK Negeri 2 Sragen</h2>
+      <h2 id="topbarTitle">SMK Negeri 2 Sragen</h2>
     </div>
     <div class="topbar-right">
       <a href="index.html" target="_blank" class="view-site-btn"><i class="fas fa-external-link-alt"></i> Lihat Website</a>
@@ -532,6 +532,9 @@
         <button class="btn-primary" onclick="openModal('pengumuman')"><i class="fas fa-plus"></i> Tambah Pengumuman</button>
       </div>
       <div class="table-wrap">
+        <div class="table-toolbar">
+  <input class="search-input" placeholder="Cari pengumuman..." oninput="filterTable(this,'tbl-pengumuman')" />
+</div>
         <table id="tbl-pengumuman">
           <thead><tr><th>Tanggal</th><th>Judul Pengumuman</th><th>Kategori</th><th>Status</th><th>Foto</th><th>Aksi</th></tr></thead>
           <tbody>
@@ -929,8 +932,9 @@
     </td>`;
     if (col==='prestasi')   return `<tr><td>${d.medal||'-'}</td><td><strong>${d.nama||'-'}</strong></td><td>${d.tingkat||'-'}</td><td>${d.keterangan||'-'}</td><td>${d.tahun||'-'}</td><td>${d.foto ? `<div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="${d.foto}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div>` : '<span style="font-size:11px;color:#aaa;">-</span>'}</td>${acts}</tr>`;
     if (col==='berita')     return `<tr><td>${d.tanggal||'-'}</td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status ${d.status==='Publish'?'aktif':'draft'}">${d.status||'Draft'}</span></td>${acts}</tr>`;
-    if (col==='galeri')     return `<tr><td><div style="width:56px;height:40px;border-radius:7px;overflow:hidden;background:#eef0f6;"><img src="${d.foto||''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div></td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status aktif">${d.status||'Tampil'}</span></td>${acts}</tr>`;
-    if (col==='pengumuman') return `<tr><td>${d.tanggal||'-'}</td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status aktif">${d.status||'Aktif'}</span></td><td>${d.foto ? `<div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="${d.foto}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div>` : '<span style="font-size:11px;color:#aaa;">-</span>'}</td>${acts}</tr>`;
+    if (col==='galeri')     return `<tr><td><div style="width:56px;height:40px;border-radius:7px;overflow:hidden;background:#eef0f6;"><img src="${d.foto||''}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div></td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status ${d.status==='Tampil'?'aktif':'draft'}">${d.status||'Tampil'}</span>
+</td>${acts}</tr>`;
+    if (col==='pengumuman') return `<tr><td>${d.tanggal||'-'}</td><td><strong>${d.judul||'-'}</strong></td><td>${d.kategori||'-'}</td><td><span class="status ${d.status==='Aktif'?'aktif':'draft'}">${d.status||'Aktif'}</span></td><td>${d.foto ? `<div style="width:56px;height:40px;border-radius:7px;overflow:hidden;"><img src="${d.foto}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"/></div>` : '<span style="font-size:11px;color:#aaa;">-</span>'}</td>${acts}</tr>`;
     if (col==='polling')    return `<tr><td><strong>${(d.pertanyaan||'').slice(0,60)}...</strong></td><td>${d.status||'-'}</td><td style="font-size:12px;color:var(--text-2);">${[0,1,2,3].map(i=> d['pilihan'+(i+1)] ? `${d['pilihan'+(i+1)]}: <b>${d['votes'+i]||0}</b>` : '').filter(Boolean).join(' · ')}</td>${acts}</tr>`;
     return `<tr><td colspan="10">${JSON.stringify(d)}</td></tr>`;
   }
@@ -1089,7 +1093,7 @@
   window._fbSave = async () => {
     if (window._uploadInProgress) { showToast('⏳ Tunggu upload foto selesai dulu!'); return; }
     const inputs = document.getElementById('modalBody').querySelectorAll('input,textarea,select');
-    const data = {}; inputs.forEach(el => { if (el.name) data[el.name] = el.value; });
+    const data = {}; inputs.forEach(el => { if (el.name && el.type !== 'checkbox') data[el.name] = el.value; });
     data.updatedAt = serverTimestamp();
     // Reset votes kalau checkbox dicentang
     const resetVotes = document.querySelector('input[name="resetVotes"]');
